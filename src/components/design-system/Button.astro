@@ -1,0 +1,38 @@
+---
+interface Props {
+	href?: string;
+	variant?: "primary" | "secondary";
+}
+
+const { href, variant = "primary" } = Astro.props;
+const Tag = href ? "a" : "button";
+---
+
+<Tag class:list={["ds-button", `ds-button--${variant}`, "ds-hover-lift"]} href={href}>
+	<slot />
+</Tag>
+
+<style>
+	.ds-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 46px;
+		padding: 0 18px;
+		border: 1px solid var(--ds-line-strong);
+		font-family: var(--ds-font-display);
+		font-size: 0.92rem;
+		font-weight: 700;
+	}
+
+	.ds-button--primary {
+		color: #021016;
+		background: linear-gradient(135deg, var(--ds-ink) 0%, #9eeeff 54%, var(--ds-mint) 100%);
+		box-shadow: 0 0 30px rgba(66, 217, 255, 0.22);
+	}
+
+	.ds-button--secondary {
+		color: var(--ds-ink);
+		background: rgba(255, 255, 255, 0.04);
+	}
+</style>

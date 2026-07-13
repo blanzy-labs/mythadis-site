@@ -1,0 +1,211 @@
+---
+import Button from "../components/design-system/Button.astro";
+import ContentSection from "../components/design-system/ContentSection.astro";
+import CurrentStatePanel from "../components/design-system/CurrentStatePanel.astro";
+import NetworkMotif from "../components/design-system/NetworkMotif.astro";
+import PageHero from "../components/design-system/PageHero.astro";
+import SectionLabel from "../components/design-system/SectionLabel.astro";
+import StatusLabel from "../components/design-system/StatusLabel.astro";
+import SurfacePanel from "../components/design-system/SurfacePanel.astro";
+import SystemCard from "../components/design-system/SystemCard.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+	title="Mythadis Design System | The Luminous Archive"
+	description="The approved Mythadis design system derived from Visual Study A, The Luminous Archive."
+>
+	<PageHero
+		label="Approved design system / The Luminous Archive"
+		title="The production visual foundation for Mythadis."
+		description="Visual Study A is now the approved Mythadis direction: near-black layered fields, ice-white typography, controlled electric-blue illumination, engineered geometry, and restrained cinematic atmosphere."
+		primaryHref="#components"
+		primaryLabel="Review primitives"
+		secondaryHref="/visual-studies/"
+		secondaryLabel="View study record"
+	/>
+
+	<section class="decision-band" aria-label="Approved decision">
+		<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
+	</section>
+
+	<ContentSection
+		id="principles"
+		label="Design principles"
+		title="A serious archive language for research, engineering, and long-form content."
+	>
+		<div class="principle-grid">
+			<SurfacePanel variant="strong">
+				<article class="principle-card">
+					<SectionLabel>Identity</SectionLabel>
+					<h3>Retain the Luminous Archive.</h3>
+					<p>
+						The system keeps Study A's dark atmospheric field, sharp luminous edges,
+						sparse network motifs, and strong negative space.
+					</p>
+				</article>
+			</SurfacePanel>
+			<SurfacePanel>
+				<article class="principle-card">
+					<SectionLabel>Use</SectionLabel>
+					<h3>Support production pages.</h3>
+					<p>
+						Components are structured for the holding page, homepage, technology pages,
+						Annals, Field Reports, Mission Swarms, and collaboration content.
+					</p>
+				</article>
+			</SurfacePanel>
+			<SurfacePanel variant="warning">
+				<article class="principle-card">
+					<SectionLabel>State</SectionLabel>
+					<h3>Separate system from launch.</h3>
+					<p>
+						This is the approved reusable design foundation. It is not MWEB-004, the
+						production homepage, or a public availability claim.
+					</p>
+				</article>
+			</SurfacePanel>
+		</div>
+	</ContentSection>
+
+	<ContentSection id="components" label="Reusable primitives" title="Production components derived from Study A.">
+		<div class="component-demo">
+			<SurfacePanel variant="strong">
+				<div class="demo-block">
+					<SectionLabel>Buttons</SectionLabel>
+					<div class="row">
+						<Button href="#components">Primary action</Button>
+						<Button href="#components" variant="secondary">Secondary action</Button>
+					</div>
+				</div>
+			</SurfacePanel>
+
+			<SurfacePanel>
+				<div class="demo-block">
+					<SectionLabel>Status labels</SectionLabel>
+					<div class="row">
+						<StatusLabel>Prototype</StatusLabel>
+						<StatusLabel tone="amber">Private research</StatusLabel>
+						<StatusLabel tone="green">Stable token</StatusLabel>
+						<StatusLabel tone="plum">Archived alternative</StatusLabel>
+					</div>
+				</div>
+			</SurfacePanel>
+		</div>
+
+		<div class="ds-grid ds-grid-3 card-row">
+			<SystemCard title="Technology Pages" status="Ready primitive">
+				Surfaces for Fluid Swarm Core, agents, Steward Mode, Mission Control, and technical architecture.
+			</SystemCard>
+			<SystemCard title="Annals & Reports" status="Long-form" tone="green">
+				Precise editorial containers for doctrine, research programs, field reports, and proof trails.
+			</SystemCard>
+			<SystemCard title="Mission Swarms" status="Future page" tone="amber">
+				Structured presentation for mission-specific coordination without implying public availability.
+			</SystemCard>
+		</div>
+	</ContentSection>
+
+	<ContentSection id="state" label="Current state" title="Approved language remains constrained.">
+		<CurrentStatePanel />
+	</ContentSection>
+
+	<ContentSection id="motif" label="Graphic system" title="Network and archive motifs stay sparse, controlled, and engineered.">
+		<div class="motif-layout">
+			<NetworkMotif />
+			<SurfacePanel>
+				<div class="principle-card">
+					<SectionLabel>Motif guidance</SectionLabel>
+					<h3>Use light as structure, not spectacle.</h3>
+					<p>
+						The approved motif should frame intelligence as ordered evidence emerging
+						from unknown scale. Glow is controlled, geometry is sharp, and decorative
+						density stays low.
+					</p>
+				</div>
+			</SurfacePanel>
+		</div>
+	</ContentSection>
+</SiteLayout>
+
+<style>
+	.decision-band {
+		margin: 0 0 104px;
+		padding: 28px 0;
+		border-block: 1px solid var(--ds-line);
+	}
+
+	.decision-band p {
+		width: min(940px, 100%);
+		margin: 0;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.7rem, 4.4vw, 3.4rem);
+		line-height: 1.04;
+	}
+
+	.principle-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+	}
+
+	.principle-card,
+	.demo-block {
+		padding: 26px;
+	}
+
+	.principle-card h3 {
+		margin: 0;
+		font-size: clamp(1.35rem, 2.2vw, 2rem);
+		line-height: 1.04;
+	}
+
+	.principle-card p {
+		margin: 18px 0 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.62;
+	}
+
+	.component-demo {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 18px;
+	}
+
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		align-items: center;
+	}
+
+	.card-row {
+		margin-top: 18px;
+	}
+
+	.motif-layout {
+		display: grid;
+		grid-template-columns: minmax(360px, 1.1fr) minmax(0, 0.9fr);
+		gap: 18px;
+		align-items: stretch;
+	}
+
+	@media (max-width: 940px) {
+		.principle-grid,
+		.component-demo,
+		.motif-layout {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.decision-band {
+			margin-bottom: 74px;
+		}
+
+		.principle-card,
+		.demo-block {
+			padding: 20px;
+		}
+	}
+</style>

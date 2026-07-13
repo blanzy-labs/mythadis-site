@@ -31,6 +31,15 @@ import "@fontsource/ibm-plex-mono/500.css";
 					This is a controlled review surface for comparing approved Mythadis messaging
 					across three distinct visual philosophies. No study is the production homepage.
 				</p>
+				<div class="approval-notice">
+					<p class="approval-notice__label">Approved direction</p>
+					<strong class="approval-notice__title">Study A is selected.</strong>
+					<span class="approval-notice__copy">
+						Studies B and C are archived alternatives. Production components now derive
+						from The Luminous Archive.
+					</span>
+					<a class="approval-notice__link" href="/design-system/">Review approved design system</a>
+				</div>
 			</header>
 
 			<section class="study-grid" aria-label="Available visual studies">
@@ -269,6 +278,45 @@ import "@fontsource/ibm-plex-mono/500.css";
 	.status-note li {
 		color: var(--muted);
 		line-height: 1.5;
+	}
+
+	.approval-notice {
+		display: grid;
+		gap: 8px;
+		margin-top: 28px;
+		padding: 18px;
+		border: 1px solid rgba(246, 197, 107, 0.34);
+		background: rgba(246, 197, 107, 0.08);
+	}
+
+	.approval-notice__label {
+		margin: 0 0 10px;
+		color: var(--gold);
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.approval-notice__title {
+		font-family: var(--font-display);
+		font-size: 1.2rem;
+	}
+
+	.approval-notice__copy {
+		max-width: 620px;
+		color: var(--muted);
+		line-height: 1.5;
+	}
+
+	.approval-notice__link {
+		width: max-content;
+		margin-top: 6px;
+		color: #061014;
+		padding: 10px 12px;
+		background: linear-gradient(135deg, #f1fbff, #7ee9dd);
+		font-family: var(--font-display);
+		font-weight: 700;
 	}
 
 	@media (max-width: 980px) {

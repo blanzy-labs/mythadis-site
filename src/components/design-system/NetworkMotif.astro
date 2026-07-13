@@ -1,0 +1,164 @@
+<div class="ds-network-motif" aria-label="Abstract luminous archive map">
+	<div class="ds-network-frame">
+		<svg viewBox="0 0 720 620" role="img" aria-labelledby="motif-title motif-desc">
+			<title id="motif-title">Luminous archive structure</title>
+			<desc id="motif-desc">A precise network of illuminated archive nodes emerging from a dark observatory field.</desc>
+			<defs>
+				<linearGradient id="ds-steel" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop offset="0%" stop-color="#ffffff" stop-opacity="0.92" />
+					<stop offset="52%" stop-color="#bfe9ff" stop-opacity="0.78" />
+					<stop offset="100%" stop-color="#7aa7b7" stop-opacity="0.52" />
+				</linearGradient>
+				<linearGradient id="ds-blue-edge" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#1ed6ff" stop-opacity="0" />
+					<stop offset="42%" stop-color="#56e7ff" stop-opacity="0.9" />
+					<stop offset="100%" stop-color="#85f4d3" stop-opacity="0.38" />
+				</linearGradient>
+			</defs>
+			<rect x="72" y="48" width="576" height="468" rx="4" class="field" />
+			<path d="M128 444 L250 214 L358 354 L486 150 L594 362" class="constellation glow" />
+			<path d="M128 444 L250 214 L358 354 L486 150 L594 362" class="constellation" />
+			<path d="M174 108 H546 M174 502 H546 M104 170 V430 M616 170 V430" class="guide-lines" />
+			<path d="M160 382 H286 L330 306 H456 L504 226 H574" class="archive-line glow" />
+			<path d="M160 382 H286 L330 306 H456 L504 226 H574" class="archive-line" />
+			<g>
+				<rect x="112" y="424" width="32" height="32" rx="2" class="node" />
+				<rect x="234" y="198" width="32" height="32" rx="2" class="node blue" />
+				<rect x="342" y="338" width="32" height="32" rx="2" class="node" />
+				<rect x="470" y="134" width="32" height="32" rx="2" class="node blue" />
+				<rect x="578" y="346" width="32" height="32" rx="2" class="node green" />
+			</g>
+			<g class="archive-bars">
+				<path d="M204 468 H414" />
+				<path d="M204 486 H374" />
+				<path d="M204 126 H356" />
+				<path d="M204 144 H300" />
+				<path d="M450 468 H530" />
+				<path d="M450 486 H564" />
+			</g>
+			<g class="coordinate-grid">
+				<path d="M128 72 V492" />
+				<path d="M250 72 V492" />
+				<path d="M372 72 V492" />
+				<path d="M494 72 V492" />
+				<path d="M616 72 V492" />
+				<path d="M96 150 H624" />
+				<path d="M96 250 H624" />
+				<path d="M96 350 H624" />
+				<path d="M96 450 H624" />
+			</g>
+			<text x="96" y="566" class="svg-label">EVIDENCE BEFORE LEGEND</text>
+			<text x="454" y="566" class="svg-label">UNITY WITHOUT CENTRALIZATION</text>
+		</svg>
+	</div>
+	<div class="visual-meta">
+		<span>Archive state: selected</span>
+		<span>Signal: controlled</span>
+	</div>
+</div>
+
+<style>
+	.ds-network-frame {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 1.04;
+		border: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 24%),
+			linear-gradient(180deg, rgba(9, 109, 145, 0.18), rgba(2, 7, 10, 0.86));
+		box-shadow: 0 28px 80px var(--ds-shadow), inset 0 0 34px rgba(255, 255, 255, 0.035);
+	}
+
+	.ds-network-frame::before,
+	.ds-network-frame::after {
+		position: absolute;
+		content: "";
+		pointer-events: none;
+	}
+
+	.ds-network-frame::before {
+		inset: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.ds-network-frame::after {
+		inset: auto 0 0;
+		height: 4px;
+		background: linear-gradient(90deg, transparent, var(--ds-blue), var(--ds-mint), transparent);
+		box-shadow: 0 0 24px rgba(66, 217, 255, 0.72);
+	}
+
+	.field {
+		fill: rgba(0, 0, 0, 0.14);
+		stroke: rgba(255, 255, 255, 0.12);
+	}
+
+	.coordinate-grid path,
+	.guide-lines {
+		fill: none;
+		stroke: rgba(197, 237, 249, 0.09);
+		stroke-width: 1;
+	}
+
+	.constellation,
+	.archive-line {
+		fill: none;
+		stroke: url(#ds-blue-edge);
+		stroke-width: 2;
+		stroke-linecap: square;
+	}
+
+	.glow {
+		stroke-width: 8;
+		opacity: 0.34;
+		filter: blur(7px);
+	}
+
+	.node {
+		fill: url(#ds-steel);
+		stroke: rgba(255, 255, 255, 0.72);
+		stroke-width: 1;
+		filter: drop-shadow(0 0 12px rgba(66, 217, 255, 0.64));
+	}
+
+	.node.blue {
+		fill: rgba(66, 217, 255, 0.88);
+	}
+
+	.node.green {
+		fill: rgba(140, 240, 205, 0.82);
+	}
+
+	.archive-bars path {
+		fill: none;
+		stroke: rgba(244, 251, 255, 0.58);
+		stroke-width: 3;
+	}
+
+	.svg-label,
+	.visual-meta {
+		font-family: var(--ds-font-mono);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.svg-label {
+		fill: rgba(196, 215, 223, 0.62);
+		font-size: 10px;
+	}
+
+	.visual-meta {
+		display: flex;
+		justify-content: space-between;
+		gap: 16px;
+		margin-top: 14px;
+		color: var(--ds-ink-muted);
+		font-size: 0.66rem;
+	}
+
+	@media (max-width: 620px) {
+		.visual-meta {
+			flex-direction: column;
+		}
+	}
+</style>

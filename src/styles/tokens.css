@@ -1,0 +1,41 @@
+:root {
+	--ds-font-display: "Space Grotesk", "Arial Narrow", system-ui, sans-serif;
+	--ds-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	--ds-font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+	--ds-ink: #f4fbff;
+	--ds-ink-soft: #c4d7df;
+	--ds-ink-muted: #8199a4;
+	--ds-void: #02070a;
+	--ds-void-2: #071116;
+	--ds-void-3: #0a161c;
+	--ds-surface: rgba(10, 22, 28, 0.76);
+	--ds-surface-strong: rgba(14, 32, 40, 0.92);
+	--ds-line: rgba(153, 220, 240, 0.18);
+	--ds-line-strong: rgba(189, 238, 255, 0.36);
+	--ds-blue: #42d9ff;
+	--ds-blue-deep: #096d91;
+	--ds-mint: #8cf0cd;
+	--ds-amber: #f6c56b;
+	--ds-plum: #8d7adf;
+	--ds-shadow: rgba(0, 0, 0, 0.42);
+
+	--ds-radius-none: 0;
+	--ds-radius-sm: 2px;
+	--ds-radius-md: 4px;
+
+	--ds-page-max: 1180px;
+	--ds-space-1: 0.25rem;
+	--ds-space-2: 0.5rem;
+	--ds-space-3: 0.75rem;
+	--ds-space-4: 1rem;
+	--ds-space-5: 1.25rem;
+	--ds-space-6: 1.5rem;
+	--ds-space-8: 2rem;
+	--ds-space-10: 2.5rem;
+	--ds-space-12: 3rem;
+	--ds-space-16: 4rem;
+	--ds-space-20: 5rem;
+
+	color-scheme: dark;
+}

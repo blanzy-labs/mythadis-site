@@ -1,0 +1,32 @@
+.ds-shell {
+	width: min(100% - 32px, var(--ds-page-max));
+	margin: 0 auto;
+}
+
+.ds-grid {
+	display: grid;
+	gap: var(--ds-space-5);
+}
+
+.ds-grid-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.ds-stack {
+	display: grid;
+	gap: var(--ds-space-4);
+}
+
+.ds-muted {
+	color: var(--ds-ink-muted);
+}
+
+.ds-soft {
+	color: var(--ds-ink-soft);
+}
+
+@media (max-width: 860px) {
+	.ds-grid-3 {
+		grid-template-columns: 1fr;
+	}
+}

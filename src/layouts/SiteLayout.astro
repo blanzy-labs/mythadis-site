@@ -1,0 +1,28 @@
+---
+import SiteFooter from "../components/design-system/SiteFooter.astro";
+import SiteHeader from "../components/design-system/SiteHeader.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+interface NavItem {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	title: string;
+	description?: string;
+	navItems?: NavItem[];
+}
+
+const { title, description, navItems } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<div class="ds-shell">
+		<SiteHeader items={navItems} />
+		<main>
+			<slot />
+		</main>
+		<SiteFooter />
+	</div>
+</BaseLayout>

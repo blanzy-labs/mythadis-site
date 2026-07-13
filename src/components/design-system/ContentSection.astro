@@ -1,0 +1,42 @@
+---
+import SectionLabel from "./SectionLabel.astro";
+
+interface Props {
+	id?: string;
+	label: string;
+	title: string;
+}
+
+const { id, label, title } = Astro.props;
+---
+
+<section class="ds-content-section" id={id} aria-labelledby={id ? `${id}-title` : undefined}>
+	<div class="ds-section-heading">
+		<SectionLabel>{label}</SectionLabel>
+		<h2 id={id ? `${id}-title` : undefined}>{title}</h2>
+	</div>
+	<slot />
+</section>
+
+<style>
+	.ds-content-section {
+		padding: 0 0 112px;
+	}
+
+	.ds-section-heading {
+		margin-bottom: 28px;
+	}
+
+	.ds-section-heading h2 {
+		max-width: 780px;
+		margin: 0;
+		font-size: clamp(2rem, 4vw, 4.1rem);
+		line-height: 0.98;
+	}
+
+	@media (max-width: 620px) {
+		.ds-content-section {
+			padding-bottom: 74px;
+		}
+	}
+</style>

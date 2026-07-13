@@ -1,0 +1,140 @@
+---
+interface NavItem {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	items?: NavItem[];
+	status?: string;
+}
+
+const {
+	items = [
+		{ label: "Design System", href: "/design-system/" },
+		{ label: "Studies", href: "/visual-studies/" },
+	],
+	status = "Private research",
+} = Astro.props;
+---
+
+<header class="ds-site-header" aria-label="Primary">
+	<a class="ds-brand" href="/" aria-label="Mythadis">
+		<span class="ds-brand-mark" aria-hidden="true">
+			<span></span>
+			<span></span>
+			<span></span>
+		</span>
+		<span class="ds-brand-text">Mythadis</span>
+	</a>
+	<nav class="ds-site-nav" aria-label="Primary navigation">
+		{items.map((item) => <a href={item.href}>{item.label}</a>)}
+	</nav>
+	<p class="ds-header-status">{status}</p>
+</header>
+
+<style>
+	.ds-site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		min-height: 84px;
+		font-family: var(--ds-font-display);
+	}
+
+	.ds-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		font-weight: 700;
+	}
+
+	.ds-brand-mark {
+		position: relative;
+		display: grid;
+		width: 34px;
+		height: 34px;
+		border: 1px solid var(--ds-line-strong);
+		background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(66, 217, 255, 0.03));
+		box-shadow: 0 0 24px rgba(66, 217, 255, 0.18), inset 0 0 18px rgba(255, 255, 255, 0.06);
+		transform: rotate(45deg);
+	}
+
+	.ds-brand-mark span {
+		position: absolute;
+		background: var(--ds-blue);
+		box-shadow: 0 0 14px rgba(66, 217, 255, 0.78);
+	}
+
+	.ds-brand-mark span:nth-child(1) {
+		inset: 7px auto auto 7px;
+		width: 18px;
+		height: 2px;
+	}
+
+	.ds-brand-mark span:nth-child(2) {
+		inset: 7px auto auto 7px;
+		width: 2px;
+		height: 18px;
+	}
+
+	.ds-brand-mark span:nth-child(3) {
+		right: 6px;
+		bottom: 6px;
+		width: 8px;
+		height: 8px;
+		background: var(--ds-mint);
+	}
+
+	.ds-brand-text {
+		font-size: 1.08rem;
+	}
+
+	.ds-site-nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 28px;
+		color: var(--ds-ink-soft);
+		font-size: 0.92rem;
+	}
+
+	.ds-site-nav a {
+		padding-block: 10px;
+		border-bottom: 1px solid transparent;
+	}
+
+	.ds-site-nav a:hover,
+	.ds-site-nav a:focus-visible {
+		color: var(--ds-ink);
+		border-color: var(--ds-blue);
+	}
+
+	.ds-header-status {
+		margin: 0;
+		padding: 8px 10px;
+		border: 1px solid rgba(246, 197, 107, 0.38);
+		color: var(--ds-amber);
+		background: rgba(246, 197, 107, 0.08);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	@media (max-width: 940px) {
+		.ds-site-header {
+			flex-wrap: wrap;
+			padding-top: 18px;
+		}
+
+		.ds-site-nav {
+			order: 3;
+			width: 100%;
+			justify-content: flex-start;
+			gap: 20px;
+			overflow-x: auto;
+		}
+	}
+</style>

@@ -1,0 +1,21 @@
+.ds-luminous-background {
+	background:
+		linear-gradient(rgba(86, 231, 255, 0.045) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(86, 231, 255, 0.035) 1px, transparent 1px),
+		radial-gradient(circle at 18% 16%, rgba(66, 217, 255, 0.12), transparent 30rem),
+		radial-gradient(circle at 82% 10%, rgba(140, 240, 205, 0.07), transparent 28rem),
+		linear-gradient(145deg, var(--ds-void) 0%, #041015 42%, #010406 100%);
+	background-size: 72px 72px, 72px 72px, auto, auto, auto;
+}
+
+.ds-luminous-background::before {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	content: "";
+	background:
+		linear-gradient(120deg, transparent 0 36%, rgba(255, 255, 255, 0.055) 36.08%, transparent 36.8%),
+		linear-gradient(300deg, transparent 0 58%, rgba(66, 217, 255, 0.08) 58.12%, transparent 58.8%);
+	mask-image: linear-gradient(to bottom, #000 0%, transparent 86%);
+}

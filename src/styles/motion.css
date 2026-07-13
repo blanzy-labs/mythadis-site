@@ -1,0 +1,10 @@
+@media (prefers-reduced-motion: no-preference) {
+	.ds-hover-lift {
+		transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+	}
+
+	.ds-hover-lift:hover,
+	.ds-hover-lift:focus-visible {
+		transform: translateY(-1px);
+	}
+}

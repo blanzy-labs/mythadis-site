@@ -1,0 +1,116 @@
+---
+import Button from "./Button.astro";
+import NetworkMotif from "./NetworkMotif.astro";
+import SectionLabel from "./SectionLabel.astro";
+
+interface Props {
+	label: string;
+	title: string;
+	description: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+	showMotif?: boolean;
+}
+
+const {
+	label,
+	title,
+	description,
+	primaryHref,
+	primaryLabel,
+	secondaryHref,
+	secondaryLabel,
+	showMotif = true,
+} = Astro.props;
+---
+
+<section class:list={["ds-page-hero", !showMotif && "ds-page-hero--single"]}>
+	<div class="ds-page-hero__copy">
+		<SectionLabel>{label}</SectionLabel>
+		<h1>{title}</h1>
+		<p>{description}</p>
+		{(primaryHref || secondaryHref) && (
+			<div class="ds-page-hero__actions">
+				{primaryHref && <Button href={primaryHref}>{primaryLabel}</Button>}
+				{secondaryHref && <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>}
+			</div>
+		)}
+	</div>
+	{showMotif && <NetworkMotif />}
+</section>
+
+<style>
+	.ds-page-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
+		gap: 44px;
+		align-items: center;
+		min-height: calc(100svh - 84px);
+		padding: 42px 0 76px;
+	}
+
+	.ds-page-hero--single {
+		grid-template-columns: 1fr;
+		min-height: 58svh;
+	}
+
+	.ds-page-hero__copy {
+		max-width: 680px;
+	}
+
+	.ds-page-hero h1 {
+		max-width: 9.4ch;
+		margin: 0;
+		font-size: clamp(3.9rem, 7vw, 6.2rem);
+		line-height: 0.88;
+	}
+
+	.ds-page-hero p {
+		max-width: 620px;
+		margin: 28px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: clamp(1.04rem, 1.7vw, 1.28rem);
+		line-height: 1.65;
+	}
+
+	.ds-page-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-top: 34px;
+	}
+
+	@media (max-width: 940px) {
+		.ds-page-hero {
+			grid-template-columns: 1fr;
+			min-height: auto;
+		}
+
+		.ds-page-hero h1 {
+			max-width: 9.8ch;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.ds-page-hero {
+			gap: 34px;
+			padding-top: 22px;
+		}
+
+		.ds-page-hero h1 {
+			max-width: 100%;
+			font-size: clamp(2.65rem, 13.2vw, 4.4rem);
+			line-height: 0.94;
+		}
+
+		.ds-page-hero__actions {
+			flex-direction: column;
+		}
+
+		.ds-page-hero__actions :global(.ds-button) {
+			width: 100%;
+		}
+	}
+</style>

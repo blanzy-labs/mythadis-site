@@ -1,10 +1,9 @@
 ---
-import "@fontsource/space-grotesk/400.css";
-import "@fontsource/space-grotesk/500.css";
-import "@fontsource/space-grotesk/700.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/700.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/source-sans-3/400.css";
+import "@fontsource/source-sans-3/500.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 ---
@@ -19,220 +18,69 @@ import "@fontsource/ibm-plex-mono/500.css";
 		<meta name="generator" content={Astro.generator} />
 		<meta
 			name="description"
-			content="Mythadis visual study A, The Luminous Archive: a restrained research archive direction for coordinating intelligence."
+			content="Compare Mythadis visual foundation studies: The Luminous Archive and The Living Atlas."
 		/>
-		<title>Mythadis Visual Study A | The Luminous Archive</title>
+		<title>Mythadis Visual Studies</title>
 	</head>
 	<body>
-		<div class="site-shell">
-			<header class="site-header" aria-label="Primary">
-				<a class="brand" href="/" aria-label="Mythadis">
-					<span class="brand-mark" aria-hidden="true">
-						<span></span>
-						<span></span>
-						<span></span>
-					</span>
-					<span class="brand-text">Mythadis</span>
-				</a>
-				<nav class="nav-links" aria-label="Study sections">
-					<a href="#archive">Archive</a>
-					<a href="#doctrine">Doctrine</a>
-					<a href="#surfaces">System</a>
-				</nav>
-				<p class="header-status">Private research</p>
+		<main class="comparison-shell">
+			<header class="comparison-header">
+				<p class="kicker">Mythadis visual foundation</p>
+				<h1>Compare the first two website studies.</h1>
+				<p>
+					This is a controlled review surface for comparing approved Mythadis messaging
+					across two distinct visual philosophies. Neither study is the production homepage.
+				</p>
 			</header>
 
-			<main>
-				<section class="hero" id="archive" aria-labelledby="page-title">
-					<div class="hero-copy">
-						<p class="eyebrow">Visual Study A / The Luminous Archive</p>
-						<h1 id="page-title">
-							Intelligence finding structure in the unknown.
-						</h1>
-						<p class="mission">
-							How do we organize intelligence&mdash;human and artificial&mdash;so
-							that together we can solve problems that neither could solve alone?
-						</p>
-						<div class="actions" aria-label="Primary study actions">
-							<a class="button primary" href="#doctrine">Read doctrine</a>
-							<a class="button secondary" href="#surfaces">Inspect system</a>
-						</div>
-					</div>
+			<section class="study-grid" aria-label="Available visual studies">
+				<article class="study-card archive">
+					<p class="study-code">Study A / MWEB-003A</p>
+					<h2>The Luminous Archive</h2>
+					<p>
+						Near-black field, electric edge illumination, cinematic archive atmosphere,
+						and engineered visual surfaces.
+					</p>
+					<a href="/visual-study-a/">Review Study A</a>
+				</article>
 
-					<div class="archive-visual" aria-label="Abstract luminous archive map">
-						<div class="visual-frame">
-							<svg viewBox="0 0 720 620" role="img" aria-labelledby="archive-title archive-desc">
-								<title id="archive-title">Luminous archive structure</title>
-								<desc id="archive-desc">
-									A precise network of illuminated archive nodes emerging from a dark observatory field.
-								</desc>
-								<defs>
-									<linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
-										<stop offset="0%" stop-color="#ffffff" stop-opacity="0.92" />
-										<stop offset="52%" stop-color="#bfe9ff" stop-opacity="0.78" />
-										<stop offset="100%" stop-color="#7aa7b7" stop-opacity="0.52" />
-									</linearGradient>
-									<linearGradient id="blueEdge" x1="0%" y1="0%" x2="100%" y2="0%">
-										<stop offset="0%" stop-color="#1ed6ff" stop-opacity="0" />
-										<stop offset="42%" stop-color="#56e7ff" stop-opacity="0.9" />
-										<stop offset="100%" stop-color="#85f4d3" stop-opacity="0.38" />
-									</linearGradient>
-									<filter id="aura" x="-30%" y="-30%" width="160%" height="160%">
-										<feGaussianBlur stdDeviation="5" result="blur" />
-										<feColorMatrix
-											in="blur"
-											type="matrix"
-											values="0 0 0 0 0.12 0 0 0 0 0.76 0 0 0 0 1 0 0 0 0.75 0"
-										/>
-										<feMerge>
-											<feMergeNode />
-											<feMergeNode in="SourceGraphic" />
-										</feMerge>
-									</filter>
-								</defs>
-								<rect x="72" y="48" width="576" height="468" rx="4" class="svg-field" />
-								<path d="M128 444 L250 214 L358 354 L486 150 L594 362" class="constellation glow" />
-								<path d="M128 444 L250 214 L358 354 L486 150 L594 362" class="constellation" />
-								<path d="M174 108 H546 M174 502 H546 M104 170 V430 M616 170 V430" class="guide-lines" />
-								<path d="M160 382 H286 L330 306 H456 L504 226 H574" class="archive-line glow" />
-								<path d="M160 382 H286 L330 306 H456 L504 226 H574" class="archive-line" />
-								<g filter="url(#aura)">
-									<rect x="112" y="424" width="32" height="32" rx="2" class="node node-a" />
-									<rect x="234" y="198" width="32" height="32" rx="2" class="node node-b" />
-									<rect x="342" y="338" width="32" height="32" rx="2" class="node node-c" />
-									<rect x="470" y="134" width="32" height="32" rx="2" class="node node-d" />
-									<rect x="578" y="346" width="32" height="32" rx="2" class="node node-e" />
-								</g>
-								<g class="archive-bars">
-									<path d="M204 468 H414" />
-									<path d="M204 486 H374" />
-									<path d="M204 126 H356" />
-									<path d="M204 144 H300" />
-									<path d="M450 468 H530" />
-									<path d="M450 486 H564" />
-								</g>
-								<g class="coordinate-grid">
-									<path d="M128 72 V492" />
-									<path d="M250 72 V492" />
-									<path d="M372 72 V492" />
-									<path d="M494 72 V492" />
-									<path d="M616 72 V492" />
-									<path d="M96 150 H624" />
-									<path d="M96 250 H624" />
-									<path d="M96 350 H624" />
-									<path d="M96 450 H624" />
-								</g>
-								<text x="96" y="566" class="svg-label">EVIDENCE BEFORE LEGEND</text>
-								<text x="454" y="566" class="svg-label">UNITY WITHOUT CENTRALIZATION</text>
-							</svg>
-						</div>
-						<div class="visual-meta">
-							<span>Archive state: early study</span>
-							<span>Signal: controlled</span>
-						</div>
-					</div>
-				</section>
+				<article class="study-card atlas">
+					<p class="study-code">Study B / MWEB-003B</p>
+					<h2>The Living Atlas</h2>
+					<p>
+						Mineral navy field, editorial structure, map and annotation language,
+						and technical-catalog surfaces.
+					</p>
+					<a href="/visual-study-b/">Review Study B</a>
+				</article>
+			</section>
 
-				<section class="statement-band" aria-label="Product description">
-					<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-				</section>
-
-				<section class="content-grid" id="doctrine" aria-labelledby="doctrine-title">
-					<div class="section-heading">
-						<p class="section-marker">Core doctrine</p>
-						<h2 id="doctrine-title">A coordination fabric with sober edges.</h2>
-					</div>
-
-					<article class="doctrine-card major">
-						<p class="card-kicker">Governing phrase</p>
-						<h3>Unity without centralization.</h3>
-						<p>
-							The visual language favors alignment over hierarchy: light traces relationships,
-							boundaries stay crisp, and no single object becomes a throne.
-						</p>
-					</article>
-
-					<article class="doctrine-card">
-						<p class="card-kicker">Proof doctrine</p>
-						<h3>Evidence before legend.</h3>
-						<p>
-							Status, provenance, and restraint are treated as first-class interface signals,
-							keeping the brand out of spectacle and close to research practice.
-						</p>
-					</article>
-
-					<article class="status-card">
-						<p class="card-kicker">Current status</p>
-						<h3>Private research and engineering.</h3>
-						<ul>
-							<li>Not production-ready</li>
-							<li>Not a public volunteer network</li>
-							<li>Mythadis Agent is not publicly available</li>
-						</ul>
-					</article>
-				</section>
-
-				<section class="system-section" id="surfaces" aria-labelledby="surfaces-title">
-					<div class="section-heading">
-						<p class="section-marker">Interface primitives</p>
-						<h2 id="surfaces-title">Surfaces for a living research archive.</h2>
-					</div>
-
-					<div class="surface-grid">
-						<article class="surface-card">
-							<span class="status-pill">Prototype</span>
-							<h3>Observation Ledger</h3>
-							<p>
-								A calm content surface for research notes, experiment records, and proof trails.
-							</p>
-						</article>
-						<article class="surface-card">
-							<span class="status-pill amber">Review</span>
-							<h3>Coordination Map</h3>
-							<p>
-								Network structure expressed through thin light, spacious geometry, and measured contrast.
-							</p>
-						</article>
-						<article class="surface-card">
-							<span class="status-pill green">Stable token</span>
-							<h3>Archive Controls</h3>
-							<p>
-								Buttons and labels are direct, compact, and technical without becoming a command deck.
-							</p>
-						</article>
-					</div>
-				</section>
-			</main>
-
-			<footer class="site-footer">
-				<p>Mythadis Labs visual foundation study. Built for founder review.</p>
-				<p>Blanzy Labs / Static Astro prototype</p>
-			</footer>
-		</div>
+			<section class="status-note" aria-label="Current product status">
+				<p>Current status</p>
+				<ul>
+					<li>Mythadis Swarm is private research and engineering.</li>
+					<li>It is not production-ready or a public volunteer network.</li>
+					<li>The Mythadis Agent is not publicly available.</li>
+				</ul>
+			</section>
+		</main>
 	</body>
 </html>
 
 <style>
 	:root {
-		--font-display: "Space Grotesk", "Arial Narrow", system-ui, sans-serif;
-		--font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+		--font-display: "Manrope", system-ui, sans-serif;
+		--font-body: "Source Sans 3", "Inter", system-ui, sans-serif;
 		--font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-		--ink: #f4fbff;
-		--ink-soft: #c4d7df;
-		--ink-muted: #8199a4;
-		--void: #02070a;
-		--void-2: #071116;
-		--surface: rgba(10, 22, 28, 0.76);
-		--surface-strong: rgba(14, 32, 40, 0.92);
-		--line: rgba(153, 220, 240, 0.18);
-		--line-strong: rgba(189, 238, 255, 0.36);
-		--blue: #42d9ff;
-		--blue-deep: #096d91;
-		--mint: #8cf0cd;
-		--amber: #f6c56b;
-		--plum: #8d7adf;
-		--shadow: rgba(0, 0, 0, 0.42);
-		--max-page: 1180px;
+		--bg: #08111a;
+		--surface: #101d2a;
+		--surface-2: #142636;
+		--text: #f1f3ee;
+		--muted: #aebbc3;
+		--rule: rgba(187, 198, 204, 0.2);
+		--cyan: #5ed6d1;
+		--blue: #4c9eff;
+		--gold: #c4a46a;
 		color-scheme: dark;
 	}
 
@@ -240,34 +88,18 @@ import "@fontsource/ibm-plex-mono/500.css";
 		box-sizing: border-box;
 	}
 
-	html {
-		scroll-behavior: smooth;
-	}
-
 	body {
 		margin: 0;
 		min-width: 320px;
 		font-family: var(--font-body);
-		color: var(--ink);
+		color: var(--text);
 		background:
-			linear-gradient(rgba(86, 231, 255, 0.045) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(86, 231, 255, 0.035) 1px, transparent 1px),
-			radial-gradient(circle at 18% 16%, rgba(66, 217, 255, 0.12), transparent 30rem),
-			radial-gradient(circle at 82% 10%, rgba(140, 240, 205, 0.07), transparent 28rem),
-			linear-gradient(145deg, var(--void) 0%, #041015 42%, #010406 100%);
-		background-size: 72px 72px, 72px 72px, auto, auto, auto;
-	}
-
-	body::before {
-		position: fixed;
-		inset: 0;
-		z-index: -1;
-		pointer-events: none;
-		content: "";
-		background:
-			linear-gradient(120deg, transparent 0 36%, rgba(255, 255, 255, 0.055) 36.08%, transparent 36.8%),
-			linear-gradient(300deg, transparent 0 58%, rgba(66, 217, 255, 0.08) 58.12%, transparent 58.8%);
-		mask-image: linear-gradient(to bottom, #000 0%, transparent 86%);
+			linear-gradient(rgba(187, 198, 204, 0.045) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(187, 198, 204, 0.035) 1px, transparent 1px),
+			radial-gradient(circle at 20% 18%, rgba(94, 214, 209, 0.12), transparent 30rem),
+			radial-gradient(circle at 82% 20%, rgba(76, 158, 255, 0.12), transparent 30rem),
+			var(--bg);
+		background-size: 60px 60px, 60px 60px, auto, auto, auto;
 	}
 
 	a {
@@ -275,533 +107,149 @@ import "@fontsource/ibm-plex-mono/500.css";
 		text-decoration: none;
 	}
 
-	.site-shell {
-		width: min(100% - 32px, var(--max-page));
+	.comparison-shell {
+		width: min(100% - 32px, 1160px);
 		margin: 0 auto;
+		padding: 78px 0;
 	}
 
-	.site-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 24px;
-		min-height: 84px;
-		font-family: var(--font-display);
+	.comparison-header {
+		max-width: 780px;
 	}
 
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 12px;
-		font-weight: 700;
-		letter-spacing: 0;
-	}
-
-	.brand-mark {
-		position: relative;
-		display: grid;
-		width: 34px;
-		height: 34px;
-		border: 1px solid var(--line-strong);
-		background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(66, 217, 255, 0.03));
-		box-shadow: 0 0 24px rgba(66, 217, 255, 0.18), inset 0 0 18px rgba(255, 255, 255, 0.06);
-		transform: rotate(45deg);
-	}
-
-	.brand-mark span {
-		position: absolute;
-		background: var(--blue);
-		box-shadow: 0 0 14px rgba(66, 217, 255, 0.78);
-	}
-
-	.brand-mark span:nth-child(1) {
-		inset: 7px auto auto 7px;
-		width: 18px;
-		height: 2px;
-	}
-
-	.brand-mark span:nth-child(2) {
-		inset: 7px auto auto 7px;
-		width: 2px;
-		height: 18px;
-	}
-
-	.brand-mark span:nth-child(3) {
-		right: 6px;
-		bottom: 6px;
-		width: 8px;
-		height: 8px;
-		background: var(--mint);
-	}
-
-	.brand-text {
-		font-size: 1.08rem;
-	}
-
-	.nav-links {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 28px;
-		color: var(--ink-soft);
-		font-size: 0.92rem;
-	}
-
-	.nav-links a {
-		padding-block: 10px;
-		border-bottom: 1px solid transparent;
-	}
-
-	.nav-links a:hover,
-	.nav-links a:focus-visible {
-		color: var(--ink);
-		border-color: var(--blue);
-	}
-
-	.header-status,
-	.eyebrow,
-	.section-marker,
-	.card-kicker,
-	.status-pill,
-	.visual-meta,
-	.svg-label {
+	.kicker,
+	.study-code,
+	.status-note > p {
+		margin: 0 0 14px;
 		font-family: var(--font-mono);
+		color: var(--cyan);
+		font-size: 0.72rem;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 	}
 
-	.header-status {
-		margin: 0;
-		padding: 8px 10px;
-		border: 1px solid rgba(246, 197, 107, 0.38);
-		color: var(--amber);
-		font-size: 0.68rem;
-		background: rgba(246, 197, 107, 0.08);
-	}
-
-	.hero {
-		display: grid;
-		grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
-		gap: 44px;
-		align-items: center;
-		min-height: calc(100svh - 84px);
-		padding: 42px 0 76px;
-	}
-
-	.hero-copy {
-		max-width: 640px;
-	}
-
-	.eyebrow,
-	.section-marker,
-	.card-kicker {
-		margin: 0 0 16px;
-		color: var(--blue);
-		font-size: 0.72rem;
-	}
-
 	h1,
 	h2,
-	h3,
 	p {
 		text-wrap: pretty;
 	}
 
 	h1,
-	h2,
-	h3 {
+	h2 {
 		margin: 0;
 		font-family: var(--font-display);
 		letter-spacing: 0;
 	}
 
 	h1 {
-		max-width: 9.4ch;
-		font-size: clamp(3.9rem, 7vw, 6.2rem);
-		line-height: 0.88;
+		font-size: clamp(3rem, 7vw, 6.8rem);
+		line-height: 0.95;
 	}
 
-	.mission {
-		max-width: 600px;
-		margin: 28px 0 0;
-		color: var(--ink-soft);
-		font-size: clamp(1.04rem, 1.7vw, 1.28rem);
-		line-height: 1.65;
+	.comparison-header > p:not(.kicker) {
+		max-width: 680px;
+		margin: 24px 0 0;
+		color: var(--muted);
+		font-size: 1.18rem;
+		line-height: 1.58;
 	}
 
-	.actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 14px;
-		margin-top: 34px;
+	.study-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+		margin-top: 56px;
 	}
 
-	.button {
+	.study-card {
+		min-height: 360px;
+		padding: 28px;
+		border: 1px solid var(--rule);
+		background: var(--surface);
+	}
+
+	.study-card.archive {
+		background:
+			linear-gradient(135deg, rgba(66, 217, 255, 0.15), transparent 46%),
+			#061014;
+	}
+
+	.study-card.atlas {
+		background:
+			linear-gradient(135deg, rgba(196, 164, 106, 0.12), transparent 42%),
+			var(--surface-2);
+	}
+
+	.study-card h2 {
+		max-width: 10ch;
+		font-size: clamp(2.2rem, 4vw, 4rem);
+		line-height: 1;
+	}
+
+	.study-card p:not(.study-code) {
+		max-width: 500px;
+		margin: 22px 0 0;
+		color: var(--muted);
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+
+	.study-card a {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 46px;
-		padding: 0 18px;
-		border: 1px solid var(--line-strong);
+		min-height: 44px;
+		margin-top: 30px;
+		padding: 0 16px;
+		border: 1px solid rgba(187, 198, 204, 0.34);
 		font-family: var(--font-display);
-		font-size: 0.92rem;
 		font-weight: 700;
 	}
 
-	.button.primary {
-		color: #021016;
-		background: linear-gradient(135deg, var(--ink) 0%, #9eeeff 54%, var(--mint) 100%);
-		box-shadow: 0 0 30px rgba(66, 217, 255, 0.22);
+	.archive a {
+		color: #061014;
+		background: linear-gradient(135deg, #f1fbff, #7ee9dd);
 	}
 
-	.button.secondary {
-		color: var(--ink);
-		background: rgba(255, 255, 255, 0.04);
+	.atlas a {
+		color: #061014;
+		background: var(--cyan);
 	}
 
-	.button:hover,
-	.button:focus-visible {
-		transform: translateY(-1px);
+	.status-note {
+		margin-top: 18px;
+		padding: 22px;
+		border: 1px solid rgba(196, 164, 106, 0.32);
+		background: rgba(196, 164, 106, 0.07);
 	}
 
-	.archive-visual {
-		min-width: 0;
-	}
-
-	.visual-frame {
-		position: relative;
-		overflow: hidden;
-		aspect-ratio: 1.04;
-		border: 1px solid var(--line-strong);
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 24%),
-			linear-gradient(180deg, rgba(9, 109, 145, 0.18), rgba(2, 7, 10, 0.86));
-		box-shadow: 0 28px 80px var(--shadow), inset 0 0 34px rgba(255, 255, 255, 0.035);
-	}
-
-	.visual-frame::before,
-	.visual-frame::after {
-		position: absolute;
-		content: "";
-		pointer-events: none;
-	}
-
-	.visual-frame::before {
-		inset: 18px;
-		border: 1px solid rgba(255, 255, 255, 0.08);
-	}
-
-	.visual-frame::after {
-		inset: auto 0 0;
-		height: 4px;
-		background: linear-gradient(90deg, transparent, var(--blue), var(--mint), transparent);
-		box-shadow: 0 0 24px rgba(66, 217, 255, 0.72);
-	}
-
-	svg {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.svg-field {
-		fill: rgba(0, 0, 0, 0.14);
-		stroke: rgba(255, 255, 255, 0.12);
-	}
-
-	.coordinate-grid path,
-	.guide-lines {
-		fill: none;
-		stroke: rgba(197, 237, 249, 0.09);
-		stroke-width: 1;
-	}
-
-	.constellation,
-	.archive-line {
-		fill: none;
-		stroke: url(#blueEdge);
-		stroke-width: 2;
-		stroke-linecap: square;
-	}
-
-	.glow {
-		stroke-width: 8;
-		opacity: 0.34;
-		filter: blur(7px);
-	}
-
-	.node {
-		fill: url(#steel);
-		stroke: rgba(255, 255, 255, 0.72);
-		stroke-width: 1;
-	}
-
-	.node-b,
-	.node-d {
-		fill: rgba(66, 217, 255, 0.88);
-	}
-
-	.node-e {
-		fill: rgba(140, 240, 205, 0.82);
-	}
-
-	.archive-bars path {
-		fill: none;
-		stroke: rgba(244, 251, 255, 0.58);
-		stroke-width: 3;
-	}
-
-	.svg-label {
-		fill: rgba(196, 215, 223, 0.62);
-		font-size: 10px;
-	}
-
-	.visual-meta {
-		display: flex;
-		justify-content: space-between;
-		gap: 16px;
-		margin-top: 14px;
-		color: var(--ink-muted);
-		font-size: 0.66rem;
-	}
-
-	.statement-band {
-		margin: 0 0 104px;
-		padding: 28px 0;
-		border-block: 1px solid var(--line);
-	}
-
-	.statement-band p {
-		width: min(940px, 100%);
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.7rem, 4.4vw, 3.4rem);
-		line-height: 1.04;
-	}
-
-	.content-grid,
-	.system-section {
-		padding: 0 0 112px;
-	}
-
-	.content-grid {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		gap: 18px;
-	}
-
-	.section-heading {
-		grid-column: 1 / -1;
-		margin-bottom: 10px;
-	}
-
-	.section-heading h2 {
-		max-width: 780px;
-		font-size: clamp(2rem, 4vw, 4.1rem);
-		line-height: 0.98;
-	}
-
-	.doctrine-card,
-	.status-card,
-	.surface-card {
-		border: 1px solid var(--line);
-		background: var(--surface);
-		box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
-	}
-
-	.doctrine-card {
-		grid-column: span 4;
-		min-height: 320px;
-		padding: 26px;
-	}
-
-	.doctrine-card.major {
-		grid-column: span 8;
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 42%),
-			var(--surface-strong);
-	}
-
-	.doctrine-card h3,
-	.status-card h3,
-	.surface-card h3 {
-		font-size: clamp(1.35rem, 2.2vw, 2rem);
-		line-height: 1.04;
-	}
-
-	.doctrine-card p:not(.card-kicker),
-	.status-card li,
-	.surface-card p {
-		color: var(--ink-soft);
-		font-size: 0.98rem;
-		line-height: 1.62;
-	}
-
-	.status-card {
-		grid-column: 1 / -1;
-		display: grid;
-		grid-template-columns: minmax(0, 0.72fr) minmax(280px, 1fr);
-		gap: 28px;
-		align-items: start;
-		padding: 26px;
-		border-color: rgba(246, 197, 107, 0.26);
-		background: linear-gradient(120deg, rgba(246, 197, 107, 0.075), rgba(10, 22, 28, 0.76));
-	}
-
-	.status-card ul {
+	.status-note ul {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 10px;
-		padding: 0;
+		gap: 12px;
 		margin: 0;
+		padding: 0;
 		list-style: none;
 	}
 
-	.status-card li {
-		min-height: 72px;
-		padding: 14px;
-		border: 1px solid rgba(246, 197, 107, 0.18);
-		background: rgba(2, 7, 10, 0.32);
+	.status-note li {
+		color: var(--muted);
+		line-height: 1.5;
 	}
 
-	.surface-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 18px;
-	}
-
-	.surface-card {
-		min-height: 260px;
-		padding: 24px;
-	}
-
-	.status-pill {
-		display: inline-flex;
-		margin-bottom: 36px;
-		padding: 7px 9px;
-		border: 1px solid rgba(66, 217, 255, 0.34);
-		color: var(--blue);
-		background: rgba(66, 217, 255, 0.08);
-		font-size: 0.64rem;
-	}
-
-	.status-pill.amber {
-		border-color: rgba(246, 197, 107, 0.36);
-		color: var(--amber);
-		background: rgba(246, 197, 107, 0.08);
-	}
-
-	.status-pill.green {
-		border-color: rgba(140, 240, 205, 0.36);
-		color: var(--mint);
-		background: rgba(140, 240, 205, 0.08);
-	}
-
-	.site-footer {
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--line);
-		color: var(--ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.site-footer p {
-		margin: 0;
-	}
-
-	@media (max-width: 940px) {
-		.site-header {
-			flex-wrap: wrap;
-			padding-top: 18px;
+	@media (max-width: 780px) {
+		.comparison-shell {
+			width: min(100% - 22px, 1160px);
+			padding: 42px 0;
 		}
 
-		.nav-links {
-			order: 3;
-			width: 100%;
-			justify-content: flex-start;
-			gap: 20px;
-			overflow-x: auto;
-		}
-
-		.hero {
+		.study-grid,
+		.status-note ul {
 			grid-template-columns: 1fr;
-			min-height: auto;
 		}
 
 		h1 {
-			max-width: 9.8ch;
-		}
-
-		.archive-visual {
-			max-width: 680px;
-		}
-
-		.doctrine-card,
-		.doctrine-card.major,
-		.status-card {
-			grid-column: 1 / -1;
-		}
-
-		.status-card,
-		.status-card ul,
-		.surface-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	@media (max-width: 620px) {
-		.site-shell {
-			width: min(100% - 22px, var(--max-page));
-		}
-
-		.site-header {
-			min-height: 112px;
-		}
-
-		.header-status {
-			margin-left: auto;
-		}
-
-		.hero {
-			gap: 34px;
-			padding-top: 22px;
-		}
-
-		h1 {
-			max-width: 100%;
-			font-size: clamp(2.65rem, 13.2vw, 4.4rem);
-			line-height: 0.94;
-		}
-
-		.mission {
-			font-size: 1rem;
-		}
-
-		.actions,
-		.site-footer,
-		.visual-meta {
-			flex-direction: column;
-		}
-
-		.button {
-			width: 100%;
-		}
-
-		.statement-band {
-			margin-bottom: 74px;
-		}
-
-		.content-grid,
-		.system-section {
-			padding-bottom: 74px;
-		}
-
-		.doctrine-card,
-		.status-card,
-		.surface-card {
-			padding: 20px;
+			font-size: clamp(2.8rem, 15vw, 4.4rem);
 		}
 	}
 </style>

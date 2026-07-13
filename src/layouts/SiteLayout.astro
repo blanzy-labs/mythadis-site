@@ -12,12 +12,13 @@ interface Props {
 	title: string;
 	description?: string;
 	navItems?: NavItem[];
+	noindex?: boolean;
 }
 
-const { title, description, navItems } = Astro.props;
+const { title, description, navItems, noindex } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex={noindex}>
 	<div class="ds-shell">
 		<SiteHeader items={navItems} />
 		<main>

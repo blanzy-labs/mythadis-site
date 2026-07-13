@@ -2,11 +2,19 @@
 
 Visual foundation work for the Mythadis website.
 
-## Current Study
+## Visual Studies
 
 MWEB-003A builds Visual Study A: **The Luminous Archive**.
 
-This is a single reviewable mock page for evaluating typography, color, page background, buttons, labels, header and footer primitives, cards, content surfaces, and overall tone. It is not the final production homepage.
+MWEB-003B builds Visual Study B: **The Living Atlas**.
+
+These are controlled review pages for evaluating typography, color, page background, buttons, labels, header and footer primitives, cards, content surfaces, and overall tone. They are not the final production homepage.
+
+## Routes
+
+- `/` compares the available visual studies.
+- `/visual-study-a/` contains The Luminous Archive.
+- `/visual-study-b/` contains The Living Atlas.
 
 ## Stack
 

@@ -1,342 +1,378 @@
 ---
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/700.css";
-import "@fontsource/source-sans-3/400.css";
-import "@fontsource/source-sans-3/500.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
+import Button from "../components/design-system/Button.astro";
+import NetworkMotif from "../components/design-system/NetworkMotif.astro";
+import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteHeader from "../components/design-system/SiteHeader.astro";
+import StatusLabel from "../components/design-system/StatusLabel.astro";
+import SurfacePanel from "../components/design-system/SurfacePanel.astro";
+import SystemCard from "../components/design-system/SystemCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const navItems = [
+	{ label: "Vision", href: "#vision" },
+	{ label: "Current State", href: "#current-state" },
+	{ label: "Collaborate", href: "#collaborate" },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="description"
-			content="Compare Mythadis visual foundation studies: The Luminous Archive, The Living Atlas, and The Open Signal."
+<BaseLayout
+	title="Mythadis | Private Research and Engineering"
+	description="Mythadis exists to coordinate intelligence, not just computation. Mythadis Swarm is currently private research and engineering."
+>
+	<div class="ds-shell">
+		<SiteHeader
+			items={navItems}
+			brandLabel="Mythadis"
+			brandSubLabel="Swarm"
+			status="Private R&D"
 		/>
-		<title>Mythadis Visual Studies</title>
-	</head>
-	<body>
-		<main class="comparison-shell">
-			<header class="comparison-header">
-				<p class="kicker">Mythadis visual foundation</p>
-				<h1>Compare the first three website studies.</h1>
-				<p>
-					This is a controlled review surface for comparing approved Mythadis messaging
-					across three distinct visual philosophies. No study is the production homepage.
-				</p>
-				<div class="approval-notice">
-					<p class="approval-notice__label">Approved direction</p>
-					<strong class="approval-notice__title">Study A is selected.</strong>
-					<span class="approval-notice__copy">
-						Studies B and C are archived alternatives. Production components now derive
-						from The Luminous Archive.
-					</span>
-					<a class="approval-notice__link" href="/design-system/">Review approved design system</a>
+
+		<main>
+			<section class="holding-hero" id="vision" aria-labelledby="page-title">
+				<div class="hero-copy">
+					<SectionLabel>Private research / Early multi-node prototype</SectionLabel>
+					<h1 id="page-title">Mythadis exists to coordinate intelligence&mdash;not just computation.</h1>
+					<p class="mission">
+						How do we organize intelligence&mdash;human and artificial&mdash;so that together
+						we can solve problems that neither could solve alone?
+					</p>
+					<p class="supporting-line">Many minds. Many machines. Many models. One proof-first fabric.</p>
+					<div class="actions" aria-label="Primary page actions">
+						<Button href="#current-state">Current state</Button>
+						<Button href="#collaborate" variant="secondary">Collaborate</Button>
+					</div>
 				</div>
-			</header>
-
-			<section class="study-grid" aria-label="Available visual studies">
-				<article class="study-card archive">
-					<p class="study-code">Study A / MWEB-003A</p>
-					<h2>The Luminous Archive</h2>
-					<p>
-						Near-black field, electric edge illumination, cinematic archive atmosphere,
-						and engineered visual surfaces.
-					</p>
-					<a href="/visual-study-a/">Review Study A</a>
-				</article>
-
-				<article class="study-card atlas">
-					<p class="study-code">Study B / MWEB-003B</p>
-					<h2>The Living Atlas</h2>
-					<p>
-						Mineral navy field, editorial structure, map and annotation language,
-						and technical-catalog surfaces.
-					</p>
-					<a href="/visual-study-b/">Review Study B</a>
-				</article>
-
-				<article class="study-card open">
-					<p class="study-code">Study C / MWEB-003C</p>
-					<h2>The Open Signal</h2>
-					<p>
-						Light mineral canvas, architectural composition, human-centered signal
-						graphics, and bold civic research publication energy.
-					</p>
-					<a href="/visual-study-c/">Review Study C</a>
-				</article>
+				<NetworkMotif />
 			</section>
 
-			<section class="status-note" aria-label="Current product status">
-				<p>Current status</p>
-				<ul>
-					<li>Mythadis Swarm is private research and engineering.</li>
-					<li>It is not production-ready or a public volunteer network.</li>
-					<li>The Mythadis Agent is not publicly available.</li>
-				</ul>
+			<section class="doctrine-band" aria-label="Core doctrines">
+				<p>Unity without centralization.</p>
+				<p>Evidence before legend.</p>
+			</section>
+
+			<section class="overview-section" aria-labelledby="overview-title">
+				<div>
+					<SectionLabel>What Mythadis is</SectionLabel>
+					<h2 id="overview-title">A proof-first fabric for human and artificial intelligence.</h2>
+				</div>
+				<div class="overview-copy">
+					<p>
+						Mythadis is the master vision for coordinating intelligence across people,
+						machines, models, evidence, and mission-specific work.
+					</p>
+					<p>
+						Mythadis Swarm is the flagship coordination platform now being explored through
+						private research and engineering.
+					</p>
+				</div>
+			</section>
+
+			<section class="state-section" id="current-state" aria-labelledby="state-title">
+				<div class="section-heading">
+					<SectionLabel>Early. Private. Proof-first.</SectionLabel>
+					<h2 id="state-title">The immediate mission is to prove that the fabric works.</h2>
+				</div>
+
+				<SurfacePanel variant="warning">
+					<div class="state-panel">
+						<div>
+							<StatusLabel tone="amber">Private R&D · Early multi-node prototype · No public agent</StatusLabel>
+							<h3>Mythadis Swarm is currently private research and engineering.</h3>
+						</div>
+						<div class="state-copy">
+							<p>
+								Early prototypes are testing peer discovery, communication across heterogeneous
+								machines, distributed data storage and recovery, lightweight knowledge discovery,
+								archive health, and the foundations of Mission Control.
+							</p>
+							<p>
+								The project is not production-ready. It is not yet a public volunteer network,
+								and the Mythadis Agent is not publicly available.
+							</p>
+							<p>
+								The immediate mission is to prove that the fabric works. Larger Mission Swarms
+								and humanity-scale outcomes remain future research directions.
+							</p>
+						</div>
+					</div>
+				</SurfacePanel>
+			</section>
+
+			<section class="signal-section" aria-labelledby="signal-title">
+				<div class="section-heading">
+					<SectionLabel>Research focus</SectionLabel>
+					<h2 id="signal-title">What the private prototypes are testing.</h2>
+				</div>
+				<div class="ds-grid ds-grid-3">
+					<SystemCard title="Peer Discovery" status="Prototype">
+						Testing how heterogeneous machines can find and recognize one another without central assumptions.
+					</SystemCard>
+					<SystemCard title="Archive Health" status="Private R&D" tone="amber">
+						Exploring distributed storage, recovery, and lightweight knowledge discovery across early nodes.
+					</SystemCard>
+					<SystemCard title="Mission Control" status="Foundation" tone="green">
+						Establishing the coordination substrate before larger Mission Swarms become public research directions.
+					</SystemCard>
+				</div>
+			</section>
+
+			<section class="collaboration-section" id="collaborate" aria-labelledby="collaborate-title">
+				<SurfacePanel variant="strong">
+					<div class="collaboration-card">
+						<div>
+							<SectionLabel>Collaborate</SectionLabel>
+							<h2 id="collaborate-title">For research and engineering conversations.</h2>
+							<p>
+								Mythadis is not seeking public operators yet. Early conversations are most useful
+								with research, infrastructure, distributed-systems, archival, and mission-oriented collaborators.
+							</p>
+						</div>
+						<div class="contact-panel">
+							<p class="contact-label">Contact path</p>
+							<a href="https://github.com/blanzy-labs" rel="noreferrer">github.com/blanzy-labs</a>
+							<p>
+								Use the Blanzy Labs public GitHub presence as the current collaboration path
+								while Mythadis remains private R&D.
+							</p>
+						</div>
+					</div>
+				</SurfacePanel>
 			</section>
 		</main>
-	</body>
-</html>
+
+		<footer class="public-footer">
+			<p>Mythadis Swarm is private research and engineering. No public Mythadis Agent is available.</p>
+			<p>Blanzy Labs / Mythadis</p>
+		</footer>
+	</div>
+</BaseLayout>
 
 <style>
-	:root {
-		--font-display: "Manrope", system-ui, sans-serif;
-		--font-body: "Source Sans 3", "Inter", system-ui, sans-serif;
-		--font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-		--bg: #08111a;
-		--surface: #101d2a;
-		--surface-2: #142636;
-		--text: #f1f3ee;
-		--muted: #aebbc3;
-		--rule: rgba(187, 198, 204, 0.2);
-		--cyan: #5ed6d1;
-		--blue: #4c9eff;
-		--gold: #c4a46a;
-		--paper: #f3f1ea;
-		--graphite: #131820;
-		--human: #d46c4c;
-		color-scheme: dark;
+	.holding-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
+		gap: 44px;
+		align-items: center;
+		min-height: calc(100svh - 84px);
+		padding: 42px 0 76px;
 	}
 
-	* {
-		box-sizing: border-box;
-	}
-
-	body {
-		margin: 0;
-		min-width: 320px;
-		font-family: var(--font-body);
-		color: var(--text);
-		background:
-			linear-gradient(rgba(187, 198, 204, 0.045) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(187, 198, 204, 0.035) 1px, transparent 1px),
-			radial-gradient(circle at 20% 18%, rgba(94, 214, 209, 0.12), transparent 30rem),
-			radial-gradient(circle at 82% 20%, rgba(76, 158, 255, 0.12), transparent 30rem),
-			var(--bg);
-		background-size: 60px 60px, 60px 60px, auto, auto, auto;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.comparison-shell {
-		width: min(100% - 32px, 1160px);
-		margin: 0 auto;
-		padding: 78px 0;
-	}
-
-	.comparison-header {
-		max-width: 780px;
-	}
-
-	.kicker,
-	.study-code,
-	.status-note > p {
-		margin: 0 0 14px;
-		font-family: var(--font-mono);
-		color: var(--cyan);
-		font-size: 0.72rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
+	.hero-copy {
+		max-width: 700px;
 	}
 
 	h1,
 	h2,
+	h3,
 	p {
 		text-wrap: pretty;
 	}
 
 	h1,
-	h2 {
+	h2,
+	h3 {
 		margin: 0;
-		font-family: var(--font-display);
+		font-family: var(--ds-font-display);
 		letter-spacing: 0;
 	}
 
 	h1 {
-		font-size: clamp(3rem, 7vw, 6.8rem);
-		line-height: 0.95;
-	}
-
-	.comparison-header > p:not(.kicker) {
-		max-width: 680px;
-		margin: 24px 0 0;
-		color: var(--muted);
-		font-size: 1.18rem;
-		line-height: 1.58;
-	}
-
-	.study-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-		margin-top: 56px;
-	}
-
-	.study-card {
-		min-height: 360px;
-		padding: 28px;
-		border: 1px solid var(--rule);
-		background: var(--surface);
-	}
-
-	.study-card.archive {
-		background:
-			linear-gradient(135deg, rgba(66, 217, 255, 0.15), transparent 46%),
-			#061014;
-	}
-
-	.study-card.atlas {
-		background:
-			linear-gradient(135deg, rgba(196, 164, 106, 0.12), transparent 42%),
-			var(--surface-2);
-	}
-
-	.study-card.open {
-		color: var(--graphite);
-		background:
-			linear-gradient(135deg, rgba(212, 108, 76, 0.16), transparent 42%),
-			var(--paper);
-	}
-
-	.study-card h2 {
 		max-width: 10ch;
-		font-size: clamp(2rem, 3.2vw, 3.45rem);
-		line-height: 1;
+		font-size: clamp(3.6rem, 5.8vw, 5.45rem);
+		line-height: 0.9;
 	}
 
-	.study-card p:not(.study-code) {
-		max-width: 500px;
-		margin: 22px 0 0;
-		color: var(--muted);
+	.mission {
+		max-width: 640px;
+		margin: 28px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: clamp(1.04rem, 1.7vw, 1.28rem);
+		line-height: 1.65;
+	}
+
+	.supporting-line {
+		margin: 18px 0 0;
+		color: var(--ds-ink-muted);
 		font-size: 1rem;
-		line-height: 1.6;
+		line-height: 1.55;
 	}
 
-	.study-card a {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 44px;
-		margin-top: 30px;
-		padding: 0 16px;
-		border: 1px solid rgba(187, 198, 204, 0.34);
-		font-family: var(--font-display);
-		font-weight: 700;
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-top: 34px;
 	}
 
-	.archive a {
-		color: #061014;
-		background: linear-gradient(135deg, #f1fbff, #7ee9dd);
-	}
-
-	.atlas a {
-		color: #061014;
-		background: var(--cyan);
-	}
-
-	.open .study-code {
-		color: #176fe8;
-	}
-
-	.open p:not(.study-code) {
-		color: #56616c;
-	}
-
-	.open a {
-		color: #fafaf7;
-		background: var(--graphite);
-		border-color: var(--graphite);
-	}
-
-	.status-note {
-		margin-top: 18px;
-		padding: 22px;
-		border: 1px solid rgba(196, 164, 106, 0.32);
-		background: rgba(196, 164, 106, 0.07);
-	}
-
-	.status-note ul {
+	.doctrine-band {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 12px;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 18px;
+		margin: 0 0 104px;
+		padding: 28px 0;
+		border-block: 1px solid var(--ds-line);
+	}
+
+	.doctrine-band p {
 		margin: 0;
-		padding: 0;
-		list-style: none;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.7rem, 4.4vw, 3.4rem);
+		line-height: 1.04;
 	}
 
-	.status-note li {
-		color: var(--muted);
-		line-height: 1.5;
+	.overview-section,
+	.state-section,
+	.signal-section,
+	.collaboration-section {
+		padding: 0 0 112px;
 	}
 
-	.approval-notice {
+	.overview-section {
 		display: grid;
-		gap: 8px;
-		margin-top: 28px;
-		padding: 18px;
-		border: 1px solid rgba(246, 197, 107, 0.34);
-		background: rgba(246, 197, 107, 0.08);
+		grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+		gap: 42px;
+		align-items: start;
 	}
 
-	.approval-notice__label {
-		margin: 0 0 10px;
-		color: var(--gold);
-		font-family: var(--font-mono);
+	.overview-section h2,
+	.section-heading h2,
+	.collaboration-card h2 {
+		max-width: 780px;
+		font-size: clamp(2rem, 4vw, 4.1rem);
+		line-height: 0.98;
+	}
+
+	.overview-copy p,
+	.state-copy p,
+	.collaboration-card p,
+	.contact-panel p {
+		color: var(--ds-ink-soft);
+		font-size: 1rem;
+		line-height: 1.68;
+	}
+
+	.overview-copy p:first-child,
+	.state-copy p:first-child {
+		margin-top: 0;
+	}
+
+	.section-heading {
+		margin-bottom: 28px;
+	}
+
+	.state-panel {
+		display: grid;
+		grid-template-columns: minmax(0, 0.86fr) minmax(320px, 1fr);
+		gap: 30px;
+		padding: 28px;
+	}
+
+	.state-panel h3 {
+		margin-top: 24px;
+		font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+		line-height: 1.02;
+	}
+
+	.collaboration-card {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+		gap: 32px;
+		align-items: start;
+		padding: 28px;
+	}
+
+	.contact-panel {
+		padding: 18px;
+		border: 1px solid var(--ds-line);
+		background: rgba(2, 7, 10, 0.32);
+	}
+
+	.contact-label {
+		margin: 0 0 12px;
+		color: var(--ds-blue);
+		font-family: var(--ds-font-mono);
 		font-size: 0.68rem;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 	}
 
-	.approval-notice__title {
-		font-family: var(--font-display);
+	.contact-panel a {
+		display: inline-flex;
+		margin-bottom: 12px;
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
 		font-size: 1.2rem;
-	}
-
-	.approval-notice__copy {
-		max-width: 620px;
-		color: var(--muted);
-		line-height: 1.5;
-	}
-
-	.approval-notice__link {
-		width: max-content;
-		margin-top: 6px;
-		color: #061014;
-		padding: 10px 12px;
-		background: linear-gradient(135deg, #f1fbff, #7ee9dd);
-		font-family: var(--font-display);
 		font-weight: 700;
+		border-bottom: 1px solid var(--ds-blue);
 	}
 
-	@media (max-width: 980px) {
-		.study-grid {
-			grid-template-columns: 1fr;
-		}
+	.public-footer {
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 34px 0 46px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink-muted);
+		font-size: 0.86rem;
 	}
 
-	@media (max-width: 780px) {
-		.comparison-shell {
-			width: min(100% - 22px, 1160px);
-			padding: 42px 0;
+	.public-footer p {
+		margin: 0;
+	}
+
+	@media (max-width: 940px) {
+		.holding-hero,
+		.overview-section,
+		.state-panel,
+		.collaboration-card {
+			grid-template-columns: 1fr;
 		}
 
-		.status-note ul {
-			grid-template-columns: 1fr;
+		.holding-hero {
+			min-height: auto;
 		}
 
 		h1 {
-			font-size: clamp(2.8rem, 15vw, 4.4rem);
+			max-width: 10ch;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.holding-hero {
+			gap: 34px;
+			padding-top: 22px;
+		}
+
+		h1 {
+			max-width: 100%;
+			font-size: clamp(2.65rem, 13.2vw, 4.4rem);
+			line-height: 0.94;
+		}
+
+		.actions,
+		.public-footer {
+			flex-direction: column;
+		}
+
+		.actions :global(.ds-button) {
+			width: 100%;
+		}
+
+		.doctrine-band {
+			grid-template-columns: 1fr;
+			margin-bottom: 74px;
+		}
+
+		.overview-section,
+		.state-section,
+		.signal-section,
+		.collaboration-section {
+			padding-bottom: 74px;
+		}
+
+		.state-panel,
+		.collaboration-card {
+			padding: 20px;
 		}
 	}
 </style>

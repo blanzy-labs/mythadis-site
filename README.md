@@ -1,6 +1,12 @@
 # Mythadis Site
 
-Visual foundation work for the Mythadis website.
+Public site and visual foundation work for Mythadis.
+
+## Public Holding Page
+
+MWEB-004 builds the intentional public holding page at `/`.
+
+The page introduces Mythadis, states the mission, explains the current private R&D state, and provides a collaboration path without implying public product availability.
 
 ## Visual Studies
 
@@ -14,12 +20,12 @@ These are controlled review pages for evaluating typography, color, page backgro
 
 ## Routes
 
-- `/` compares the available visual studies.
-- `/visual-studies/` compares the available visual studies.
+- `/` contains the public Mythadis holding page.
+- `/visual-studies/` compares the internal visual studies.
 - `/design-system/` shows the approved Luminous Archive design system.
-- `/visual-study-a/` contains The Luminous Archive.
-- `/visual-study-b/` contains The Living Atlas.
-- `/visual-study-c/` contains The Open Signal.
+- `/visual-study-a/` contains The Luminous Archive internal record.
+- `/visual-study-b/` contains The Living Atlas internal record.
+- `/visual-study-c/` contains The Open Signal internal record.
 
 ## Approved design direction
 

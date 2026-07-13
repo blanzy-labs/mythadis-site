@@ -5,12 +5,14 @@ interface Props {
 	title: string;
 	description?: string;
 	bodyClass?: string;
+	noindex?: boolean;
 }
 
 const {
 	title,
 	description = "Mythadis design system and visual foundation.",
 	bodyClass = "ds-luminous-background",
+	noindex = false,
 } = Astro.props;
 ---
 
@@ -23,6 +25,7 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<title>{title}</title>
 	</head>
 	<body class={bodyClass}>

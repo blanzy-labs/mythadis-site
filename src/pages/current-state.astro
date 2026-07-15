@@ -1,0 +1,780 @@
+---
+import Button from "../components/design-system/Button.astro";
+import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteHeader from "../components/design-system/SiteHeader.astro";
+import StatusLabel from "../components/design-system/StatusLabel.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+	activeDevelopment,
+	claimBoundaries,
+	currentPriorities,
+	currentStateMeta,
+	demonstratedCapabilities,
+	researchDirections,
+	statusSummary,
+	validationSteps,
+} from "../data/current-state";
+
+const navItems = [
+	{ label: "Vision", href: "/#vision" },
+	{ label: "Why Mythadis", href: "/why-mythadis/" },
+	{ label: "Proof", href: "/proof/" },
+	{ label: "Current State", href: "/current-state/" },
+	{ label: "Collaborate", href: "/#collaborate" },
+];
+---
+
+<BaseLayout
+	title="Current State | Mythadis"
+	description="The canonical public reference for what Mythadis Swarm has demonstrated, what is in active development, and what remains unproven."
+>
+	<div class="ds-shell current-state-page">
+		<SiteHeader
+			items={navItems}
+			brandLabel="Mythadis"
+			brandSubLabel="Swarm"
+			status="Private R&D"
+		/>
+
+		<main>
+			<section class="state-hero" aria-labelledby="page-title">
+				<StatusLabel tone="amber">Private R&D</StatusLabel>
+				<h1 id="page-title">Current State</h1>
+				<p class="hero-statement">
+					Mythadis separates demonstrated capability from active development, research
+					direction, and aspiration.
+				</p>
+				<p class="hero-line">State what is true now.</p>
+				<p class="hero-intro">
+					Mythadis Swarm is an early private research and engineering project. The purpose
+					of this page is to provide a clear, current record of what has been demonstrated,
+					what is being built, and what remains unproven.
+				</p>
+				<div class="hero-actions" aria-label="Current State actions">
+					<Button href="/proof/">Review Demonstrated Work</Button>
+					<Button href="https://github.com/blanzy-labs" variant="secondary">
+						Collaborate with Mythadis
+					</Button>
+				</div>
+			</section>
+
+			<section class="summary-section" aria-labelledby="summary-title">
+				<div>
+					<SectionLabel>Status Summary</SectionLabel>
+					<h2 id="summary-title">Early. Private. Measurable.</h2>
+					<div class="review-meta">
+						<span>LAST REVIEWED / {currentStateMeta.lastReviewedLabel}</span>
+						<span>CURRENT STATE VERSION / {currentStateMeta.version}</span>
+						<span>STATUS / {currentStateMeta.status}</span>
+					</div>
+				</div>
+				<div class="summary-copy">
+					<ul class="status-strip" aria-label="Current summary statuses">
+						{statusSummary.map((item) => <li>{item}</li>)}
+					</ul>
+					<p>
+						Mythadis Swarm currently operates as a private research prototype across a small
+						number of heterogeneous machines.
+					</p>
+					<p>
+						Current work is focused on proving the underlying coordination fabric before
+						expanding into public participation or mission-scale systems.
+					</p>
+				</div>
+			</section>
+
+			<section class="capabilities-section" aria-labelledby="capabilities-title">
+				<div class="section-heading">
+					<SectionLabel>Demonstrated Capabilities</SectionLabel>
+					<h2 id="capabilities-title">What has been demonstrated</h2>
+				</div>
+				<div class="capability-grid">
+					{demonstratedCapabilities.map((capability) => (
+						<article>
+							<div class="record-head">
+								<h3>{capability.label}</h3>
+								<StatusLabel tone={capability.tone}>{capability.status}</StatusLabel>
+							</div>
+							<dl>
+								<div>
+									<dt>Scope</dt>
+									<dd>{capability.summary}</dd>
+								</div>
+								<div>
+									<dt>Evidence type</dt>
+									<dd>{capability.evidence}</dd>
+								</div>
+								<div>
+									<dt>Limitation</dt>
+									<dd>{capability.limitation}</dd>
+								</div>
+								<div>
+									<dt>Related</dt>
+									<dd><a href={capability.related}>Proof entry or future Field Report</a></dd>
+								</div>
+								<div>
+									<dt>Next Gate</dt>
+									<dd>{capability.nextGate}</dd>
+								</div>
+							</dl>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="active-section" aria-labelledby="active-title">
+				<div class="section-heading">
+					<SectionLabel>In Active Development</SectionLabel>
+					<h2 id="active-title">What is being built now</h2>
+				</div>
+				<div class="compact-records">
+					{activeDevelopment.map((item) => (
+						<article>
+							<StatusLabel tone={item.tone}>{item.status}</StatusLabel>
+							<h3>{item.name}</h3>
+							<p>{item.body}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="research-section" aria-labelledby="research-title">
+				<div class="section-heading">
+					<SectionLabel>Research Directions</SectionLabel>
+					<h2 id="research-title">What remains a research direction</h2>
+				</div>
+				<div class="research-list">
+					{researchDirections.map((item) => (
+						<article>
+							<div>
+								<h3>{item.name}</h3>
+								<p>{item.body}</p>
+							</div>
+							<div>
+								<StatusLabel tone={item.tone}>{item.status}</StatusLabel>
+								<p><strong>Must prove:</strong> {item.mustProve}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="boundary-section" aria-labelledby="boundary-title">
+				<SectionLabel>Boundary of the Claim</SectionLabel>
+				<h2 id="boundary-title">What we are not claiming</h2>
+				<ul>
+					{claimBoundaries.map((boundary) => <li>{boundary}</li>)}
+				</ul>
+				<p class="boundary-closing">
+					The purpose of these boundaries is not to make the vision smaller. It is to make
+					future proof meaningful.
+				</p>
+			</section>
+
+			<section class="environment-section" aria-labelledby="environment-title">
+				<div>
+					<SectionLabel>The first swarm</SectionLabel>
+					<h2 id="environment-title">Current private trials use heterogeneous systems.</h2>
+					<p>
+						Current private trials use a small collection of heterogeneous systems, including
+						Linux and macOS nodes with different processor, memory, storage, and network
+						characteristics.
+					</p>
+					<p>
+						These environments are used to test discovery, connectivity, stability, data
+						movement, recovery, and increasingly coordinated work.
+					</p>
+				</div>
+				<figure class="environment-diagram" aria-labelledby="environment-diagram-title">
+					<figcaption id="environment-diagram-title">
+						PRIVATE TEST ENVIRONMENT / CONCEPTUAL VIEW
+					</figcaption>
+					<div class="diagram-grid" aria-hidden="true">
+						<span>Linux node</span>
+						<span>macOS node</span>
+						<span>Container node</span>
+						<span>Local storage</span>
+						<span>Control surface</span>
+						<span>Evidence catalog</span>
+					</div>
+				</figure>
+			</section>
+
+			<section class="validation-section" aria-labelledby="validation-title">
+				<div class="section-heading">
+					<SectionLabel>Validation Model</SectionLabel>
+					<h2 id="validation-title">How capability becomes a claim</h2>
+				</div>
+				<ol>
+					{validationSteps.map((step) => <li>{step}</li>)}
+				</ol>
+				<p>
+					A capability enters this page only when there is evidence that it exists under
+					defined conditions.
+				</p>
+			</section>
+
+			<section class="priorities-section" aria-labelledby="priorities-title">
+				<div class="section-heading">
+					<SectionLabel>Current Priorities</SectionLabel>
+					<h2 id="priorities-title">What is being proven next</h2>
+				</div>
+				<div class="priority-grid">
+					{currentPriorities.map((priority) => <span>{priority}</span>)}
+				</div>
+				<p class="strategic-filter">
+					Each priority is evaluated against one question: Does this increase the probability
+					that Mythadis is generating revenue before October?
+				</p>
+			</section>
+
+			<section class="update-section" aria-labelledby="update-title">
+				<SectionLabel>Update Policy</SectionLabel>
+				<h2 id="update-title">A living record</h2>
+				<p>Current State is intended to change as evidence changes.</p>
+				<p>
+					Capabilities may advance, remain experimental, become contested, or be removed when
+					later evidence shows that an earlier interpretation was incomplete.
+				</p>
+				<div class="metadata-grid" aria-label="Current State metadata">
+					<span>CURRENT STATE VERSION / {currentStateMeta.version}</span>
+					<span>LAST REVIEWED / {currentStateMeta.lastReviewedLabel}</span>
+					<span>STATUS / {currentStateMeta.status}</span>
+					<span>RELATED RELEASE / {currentStateMeta.release}</span>
+					<a href="/proof/">LINK / PROOF</a>
+					<span>FUTURE LINK / ANNALS</span>
+				</div>
+			</section>
+
+			<section class="final-cta" aria-labelledby="final-title">
+				<h2 id="final-title">Help test what comes next.</h2>
+				<p>
+					Mythadis is interested in engineers, researchers, systems thinkers, and mission
+					partners who value ambitious goals, explicit limitations, and evidence-based progress.
+				</p>
+				<div class="final-actions" aria-label="Current State final actions">
+					<Button href="https://github.com/blanzy-labs">Collaborate with Mythadis</Button>
+					<Button href="/proof/" variant="secondary">Review the Proof</Button>
+				</div>
+			</section>
+		</main>
+
+		<footer class="state-footer">
+			<p>State what is true now.</p>
+			<a href="/proof/">Proof</a>
+		</footer>
+	</div>
+</BaseLayout>
+
+<style>
+	h1,
+	h2,
+	h3,
+	p {
+		text-wrap: pretty;
+	}
+
+	h1,
+	h2,
+	h3 {
+		margin: 0;
+		font-family: var(--ds-font-display);
+		letter-spacing: 0;
+	}
+
+	.state-hero {
+		display: grid;
+		align-content: center;
+		min-height: calc(100svh - 84px);
+		padding: 62px 0 118px;
+	}
+
+	.state-hero h1 {
+		max-width: 9ch;
+		margin-top: 28px;
+		font-size: clamp(4.8rem, 12vw, 12rem);
+		line-height: 0.86;
+	}
+
+	.hero-statement,
+	.hero-line {
+		max-width: 920px;
+		margin: 42px 0 0;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.7rem, 3.8vw, 3.8rem);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.hero-line {
+		margin-top: 22px;
+		color: var(--ds-mint);
+	}
+
+	.hero-intro,
+	.summary-copy p,
+	.environment-section p,
+	.validation-section p,
+	.update-section p,
+	.final-cta p,
+	.state-footer p {
+		margin: 0;
+		color: var(--ds-ink-soft);
+		font-size: clamp(1.02rem, 1.45vw, 1.18rem);
+		line-height: 1.72;
+	}
+
+	.hero-intro {
+		max-width: 760px;
+		margin-top: 34px;
+	}
+
+	.hero-actions,
+	.final-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-top: 34px;
+	}
+
+	.summary-section,
+	.environment-section,
+	.current-state-page .final-cta {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+		gap: 42px;
+		align-items: start;
+		padding: 0 0 118px;
+	}
+
+	.summary-section h2,
+	.section-heading h2,
+	.environment-section h2,
+	.validation-section h2,
+	.update-section h2,
+	.final-cta h2 {
+		font-size: clamp(2.45rem, 5.7vw, 6.2rem);
+		line-height: 0.9;
+	}
+
+	.review-meta,
+	.metadata-grid,
+	.status-strip,
+	.priority-grid {
+		display: grid;
+		gap: 10px;
+	}
+
+	.review-meta {
+		margin-top: 30px;
+	}
+
+	.review-meta span,
+	.metadata-grid span,
+	.metadata-grid a,
+	.status-strip li,
+	.priority-grid span,
+	.diagram-grid span {
+		padding: 12px 14px;
+		border: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		background: rgba(10, 22, 28, 0.64);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.summary-copy {
+		display: grid;
+		gap: 18px;
+	}
+
+	.status-strip {
+		margin: 0 0 12px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.capabilities-section,
+	.active-section,
+	.research-section,
+	.boundary-section,
+	.validation-section,
+	.priorities-section,
+	.update-section {
+		padding: 0 0 118px;
+	}
+
+	.section-heading {
+		max-width: 960px;
+		margin-bottom: 34px;
+	}
+
+	.capability-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 18px;
+	}
+
+	.capability-grid article,
+	.compact-records article,
+	.research-list article {
+		border: 1px solid var(--ds-line);
+		background: rgba(10, 22, 28, 0.72);
+	}
+
+	.capability-grid article {
+		padding: 22px;
+	}
+
+	.record-head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 18px;
+		margin-bottom: 22px;
+	}
+
+	.record-head h3,
+	.compact-records h3,
+	.research-list h3 {
+		font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+		line-height: 1.04;
+	}
+
+	dl {
+		display: grid;
+		gap: 14px;
+		margin: 0;
+	}
+
+	dl div {
+		padding-top: 14px;
+		border-top: 1px solid var(--ds-line);
+	}
+
+	dt {
+		color: var(--ds-blue);
+		font-family: var(--ds-font-mono);
+		font-size: 0.66rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	dd {
+		margin: 8px 0 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.58;
+	}
+
+	dd a,
+	.metadata-grid a,
+	.state-footer a {
+		color: var(--ds-ink);
+		border-bottom: 1px solid var(--ds-blue);
+	}
+
+	.compact-records {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 14px;
+	}
+
+	.compact-records article {
+		min-height: 250px;
+		padding: 20px;
+	}
+
+	.compact-records h3 {
+		margin-top: 28px;
+	}
+
+	.compact-records p,
+	.research-list p {
+		margin: 16px 0 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.62;
+	}
+
+	.research-list {
+		display: grid;
+		gap: 12px;
+	}
+
+	.research-list article {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+		gap: 24px;
+		padding: 22px;
+	}
+
+	.research-list strong {
+		color: var(--ds-ink);
+		font-weight: 700;
+	}
+
+	.boundary-section {
+		border-block: 1px solid var(--ds-line-strong);
+		margin-bottom: 118px;
+		padding: 78px 0;
+		background:
+			linear-gradient(90deg, rgba(246, 197, 107, 0.08), transparent 36%),
+			linear-gradient(180deg, rgba(2, 7, 10, 0.14), rgba(2, 7, 10, 0.52));
+	}
+
+	.boundary-section h2 {
+		max-width: 960px;
+		font-size: clamp(3.1rem, 7.4vw, 8rem);
+		line-height: 0.88;
+	}
+
+	.boundary-section ul {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0;
+		margin: 48px 0 0;
+		padding: 0;
+		list-style: none;
+		border-top: 1px solid var(--ds-line);
+		border-left: 1px solid var(--ds-line);
+	}
+
+	.boundary-section li {
+		min-height: 92px;
+		padding: 18px;
+		border-right: 1px solid var(--ds-line);
+		border-bottom: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		line-height: 1.5;
+	}
+
+	.boundary-closing {
+		max-width: 820px;
+		margin: 42px 0 0 !important;
+		color: var(--ds-ink) !important;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.55rem, 3vw, 2.7rem) !important;
+		font-weight: 700;
+		line-height: 1.08 !important;
+	}
+
+	.environment-diagram {
+		margin: 0;
+		padding: 22px;
+		border: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 30%),
+			rgba(2, 7, 10, 0.48);
+	}
+
+	.environment-diagram figcaption {
+		color: var(--ds-amber);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.diagram-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		margin-top: 22px;
+	}
+
+	.diagram-grid span {
+		display: grid;
+		place-items: center;
+		min-height: 106px;
+		color: var(--ds-ink);
+		text-align: center;
+	}
+
+	.validation-section ol {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border: 1px solid var(--ds-line-strong);
+	}
+
+	.validation-section li {
+		position: relative;
+		display: grid;
+		align-content: space-between;
+		min-height: 210px;
+		padding: 20px;
+		border-right: 1px solid var(--ds-line);
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1rem, 1.45vw, 1.28rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.validation-section li:last-child {
+		border-right: 0;
+	}
+
+	.validation-section li::before {
+		color: var(--ds-blue);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		content: "0" counter(list-item);
+	}
+
+	.validation-section p {
+		max-width: 760px;
+		margin-top: 28px;
+	}
+
+	.priority-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.strategic-filter {
+		max-width: 860px;
+		margin: 34px 0 0;
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.45rem, 2.6vw, 2.35rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.update-section h2,
+	.final-cta h2 {
+		max-width: 900px;
+	}
+
+	.update-section p,
+	.final-cta p {
+		max-width: 760px;
+		margin-top: 18px;
+	}
+
+	.metadata-grid {
+		grid-template-columns: repeat(3, 1fr);
+		margin-top: 34px;
+	}
+
+	.final-cta {
+		align-items: end;
+		min-height: 62svh;
+		padding-top: 40px;
+		border-top: 1px solid var(--ds-line-strong);
+	}
+
+	.state-footer {
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 34px 0 46px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink-muted);
+		font-size: 0.86rem;
+	}
+
+	@media (max-width: 1120px) {
+		.compact-records {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.validation-section ol,
+		.priority-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.validation-section li {
+			border-bottom: 1px solid var(--ds-line);
+		}
+	}
+
+	@media (max-width: 900px) {
+		.summary-section,
+		.environment-section,
+		.current-state-page .final-cta,
+		.capability-grid,
+		.research-list article,
+		.metadata-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.state-hero {
+			min-height: auto;
+			padding: 42px 0 84px;
+		}
+
+		.state-hero h1 {
+			font-size: clamp(3.5rem, 18vw, 5.8rem);
+			line-height: 0.9;
+		}
+
+		.hero-statement,
+		.hero-line,
+		.strategic-filter {
+			font-size: clamp(1.45rem, 7.4vw, 2.45rem);
+		}
+
+		.hero-actions,
+		.final-actions,
+		.state-footer {
+			flex-direction: column;
+		}
+
+		.hero-actions :global(.ds-button),
+		.final-actions :global(.ds-button) {
+			width: 100%;
+		}
+
+		.summary-section,
+		.capabilities-section,
+		.active-section,
+		.research-section,
+		.validation-section,
+		.priorities-section,
+		.update-section {
+			padding-bottom: 82px;
+		}
+
+		.summary-section h2,
+		.section-heading h2,
+		.environment-section h2,
+		.validation-section h2,
+		.update-section h2,
+		.final-cta h2 {
+			font-size: clamp(2.25rem, 12vw, 4.2rem);
+		}
+
+		.compact-records,
+		.boundary-section ul,
+		.diagram-grid,
+		.validation-section ol,
+		.priority-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.record-head {
+			flex-direction: column;
+		}
+
+		.boundary-section {
+			margin-bottom: 82px;
+			padding: 58px 0;
+		}
+
+		.boundary-section h2 {
+			font-size: clamp(2.8rem, 15vw, 5rem);
+		}
+
+		.final-cta {
+			min-height: auto;
+			padding-bottom: 92px;
+		}
+	}
+</style>

@@ -1,0 +1,43 @@
+---
+import Button from "../components/design-system/Button.astro";
+import SectionLabel from "../components/design-system/SectionLabel.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Page Not Found | Mythadis"
+	description="The requested Mythadis page could not be found."
+	noindex={true}
+>
+	<main class="ds-shell not-found-page" aria-labelledby="page-title">
+		<SectionLabel>404</SectionLabel>
+		<h1 id="page-title">Page not found.</h1>
+		<p>The requested page is not available in the public Mythadis site.</p>
+		<Button href="/">Return home</Button>
+	</main>
+</BaseLayout>
+
+<style>
+	.not-found-page {
+		display: grid;
+		align-content: center;
+		min-height: 100svh;
+		padding-block: 72px;
+	}
+
+	.not-found-page h1 {
+		max-width: 10ch;
+		margin: 0;
+		font-family: var(--ds-font-display);
+		font-size: clamp(3.2rem, 8vw, 6rem);
+		line-height: 0.92;
+	}
+
+	.not-found-page p {
+		max-width: 560px;
+		margin: 24px 0 34px;
+		color: var(--ds-ink-soft);
+		font-size: 1.08rem;
+		line-height: 1.6;
+	}
+</style>

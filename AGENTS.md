@@ -1,5 +1,15 @@
 ## Development
 
+Approved workflow:
+
+Founder
+↓
+ChatGPT
+↓
+Codex
+↓
+Cloudflare
+
 When starting the dev server, use background mode:
 
 ```

@@ -1,0 +1,728 @@
+---
+import Button from "../components/design-system/Button.astro";
+import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteHeader from "../components/design-system/SiteHeader.astro";
+import StatusLabel from "../components/design-system/StatusLabel.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const navItems = [
+	{ label: "Vision", href: "/#vision" },
+	{ label: "Why Mythadis", href: "/why-mythadis/" },
+	{ label: "Swarm", href: "/#swarm" },
+	{ label: "Current State", href: "/#current-state" },
+	{ label: "Collaborate", href: "#collaborate" },
+];
+
+const timelineItems = [
+	"30+ Years",
+	"Cloud",
+	"Security",
+	"Enterprise Architecture",
+	"AI",
+	"Distributed Intelligence",
+	"Mythadis",
+];
+
+const invitationAudiences = [
+	"Engineers",
+	"Researchers",
+	"Builders",
+	"Skeptics",
+	"People willing to challenge assumptions",
+];
+---
+
+<BaseLayout
+	title="Why Mythadis | Mythadis"
+	description="Why Mythadis exists, why coordination matters now, and why the project is exploring proof-first infrastructure for human and artificial intelligence."
+>
+	<div class="ds-shell why-page">
+		<SiteHeader
+			items={navItems}
+			brandLabel="Mythadis"
+			brandSubLabel="Swarm"
+			status="Private R&D"
+		/>
+
+		<main>
+			<section class="why-hero" aria-labelledby="page-title">
+				<div class="why-hero__copy">
+					<StatusLabel tone="amber">Private R&D</StatusLabel>
+					<h1 id="page-title">Why Mythadis</h1>
+					<div class="origin-lines" aria-label="Origin statement">
+						<p>Every technology project begins with an idea.</p>
+						<p>Mythadis began with a question.</p>
+					</div>
+					<p class="mission-question">
+						How do we organize intelligence&mdash;human and artificial&mdash;so that together
+						we can solve problems that neither could solve alone?
+					</p>
+				</div>
+
+				<aside class="timeline-panel" aria-label="Bentley's path to Mythadis">
+					<ol>
+						{timelineItems.map((item) => (
+							<li>
+								<span>{item}</span>
+							</li>
+						))}
+					</ol>
+				</aside>
+			</section>
+
+			<section class="reading-section question-section" aria-labelledby="question-title">
+				<div class="section-kicker">
+					<SectionLabel>The Question</SectionLabel>
+				</div>
+				<div class="reading-copy">
+					<h2 id="question-title">
+						How do we organize intelligence&mdash;human and artificial&mdash;so that together
+						we can solve problems that neither could solve alone?
+					</h2>
+					<p>
+						That question became larger than AI itself. It pointed past model capability and
+						toward the systems around intelligence: how work is discovered, how knowledge moves,
+						how claims are checked, and how many participants can contribute without becoming
+						noise.
+					</p>
+					<p class="emphasis-line">
+						The limiting factor is not compute. The limiting factor is coordination.
+					</p>
+				</div>
+			</section>
+
+			<section class="reading-section experience-section" aria-labelledby="experience-title">
+				<div class="section-kicker">
+					<SectionLabel>Thirty years</SectionLabel>
+				</div>
+				<div class="reading-copy">
+					<h2 id="experience-title">The same limitation kept appearing in different rooms.</h2>
+					<p>
+						Bentley spent three decades designing enterprise systems across cloud, security,
+						distributed systems, architecture, and large organizations. The details changed.
+						The pattern did not.
+					</p>
+					<p>
+						Technology was rarely the biggest limitation. People, organizations, knowledge,
+						and communication were. Good systems still failed when the right context could not
+						reach the right people at the right time.
+					</p>
+					<p>
+						The problem kept repeating itself: intelligence existed, but it was fragmented.
+					</p>
+				</div>
+			</section>
+
+			<section class="reading-section ai-section" aria-labelledby="ai-title">
+				<div class="section-kicker">
+					<SectionLabel>AI changes everything</SectionLabel>
+				</div>
+				<div class="reading-copy">
+					<h2 id="ai-title">Large language models changed the equation.</h2>
+					<p>
+						Not because they replaced humans. Because they became another form of intelligence
+						that can reason, summarize, propose, remember, and help move work forward.
+					</p>
+					<p class="question-callout">
+						The question is not how humans compete with AI. The question is how human
+						intelligence and artificial intelligence should work together.
+					</p>
+				</div>
+			</section>
+
+			<section class="principle-band" aria-labelledby="decentralization-title">
+				<div>
+					<SectionLabel>Why decentralization?</SectionLabel>
+					<h2 id="decentralization-title">Resilience is not the same as coordination.</h2>
+				</div>
+				<div class="principle-lines">
+					<p>Centralization creates power.</p>
+					<p>Decentralization creates resilience.</p>
+					<p>Neither creates coordination by itself.</p>
+				</div>
+				<p>
+					Mythadis explores a different question: how can independent participants collaborate
+					without surrendering control?
+				</p>
+			</section>
+
+			<section class="reading-section systems-section" aria-labelledby="systems-title">
+				<div class="section-kicker">
+					<SectionLabel>Why multiple AI systems?</SectionLabel>
+				</div>
+				<div class="reading-copy">
+					<h2 id="systems-title">The future is unlikely to belong to one model.</h2>
+					<p>
+						Different AI systems think differently. They carry different strengths, different
+						weaknesses, different training, and different viewpoints.
+					</p>
+					<p>
+						A serious coordination layer should not assume that one model, one company, or one
+						institution will become the whole answer. The future belongs to many forms of
+						intelligence learning how to work together.
+					</p>
+				</div>
+			</section>
+
+			<section class="evidence-block" aria-labelledby="evidence-title">
+				<SectionLabel>Why evidence?</SectionLabel>
+				<h2 id="evidence-title">Evidence before legend.</h2>
+				<div class="evidence-grid">
+					<p>Intelligence is not enough.</p>
+					<p>Consensus is not enough.</p>
+					<p>Claims require evidence.</p>
+					<p>Disagreement should not disappear.</p>
+				</div>
+			</section>
+
+			<section class="why-center" aria-labelledby="why-title">
+				<SectionLabel>Why Mythadis?</SectionLabel>
+				<h2 id="why-title">
+					Mythadis is an attempt to build infrastructure that allows intelligence itself
+					to become more organized.
+				</h2>
+				<div class="center-lines" aria-label="What Mythadis is trying to improve">
+					<p>Not simply more powerful.</p>
+					<p>Not simply faster.</p>
+					<p>Better coordinated.</p>
+				</div>
+			</section>
+
+			<section class="reading-section reality-section" aria-labelledby="reality-title">
+				<div class="section-kicker">
+					<SectionLabel>Current reality</SectionLabel>
+				</div>
+				<div class="reading-copy">
+					<h2 id="reality-title">The work is early, private, and still being proven.</h2>
+					<p>
+						Mythadis is private R&D. There are early prototypes, a small team, constant
+						learning, and large ambitions measured against small daily progress.
+					</p>
+					<p>
+						There is no production network. There is no public Mythadis Agent. The project is
+						not claiming that the fabric works at humanity scale. It is trying to prove what
+						must be true before that claim would deserve belief.
+					</p>
+				</div>
+			</section>
+
+			<section class="invitation-section" id="collaborate" aria-labelledby="invitation-title">
+				<div>
+					<SectionLabel>The invitation</SectionLabel>
+					<h2 id="invitation-title">The first circle.</h2>
+					<p>
+						The project is looking for people who can pressure-test the architecture, the proof
+						discipline, and the mission model before Mythadis asks for broader trust.
+					</p>
+				</div>
+				<div class="invitation-list" aria-label="Who Mythadis is looking for">
+					{invitationAudiences.map((audience) => <span>{audience}</span>)}
+				</div>
+				<Button href="https://github.com/blanzy-labs">Collaborate with Mythadis</Button>
+			</section>
+
+			<section class="future-section" aria-labelledby="future-title">
+				<h2 id="future-title">The Future</h2>
+				<div class="future-copy">
+					<p>The future will not be built by one machine, one company, or one institution.</p>
+					<p>It will be built by many forms of intelligence learning how to work together.</p>
+					<p>Mythadis is our attempt to help make that possible.</p>
+				</div>
+				<Button href="https://github.com/blanzy-labs" variant="secondary">
+					Collaborate with Mythadis
+				</Button>
+			</section>
+		</main>
+
+		<footer class="why-footer">
+			<p>Mythadis coordinates intelligence&mdash;not just computation.</p>
+			<a href="/">Return to the vision</a>
+		</footer>
+	</div>
+</BaseLayout>
+
+<style>
+	h1,
+	h2,
+	h3,
+	p {
+		text-wrap: pretty;
+	}
+
+	h1,
+	h2,
+	h3 {
+		margin: 0;
+		font-family: var(--ds-font-display);
+		letter-spacing: 0;
+	}
+
+	.why-page {
+		--reading-max: 820px;
+	}
+
+	.why-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+		gap: 64px;
+		align-items: start;
+		min-height: calc(100svh - 84px);
+		padding: 70px 0 118px;
+	}
+
+	.why-hero__copy {
+		max-width: 920px;
+	}
+
+	.why-hero h1 {
+		margin-top: 26px;
+		font-size: clamp(4.6rem, 10.4vw, 11rem);
+		line-height: 0.84;
+	}
+
+	.origin-lines {
+		display: grid;
+		gap: 8px;
+		margin-top: 44px;
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.45rem, 2.5vw, 2.25rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.origin-lines p,
+	.mission-question,
+	.reading-copy p,
+	.principle-band p,
+	.evidence-grid p,
+	.center-lines p,
+	.invitation-section p,
+	.future-copy p,
+	.why-footer p {
+		margin: 0;
+	}
+
+	.origin-lines p:last-child {
+		color: var(--ds-ink);
+	}
+
+	.mission-question {
+		max-width: 880px;
+		margin-top: 40px;
+		padding-top: 30px;
+		border-top: 1px solid var(--ds-line-strong);
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(2rem, 4.4vw, 4.6rem);
+		font-weight: 700;
+		line-height: 0.98;
+	}
+
+	.timeline-panel {
+		position: sticky;
+		top: 28px;
+		padding-top: 11px;
+	}
+
+	.timeline-panel ol {
+		position: relative;
+		display: grid;
+		gap: 0;
+		margin: 0;
+		padding: 0 0 0 24px;
+		list-style: none;
+	}
+
+	.timeline-panel ol::before {
+		position: absolute;
+		top: 6px;
+		bottom: 8px;
+		left: 5px;
+		width: 1px;
+		content: "";
+		background: linear-gradient(var(--ds-blue), var(--ds-mint));
+		box-shadow: 0 0 24px rgba(66, 217, 255, 0.34);
+	}
+
+	.timeline-panel li {
+		position: relative;
+		padding: 0 0 28px;
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-mono);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.timeline-panel li::before {
+		position: absolute;
+		top: 4px;
+		left: -24px;
+		width: 11px;
+		height: 11px;
+		content: "";
+		border: 1px solid var(--ds-line-strong);
+		background: var(--ds-void);
+		box-shadow: 0 0 18px rgba(66, 217, 255, 0.2);
+		transform: rotate(45deg);
+	}
+
+	.timeline-panel li:last-child {
+		padding-bottom: 0;
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: 1.1rem;
+		font-weight: 700;
+		text-transform: none;
+		letter-spacing: 0;
+	}
+
+	.reading-section {
+		display: grid;
+		grid-template-columns: minmax(150px, 260px) minmax(0, var(--reading-max));
+		gap: 42px;
+		padding: 0 0 112px;
+	}
+
+	.section-kicker {
+		padding-top: 8px;
+	}
+
+	.reading-copy {
+		display: grid;
+		gap: 24px;
+	}
+
+	.reading-copy h2 {
+		max-width: 16ch;
+		font-size: clamp(2.25rem, 4.7vw, 5rem);
+		line-height: 0.96;
+	}
+
+	.reading-copy p,
+	.principle-band > p,
+	.invitation-section p {
+		color: var(--ds-ink-soft);
+		font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+		line-height: 1.72;
+	}
+
+	.emphasis-line,
+	.question-callout {
+		padding-top: 22px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink) !important;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.5rem, 2.7vw, 2.35rem) !important;
+		font-weight: 700;
+		line-height: 1.1 !important;
+	}
+
+	.principle-band {
+		display: grid;
+		grid-template-columns: minmax(0, 0.78fr) minmax(300px, 1fr);
+		gap: 34px 54px;
+		align-items: end;
+		margin: 0 0 112px;
+		padding: 78px 0;
+		border-block: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(90deg, rgba(66, 217, 255, 0.08), transparent 36%),
+			linear-gradient(180deg, rgba(2, 7, 10, 0.16), rgba(2, 7, 10, 0.48));
+	}
+
+	.principle-band h2 {
+		max-width: 640px;
+		font-size: clamp(2.6rem, 6vw, 6.4rem);
+		line-height: 0.9;
+	}
+
+	.principle-lines {
+		display: grid;
+		gap: 14px;
+	}
+
+	.principle-lines p {
+		padding-top: 14px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.45rem, 2.7vw, 2.35rem);
+		font-weight: 700;
+		line-height: 1.06;
+	}
+
+	.principle-band > p {
+		grid-column: 2;
+		max-width: 680px;
+	}
+
+	.evidence-block {
+		margin: 0 0 112px;
+		padding: 86px 0;
+		border-block: 1px solid var(--ds-line-strong);
+	}
+
+	.evidence-block h2 {
+		max-width: 980px;
+		font-size: clamp(4.2rem, 10vw, 10.6rem);
+		line-height: 0.84;
+	}
+
+	.evidence-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0;
+		margin-top: 54px;
+		border-top: 1px solid var(--ds-line);
+		border-bottom: 1px solid var(--ds-line);
+	}
+
+	.evidence-grid p {
+		min-height: 150px;
+		padding: 22px;
+		border-right: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.35rem, 2.2vw, 2.1rem);
+		font-weight: 700;
+		line-height: 1.06;
+	}
+
+	.evidence-grid p:last-child {
+		border-right: 0;
+		color: var(--ds-mint);
+	}
+
+	.why-center {
+		display: grid;
+		align-content: center;
+		min-height: 82svh;
+		padding: 44px 0 128px;
+	}
+
+	.why-center h2 {
+		max-width: 1100px;
+		font-size: clamp(3.2rem, 7.8vw, 8.2rem);
+		line-height: 0.9;
+	}
+
+	.center-lines {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+		max-width: 920px;
+		margin: 48px 0 0 auto;
+	}
+
+	.center-lines p {
+		padding-top: 18px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.25rem, 2.2vw, 1.9rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.center-lines p:last-child {
+		color: var(--ds-ink);
+	}
+
+	.invitation-section {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
+		gap: 42px;
+		align-items: start;
+		padding: 0 0 128px;
+	}
+
+	.invitation-section h2 {
+		font-size: clamp(3.2rem, 7vw, 7rem);
+		line-height: 0.88;
+	}
+
+	.invitation-section p {
+		max-width: 720px;
+		margin-top: 28px;
+	}
+
+	.invitation-list {
+		display: grid;
+		gap: 10px;
+		padding-top: 10px;
+	}
+
+	.invitation-list span {
+		padding: 13px 0;
+		border-bottom: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-mono);
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.invitation-section :global(.ds-button) {
+		width: fit-content;
+	}
+
+	.future-section {
+		display: grid;
+		justify-items: start;
+		min-height: 82svh;
+		padding: 98px 0 128px;
+		border-top: 1px solid var(--ds-line-strong);
+	}
+
+	.future-section h2 {
+		color: var(--ds-blue);
+		font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.future-copy {
+		display: grid;
+		gap: 28px;
+		max-width: 1060px;
+		margin: 52px 0 42px;
+	}
+
+	.future-copy p {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(2.65rem, 5.8vw, 6.8rem);
+		font-weight: 700;
+		line-height: 0.94;
+	}
+
+	.future-copy p:last-child {
+		color: var(--ds-mint);
+	}
+
+	.why-footer {
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 34px 0 46px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink-muted);
+		font-size: 0.86rem;
+	}
+
+	.why-footer a {
+		color: var(--ds-ink-soft);
+		border-bottom: 1px solid var(--ds-line-strong);
+	}
+
+	@media (max-width: 1040px) {
+		.why-hero,
+		.reading-section,
+		.principle-band,
+		.invitation-section {
+			grid-template-columns: 1fr;
+		}
+
+		.why-hero {
+			min-height: auto;
+		}
+
+		.timeline-panel {
+			position: relative;
+			top: auto;
+			max-width: 520px;
+		}
+
+		.principle-band > p {
+			grid-column: auto;
+		}
+
+		.evidence-grid,
+		.center-lines {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 680px) {
+		.why-hero {
+			gap: 42px;
+			padding: 38px 0 82px;
+		}
+
+		.why-hero h1 {
+			font-size: clamp(3.25rem, 19vw, 5.7rem);
+			line-height: 0.88;
+		}
+
+		.mission-question {
+			font-size: clamp(1.85rem, 10vw, 3.25rem);
+		}
+
+		.reading-section {
+			gap: 18px;
+			padding-bottom: 82px;
+		}
+
+		.reading-copy h2,
+		.principle-band h2,
+		.invitation-section h2 {
+			font-size: clamp(2.1rem, 12vw, 3.7rem);
+		}
+
+		.principle-band,
+		.evidence-block {
+			margin-bottom: 82px;
+			padding: 58px 0;
+		}
+
+		.evidence-block h2,
+		.why-center h2 {
+			font-size: clamp(3rem, 16vw, 5.3rem);
+		}
+
+		.evidence-grid,
+		.center-lines {
+			grid-template-columns: 1fr;
+		}
+
+		.evidence-grid p {
+			min-height: 104px;
+			border-right: 0;
+			border-bottom: 1px solid var(--ds-line);
+		}
+
+		.evidence-grid p:last-child {
+			border-bottom: 0;
+		}
+
+		.why-center,
+		.future-section {
+			min-height: auto;
+			padding-bottom: 92px;
+		}
+
+		.center-lines {
+			margin-left: 0;
+		}
+
+		.invitation-section {
+			padding-bottom: 92px;
+		}
+
+		.invitation-section :global(.ds-button),
+		.future-section :global(.ds-button) {
+			width: 100%;
+		}
+
+		.future-copy p {
+			font-size: clamp(2.35rem, 13vw, 4.6rem);
+		}
+
+		.why-footer {
+			flex-direction: column;
+		}
+	}
+</style>

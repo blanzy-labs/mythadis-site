@@ -292,7 +292,11 @@ const collaborators = [
 
 		<footer class="public-footer">
 			<p>Mythadis coordinates intelligence&mdash;not just computation.</p>
-			<p>Private research and engineering. No public Mythadis Agent is available.</p>
+			<nav aria-label="Footer navigation">
+				<a href="/field-reports/">Field Reports</a>
+				<a href="/proof/">Proof</a>
+				<a href="/current-state/">Current State</a>
+			</nav>
 		</footer>
 	</div>
 </BaseLayout>
@@ -786,6 +790,17 @@ const collaborators = [
 
 	.public-footer p {
 		margin: 0;
+	}
+
+	.public-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
+	}
+
+	.public-footer a {
+		color: var(--ds-ink-soft);
+		border-bottom: 1px solid var(--ds-line-strong);
 	}
 
 	@media (max-width: 1040px) {

@@ -372,7 +372,10 @@ const nextItems = [
 
 		<footer class="proof-footer">
 			<p>Proof earns trust.</p>
-			<a href="/why-mythadis/">Why Mythadis</a>
+			<nav aria-label="Footer navigation">
+				<a href="/why-mythadis/">Why Mythadis</a>
+				<a href="/field-reports/">Field Reports</a>
+			</nav>
 		</footer>
 	</div>
 </BaseLayout>
@@ -797,6 +800,12 @@ const nextItems = [
 	.proof-footer a {
 		color: var(--ds-ink-soft);
 		border-bottom: 1px solid var(--ds-line-strong);
+	}
+
+	.proof-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
 	}
 
 	@media (max-width: 1120px) {

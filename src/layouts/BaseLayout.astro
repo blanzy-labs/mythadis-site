@@ -6,6 +6,7 @@ interface Props {
 	description?: string;
 	bodyClass?: string;
 	noindex?: boolean;
+	canonicalUrl?: string;
 }
 
 const {
@@ -13,9 +14,10 @@ const {
 	description = "Mythadis design system and visual foundation.",
 	bodyClass = "ds-luminous-background",
 	noindex = false,
+	canonicalUrl: canonicalUrlProp,
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = canonicalUrlProp ?? new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>

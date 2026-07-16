@@ -261,7 +261,10 @@ const navItems = [
 
 		<footer class="state-footer">
 			<p>State what is true now.</p>
-			<a href="/proof/">Proof</a>
+			<nav aria-label="Footer navigation">
+				<a href="/proof/">Proof</a>
+				<a href="/field-reports/">Field Reports</a>
+			</nav>
 		</footer>
 	</div>
 </BaseLayout>
@@ -676,6 +679,21 @@ const navItems = [
 		border-top: 1px solid var(--ds-line);
 		color: var(--ds-ink-muted);
 		font-size: 0.86rem;
+	}
+
+	.state-footer p {
+		margin: 0;
+	}
+
+	.state-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
+	}
+
+	.state-footer a {
+		color: var(--ds-ink-soft);
+		border-bottom: 1px solid var(--ds-line-strong);
 	}
 
 	@media (max-width: 1120px) {

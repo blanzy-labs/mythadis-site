@@ -236,7 +236,10 @@ const invitationAudiences = [
 
 		<footer class="why-footer">
 			<p>Mythadis coordinates intelligence&mdash;not just computation.</p>
-			<a href="/">Return to the vision</a>
+			<nav aria-label="Footer navigation">
+				<a href="/">Vision</a>
+				<a href="/field-reports/">Field Reports</a>
+			</nav>
 		</footer>
 	</div>
 </BaseLayout>
@@ -616,6 +619,12 @@ const invitationAudiences = [
 	.why-footer a {
 		color: var(--ds-ink-soft);
 		border-bottom: 1px solid var(--ds-line-strong);
+	}
+
+	.why-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
 	}
 
 	@media (max-width: 1040px) {

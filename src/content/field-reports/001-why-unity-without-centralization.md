@@ -141,7 +141,7 @@ The doctrine is therefore not only philosophical. It changes what the product is
 
 ## What Mythadis Is Not Claiming Today
 
-This report is a doctrine under review, not a declaration that the full system already exists.
+This report records a founding Mythadis doctrine. Like all Mythadis records, it remains open to revision when stronger evidence appears.
 
 Mythadis is not claiming that Mythadis Swarm is production-ready.
 

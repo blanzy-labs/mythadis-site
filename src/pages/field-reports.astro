@@ -93,7 +93,7 @@ const getReportStateLabel = (status: string) =>
 			<section class="first-reports-section" aria-labelledby="first-reports-title">
 				<div class="section-heading">
 					<SectionLabel>First Reports</SectionLabel>
-					<h2 id="first-reports-title">The first records are being prepared.</h2>
+					<h2 id="first-reports-title">The first records are now visible.</h2>
 				</div>
 				<div class="report-previews">
 					{fieldReportPreviews.map((report) => (
@@ -117,7 +117,7 @@ const getReportStateLabel = (status: string) =>
 							<p class="report-summary">{report.data.summary}</p>
 							<div class="preparation-state">{getReportStateLabel(report.data.status)}</div>
 							<div class="planned-focus">
-								<h4>Planned focus</h4>
+								<h4>{report.data.status === "published" ? "Report focus" : "Planned focus"}</h4>
 								<ul>
 									{report.data.plannedFocus.map((focus) => <li>{focus}</li>)}
 								</ul>
@@ -171,9 +171,9 @@ const getReportStateLabel = (status: string) =>
 				</div>
 				<div class="final-copy">
 					<p>
-						Until the first reports are published, the Proof and Current State pages provide
-						the clearest record of what Mythadis has demonstrated and what remains under
-						development.
+						The Proof and Current State pages provide the clearest record of what Mythadis
+						has demonstrated, what remains under development, and where the next reports
+						should add evidence.
 					</p>
 					<div class="final-actions" aria-label="Field Reports final actions">
 						<Button href="/proof/">Review the Proof</Button>
@@ -187,8 +187,9 @@ const getReportStateLabel = (status: string) =>
 		</main>
 
 		<footer class="reports-footer">
-			<p>Every meaningful step should leave a record.</p>
+			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
 			<nav aria-label="Field Reports footer navigation">
+				<a href="/field-reports/">Field Reports</a>
 				<a href="/proof/">Proof</a>
 				<a href="/current-state/">Current State</a>
 			</nav>

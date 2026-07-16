@@ -25,7 +25,11 @@ const fieldReportPreviews = (await getCollection("field-reports")).sort((a, b) =
 
 const getStatusTone = (status: string) => (status === "published" ? "green" : "amber");
 const getReportStateLabel = (status: string) =>
-	status === "in-review" ? "REPORT IN REVIEW" : "REPORT IN PREPARATION";
+	status === "published"
+		? "REPORT PUBLISHED"
+		: status === "in-review"
+			? "REPORT IN REVIEW"
+			: "REPORT IN PREPARATION";
 ---
 
 <BaseLayout

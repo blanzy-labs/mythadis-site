@@ -60,17 +60,35 @@ const navItems = [
 			<section class="report-context" aria-labelledby="context-title">
 				<div>
 					<SectionLabel>Report Frame</SectionLabel>
-					<h2 id="context-title">A doctrine under review.</h2>
+					<h2 id="context-title">
+						{isPublished ? "A founding doctrine." : "A doctrine under review."}
+					</h2>
 				</div>
 				<div class="context-copy">
-					<p>
-						This report is available for founder copy and visual review. It is not yet marked
-						as published in production.
-					</p>
-					<p>
-						The purpose of this review state is to inspect the argument, the claim boundaries,
-						and the page experience before a publication date is recorded.
-					</p>
+					{isPublished ? (
+						<>
+							<p>
+								This report records one of the core Mythadis doctrines: shared purpose
+								should not require total ownership by a single company, institution,
+								government, or AI system.
+							</p>
+							<p>
+								It is published as a public reference for engineering, research,
+								institutional, and partner conversations.
+							</p>
+						</>
+					) : (
+						<>
+							<p>
+								This report is available for founder copy and visual review. It is not yet
+								marked as published in production.
+							</p>
+							<p>
+								The purpose of this review state is to inspect the argument, the claim
+								boundaries, and the page experience before a publication date is recorded.
+							</p>
+						</>
+					)}
 				</div>
 			</section>
 

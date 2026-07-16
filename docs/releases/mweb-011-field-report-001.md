@@ -8,12 +8,12 @@
 - Added the dynamic report route at `src/pages/field-reports/[slug].astro`.
 - Updated the Field Reports landing page to read report previews from the content collection and link Report 001.
 
-## Review State
+## Publication State
 
-- Report 001 status: `IN REVIEW`.
+- Report 001 status: `PUBLISHED`.
 - Report 001 route: `/field-reports/why-unity-without-centralization`.
-- Report 001 uses `noindex, nofollow`.
-- No publication date is set.
+- Publication date: `2026-07-16`.
+- Report 001 is indexable after founder approval.
 - Report 002 remains `IN PREPARATION` and does not generate an article route.
 
 ## Validation
@@ -33,7 +33,6 @@
 
 ## Known Limitations
 
-- This branch is stacked on MWEB-010 because the Field Reports landing page is not yet on `main`.
-- The report is not production-published until founder approval changes its state to `PUBLISHED`.
+- This branch was stacked on MWEB-010 during review and is merged after MWEB-010.
 - No sitemap integration exists in the current repository.
 - No wider Evidence architecture, Annals, search, categories, feeds, comments, or full publishing platform is included.

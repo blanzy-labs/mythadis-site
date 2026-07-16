@@ -1,15 +1,9 @@
-export type FieldReportStatus = "in-preparation" | "published" | "revised" | "archived";
-
-export interface FieldReportPreview {
-	id: string;
-	number: string;
-	title: string;
-	category: string;
-	status: FieldReportStatus;
-	summary: string;
-	plannedFocus: string[];
-	href?: string;
-}
+export type FieldReportStatus =
+	| "in-preparation"
+	| "in-review"
+	| "published"
+	| "revised"
+	| "archived";
 
 export interface FieldReportCategory {
 	name: string;
@@ -18,45 +12,11 @@ export interface FieldReportCategory {
 
 export const fieldReportStatusLabels: Record<FieldReportStatus, string> = {
 	"in-preparation": "IN PREPARATION",
+	"in-review": "IN REVIEW",
 	published: "PUBLISHED",
 	revised: "REVISED",
 	archived: "ARCHIVED",
 };
-
-export const fieldReportPreviews: FieldReportPreview[] = [
-	{
-		id: "why-unity-without-centralization",
-		number: "001",
-		title: "Why Unity Without Centralization",
-		category: "FOUNDATIONS",
-		status: "in-preparation",
-		summary:
-			"Why shared purpose should not require one company, institution, government, or AI system to possess or control the whole network.",
-		plannedFocus: [
-			"Coordination versus ownership",
-			"Local agency",
-			"Shared missions",
-			"The limits of centralization",
-			"Why decentralization alone is insufficient",
-		],
-	},
-	{
-		id: "building-the-first-three-node-swarm",
-		number: "002",
-		title: "Building the First Three-Node Swarm",
-		category: "DISTRIBUTED SYSTEMS",
-		status: "in-preparation",
-		summary:
-			"An engineering account of the first private multi-node Mythadis Swarm trials, including cross-platform operation, peer connectivity, early data-path experiments, and lessons from the test environment.",
-		plannedFocus: [
-			"Heterogeneous nodes",
-			"Peer discovery",
-			"Cross-subnet communication",
-			"Early distributed-data testing",
-			"Limitations and next validation Gates",
-		],
-	},
-];
 
 export const fieldReportPrinciples = [
 	{

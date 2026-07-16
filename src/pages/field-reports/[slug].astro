@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from "astro:content";
+import FieldReportLayout from "../../layouts/FieldReportLayout.astro";
+
+export async function getStaticPaths() {
+	const reports = await getCollection("field-reports", ({ data }) => data.hasPage);
+
+	return reports.map((report) => ({
+		params: { slug: report.data.slug },
+		props: { report },
+	}));
+}
+
+const { report } = Astro.props;
+const { Content } = await render(report);
+---
+
+<FieldReportLayout report={report}>
+	<Content />
+</FieldReportLayout>

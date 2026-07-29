@@ -42,6 +42,8 @@ const {
 
 <style>
 	.ds-site-header {
+		position: relative;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -153,15 +155,23 @@ const {
 	@media (max-width: 940px) {
 		.ds-site-header {
 			flex-wrap: wrap;
-			padding-top: 18px;
+			row-gap: 12px;
+			padding-top: 14px;
 		}
 
 		.ds-site-nav {
 			order: 3;
 			width: 100%;
 			justify-content: flex-start;
-			gap: 20px;
+			gap: 16px;
 			overflow-x: auto;
+			padding-bottom: 4px;
+			color: var(--ds-ink);
+			scrollbar-width: none;
+		}
+
+		.ds-site-nav::-webkit-scrollbar {
+			display: none;
 		}
 	}
 
@@ -172,10 +182,10 @@ const {
 
 		.ds-site-nav {
 			flex-wrap: wrap;
-			column-gap: 14px;
+			column-gap: 12px;
 			row-gap: 2px;
 			overflow-x: visible;
-			font-size: 0.82rem;
+			font-size: 0.8rem;
 		}
 
 		.ds-site-nav a {

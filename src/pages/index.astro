@@ -6,6 +6,7 @@ import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import SurfacePanel from "../components/design-system/SurfacePanel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { statusSummary } from "../data/current-state";
 
 const navItems = [
 	{ label: "Vision", href: "#vision" },
@@ -25,20 +26,38 @@ const fragmentationNodes = [
 ];
 
 const flowSteps = [
-	"Mission",
-	"Data Parcels",
-	"Discovery",
-	"Agents",
-	"Evidence",
-	"Annals",
+	{
+		name: "Mission",
+		description: "Define the problem, scope, participants, and proof requirements.",
+	},
+	{
+		name: "Data Parcels",
+		description: "Prepare approved data as bounded units for distributed work.",
+	},
+	{
+		name: "Discovery",
+		description: "Find relevant knowledge, resources, and participating systems.",
+	},
+	{
+		name: "Agents",
+		description: "Execute bounded tasks across participating machines and operators.",
+	},
+	{
+		name: "Evidence",
+		description: "Validate and record observations, results, and supporting material.",
+	},
+	{
+		name: "Annals",
+		description: "Preserve durable mission history, provenance, and validated outcomes.",
+	},
 ];
 
 const missionSwarms = [
 	"Longevity",
 	"Pollution",
 	"Climate",
-	"Public Science",
-	"Knowledge Preservation",
+	"Public science",
+	"Knowledge preservation",
 ];
 
 const collaborators = [
@@ -47,6 +66,54 @@ const collaborators = [
 	"Institutions",
 	"Advisors",
 	"Early testers",
+];
+
+const statusModel = [
+	{
+		label: "Working today",
+		tone: "amber",
+		items: "Early private multi-node prototype, peer discovery, node communication, and distributed data experiments.",
+	},
+	{
+		label: "In active development",
+		tone: "blue",
+		items: "Mission Control foundations, Data Parcels, archive health, and recovery validation.",
+	},
+	{
+		label: "Research direction",
+		tone: "plum",
+		items: "Public Agent distribution, Mission Swarms, and humanity-scale applications.",
+	},
+] as const;
+
+const systemComponents = [
+	{
+		name: "Mythadis Agent",
+		status: "Research direction",
+		tone: "plum",
+		body: "The future participation layer for machines and operators performing bounded work. It is not public yet.",
+	},
+	{
+		name: "Mission Control",
+		status: "In active development",
+		tone: "blue",
+		body: "The coordination surface for making distributed work legible: missions, Signals, Relics, Annals, roles, and validation state.",
+	},
+] as const;
+
+const missionControlTerms = [
+	{
+		name: "Signals",
+		body: "observations or events relevant to a mission.",
+	},
+	{
+		name: "Relics",
+		body: "durable evidence artifacts or validated outputs.",
+	},
+	{
+		name: "Annals",
+		body: "the persistent record of mission history.",
+	},
 ];
 ---
 
@@ -117,45 +184,33 @@ const collaborators = [
 				</div>
 			</section>
 
-			<section class="unity-section" aria-labelledby="unity-title">
-				<SectionLabel>Principle</SectionLabel>
-				<h2 id="unity-title">Unity without centralization.</h2>
-				<p>
-					Coordination should increase shared capacity without turning every mind, machine,
-					or institution into a subordinate node.
-				</p>
-			</section>
-
 			<section class="swarm-section" id="swarm" aria-labelledby="swarm-title">
 				<div class="section-heading">
 					<SectionLabel>What is Mythadis Swarm?</SectionLabel>
-					<h2 id="swarm-title">A proof-first fabric for coordinated intelligence.</h2>
+					<h2 id="swarm-title">An emerging proof-first fabric for coordinated intelligence.</h2>
 				</div>
-				<div class="swarm-grid">
-					<article>
-						<StatusLabel>Coordination</StatusLabel>
-						<h3>Not centralization.</h3>
+				<div class="swarm-layout">
+					<div class="swarm-copy">
+						<p class="principle-line">Unity without centralization.</p>
 						<p>
-							Mythadis Swarm is the flagship coordination platform for aligning many forms of
-							intelligence around mission-specific work.
+							Mythadis Swarm is the flagship research platform at the center of Mythadis:
+							a private prototype for coordinating people, machines, models, evidence, and
+							archives around mission-specific work.
 						</p>
-					</article>
-					<article>
-						<StatusLabel tone="green">Plural intelligence</StatusLabel>
-						<h3>Human and artificial.</h3>
 						<p>
-							The system treats people, machines, models, evidence, and archives as participants
-							in a larger fabric.
+							The goal is coordination, not central ownership. Participants should retain
+							local agency while shared work becomes discoverable, bounded, testable, and
+							remembered.
 						</p>
-					</article>
-					<article>
-						<StatusLabel tone="amber">Proof-first</StatusLabel>
-						<h3>Memory before myth.</h3>
-						<p>
-							Claims should become durable through recorded evidence, not through momentum,
-							status, or spectacle.
-						</p>
-					</article>
+					</div>
+					<div class="status-model" aria-label="Mythadis status model">
+						{statusModel.map((item) => (
+							<article>
+								<StatusLabel tone={item.tone}>{item.label}</StatusLabel>
+								<p>{item.items}</p>
+							</article>
+						))}
+					</div>
 				</div>
 			</section>
 
@@ -167,98 +222,84 @@ const collaborators = [
 				<ol class="flow-list" aria-label="Six-step Mythadis Swarm flow">
 					{flowSteps.map((step) => (
 						<li>
-							<span>{step}</span>
+							<span>{step.name}</span>
+							<p>{step.description}</p>
 						</li>
 					))}
 				</ol>
 			</section>
 
-			<section class="agent-section" aria-labelledby="agent-title">
-				<div>
-					<SectionLabel>Mythadis Agent</SectionLabel>
-					<h2 id="agent-title">Future participation begins at the edge.</h2>
-				</div>
-				<SurfacePanel variant="warning">
-					<div class="agent-panel">
-						<StatusLabel tone="amber">Not currently available</StatusLabel>
-						<p>
-							The Mythadis Agent is the future participation layer for machines and operators.
-							It is not public yet.
-						</p>
-					</div>
-				</SurfacePanel>
-			</section>
-
-			<section class="mission-control-section" aria-labelledby="mission-control-title">
-				<div class="control-grid">
-					<div class="control-copy">
-						<SectionLabel>Mission Control</SectionLabel>
-						<h2 id="mission-control-title">Coordination, not control.</h2>
-						<p>
-							Mission Control is the interface for making distributed work legible: what exists,
-							what is missing, what has been observed, and what has been proven.
-						</p>
-					</div>
-					<div class="control-panel" aria-label="Mission Control diagram">
-						<span>Mission</span>
-						<span>Signals</span>
-						<span>Relics</span>
-						<span>Annals</span>
-					</div>
-				</div>
-			</section>
-
-			<section class="mission-swarms-section" aria-labelledby="mission-swarms-title">
+			<section class="components-section" aria-labelledby="components-title">
 				<div class="section-heading">
-					<SectionLabel>Mission Swarms</SectionLabel>
-					<h2 id="mission-swarms-title">Future swarms point toward humanity-scale work.</h2>
+					<SectionLabel>System components</SectionLabel>
+					<h2 id="components-title">Participation at the edge. Legibility at the center.</h2>
 				</div>
-				<div class="mission-card-grid">
-					{missionSwarms.map((mission) => (
-						<article>
-							<span aria-hidden="true"></span>
-							<h3>{mission}</h3>
-						</article>
-					))}
+				<div class="components-grid">
+					<div class="component-list">
+						{systemComponents.map((component) => (
+							<article>
+								<StatusLabel tone={component.tone}>{component.status}</StatusLabel>
+								<h3>{component.name}</h3>
+								<p>{component.body}</p>
+							</article>
+						))}
+					</div>
+					<div class="control-panel" aria-label="Mission Control terminology">
+						<div>
+							<span>Mission</span>
+							<p>a defined problem, scope, and proof objective.</p>
+						</div>
+						{missionControlTerms.map((term) => (
+							<div>
+								<span>{term.name}</span>
+								<p>{term.body}</p>
+							</div>
+						))}
+					</div>
 				</div>
 			</section>
 
-			<section class="evidence-section" aria-labelledby="evidence-title">
-				<SectionLabel>Evidence before legend</SectionLabel>
-				<h2 id="evidence-title">Every Epoch has a Gate.</h2>
-				<div class="evidence-lines">
-					<p>Every Gate requires Relics and Signals.</p>
+			<section class="future-proof-section" aria-labelledby="future-proof-title">
+				<div class="section-heading">
+					<SectionLabel>Proof and future direction</SectionLabel>
+					<h2 id="future-proof-title">Evidence before legend.</h2>
+				</div>
+				<div class="future-proof-layout">
+					<div class="evidence-lines">
+						<p>Claims require recorded observations, results, and validation material.</p>
+						<p>Dissent and uncertainty should remain visible in the record.</p>
+						<p>Proof discipline decides when a future claim deserves belief.</p>
+					</div>
+					<div class="mission-card-grid" aria-label="Research direction mission areas">
+						{missionSwarms.map((mission) => (
+							<article>
+								<StatusLabel tone="plum">Research direction</StatusLabel>
+								<h3>{mission}</h3>
+							</article>
+						))}
+					</div>
+				</div>
+				<div class="future-proof-note">
 					<p>Vision is not enough.</p>
-					<p>Proof must be recorded.</p>
+					<p>Mission Swarms point toward domains where coordinated intelligence may matter, not demonstrated public outcomes.</p>
 				</div>
 			</section>
 
 			<section class="current-state-section" id="current-state" aria-labelledby="state-title">
 				<div class="section-heading">
 					<SectionLabel>Current State</SectionLabel>
-					<h2 id="state-title">Private R&D. Early prototypes. Future research directions.</h2>
+					<h2 id="state-title">The complete status lives on Current State.</h2>
 				</div>
 				<SurfacePanel variant="warning">
-					<div class="state-panel">
-						<div>
-							<StatusLabel tone="amber">Private R&D · Early multi-node prototype · No public agent</StatusLabel>
-							<h3>Mythadis Swarm is currently private research and engineering.</h3>
-						</div>
-						<div class="state-copy">
-							<p>
-								Early prototypes are testing peer discovery, communication across heterogeneous
-								machines, distributed data storage and recovery, lightweight knowledge discovery,
-								archive health, and the foundations of Mission Control.
-							</p>
-							<p>
-								The project is not production-ready. It is not yet a public volunteer network,
-								and the Mythadis Agent is not publicly available.
-							</p>
-							<p>
-								The immediate mission is to prove that the fabric works. Larger Mission Swarms
-								and humanity-scale outcomes remain future research directions.
-							</p>
-						</div>
+					<div class="state-summary">
+						<ul aria-label="Homepage current state summary">
+							{statusSummary.map((item) => <li>{item}</li>)}
+						</ul>
+						<p>
+							Mythadis Swarm is private R&D with early multi-node prototype evidence. It is
+							not a public production network.
+						</p>
+						<Button href="/current-state/">View the complete current state</Button>
 					</div>
 				</SurfacePanel>
 			</section>
@@ -278,11 +319,16 @@ const collaborators = [
 							{collaborators.map((collaborator) => <span>{collaborator}</span>)}
 						</div>
 						<div class="contact-panel">
-							<p class="contact-label">Contact path</p>
-							<a href="https://github.com/blanzy-labs" rel="noreferrer">github.com/blanzy-labs</a>
+							<p class="contact-label">Engagement paths</p>
+							<a href="https://ie.linkedin.com/in/mrblanzy" rel="noreferrer">
+								Start a conversation
+							</a>
+							<a href="https://github.com/blanzy-labs" rel="noreferrer">
+								Explore Blanzy Labs on GitHub
+							</a>
 							<p>
-								Use the Blanzy Labs public GitHub presence as the current collaboration path
-								while Mythadis remains private R&D.
+								LinkedIn is the current direct conversation path. GitHub remains the public
+								evidence path for technical work while Mythadis is private R&D.
 							</p>
 						</div>
 					</div>
@@ -291,8 +337,13 @@ const collaborators = [
 		</main>
 
 		<footer class="public-footer">
-			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
+			<p>
+				Mythadis is an independent research and engineering initiative from Blanzy Labs,
+				founded by Rob Blanzy.
+			</p>
 			<nav aria-label="Footer navigation">
+				<a href="https://ie.linkedin.com/in/mrblanzy" rel="noreferrer">Rob Blanzy</a>
+				<a href="https://github.com/blanzy-labs" rel="noreferrer">Blanzy Labs</a>
 				<a href="/field-reports/">Field Reports</a>
 				<a href="/proof/">Proof</a>
 				<a href="/current-state/">Current State</a>
@@ -401,6 +452,8 @@ const collaborators = [
 	.problem-section,
 	.swarm-section,
 	.flow-section,
+	.components-section,
+	.future-proof-section,
 	.agent-section,
 	.mission-control-section,
 	.mission-swarms-section,
@@ -415,6 +468,7 @@ const collaborators = [
 	}
 
 	.section-heading h2,
+	.components-section h2,
 	.agent-section h2,
 	.control-copy h2,
 	.collaborate-card h2 {
@@ -423,6 +477,9 @@ const collaborators = [
 	}
 
 	.problem-layout,
+	.swarm-layout,
+	.components-grid,
+	.future-proof-layout,
 	.agent-section,
 	.control-grid,
 	.state-panel,
@@ -463,7 +520,6 @@ const collaborators = [
 
 	.fragment-node,
 	.fragment-core,
-	.control-panel span,
 	.collaborator-list span {
 		border: 1px solid var(--ds-line);
 		background: rgba(10, 22, 28, 0.74);
@@ -512,6 +568,12 @@ const collaborators = [
 	}
 
 	.problem-copy p,
+	.swarm-copy p,
+	.status-model p,
+	.component-list p,
+	.control-panel p,
+	.future-proof-note p,
+	.state-summary p,
 	.swarm-grid p,
 	.agent-panel p,
 	.control-copy p,
@@ -553,6 +615,41 @@ const collaborators = [
 		line-height: 1.65;
 	}
 
+	.swarm-layout {
+		align-items: stretch;
+	}
+
+	.swarm-copy {
+		display: grid;
+		gap: 18px;
+		align-content: start;
+	}
+
+	.principle-line {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(2rem, 4.5vw, 4.9rem);
+		font-weight: 700;
+		line-height: 0.94;
+	}
+
+	.status-model,
+	.component-list {
+		display: grid;
+		gap: 14px;
+	}
+
+	.status-model article,
+	.component-list article {
+		padding: 22px;
+		border: 1px solid var(--ds-line);
+		background: var(--ds-surface);
+	}
+
+	.status-model p {
+		margin-top: 16px;
+	}
+
 	.swarm-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -580,6 +677,7 @@ const collaborators = [
 	}
 
 	.flow-list {
+		counter-reset: flow-step;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		gap: 0;
@@ -591,10 +689,11 @@ const collaborators = [
 	}
 
 	.flow-list li {
+		counter-increment: flow-step;
 		position: relative;
 		display: grid;
 		align-content: space-between;
-		min-height: 210px;
+		min-height: 248px;
 		padding: 20px;
 		border-right: 1px solid var(--ds-line);
 	}
@@ -621,7 +720,7 @@ const collaborators = [
 		color: var(--ds-blue);
 		font-family: var(--ds-font-mono);
 		font-size: 0.7rem;
-		content: "0" counter(list-item);
+		content: "0" counter(flow-step);
 	}
 
 	.flow-list span {
@@ -629,6 +728,28 @@ const collaborators = [
 		font-size: clamp(1.12rem, 1.7vw, 1.5rem);
 		font-weight: 700;
 		line-height: 1.05;
+	}
+
+	.flow-list p {
+		margin: 18px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: 0.92rem;
+		line-height: 1.55;
+	}
+
+	.components-grid {
+		grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1fr);
+		align-items: stretch;
+	}
+
+	.component-list h3 {
+		margin-top: 22px;
+		font-size: clamp(1.65rem, 2.8vw, 2.5rem);
+		line-height: 1.02;
+	}
+
+	.component-list p {
+		margin-top: 16px;
 	}
 
 	.agent-panel,
@@ -665,14 +786,24 @@ const collaborators = [
 			rgba(2, 7, 10, 0.48);
 	}
 
-	.control-panel span {
+	.control-panel div {
 		display: grid;
-		place-items: center;
+		align-content: start;
 		min-height: 142px;
+		padding: 18px;
+		border: 1px solid var(--ds-line);
+		background: rgba(10, 22, 28, 0.74);
+	}
+
+	.control-panel span {
 		color: var(--ds-ink);
 		font-family: var(--ds-font-display);
 		font-size: clamp(1.28rem, 2.4vw, 2rem);
 		font-weight: 700;
+	}
+
+	.control-panel p {
+		margin-top: 12px;
 	}
 
 	.mission-card-grid {
@@ -683,7 +814,7 @@ const collaborators = [
 
 	.mission-card-grid article {
 		position: relative;
-		min-height: 220px;
+		min-height: 192px;
 		overflow: hidden;
 	}
 
@@ -703,6 +834,19 @@ const collaborators = [
 		box-shadow: 0 0 28px rgba(66, 217, 255, 0.28);
 	}
 
+	.future-proof-section {
+		margin: 0 0 118px;
+		padding: 76px 0;
+		border-block: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(90deg, rgba(66, 217, 255, 0.08), transparent 34%),
+			linear-gradient(180deg, rgba(2, 7, 10, 0.18), rgba(2, 7, 10, 0.58));
+	}
+
+	.future-proof-layout {
+		grid-template-columns: minmax(0, 0.75fr) minmax(320px, 1fr);
+	}
+
 	.evidence-section {
 		margin: 0 0 118px;
 		padding: 76px 0;
@@ -720,9 +864,9 @@ const collaborators = [
 
 	.evidence-lines {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 18px;
-		margin-top: 42px;
+		margin-top: 0;
 	}
 
 	.evidence-lines p {
@@ -736,6 +880,21 @@ const collaborators = [
 		line-height: 1.08;
 	}
 
+	.future-proof-note {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
+		margin-top: 36px;
+	}
+
+	.future-proof-note p:first-child {
+		color: var(--ds-mint);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.7rem, 3vw, 3rem);
+		font-weight: 700;
+		line-height: 1;
+	}
+
 	.state-panel h3 {
 		margin-top: 24px;
 		font-size: clamp(1.6rem, 2.8vw, 2.5rem);
@@ -745,6 +904,36 @@ const collaborators = [
 	.state-copy {
 		display: grid;
 		gap: 16px;
+	}
+
+	.state-summary {
+		display: grid;
+		gap: 22px;
+		padding: 28px;
+	}
+
+	.state-summary ul {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.state-summary li {
+		padding: 12px 14px;
+		border: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		background: rgba(10, 22, 28, 0.64);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.state-summary :global(.ds-button) {
+		justify-self: start;
 	}
 
 	.collaborate-card {
@@ -785,7 +974,7 @@ const collaborators = [
 	}
 
 	.contact-panel a {
-		display: inline-flex;
+		display: flex;
 		margin-bottom: 12px;
 		color: var(--ds-ink);
 		font-family: var(--ds-font-display);
@@ -799,7 +988,9 @@ const collaborators = [
 	}
 
 	.public-footer {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
 		justify-content: space-between;
 		gap: 20px;
 		padding: 34px 0 46px;
@@ -826,6 +1017,9 @@ const collaborators = [
 	@media (max-width: 1040px) {
 		.home-hero,
 		.problem-layout,
+		.swarm-layout,
+		.components-grid,
+		.future-proof-layout,
 		.agent-section,
 		.control-grid,
 		.state-panel,
@@ -855,7 +1049,7 @@ const collaborators = [
 
 		.signal-statement,
 		.swarm-grid,
-		.evidence-lines {
+		.state-summary ul {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
@@ -936,7 +1130,7 @@ const collaborators = [
 		.swarm-grid,
 		.flow-list,
 		.mission-card-grid,
-		.evidence-lines {
+		.state-summary ul {
 			grid-template-columns: 1fr;
 		}
 
@@ -957,6 +1151,8 @@ const collaborators = [
 		.problem-section,
 		.swarm-section,
 		.flow-section,
+		.components-section,
+		.future-proof-section,
 		.agent-section,
 		.mission-control-section,
 		.mission-swarms-section,
@@ -966,6 +1162,7 @@ const collaborators = [
 		}
 
 		.section-heading h2,
+		.components-section h2,
 		.agent-section h2,
 		.control-copy h2,
 		.collaborate-card h2 {
@@ -1005,6 +1202,8 @@ const collaborators = [
 			margin-left: 0;
 		}
 
+		.status-model article,
+		.component-list article,
 		.swarm-grid article,
 		.mission-card-grid article,
 		.flow-list li {
@@ -1024,8 +1223,14 @@ const collaborators = [
 			padding: 56px 0;
 		}
 
+		.future-proof-section {
+			margin-bottom: 76px;
+			padding: 56px 0;
+		}
+
 		.agent-panel,
 		.state-panel,
+		.state-summary,
 		.collaborate-card {
 			padding: 20px;
 		}

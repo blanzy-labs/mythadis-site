@@ -2,6 +2,7 @@
 import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import BaseLayout from "./BaseLayout.astro";
+import { siteNavItems } from "../data/site";
 
 interface NavItem {
 	label: string;
@@ -15,13 +16,13 @@ interface Props {
 	noindex?: boolean;
 }
 
-const { title, description, navItems, noindex } = Astro.props;
+const { title, description, navItems = siteNavItems, noindex } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} noindex={noindex}>
 	<div class="ds-shell">
 		<SiteHeader items={navItems} />
-		<main>
+		<main id="main-content">
 			<slot />
 		</main>
 		<SiteFooter />

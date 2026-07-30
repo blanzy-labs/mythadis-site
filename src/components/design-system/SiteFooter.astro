@@ -1,34 +1,60 @@
 ---
-interface Props {
-	secondary?: string;
-}
-
-const { secondary = "Blanzy Labs / Static Astro foundation" } = Astro.props;
+import { blanzyLabsGitHubUrl, linkedInUrl } from "../../data/site";
 ---
 
 <footer class="ds-site-footer">
-	<p><slot>Mythadis design system. Derived from The Luminous Archive.</slot></p>
-	<p>{secondary}</p>
+	<p class="ds-site-footer__ownership">
+		Mythadis is an independent research and engineering initiative from Blanzy Labs,
+		founded by Rob Blanzy.
+	</p>
+	<nav aria-label="Footer navigation">
+		<a href="/why-mythadis/">Why Mythadis</a>
+		<a href="/proof/">Proof</a>
+		<a href="/current-state/">Current State</a>
+		<a href="/field-reports/">Field Reports</a>
+		<a href={linkedInUrl} rel="noreferrer">Start a conversation</a>
+		<a href={blanzyLabsGitHubUrl} rel="noreferrer">Blanzy Labs on GitHub</a>
+	</nav>
 </footer>
 
 <style>
 	.ds-site-footer {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(260px, 1fr) minmax(0, auto);
+		align-items: start;
 		justify-content: space-between;
-		gap: 20px;
+		gap: 24px 48px;
 		padding: 34px 0 46px;
 		border-top: 1px solid var(--ds-line);
 		color: var(--ds-ink-muted);
 		font-size: 0.86rem;
 	}
 
-	.ds-site-footer p {
+	.ds-site-footer__ownership {
+		max-width: 680px;
 		margin: 0;
+		line-height: 1.55;
 	}
 
-	@media (max-width: 620px) {
+	.ds-site-footer nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 14px 18px;
+	}
+
+	.ds-site-footer a {
+		color: var(--ds-ink-soft);
+		border-bottom: 1px solid var(--ds-line-strong);
+	}
+
+	@media (max-width: 860px) {
 		.ds-site-footer {
-			flex-direction: column;
+			grid-template-columns: 1fr;
+		}
+
+		.ds-site-footer nav {
+			justify-content: flex-start;
 		}
 	}
 </style>

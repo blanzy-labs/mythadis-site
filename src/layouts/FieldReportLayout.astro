@@ -2,10 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import Button from "../components/design-system/Button.astro";
 import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { fieldReportStatusLabels } from "../data/field-reports";
+import { productionOrigin, siteNavItems } from "../data/site";
 
 interface Props {
 	report: CollectionEntry<"field-reports">;
@@ -14,15 +16,7 @@ interface Props {
 const { report } = Astro.props;
 const { data } = report;
 const isPublished = data.status === "published";
-const canonicalUrl = `https://mythadis.com/field-reports/${data.slug}`;
-
-const navItems = [
-	{ label: "Vision", href: "/#vision" },
-	{ label: "Why Mythadis", href: "/why-mythadis/" },
-	{ label: "Proof", href: "/proof/" },
-	{ label: "Current State", href: "/current-state/" },
-	{ label: "Collaborate", href: "/#collaborate" },
-];
+const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 ---
 
 <BaseLayout
@@ -33,13 +27,13 @@ const navItems = [
 >
 	<div class="ds-shell field-report-page">
 		<SiteHeader
-			items={navItems}
+			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
 			status="Field Report"
 		/>
 
-		<main>
+		<main id="main-content">
 			<section class="report-hero" aria-labelledby="page-title">
 				<div class="report-kicker">
 					<StatusLabel tone={isPublished ? "green" : "amber"}>
@@ -104,14 +98,7 @@ const navItems = [
 			</section>
 		</main>
 
-		<footer class="report-footer">
-			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-			<nav aria-label="Report footer navigation">
-				<a href="/field-reports/">Field Reports</a>
-				<a href="/proof/">Proof</a>
-				<a href="/current-state/">Current State</a>
-			</nav>
-		</footer>
+		<SiteFooter />
 	</div>
 </BaseLayout>
 
@@ -285,31 +272,6 @@ const navItems = [
 		gap: 12px;
 	}
 
-	.report-footer {
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--ds-line);
-		color: var(--ds-ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.report-footer p {
-		margin: 0;
-	}
-
-	.report-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 18px;
-	}
-
-	.report-footer a {
-		color: var(--ds-ink-soft);
-		border-bottom: 1px solid var(--ds-line-strong);
-	}
-
 	@media (max-width: 900px) {
 		.report-meta,
 		.report-context,
@@ -323,6 +285,12 @@ const navItems = [
 	}
 
 	@media (max-width: 680px) {
+		.report-hero > *,
+		.report-meta,
+		.report-meta span {
+			min-width: 0;
+		}
+
 		.report-hero {
 			min-height: auto;
 			padding: 42px 0 78px;
@@ -331,6 +299,7 @@ const navItems = [
 		.report-hero h1 {
 			font-size: clamp(2.85rem, 15vw, 5.3rem);
 			line-height: 0.94;
+			overflow-wrap: anywhere;
 		}
 
 		.report-context,
@@ -348,8 +317,7 @@ const navItems = [
 		}
 
 		.close-actions,
-		.close-actions :global(.ds-button),
-		.report-footer {
+		.close-actions :global(.ds-button) {
 			flex-direction: column;
 			width: 100%;
 		}

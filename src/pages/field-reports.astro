@@ -1,6 +1,7 @@
 ---
 import Button from "../components/design-system/Button.astro";
 import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -10,18 +11,12 @@ import {
 	fieldReportPrinciples,
 	fieldReportStatusLabels,
 } from "../data/field-reports";
+import { linkedInUrl, siteNavItems } from "../data/site";
 
-const navItems = [
-	{ label: "Vision", href: "/#vision" },
-	{ label: "Why Mythadis", href: "/why-mythadis/" },
-	{ label: "Proof", href: "/proof/" },
-	{ label: "Current State", href: "/current-state/" },
-	{ label: "Collaborate", href: "/#collaborate" },
-];
-
-const fieldReportPreviews = (await getCollection("field-reports")).sort((a, b) =>
-	a.data.number.localeCompare(b.data.number),
-);
+const fieldReportPreviews = (await getCollection(
+	"field-reports",
+	({ data }) => data.status === "published" && data.hasPage,
+)).sort((a, b) => a.data.number.localeCompare(b.data.number));
 
 const getStatusTone = (status: string) => (status === "published" ? "green" : "amber");
 const getReportStateLabel = (status: string) =>
@@ -35,17 +30,16 @@ const getReportStateLabel = (status: string) =>
 <BaseLayout
 	title="Field Reports — Mythadis"
 	description="Field Reports from Mythadis documenting distributed systems, AI coordination, architecture, experiments, evidence, and lessons learned while building the swarm."
-	canonicalUrl="https://mythadis.com/field-reports"
 >
 	<div class="ds-shell field-reports-page">
 		<SiteHeader
-			items={navItems}
+			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
 			status="Field Reports"
 		/>
 
-		<main>
+		<main id="main-content">
 			<section class="reports-hero" aria-labelledby="page-title">
 				<StatusLabel tone="blue">Field Reports / Foundations in Development</StatusLabel>
 				<h1 id="page-title">Field Reports</h1>
@@ -69,7 +63,7 @@ const getReportStateLabel = (status: string) =>
 				</div>
 				<div class="record-copy">
 					<p>
-						Field Reports will explain how Mythadis systems are designed, tested,
+						Field Reports explain how Mythadis systems are designed, tested,
 						challenged, and improved.
 					</p>
 					<p>
@@ -93,10 +87,11 @@ const getReportStateLabel = (status: string) =>
 			<section class="first-reports-section" aria-labelledby="first-reports-title">
 				<div class="section-heading">
 					<SectionLabel>First Reports</SectionLabel>
-					<h2 id="first-reports-title">The first records are now visible.</h2>
+					<h2 id="first-reports-title">Published records.</h2>
 				</div>
-				<div class="report-previews">
-					{fieldReportPreviews.map((report) => (
+				{fieldReportPreviews.length > 0 ? (
+					<div class="report-previews">
+						{fieldReportPreviews.map((report) => (
 						<article>
 							<div class="report-head">
 								<p>{report.data.number}</p>
@@ -123,8 +118,14 @@ const getReportStateLabel = (status: string) =>
 								</ul>
 							</div>
 						</article>
-					))}
-				</div>
+						))}
+					</div>
+				) : (
+					<div class="empty-state">
+						<p>No Field Reports have been published yet.</p>
+						<Button href="/current-state/" variant="secondary">View Current State</Button>
+					</div>
+				)}
 			</section>
 
 			<section class="categories-section" aria-labelledby="categories-title">
@@ -179,21 +180,14 @@ const getReportStateLabel = (status: string) =>
 						<Button href="/proof/">Review the Proof</Button>
 						<Button href="/current-state/" variant="secondary">View Current State</Button>
 					</div>
-					<a class="collaboration-link" href="https://github.com/blanzy-labs">
-						Collaborate with Mythadis →
+					<a class="collaboration-link" href={linkedInUrl}>
+						Start a conversation →
 					</a>
 				</div>
 			</section>
 		</main>
 
-		<footer class="reports-footer">
-			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-			<nav aria-label="Field Reports footer navigation">
-				<a href="/field-reports/">Field Reports</a>
-				<a href="/proof/">Proof</a>
-				<a href="/current-state/">Current State</a>
-			</nav>
-		</footer>
+		<SiteFooter />
 	</div>
 </BaseLayout>
 
@@ -335,17 +329,31 @@ const getReportStateLabel = (status: string) =>
 
 	.report-previews {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1px;
-		background: var(--ds-line);
-		border: 1px solid var(--ds-line);
+		grid-template-columns: 1fr;
+		gap: 16px;
 	}
 
 	.report-previews > article {
 		padding: 28px;
+		border: 1px solid var(--ds-line);
 		background:
 			linear-gradient(145deg, rgba(66, 217, 255, 0.07), transparent 44%),
 			rgba(6, 16, 21, 0.94);
+	}
+
+	.empty-state {
+		display: grid;
+		justify-items: start;
+		gap: 22px;
+		padding: 30px;
+		border: 1px solid var(--ds-line);
+		background: var(--ds-surface);
+	}
+
+	.empty-state p {
+		margin: 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.65;
 	}
 
 	.report-head {
@@ -499,31 +507,6 @@ const getReportStateLabel = (status: string) =>
 		border-bottom: 1px solid var(--ds-blue);
 	}
 
-	.reports-footer {
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--ds-line);
-		color: var(--ds-ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.reports-footer p {
-		margin: 0;
-	}
-
-	.reports-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 18px;
-	}
-
-	.reports-footer a {
-		color: var(--ds-ink-soft);
-		border-bottom: 1px solid var(--ds-line-strong);
-	}
-
 	@media (max-width: 1040px) {
 		.record-copy,
 		.category-list {
@@ -560,8 +543,7 @@ const getReportStateLabel = (status: string) =>
 		}
 
 		.hero-actions,
-		.final-actions,
-		.reports-footer {
+		.final-actions {
 			flex-direction: column;
 		}
 

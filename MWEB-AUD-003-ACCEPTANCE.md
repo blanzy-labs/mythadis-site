@@ -369,11 +369,13 @@ Stored under `docs/mweb-aud-003/screenshots/`:
 - Production branch confirmed before editing: `main`
 - Production branch starting commit: `bdc8694`
 - Implementation branch: `agent/mweb-aud-003-site-hygiene`
-- Cloudflare production currently serves `main`
-- The implementation must be reviewed and merged to `main` before Cloudflare can
-  deploy this slice.
-- After merge, verify the production page copy, sitemap, 404 behavior, social metadata,
-  and the owner-managed `www` to apex redirect.
+- Draft PR: `#14`
+- PR #14 was merged into `main` with implementation commit `c36ca7d`.
+- The remote feature branch was deleted after merge.
+- Cloudflare Pages reported a successful production check for `c36ca7d`.
+- Live production verification passed for the homepage ownership/footer copy,
+  sitemap, robots file, and branded HTTP 404 response.
+- The owner-managed `www` to apex redirect remains the only deployment action.
 
 ## Known limitations and owner actions
 

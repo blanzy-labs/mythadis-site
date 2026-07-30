@@ -1,4 +1,6 @@
 ---
+import { siteNavItems } from "../../data/site";
+
 interface NavItem {
 	label: string;
 	href: string;
@@ -12,14 +14,21 @@ interface Props {
 }
 
 const {
-	items = [
-		{ label: "Design System", href: "/design-system/" },
-		{ label: "Studies", href: "/visual-studies/" },
-	],
+	items = siteNavItems,
 	status = "Private research",
 	brandLabel = "Mythadis",
 	brandSubLabel,
 } = Astro.props;
+
+const normalizePath = (path: string) => {
+	const normalized = path.replace(/\/+$/, "");
+	return normalized || "/";
+};
+const currentPath = normalizePath(Astro.url.pathname);
+const isCurrentItem = (href: string) => {
+	if (href.includes("#") || href.startsWith("http")) return false;
+	return normalizePath(href) === currentPath;
+};
 ---
 
 <header class="ds-site-header" aria-label="Primary">
@@ -35,7 +44,11 @@ const {
 		</span>
 	</a>
 	<nav class="ds-site-nav" aria-label="Primary navigation">
-		{items.map((item) => <a href={item.href}>{item.label}</a>)}
+		{items.map((item) => (
+			<a href={item.href} aria-current={isCurrentItem(item.href) ? "page" : undefined}>
+				{item.label}
+			</a>
+		))}
 	</nav>
 	<p class="ds-header-status">{status}</p>
 </header>
@@ -135,7 +148,8 @@ const {
 	}
 
 	.ds-site-nav a:hover,
-	.ds-site-nav a:focus-visible {
+	.ds-site-nav a:focus-visible,
+	.ds-site-nav a[aria-current="page"] {
 		color: var(--ds-ink);
 		border-color: var(--ds-blue);
 	}

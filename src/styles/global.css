@@ -12,6 +12,10 @@ html {
 	scroll-behavior: smooth;
 }
 
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
 	min-width: 320px;
@@ -19,9 +23,39 @@ body {
 	background: var(--ds-void);
 }
 
+[id] {
+	scroll-margin-top: 1.5rem;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+	outline: 3px solid var(--ds-mint);
+	outline-offset: 4px;
+}
+
+.skip-link {
+	position: fixed;
+	z-index: 1000;
+	top: 12px;
+	left: 12px;
+	padding: 12px 16px;
+	color: var(--ds-void);
+	background: var(--ds-mint);
+	font-family: var(--ds-font-display);
+	font-weight: 700;
+	transform: translateY(-160%);
+	transition: transform 120ms ease;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
 }
 
 img,
@@ -33,4 +67,15 @@ svg {
 ::selection {
 	color: #021016;
 	background: var(--ds-blue);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html,
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	.skip-link {
+		transition: none;
+	}
 }

@@ -1,6 +1,7 @@
 ---
 import Button from "../components/design-system/Button.astro";
 import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -14,14 +15,11 @@ import {
 	statusSummary,
 	validationSteps,
 } from "../data/current-state";
-
-const navItems = [
-	{ label: "Vision", href: "/#vision" },
-	{ label: "Why Mythadis", href: "/why-mythadis/" },
-	{ label: "Proof", href: "/proof/" },
-	{ label: "Current State", href: "/current-state/" },
-	{ label: "Collaborate", href: "/#collaborate" },
-];
+import {
+	blanzyLabsGitHubUrl,
+	linkedInUrl,
+	siteNavItems,
+} from "../data/site";
 ---
 
 <BaseLayout
@@ -30,13 +28,13 @@ const navItems = [
 >
 	<div class="ds-shell current-state-page">
 		<SiteHeader
-			items={navItems}
+			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
 			status="Private R&D"
 		/>
 
-		<main>
+		<main id="main-content">
 			<section class="state-hero" aria-labelledby="page-title">
 				<StatusLabel tone="amber">Private R&D</StatusLabel>
 				<h1 id="page-title">Current State</h1>
@@ -52,8 +50,8 @@ const navItems = [
 				</p>
 				<div class="hero-actions" aria-label="Current State actions">
 					<Button href="/proof/">Review Demonstrated Work</Button>
-					<Button href="https://github.com/blanzy-labs" variant="secondary">
-						Collaborate with Mythadis
+					<Button href={linkedInUrl} variant="secondary">
+						Start a conversation
 					</Button>
 				</div>
 			</section>
@@ -223,8 +221,7 @@ const navItems = [
 					{currentPriorities.map((priority) => <span>{priority}</span>)}
 				</div>
 				<p class="strategic-filter">
-					Each priority is evaluated against one question: Does this increase the probability
-					that Mythadis is generating revenue before October?
+					Each priority must produce bounded evidence before it advances the public claim.
 				</p>
 			</section>
 
@@ -242,7 +239,7 @@ const navItems = [
 					<span>STATUS / {currentStateMeta.status}</span>
 					<span>RELATED RELEASE / {currentStateMeta.release}</span>
 					<a href="/proof/">LINK / PROOF</a>
-					<span>FUTURE LINK / ANNALS</span>
+					<span>ANNALS / RESEARCH DIRECTION</span>
 				</div>
 			</section>
 
@@ -253,20 +250,14 @@ const navItems = [
 					partners who value ambitious goals, explicit limitations, and evidence-based progress.
 				</p>
 				<div class="final-actions" aria-label="Current State final actions">
-					<Button href="https://github.com/blanzy-labs">Collaborate with Mythadis</Button>
+					<Button href={linkedInUrl}>Start a conversation</Button>
 					<Button href="/proof/" variant="secondary">Review the Proof</Button>
+					<Button href={blanzyLabsGitHubUrl} variant="secondary">Explore technical evidence</Button>
 				</div>
 			</section>
 		</main>
 
-		<footer class="state-footer">
-			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-			<nav aria-label="Footer navigation">
-				<a href="/field-reports/">Field Reports</a>
-				<a href="/proof/">Proof</a>
-				<a href="/current-state/">Current State</a>
-			</nav>
-		</footer>
+		<SiteFooter />
 	</div>
 </BaseLayout>
 
@@ -320,8 +311,7 @@ const navItems = [
 	.environment-section p,
 	.validation-section p,
 	.update-section p,
-	.final-cta p,
-	.state-footer p {
+	.final-cta p {
 		margin: 0;
 		color: var(--ds-ink-soft);
 		font-size: clamp(1.02rem, 1.45vw, 1.18rem);
@@ -473,8 +463,7 @@ const navItems = [
 	}
 
 	dd a,
-	.metadata-grid a,
-	.state-footer a {
+	.metadata-grid a {
 		color: var(--ds-ink);
 		border-bottom: 1px solid var(--ds-blue);
 	}
@@ -672,31 +661,6 @@ const navItems = [
 		border-top: 1px solid var(--ds-line-strong);
 	}
 
-	.state-footer {
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--ds-line);
-		color: var(--ds-ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.state-footer p {
-		margin: 0;
-	}
-
-	.state-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 18px;
-	}
-
-	.state-footer a {
-		color: var(--ds-ink-soft);
-		border-bottom: 1px solid var(--ds-line-strong);
-	}
-
 	@media (max-width: 1120px) {
 		.compact-records {
 			grid-template-columns: repeat(2, 1fr);
@@ -741,8 +705,7 @@ const navItems = [
 		}
 
 		.hero-actions,
-		.final-actions,
-		.state-footer {
+		.final-actions {
 			flex-direction: column;
 		}
 

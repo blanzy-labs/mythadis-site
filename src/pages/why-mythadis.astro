@@ -1,17 +1,15 @@
 ---
 import Button from "../components/design-system/Button.astro";
 import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const navItems = [
-	{ label: "Vision", href: "/#vision" },
-	{ label: "Why Mythadis", href: "/why-mythadis/" },
-	{ label: "Proof", href: "/proof/" },
-	{ label: "Current State", href: "/current-state/" },
-	{ label: "Collaborate", href: "#collaborate" },
-];
+import {
+	blanzyLabsGitHubUrl,
+	linkedInUrl,
+	siteNavItems,
+} from "../data/site";
 
 const timelineItems = [
 	"30+ Years",
@@ -38,13 +36,13 @@ const invitationAudiences = [
 >
 	<div class="ds-shell why-page">
 		<SiteHeader
-			items={navItems}
+			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
 			status="Private R&D"
 		/>
 
-		<main>
+		<main id="main-content">
 			<section class="why-hero" aria-labelledby="page-title">
 				<div class="why-hero__copy">
 					<StatusLabel tone="amber">Private R&D</StatusLabel>
@@ -59,7 +57,7 @@ const invitationAudiences = [
 					</p>
 				</div>
 
-				<aside class="timeline-panel" aria-label="Bentley's path to Mythadis">
+				<aside class="timeline-panel" aria-label="Rob Blanzy's path to Mythadis">
 					<ol>
 						{timelineItems.map((item) => (
 							<li>
@@ -75,10 +73,7 @@ const invitationAudiences = [
 					<SectionLabel>The Question</SectionLabel>
 				</div>
 				<div class="reading-copy">
-					<h2 id="question-title">
-						How do we organize intelligence&mdash;human and artificial&mdash;so that together
-						we can solve problems that neither could solve alone?
-					</h2>
+					<h2 id="question-title">Coordination—not intelligence—is the limiting system.</h2>
 					<p>
 						That question became larger than AI itself. It pointed past model capability and
 						toward the systems around intelligence: how work is discovered, how knowledge moves,
@@ -98,7 +93,7 @@ const invitationAudiences = [
 				<div class="reading-copy">
 					<h2 id="experience-title">The same limitation kept appearing in different rooms.</h2>
 					<p>
-						Bentley spent three decades designing enterprise systems across cloud, security,
+						Rob Blanzy spent three decades designing enterprise systems across cloud, security,
 						distributed systems, architecture, and large organizations. The details changed.
 						The pattern did not.
 					</p>
@@ -218,7 +213,10 @@ const invitationAudiences = [
 				<div class="invitation-list" aria-label="Who Mythadis is looking for">
 					{invitationAudiences.map((audience) => <span>{audience}</span>)}
 				</div>
-				<Button href="https://github.com/blanzy-labs">Collaborate with Mythadis</Button>
+				<div class="invitation-actions">
+					<Button href={linkedInUrl}>Start a conversation</Button>
+					<Button href={blanzyLabsGitHubUrl} variant="secondary">Explore the technical work</Button>
+				</div>
 			</section>
 
 			<section class="future-section" aria-labelledby="future-title">
@@ -228,20 +226,14 @@ const invitationAudiences = [
 					<p>It will be built by many forms of intelligence learning how to work together.</p>
 					<p>Mythadis is our attempt to help make that possible.</p>
 				</div>
-				<Button href="https://github.com/blanzy-labs" variant="secondary">
-					Collaborate with Mythadis
-				</Button>
+				<div class="future-actions">
+					<Button href="/current-state/">View Current State</Button>
+					<Button href={linkedInUrl} variant="secondary">Start a conversation</Button>
+				</div>
 			</section>
 		</main>
 
-		<footer class="why-footer">
-			<p>Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-			<nav aria-label="Footer navigation">
-				<a href="/field-reports/">Field Reports</a>
-				<a href="/proof/">Proof</a>
-				<a href="/current-state/">Current State</a>
-			</nav>
-		</footer>
+		<SiteFooter />
 	</div>
 </BaseLayout>
 
@@ -303,8 +295,7 @@ const invitationAudiences = [
 	.evidence-grid p,
 	.center-lines p,
 	.invitation-section p,
-	.future-copy p,
-	.why-footer p {
+	.future-copy p {
 		margin: 0;
 	}
 
@@ -569,8 +560,15 @@ const invitationAudiences = [
 		letter-spacing: 0.08em;
 	}
 
-	.invitation-section :global(.ds-button) {
-		width: fit-content;
+	.invitation-actions,
+	.future-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.invitation-actions {
+		grid-column: 1 / -1;
 	}
 
 	.future-section {
@@ -606,27 +604,6 @@ const invitationAudiences = [
 
 	.future-copy p:last-child {
 		color: var(--ds-mint);
-	}
-
-	.why-footer {
-		display: flex;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--ds-line);
-		color: var(--ds-ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.why-footer a {
-		color: var(--ds-ink-soft);
-		border-bottom: 1px solid var(--ds-line-strong);
-	}
-
-	.why-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 18px;
 	}
 
 	@media (max-width: 1040px) {
@@ -689,9 +666,13 @@ const invitationAudiences = [
 			padding: 58px 0;
 		}
 
-		.evidence-block h2,
-		.why-center h2 {
+		.evidence-block h2 {
 			font-size: clamp(3rem, 16vw, 5.3rem);
+		}
+
+		.why-center h2 {
+			font-size: clamp(2.2rem, 10.5vw, 3.8rem);
+			overflow-wrap: anywhere;
 		}
 
 		.evidence-grid,
@@ -723,8 +704,15 @@ const invitationAudiences = [
 			padding-bottom: 92px;
 		}
 
-		.invitation-section :global(.ds-button),
-		.future-section :global(.ds-button) {
+		.invitation-actions,
+		.future-actions {
+			display: grid;
+			grid-template-columns: 1fr;
+			width: 100%;
+		}
+
+		.invitation-actions :global(.ds-button),
+		.future-actions :global(.ds-button) {
 			width: 100%;
 		}
 
@@ -732,8 +720,5 @@ const invitationAudiences = [
 			font-size: clamp(2.35rem, 13vw, 4.6rem);
 		}
 
-		.why-footer {
-			flex-direction: column;
-		}
 	}
 </style>

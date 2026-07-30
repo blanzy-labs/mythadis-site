@@ -6,9 +6,14 @@ interface Props {
 
 const { href, variant = "primary" } = Astro.props;
 const Tag = href ? "a" : "button";
+const rel = href?.startsWith("http") ? "noreferrer" : undefined;
 ---
 
-<Tag class:list={["ds-button", `ds-button--${variant}`, "ds-hover-lift"]} href={href}>
+<Tag
+	class:list={["ds-button", `ds-button--${variant}`, "ds-hover-lift"]}
+	href={href}
+	rel={rel}
+>
 	<slot />
 </Tag>
 

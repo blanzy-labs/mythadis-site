@@ -2,19 +2,17 @@
 import Button from "../components/design-system/Button.astro";
 import NetworkMotif from "../components/design-system/NetworkMotif.astro";
 import SectionLabel from "../components/design-system/SectionLabel.astro";
+import SiteFooter from "../components/design-system/SiteFooter.astro";
 import SiteHeader from "../components/design-system/SiteHeader.astro";
 import StatusLabel from "../components/design-system/StatusLabel.astro";
 import SurfacePanel from "../components/design-system/SurfacePanel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { statusSummary } from "../data/current-state";
-
-const navItems = [
-	{ label: "Vision", href: "#vision" },
-	{ label: "Why Mythadis", href: "/why-mythadis/" },
-	{ label: "Proof", href: "/proof/" },
-	{ label: "Current State", href: "/current-state/" },
-	{ label: "Collaborate", href: "#collaborate" },
-];
+import {
+	blanzyLabsGitHubUrl,
+	linkedInUrl,
+	siteNavItems,
+} from "../data/site";
 
 const fragmentationNodes = [
 	"Knowledge",
@@ -89,9 +87,9 @@ const statusModel = [
 const systemComponents = [
 	{
 		name: "Mythadis Agent",
-		status: "Research direction",
-		tone: "plum",
-		body: "The future participation layer for machines and operators performing bounded work. It is not public yet.",
+		status: "In active development",
+		tone: "blue",
+		body: "Foundations for a future participation layer for machines and operators performing bounded work. The Agent is not public.",
 	},
 	{
 		name: "Mission Control",
@@ -123,13 +121,13 @@ const missionControlTerms = [
 >
 	<div class="ds-shell">
 		<SiteHeader
-			items={navItems}
+			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
 			status="Private R&D"
 		/>
 
-		<main>
+		<main id="main-content">
 			<section class="home-hero" id="vision" aria-labelledby="page-title">
 				<div class="home-hero__copy">
 					<SectionLabel>Mission question</SectionLabel>
@@ -320,10 +318,10 @@ const missionControlTerms = [
 						</div>
 						<div class="contact-panel">
 							<p class="contact-label">Engagement paths</p>
-							<a href="https://ie.linkedin.com/in/mrblanzy" rel="noreferrer">
+							<a href={linkedInUrl} rel="noreferrer">
 								Start a conversation
 							</a>
-							<a href="https://github.com/blanzy-labs" rel="noreferrer">
+							<a href={blanzyLabsGitHubUrl} rel="noreferrer">
 								Explore Blanzy Labs on GitHub
 							</a>
 							<p>
@@ -336,19 +334,7 @@ const missionControlTerms = [
 			</section>
 		</main>
 
-		<footer class="public-footer">
-			<p>
-				Mythadis is an independent research and engineering initiative from Blanzy Labs,
-				founded by Rob Blanzy.
-			</p>
-			<nav aria-label="Footer navigation">
-				<a href="https://ie.linkedin.com/in/mrblanzy" rel="noreferrer">Rob Blanzy</a>
-				<a href="https://github.com/blanzy-labs" rel="noreferrer">Blanzy Labs</a>
-				<a href="/field-reports/">Field Reports</a>
-				<a href="/proof/">Proof</a>
-				<a href="/current-state/">Current State</a>
-			</nav>
-		</footer>
+		<SiteFooter />
 	</div>
 </BaseLayout>
 
@@ -808,7 +794,7 @@ const missionControlTerms = [
 
 	.mission-card-grid {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 14px;
 	}
 
@@ -987,33 +973,6 @@ const missionControlTerms = [
 		margin-top: 0;
 	}
 
-	.public-footer {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto;
-		align-items: start;
-		justify-content: space-between;
-		gap: 20px;
-		padding: 34px 0 46px;
-		border-top: 1px solid var(--ds-line);
-		color: var(--ds-ink-muted);
-		font-size: 0.86rem;
-	}
-
-	.public-footer p {
-		margin: 0;
-	}
-
-	.public-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 18px;
-	}
-
-	.public-footer a {
-		color: var(--ds-ink-soft);
-		border-bottom: 1px solid var(--ds-line-strong);
-	}
-
 	@media (max-width: 1040px) {
 		.home-hero,
 		.problem-layout,
@@ -1117,8 +1076,7 @@ const missionControlTerms = [
 			font-size: clamp(1.08rem, 4.7vw, 1.38rem);
 		}
 
-		.hero-actions,
-		.public-footer {
+		.hero-actions {
 			flex-direction: column;
 		}
 

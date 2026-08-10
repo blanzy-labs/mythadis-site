@@ -13,8 +13,33 @@ const proofTimeline = [
 	"AI Council",
 	"AI HomeGuard",
 	"Profit Pulse",
-	"Mythadis Swarm",
-	"Mythadis Website",
+];
+
+const platformEvidence = [
+	{
+		name: "Mythadis Operator",
+		status: "OPERATOR-008 accepted",
+		evidence: "41 Rust tests and 29 OpenClaw adapter tests passed, with restart-persistent structured design sessions, immutable freezing, and explicit non-authority constraints.",
+		boundary: "Operator cannot submit through the conversational session, approve, execute, or call MDAP or Swarm directly.",
+	},
+	{
+		name: "Mission Control",
+		status: "MC-018 accepted",
+		evidence: "192 automated tests passed alongside native Operator compatibility and browser validation for persistent, fingerprint-validated proposal intake.",
+		boundary: "A frozen design creates only a Pending proposal; acceptance, mission creation, and every later transition remain separate human-controlled actions.",
+	},
+	{
+		name: "MDAP",
+		status: "MDAP-004B.1 accepted",
+		evidence: "79 automated tests passed. Accepted evidence includes real DataCite discovery and bounded Zenodo acquisition with download and integrity verification.",
+		boundary: "Provider scope is narrow; runtime execution is gated, catalogue work is incomplete, and production TLS/authentication are not implemented.",
+	},
+	{
+		name: "Mythadis Swarm",
+		status: "Physical evidence accepted",
+		evidence: "Five-node native work tests covered drain, restart, worker loss, stale/duplicate/malformed results, and authenticated wrong-worker rejection. Separate trials proved physical shard placement and peer-based retrieval.",
+		boundary: "These are bounded private demonstrations, not evidence of production scale, permanent storage, or a public network.",
+	},
 ];
 
 type StatusTone = "blue" | "amber" | "green" | "plum";
@@ -92,11 +117,11 @@ const proofRecords: ProofRecord[] = [
 		status: "Demonstrated Prototype",
 		tone: "amber",
 		purpose: "Explore a decentralized semantic data, storage, compute, and intelligence substrate for coordinated work.",
-		maturity: "Private Rust research prototype. Not public, not production-ready, and no public Agent is available.",
-		evidence: "Private repository with libp2p nodes, lightweight Neural Index gossip, Kademlia storage experiments, Reed-Solomon sharding, Data Parcels, profiles, ingestion, query, HTTP, CLI, and observability modules.",
+		maturity: "Private Rust research prototype within the integrated Mythadis alpha. Not public or production-ready.",
+		evidence: "Authenticated native distributed work, lease and worker lifecycle controls, erasure-coded physical shard placement, exact-peer retrieval, hash validation, and recovery behavior.",
 		repository: "Private repository",
 		lessons: "The core challenge is not only moving data between nodes. It is making distributed evidence discoverable, recoverable, and useful.",
-		next: "Mission Control, Agents, Data Parcels, Annals, and Mission Swarms remain active proof gates.",
+		next: "Production security, operational packaging, longer-running recovery, and real mission workloads remain active proof gates.",
 	},
 	{
 		name: "Mythadis Website",
@@ -112,22 +137,22 @@ const proofRecords: ProofRecord[] = [
 ];
 
 const swarmEvidence = [
-	"Cross-platform local or containerized Rust node deployment",
-	"Multiple libp2p node communication",
-	"LAN swarm validation through Docker Compose demo nodes",
-	"Distributed storage experiments using Kademlia",
-	"Data recovery experiments using Reed-Solomon shards",
-	"Mission Control foundations through HTTP status, catalog, parcel, ingest, hunt, and ask surfaces",
-	"Archive Health foundations through catalog, parcel lookup, content hashes, and source-grounded responses",
+	"End-to-end mission path from design through human result review",
+	"Human-reviewed Operator proposal intake and immutable frozen designs",
+	"Real DataCite discovery and bounded Zenodo acquisition",
+	"Authenticated five-node distributed work and failure recovery",
+	"Acknowledged erasure-coded shard placement on identified physical peers",
+	"Exact-peer shard retrieval and reconstructed content-hash validation",
+	"Mission-grounded analysis with accepted, flagged, or rejected human review",
 ];
 
 const swarmLimitations = [
 	"Private research prototype",
 	"No public production network",
-	"No public Mythadis Agent",
-	"No production authentication or encryption layer yet",
-	"No reputation, incentives, workflow execution, or Kubernetes layer yet",
-	"No biomedical logic or medical advice behavior",
+	"Production authentication, authorization, TLS, and deployment controls remain incomplete",
+	"No general sensitive or regulated data capability",
+	"No public volunteer-network evidence",
+	"No permanent-storage or humanity-scale mission claim",
 ];
 
 const principles = [
@@ -158,31 +183,31 @@ const principles = [
 ];
 
 const currentWork = [
-	"Mythadis Website",
-	"Private R&D",
-	"Early prototypes",
-	"No public Agent",
-	"Future Mission Swarms",
+	"Private integrated alpha",
+	"Governed mission workflow",
+	"Verified data acquisition",
+	"Physical distributed substrate",
+	"Not production-ready",
 ];
 
 const nextItems = [
-	{ name: "Mission Control", status: "In Development" },
-	{ name: "Agent foundations", status: "In Development" },
-	{ name: "Data Parcels", status: "In Development" },
-	{ name: "Annals", status: "Future Gate" },
-	{ name: "Mission Swarms", status: "Future Gate" },
+	{ name: "Production security", status: "Active Gate" },
+	{ name: "MDAP catalogue & provenance", status: "Active Gate" },
+	{ name: "Operational packaging", status: "Active Gate" },
+	{ name: "Real mission workloads", status: "Research Gate" },
+	{ name: "Long-running recovery", status: "Research Gate" },
 ];
 ---
 
 <BaseLayout
 	title="Proof | Mythadis"
-	description="Demonstrated Mythadis work, released systems, current prototypes, and the evidence behind the public vision."
+	description="Accepted evidence for the integrated Mythadis platform: governed missions, verified data, distributed work, physical storage, retrieval, and human review."
 >
 	<div class="ds-shell proof-page">
 		<SiteHeader
 			items={siteNavItems}
 			brandLabel="Mythadis"
-			brandSubLabel="Swarm"
+			brandSubLabel="Platform"
 			status="Demonstrated work"
 		/>
 
@@ -215,26 +240,21 @@ const nextItems = [
 
 			<section class="timeline-section" aria-labelledby="timeline-title">
 				<div class="section-heading">
-					<SectionLabel>Current Demonstrated Work</SectionLabel>
-					<h2 id="timeline-title">A trail of working slices.</h2>
+					<SectionLabel>Current Platform Evidence</SectionLabel>
+					<h2 id="timeline-title">The strongest proof is the platform itself.</h2>
 				</div>
-				<ol class="proof-timeline">
-					{proofTimeline.map((item) => (
-						<li>
-							<span>{item}</span>
-						</li>
-					))}
-				</ol>
+				<div class="platform-evidence">
+					{platformEvidence.map((item) => <article><StatusLabel tone="green">{item.status}</StatusLabel><h3>{item.name}</h3><p>{item.evidence}</p><p class="evidence-boundary">{item.boundary}</p></article>)}
+				</div>
 			</section>
 
 			<section class="swarm-section" aria-labelledby="swarm-title">
 				<div class="swarm-intro">
 					<StatusLabel tone="amber">Demonstrated Prototype</StatusLabel>
-					<h2 id="swarm-title">Mythadis Swarm</h2>
+					<h2 id="swarm-title">Integrated Mythadis Alpha</h2>
 					<p>
-						Mythadis Swarm is a private Rust research prototype exploring decentralized
-						semantic data, storage, compute, and intelligence coordination. It is demonstrated
-						work, not a production network.
+						Operator, Mission Control, MDAP, and Swarm now form a working private platform path.
+						The evidence is substantial, bounded, and still not a production guarantee.
 					</p>
 				</div>
 				<div class="swarm-grids">
@@ -251,6 +271,11 @@ const nextItems = [
 						</ul>
 					</div>
 				</div>
+			</section>
+
+			<section class="timeline-section" aria-labelledby="foundations-title">
+				<div class="section-heading"><SectionLabel>Foundations that informed Mythadis</SectionLabel><h2 id="foundations-title">Earlier working systems and lessons.</h2></div>
+				<ol class="proof-timeline">{proofTimeline.map((item) => <li><span>{item}</span></li>)}</ol>
 			</section>
 
 			<section class="records-section" aria-labelledby="records-title">
@@ -320,9 +345,9 @@ const nextItems = [
 					<SectionLabel>Current Work</SectionLabel>
 					<h2 id="current-work-title">The public site connects back to the actual state.</h2>
 					<p>
-						Mythadis is public about what exists and what does not. The website is released.
-						The swarm is private R&D. The Agent is not public. Future Mission Swarms remain
-						future work.
+						Mythadis is public about what exists and what does not. The integrated platform is
+						private R&D. Its mission path is demonstrated; production security, public operation,
+						and consequential mission outcomes remain unproven.
 					</p>
 				</div>
 				<ul class="current-work-list">
@@ -489,13 +514,45 @@ const nextItems = [
 
 	.proof-timeline {
 		display: grid;
-		grid-template-columns: repeat(7, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		gap: 0;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 		border: 1px solid var(--ds-line-strong);
 		background: rgba(2, 7, 10, 0.34);
+	}
+
+	.platform-evidence {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+	}
+
+	.platform-evidence article {
+		min-height: 320px;
+		padding: 24px;
+		border: 1px solid var(--ds-line);
+		background: var(--ds-surface);
+	}
+
+	.platform-evidence h3 {
+		margin-top: 28px;
+		font-size: clamp(1.7rem, 3vw, 2.8rem);
+		line-height: 1;
+	}
+
+	.platform-evidence p {
+		margin: 18px 0 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.65;
+	}
+
+	.platform-evidence .evidence-boundary {
+		padding-top: 16px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-amber);
+		font-size: .9rem;
 	}
 
 	.proof-timeline li {
@@ -795,7 +852,8 @@ const nextItems = [
 		.why-proof,
 		.swarm-grids,
 		.record-grid,
-		.current-work-section {
+		.current-work-section,
+		.platform-evidence {
 			grid-template-columns: 1fr;
 		}
 

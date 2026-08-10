@@ -24,13 +24,13 @@ import {
 
 <BaseLayout
 	title="Current State | Mythadis"
-	description="The canonical public reference for what Mythadis Swarm has demonstrated, what is in active development, and what remains unproven."
+	description="The canonical public reference for what the integrated Mythadis platform has demonstrated, what is in development, and what remains unproven."
 >
 	<div class="ds-shell current-state-page">
 		<SiteHeader
 			items={siteNavItems}
 			brandLabel="Mythadis"
-			brandSubLabel="Swarm"
+			brandSubLabel="Platform"
 			status="Private R&D"
 		/>
 
@@ -44,8 +44,8 @@ import {
 				</p>
 				<p class="hero-line">State what is true now.</p>
 				<p class="hero-intro">
-					Mythadis Swarm is an early private research and engineering project. The purpose
-					of this page is to provide a clear, current record of what has been demonstrated,
+					Mythadis is a private integrated research platform. The purpose of this page is
+					to provide a clear, current record of what has been demonstrated,
 					what is being built, and what remains unproven.
 				</p>
 				<div class="hero-actions" aria-label="Current State actions">
@@ -59,7 +59,7 @@ import {
 			<section class="summary-section" aria-labelledby="summary-title">
 				<div>
 					<SectionLabel>Status Summary</SectionLabel>
-					<h2 id="summary-title">Early. Private. Measurable.</h2>
+					<h2 id="summary-title">Integrated. Private. Measurable.</h2>
 					<div class="review-meta">
 						<span>LAST REVIEWED / {currentStateMeta.lastReviewedLabel}</span>
 						<span>CURRENT STATE VERSION / {currentStateMeta.version}</span>
@@ -71,12 +71,12 @@ import {
 						{statusSummary.map((item) => <li>{item}</li>)}
 					</ul>
 					<p>
-						Mythadis Swarm currently operates as a private research prototype across a small
-						number of heterogeneous machines.
+						Mythadis currently operates as a private integrated alpha. Operator, Mission Control,
+						MDAP, and Swarm have completed a bounded end-to-end mission path.
 					</p>
 					<p>
-						Current work is focused on proving the underlying coordination fabric before
-						expanding into public participation or mission-scale systems.
+						Physical multi-node execution, placement, and retrieval have been demonstrated under
+						controlled conditions. The platform remains not production-ready.
 					</p>
 				</div>
 			</section>
@@ -171,16 +171,15 @@ import {
 
 			<section class="environment-section" aria-labelledby="environment-title">
 				<div>
-					<SectionLabel>The first swarm</SectionLabel>
-					<h2 id="environment-title">Current private trials use heterogeneous systems.</h2>
+					<SectionLabel>Physical validation</SectionLabel>
+					<h2 id="environment-title">Current private trials use identified physical systems.</h2>
 					<p>
-						Current private trials use a small collection of heterogeneous systems, including
-						Linux and macOS nodes with different processor, memory, storage, and network
-						characteristics.
+						Accepted validation has used identified Linux and macOS peers with distinct physical
+						hardware and a separate Mission Control identity.
 					</p>
 					<p>
-						These environments are used to test discovery, connectivity, stability, data
-						movement, recovery, and increasingly coordinated work.
+						These environments test authenticated work, worker lifecycle, physical shard
+						placement, exact-peer retrieval, recovery, and restart persistence.
 					</p>
 				</div>
 				<figure class="environment-diagram" aria-labelledby="environment-diagram-title">

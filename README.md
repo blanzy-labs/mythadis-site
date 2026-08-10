@@ -2,7 +2,7 @@
 
 Public Astro site and visual foundation work for Mythadis, maintained by Blanzy Labs.
 
-The current production surface is a static holding page for Mythadis Swarm. It states the private research status, preserves the approved Luminous Archive visual direction, and avoids public product-availability claims.
+The current production surface is the public site for the broader Mythadis platform. It explains Operator, Mission Control, the Mythadis Data Acquisition Plane (MDAP), and Mythadis Swarm while clearly stating that the integrated alpha remains private R&D and is not production-ready.
 
 ## Stack
 
@@ -78,11 +78,11 @@ Cloudflare
 
 Do not work directly on the production branch. Keep feature work scoped, preserve approved branding and copy unless a ticket explicitly changes them, and record release-specific validation in `docs/releases/`.
 
-## Public Holding Page
+## Public Platform Site
 
-MWEB-004 builds the intentional public holding page at `/`.
+MWEB-004 established the original public holding page at `/`. MWEB-010 supersedes that positioning with an evidence-backed platform narrative while preserving the approved visual system.
 
-The page introduces Mythadis, states the mission, explains the current private R&D state, and provides a collaboration path without implying public product availability.
+The homepage introduces the platform, its four-system architecture, the governed mission lifecycle, the human authority model, current evidence, and collaboration paths without implying public product availability.
 
 Holding page documentation lives in `docs/holding-page.md`.
 
@@ -100,7 +100,9 @@ Visual study archive documentation lives in `docs/visual-studies/README.md`.
 
 ## Routes
 
-- `/` contains the public Mythadis holding page.
+- `/` contains the public Mythadis platform homepage.
+- `/#platform` explains Operator, Mission Control, MDAP, and Swarm.
+- `/#mission-example` walks through a clearly marked illustrative mission.
 - `/404/` contains the production not-found page.
 - `/visual-studies/` compares the internal visual studies.
 - `/design-system/` shows the approved Luminous Archive design system.
@@ -151,7 +153,8 @@ The production component foundation is intentionally small:
 
 ## Project Roadmap
 
-- Maintain the public holding page until Mythadis Swarm has a public release scope.
+- Keep public platform claims reconciled with accepted application-repository evidence.
+- Preserve explicit authority boundaries and production-readiness caveats.
 - Preserve visual studies as historical design records.
 - Extend production pages only through approved feature tickets.
 - Add repository governance files before broad public contribution.

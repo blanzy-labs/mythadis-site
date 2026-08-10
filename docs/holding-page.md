@@ -2,9 +2,9 @@
 
 ## Status
 
-The public route `/` is the approved Mythadis holding page.
+Superseded by MWEB-010 on August 10, 2026.
 
-It communicates that Mythadis Swarm is private research and engineering, not production-ready, not a public volunteer network, and not offering a public Mythadis Agent.
+This document records the earlier MWEB-004 holding-page phase. The public route `/` now represents the broader Mythadis platform: Operator, Mission Control, MDAP, and Swarm. The site continues to state that Mythadis is private R&D, not production-ready, and not a public volunteer network.
 
 ## Source
 
@@ -13,15 +13,15 @@ It communicates that Mythadis Swarm is private research and engineering, not pro
 - Shared primitives: `src/components/design-system/`
 - Approved visual direction: `docs/design-system/luminous-archive.md`
 
-## Public Navigation
+## Historical Public Navigation
 
-The holding page navigation links only to public on-page sections:
+The original holding page navigation linked only to public on-page sections:
 
 - `#vision`
 - `#current-state`
 - `#collaborate`
 
-Internal review routes remain available for controlled review, but are not linked from the public holding page navigation.
+Internal review routes remain historical controlled-review surfaces and are not linked from public navigation.
 
 ## Release Notes
 

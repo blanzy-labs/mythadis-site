@@ -8,6 +8,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { linkedInUrl, siteNavItems } from "../data/site";
 
 const proofTimeline = [
+	"Alpha 2 Golden Mission",
 	"AI Consensus",
 	"AI Debate Arena",
 	"AI Council",
@@ -96,7 +97,7 @@ const proofRecords: ProofRecord[] = [
 		evidence: "Private repository with libp2p nodes, lightweight Neural Index gossip, Kademlia storage experiments, Reed-Solomon sharding, Data Parcels, profiles, ingestion, query, HTTP, CLI, and observability modules.",
 		repository: "Private repository",
 		lessons: "The core challenge is not only moving data between nodes. It is making distributed evidence discoverable, recoverable, and useful.",
-		next: "Mission Control, Agents, Data Parcels, Annals, and Mission Swarms remain active proof gates.",
+		next: "Continue Swarm-specific recovery, durability, and governed workload validation without making Swarm mandatory for integrated missions.",
 	},
 	{
 		name: "Mythadis Website",
@@ -117,7 +118,7 @@ const swarmEvidence = [
 	"LAN swarm validation through Docker Compose demo nodes",
 	"Distributed storage experiments using Kademlia",
 	"Data recovery experiments using Reed-Solomon shards",
-	"Mission Control foundations through HTTP status, catalog, parcel, ingest, hunt, and ask surfaces",
+	"Mission Control integration through HTTP status, catalog, parcel, ingest, hunt, and ask surfaces",
 	"Archive Health foundations through catalog, parcel lookup, content hashes, and source-grounded responses",
 ];
 
@@ -129,6 +130,39 @@ const swarmLimitations = [
 	"No reputation, incentives, workflow execution, or Kubernetes layer yet",
 	"No biomedical logic or medical advice behavior",
 ];
+
+const integratedComponents = [
+	{
+		name: "Operator",
+		status: "Demonstrated Alpha",
+		tone: "blue",
+		body: "Interprets ordinary-language intent and proposes structured mission understanding and analytical strategy. Its proposals remain subject to Mission Control and human authority.",
+	},
+	{
+		name: "Mission Control",
+		status: "Demonstrated Alpha",
+		tone: "green",
+		body: "Acts as the authoritative operating layer for durable mission state, human decisions, approved capability selection, evidence and execution coordination, lineage, and results.",
+	},
+	{
+		name: "MDAP",
+		status: "Demonstrated Alpha",
+		tone: "blue",
+		body: "Supports governed evidence discovery, acquisition, verification, catalogue, and provenance within approved mission boundaries.",
+	},
+	{
+		name: "Analytics & Execution",
+		status: "Demonstrated Alpha",
+		tone: "green",
+		body: "Selects among eligible governed execution capabilities. Alpha 2 demonstrated local analysis and an automatically routed Trino follow-up without making either engine the product identity.",
+	},
+	{
+		name: "Swarm",
+		status: "Demonstrated Prototype",
+		tone: "amber",
+		body: "Provides a distributed compute, storage, and collective-intelligence option. Existing private prototype evidence remains valid, but Swarm is not required for every mission.",
+	},
+] as const;
 
 const principles = [
 	{
@@ -159,24 +193,24 @@ const principles = [
 
 const currentWork = [
 	"Mythadis Website",
-	"Private R&D",
-	"Early prototypes",
+	"Private Integrated Alpha",
+	"End-to-end mission demonstrated",
 	"No public Agent",
 	"Future Mission Swarms",
 ];
 
 const nextItems = [
-	{ name: "Mission Control", status: "In Development" },
-	{ name: "Agent foundations", status: "In Development" },
-	{ name: "Data Parcels", status: "In Development" },
-	{ name: "Annals", status: "Future Gate" },
-	{ name: "Mission Swarms", status: "Future Gate" },
+	{ name: "Golden Mission stability", status: "In Development" },
+	{ name: "Mission workspace resumption", status: "In Development" },
+	{ name: "Richer analytics", status: "In Development" },
+	{ name: "Larger, longer-running workloads", status: "Future Gate" },
+	{ name: "Production security", status: "Future Gate" },
 ];
 ---
 
 <BaseLayout
 	title="Proof | Mythadis"
-	description="Demonstrated Mythadis work, released systems, current prototypes, and the evidence behind the public vision."
+	description="Evidence for Mythadis verified analysis, the Alpha 2 end-to-end Golden Mission, and the component-level work behind the integrated private alpha."
 >
 	<div class="ds-shell proof-page">
 		<SiteHeader
@@ -227,14 +261,61 @@ const nextItems = [
 				</ol>
 			</section>
 
+			<section class="swarm-section" aria-labelledby="golden-mission-title">
+				<div class="swarm-intro">
+					<StatusLabel tone="green">End-to-End Demonstrated</StatusLabel>
+					<h2 id="golden-mission-title">Alpha 2 Golden Mission</h2>
+					<p>
+						The strongest current evidence is integrated: a founder validation completed the
+						supported mission experience and continued the accepted investigation through a
+						real governed analytics backend.
+					</p>
+				</div>
+				<div class="swarm-grids">
+					<div class="evidence-list">
+						<h3>Demonstrated path</h3>
+						<p>
+							Plain-language objective &rarr; mission interpretation &rarr; plan &rarr; human
+							approval &rarr; governed evidence &rarr; automatic routing &rarr; analysis &rarr;
+							verified result &rarr; human acceptance &rarr; natural-language follow-up &rarr;
+							automatic governed analytics routing &rarr; Trino &rarr; verified follow-up result.
+						</p>
+					</div>
+					<div class="evidence-list evidence-list--limits">
+						<h3>Boundary of this proof</h3>
+						<p>
+							This is a bounded private Alpha 2 path, not a load test or production reliability
+							claim. Trino demonstrates orchestration of an approved analytics engine; it is not
+							Mythadis itself, and Swarm is not required for every mission.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="principles-section" aria-labelledby="integrated-components-title">
+				<div class="section-heading">
+					<SectionLabel>Integrated Component Evidence</SectionLabel>
+					<h2 id="integrated-components-title">The whole works through governed parts.</h2>
+				</div>
+				<div class="principles-grid">
+					{integratedComponents.map((component) => (
+						<article>
+							<StatusLabel tone={component.tone}>{component.status}</StatusLabel>
+							<h3>{component.name}</h3>
+							<p>{component.body}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
 			<section class="swarm-section" aria-labelledby="swarm-title">
 				<div class="swarm-intro">
 					<StatusLabel tone="amber">Demonstrated Prototype</StatusLabel>
 					<h2 id="swarm-title">Mythadis Swarm</h2>
 					<p>
-						Mythadis Swarm is a private Rust research prototype exploring decentralized
+						Mythadis Swarm is a private Rust research prototype providing a strategic option for decentralized
 						semantic data, storage, compute, and intelligence coordination. It is demonstrated
-						work, not a production network.
+						component-level work, not a mandatory mission stage or production network.
 					</p>
 				</div>
 				<div class="swarm-grids">
@@ -321,8 +402,8 @@ const nextItems = [
 					<h2 id="current-work-title">The public site connects back to the actual state.</h2>
 					<p>
 						Mythadis is public about what exists and what does not. The website is released.
-						The swarm is private R&D. The Agent is not public. Future Mission Swarms remain
-						future work.
+						The integrated platform is a private alpha. The Agent is not public. Future Mission
+						Swarms remain future work.
 					</p>
 				</div>
 				<ul class="current-work-list">
@@ -495,7 +576,9 @@ const nextItems = [
 		padding: 0;
 		list-style: none;
 		border: 1px solid var(--ds-line-strong);
-		background: rgba(2, 7, 10, 0.34);
+		border-radius: var(--ds-radius-md);
+		overflow: hidden;
+		background: rgba(16, 13, 11, 0.34);
 	}
 
 	.proof-timeline li {
@@ -547,8 +630,8 @@ const nextItems = [
 		margin-bottom: 118px;
 		padding: 86px 0;
 		background:
-			linear-gradient(90deg, rgba(66, 217, 255, 0.08), transparent 36%),
-			linear-gradient(180deg, rgba(2, 7, 10, 0.14), rgba(2, 7, 10, 0.5));
+			linear-gradient(90deg, rgba(255, 122, 53, 0.08), transparent 36%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.14), rgba(16, 13, 11, 0.5));
 	}
 
 	.swarm-intro {
@@ -574,12 +657,13 @@ const nextItems = [
 	.evidence-list {
 		padding: 26px;
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.72);
+		border-radius: var(--ds-radius-md);
+		background: rgba(27, 22, 19, 0.72);
 	}
 
 	.evidence-list--limits {
-		border-color: rgba(246, 197, 107, 0.28);
-		background: linear-gradient(120deg, rgba(246, 197, 107, 0.06), rgba(10, 22, 28, 0.72));
+		border-color: rgba(240, 183, 95, 0.28);
+		background: linear-gradient(120deg, rgba(240, 183, 95, 0.06), rgba(27, 22, 19, 0.72));
 	}
 
 	.evidence-list h3,
@@ -614,7 +698,8 @@ const nextItems = [
 
 	.proof-record {
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.72);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(27, 22, 19, 0.72);
 	}
 
 	.proof-record summary {
@@ -669,7 +754,8 @@ const nextItems = [
 		min-height: 210px;
 		padding: 22px;
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.7);
+		border-radius: var(--ds-radius-md);
+		background: rgba(27, 22, 19, 0.7);
 	}
 
 	.principles-grid p {

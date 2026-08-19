@@ -9,7 +9,7 @@ const items = [
 <aside class="ds-current-state">
 	<div>
 		<p>Current status</p>
-		<h3>Mythadis Swarm is currently private research and engineering.</h3>
+		<h3>Mythadis is currently a private integrated alpha.</h3>
 	</div>
 	<ul>
 		{items.map((item) => <li>{item}</li>)}
@@ -23,8 +23,9 @@ const items = [
 		gap: 28px;
 		align-items: start;
 		padding: 26px;
-		border: 1px solid rgba(246, 197, 107, 0.26);
-		background: linear-gradient(120deg, rgba(246, 197, 107, 0.075), rgba(10, 22, 28, 0.76));
+		border: 1px solid rgba(240, 183, 95, 0.26);
+		border-radius: var(--ds-radius-md);
+		background: linear-gradient(120deg, rgba(240, 183, 95, 0.075), var(--ds-surface));
 	}
 
 	.ds-current-state p {
@@ -54,9 +55,10 @@ const items = [
 	.ds-current-state li {
 		min-height: 72px;
 		padding: 14px;
-		border: 1px solid rgba(246, 197, 107, 0.18);
+		border: 1px solid rgba(240, 183, 95, 0.18);
+		border-radius: var(--ds-radius-sm);
 		color: var(--ds-ink-soft);
-		background: rgba(2, 7, 10, 0.32);
+		background: rgba(16, 13, 11, 0.42);
 		line-height: 1.55;
 	}
 

@@ -14,9 +14,10 @@ const { tone = "blue" } = Astro.props;
 	.ds-status-label {
 		display: inline-flex;
 		padding: 7px 9px;
-		border: 1px solid rgba(66, 217, 255, 0.34);
-		color: var(--ds-blue);
-		background: rgba(66, 217, 255, 0.08);
+		border: 1px solid rgba(170, 169, 223, 0.36);
+		border-radius: var(--ds-radius-sm);
+		color: var(--ds-info);
+		background: rgba(170, 169, 223, 0.09);
 		font-family: var(--ds-font-mono);
 		font-size: 0.64rem;
 		text-transform: uppercase;
@@ -24,20 +25,20 @@ const { tone = "blue" } = Astro.props;
 	}
 
 	.ds-status-label--amber {
-		border-color: rgba(246, 197, 107, 0.36);
+		border-color: rgba(240, 183, 95, 0.36);
 		color: var(--ds-amber);
-		background: rgba(246, 197, 107, 0.08);
+		background: rgba(240, 183, 95, 0.09);
 	}
 
 	.ds-status-label--green {
-		border-color: rgba(140, 240, 205, 0.36);
+		border-color: rgba(111, 204, 162, 0.38);
 		color: var(--ds-mint);
-		background: rgba(140, 240, 205, 0.08);
+		background: rgba(111, 204, 162, 0.09);
 	}
 
 	.ds-status-label--plum {
-		border-color: rgba(141, 122, 223, 0.36);
-		color: var(--ds-plum);
-		background: rgba(141, 122, 223, 0.08);
+		border-color: rgba(168, 101, 181, 0.4);
+		color: var(--ds-plum-text);
+		background: var(--ds-selection-soft);
 	}
 </style>

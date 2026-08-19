@@ -46,6 +46,12 @@ import { blanzyLabsGitHubUrl, linkedInUrl } from "../../data/site";
 	.ds-site-footer a {
 		color: var(--ds-ink-soft);
 		border-bottom: 1px solid var(--ds-line-strong);
+		transition: color 140ms ease, border-color 140ms ease;
+	}
+
+	.ds-site-footer a:hover {
+		color: var(--ds-ink);
+		border-color: var(--ds-blue);
 	}
 
 	@media (max-width: 860px) {

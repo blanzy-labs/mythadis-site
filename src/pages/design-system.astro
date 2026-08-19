@@ -12,14 +12,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
 <SiteLayout
-	title="Mythadis Design System | The Luminous Archive"
-	description="The approved Mythadis design system derived from Visual Study A, The Luminous Archive."
+	title="Mythadis Alpha 2 Visual System | Mythadis"
+	description="The current Mythadis visual system: warm dark surfaces, cream typography, sunset-orange interaction, lavender selection, and green verification."
 	noindex={true}
 >
 	<PageHero
-		label="Approved design system / The Luminous Archive"
-		title="The production visual foundation for Mythadis."
-		description="Visual Study A is now the approved Mythadis direction: near-black layered fields, ice-white typography, controlled electric-blue illumination, engineered geometry, and restrained cinematic atmosphere."
+		label="Mythadis Alpha 2 Visual System"
+		title="One product family. A more editorial room."
+		description="Mission Control is the visual reference. The website carries its warm darkness, cream typography, sunset-orange interaction, lavender selection, and green verification into a more spacious research and evidence surface."
 		primaryHref="#components"
 		primaryLabel="Review primitives"
 		secondaryHref="/visual-studies/"
@@ -33,16 +33,16 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 	<ContentSection
 		id="principles"
 		label="Design principles"
-		title="A serious archive language for research, engineering, and long-form content."
+		title="Operational clarity translated into an editorial system."
 	>
 		<div class="principle-grid">
 			<SurfacePanel variant="strong">
 				<article class="principle-card">
 					<SectionLabel>Identity</SectionLabel>
-					<h3>Retain the Luminous Archive.</h3>
+					<h3>Same universe, different room.</h3>
 					<p>
-						The system keeps Study A's dark atmospheric field, sharp luminous edges,
-						sparse network motifs, and strong negative space.
+						The website shares Mission Control's palette, type relationship, interaction
+						colors, surfaces, and verification language without copying its application layout.
 					</p>
 				</article>
 			</SurfacePanel>
@@ -51,7 +51,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 					<SectionLabel>Use</SectionLabel>
 					<h3>Support production pages.</h3>
 					<p>
-						Components are structured for the holding page, homepage, technology pages,
+						Components are structured for the homepage, evidence pages, technology pages,
 						Annals, Field Reports, Mission Swarms, and collaboration content.
 					</p>
 				</article>
@@ -61,15 +61,43 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 					<SectionLabel>State</SectionLabel>
 					<h3>Separate system from launch.</h3>
 					<p>
-						This is the approved reusable design foundation. It is not MWEB-004, the
-						production homepage, or a public availability claim.
+						This is the approved reusable visual foundation. It does not change product
+						maturity, public availability, or the authority boundaries stated in site content.
 					</p>
 				</article>
 			</SurfacePanel>
 		</div>
 	</ContentSection>
 
-	<ContentSection id="components" label="Reusable primitives" title="Production components derived from Study A.">
+	<ContentSection id="foundation" label="Tokens and typography" title="Warm darkness, semantic illumination.">
+		<div class="foundation-grid">
+			<SurfacePanel>
+				<div class="demo-block">
+					<SectionLabel>Core palette</SectionLabel>
+					<div class="palette-grid" aria-label="Current visual-system colors">
+						<div><span class="swatch swatch--app"></span><strong>App</strong><small>#100d0b</small></div>
+						<div><span class="swatch swatch--surface"></span><strong>Surface</strong><small>#1b1613</small></div>
+						<div><span class="swatch swatch--text"></span><strong>Text</strong><small>#f7efe4</small></div>
+						<div><span class="swatch swatch--primary"></span><strong>Primary</strong><small>#ff7a35</small></div>
+						<div><span class="swatch swatch--selection"></span><strong>Selection</strong><small>#a865b5</small></div>
+						<div><span class="swatch swatch--success"></span><strong>Verified</strong><small>#6fcca2</small></div>
+						<div><span class="swatch swatch--warning"></span><strong>Warning</strong><small>#f0b75f</small></div>
+						<div><span class="swatch swatch--info"></span><strong>Information</strong><small>#aaa9df</small></div>
+					</div>
+				</div>
+			</SurfacePanel>
+			<SurfacePanel variant="strong">
+				<div class="demo-block type-demo">
+					<SectionLabel>Type relationship</SectionLabel>
+					<p class="type-display">Editorial display carries the story.</p>
+					<p>Inter keeps explanation, evidence, and interface language direct and readable.</p>
+					<code>MONO / STATUS, METADATA, EVIDENCE LABELS</code>
+				</div>
+			</SurfacePanel>
+		</div>
+	</ContentSection>
+
+	<ContentSection id="components" label="Reusable primitives" title="Production components aligned with Mission Control Alpha 2.">
 		<div class="component-demo">
 			<SurfacePanel variant="strong">
 				<div class="demo-block">
@@ -111,7 +139,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 		<CurrentStatePanel />
 	</ContentSection>
 
-	<ContentSection id="motif" label="Graphic system" title="Network and archive motifs stay sparse, controlled, and engineered.">
+	<ContentSection id="motif" label="Graphic system" title="Network and architecture motifs stay sparse, controlled, and stateful.">
 		<div class="motif-layout">
 			<NetworkMotif />
 			<SurfacePanel>
@@ -119,9 +147,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 					<SectionLabel>Motif guidance</SectionLabel>
 					<h3>Use light as structure, not spectacle.</h3>
 					<p>
-						The approved motif should frame intelligence as ordered evidence emerging
-						from unknown scale. Glow is controlled, geometry is sharp, and decorative
-						density stays low.
+						Orange identifies active flow, lavender marks selection, green indicates a
+						verified state, and warm-neutral lines preserve structure without spectacle.
 					</p>
 				</div>
 			</SurfacePanel>
@@ -173,6 +200,72 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 		gap: 18px;
 	}
 
+	.foundation-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+		gap: 18px;
+	}
+
+	.palette-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+	}
+
+	.palette-grid > div {
+		display: grid;
+		gap: 7px;
+		min-width: 0;
+		color: var(--ds-ink-soft);
+	}
+
+	.swatch {
+		display: block;
+		aspect-ratio: 1.7;
+		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-sm);
+	}
+
+	.swatch--app { background: #100d0b; }
+	.swatch--surface { background: #1b1613; }
+	.swatch--text { background: #f7efe4; }
+	.swatch--primary { background: #ff7a35; }
+	.swatch--selection { background: #a865b5; }
+	.swatch--success { background: #6fcca2; }
+	.swatch--warning { background: #f0b75f; }
+	.swatch--info { background: #aaa9df; }
+
+	.palette-grid strong {
+		color: var(--ds-ink);
+		font-size: 0.86rem;
+	}
+
+	.palette-grid small,
+	.type-demo code {
+		color: var(--ds-ink-muted);
+		font-family: var(--ds-font-mono);
+		font-size: 0.66rem;
+	}
+
+	.type-demo {
+		display: grid;
+		align-content: start;
+		gap: 20px;
+	}
+
+	.type-demo p {
+		margin: 0;
+		color: var(--ds-ink-soft);
+		line-height: 1.65;
+	}
+
+	.type-demo .type-display {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(2rem, 4vw, 4rem);
+		line-height: 0.98;
+	}
+
 	.row {
 		display: flex;
 		flex-wrap: wrap;
@@ -194,8 +287,15 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 	@media (max-width: 940px) {
 		.principle-grid,
 		.component-demo,
+		.foundation-grid,
 		.motif-layout {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.palette-grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 

@@ -20,20 +20,30 @@ export interface SimpleStatusItem {
 }
 
 export const currentStateMeta = {
-	version: "0.1",
-	lastReviewedLabel: "JULY 2026",
-	status: "PRIVATE R&D",
-	release: "MWEB-009",
+	version: "0.2",
+	lastReviewedLabel: "AUGUST 2026",
+	status: "PRIVATE INTEGRATED ALPHA",
+	release: "MWEB-011",
 };
 
 export const statusSummary = [
-	"PRIVATE R&D",
-	"EARLY MULTI-NODE PROTOTYPE",
+	"PRIVATE INTEGRATED ALPHA",
+	"END-TO-END MISSION DEMONSTRATED",
 	"NO PUBLIC AGENT",
 	"NOT PRODUCTION-READY",
 ];
 
 export const demonstratedCapabilities: StatusItem[] = [
+	{
+		label: "Governed Analytics & Continued Investigation",
+		status: "DEMONSTRATED ALPHA",
+		tone: "green",
+		summary: "Mythadis can route approved analytical work through eligible execution engines, verify resulting artifacts and lineage, present results for human review, and continue analysis from a natural-language follow-up question.",
+		evidence: "Alpha 2 founder validation completed mission design, plan approval, automatic governed evidence selection and execution routing, a verified result, human acceptance, a governed follow-up, automatic routing through a real Trino backend, and a verified follow-up result.",
+		limitation: "Analytical operations remain bounded. Broad statistical and data-science capability, larger workloads, and production reliability have not been established.",
+		related: "/proof/",
+		nextGate: "Stabilize the Golden Mission across repositories, persist and resume mission workspaces, expand analytical planning, and validate larger and longer-running workloads.",
+	},
 	{
 		label: "Peer Discovery",
 		status: "DEMONSTRATED PROTOTYPE",
@@ -98,6 +108,18 @@ export const demonstratedCapabilities: StatusItem[] = [
 
 export const activeDevelopment: SimpleStatusItem[] = [
 	{
+		name: "Golden Mission Stability",
+		status: "IN ACTIVE DEVELOPMENT",
+		tone: "blue",
+		body: "Cross-repository regression coverage for the complete Alpha 2 mission, accepted result, resumption, governed follow-up, and safe execution failure boundaries.",
+	},
+	{
+		name: "Persistent Mission Workspace",
+		status: "IN ACTIVE DEVELOPMENT",
+		tone: "blue",
+		body: "Durable mission resumption so an investigation can continue without manually reconstructing its context.",
+	},
+	{
 		name: "Data Parcels",
 		status: "IN ACTIVE DEVELOPMENT",
 		tone: "blue",
@@ -116,10 +138,10 @@ export const activeDevelopment: SimpleStatusItem[] = [
 		body: "Early work toward a participant-facing Agent with explicit local resource and policy boundaries.",
 	},
 	{
-		name: "Mission Control Foundations",
+		name: "Mission Control Maturity",
 		status: "IN ACTIVE DEVELOPMENT",
 		tone: "blue",
-		body: "Initial orchestration capabilities for agents, health, roles, missions, storage, compute, and validation.",
+		body: "The authoritative operating layer for durable mission state, human decisions, approved capability selection, evidence, execution, lineage, and results.",
 	},
 	{
 		name: "Distributed Data Path",
@@ -189,13 +211,15 @@ export const researchDirections: SimpleStatusItem[] = [
 ];
 
 export const claimBoundaries = [
-	"Mythadis Swarm is not production-ready.",
+	"Mythadis is not production-ready and offers no commercial production SLA.",
 	"No public volunteer network currently exists.",
 	"The Mythadis Agent is not publicly available.",
+	"Production security architecture remains incomplete.",
+	"Sensitive or regulated data support is not generally demonstrated.",
 	"Mythadis does not currently operate at global scale.",
 	"Mythadis has not demonstrated humanity-scale mission outcomes.",
 	"Mythadis does not currently solve longevity, climate, pollution, medicine, or public science.",
-	"AI agreement is not treated as proof.",
+	"AI-generated analysis and agreement are not automatically treated as truth or proof.",
 	"Distributed storage is not described as permanent.",
 	"Decentralized architecture is not presented as automatically secure or trustworthy.",
 	"No investment return or token model is being promoted.",
@@ -212,12 +236,13 @@ export const validationSteps = [
 ];
 
 export const currentPriorities = [
-	"Three-node distributed data-path validation",
-	"Long-running node stability",
-	"Recovery under node loss",
-	"Agent role clarity",
-	"Mission Control observability",
-	"Data Parcel contract",
-	"Archive Health measurement",
-	"Reproducible deployment",
+	"Golden Mission stability and cross-repository regression",
+	"Persistent mission workspace and resumption",
+	"Expanded analytical and statistical capability",
+	"Durable long-running missions",
+	"Representative larger datasets",
+	"Result exploration and visualization",
+	"Operational resilience and observability",
+	"Production security architecture",
+	"Additional connectors and providers after core experience maturity",
 ];

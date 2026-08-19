@@ -35,9 +35,10 @@ a {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
-[tabindex]:focus-visible {
-	outline: 3px solid var(--ds-mint);
+	[tabindex]:focus-visible {
+	outline: 3px solid var(--ds-primary-hover);
 	outline-offset: 4px;
+	box-shadow: 0 0 0 3px rgba(255, 122, 53, 0.24);
 }
 
 .skip-link {
@@ -46,9 +47,9 @@ summary:focus-visible,
 	top: 12px;
 	left: 12px;
 	padding: 12px 16px;
-	color: var(--ds-void);
-	background: var(--ds-mint);
-	font-family: var(--ds-font-display);
+	color: #1a100b;
+	background: var(--ds-blue);
+	font-family: var(--ds-font-body);
 	font-weight: 700;
 	transform: translateY(-160%);
 	transition: transform 120ms ease;
@@ -65,8 +66,8 @@ svg {
 }
 
 ::selection {
-	color: #021016;
-	background: var(--ds-blue);
+	color: #fff;
+	background: var(--ds-plum);
 }
 
 @media (prefers-reduced-motion: reduce) {

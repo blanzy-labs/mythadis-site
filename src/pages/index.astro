@@ -25,28 +25,24 @@ const fragmentationNodes = [
 
 const flowSteps = [
 	{
-		name: "Mission",
-		description: "Define the problem, scope, participants, and proof requirements.",
+		name: "Describe",
+		description: "Explain the investigation or outcome in ordinary language.",
 	},
 	{
-		name: "Data Parcels",
-		description: "Prepare approved data as bounded units for distributed work.",
+		name: "Review",
+		description: "Review one human-readable governed mission plan and approve it.",
 	},
 	{
-		name: "Discovery",
-		description: "Find relevant knowledge, resources, and participating systems.",
+		name: "Analyze",
+		description: "Use approved evidence and eligible execution capabilities within mission boundaries.",
 	},
 	{
-		name: "Agents",
-		description: "Execute bounded tasks across participating machines and operators.",
+		name: "Verify",
+		description: "Check results, evidence, and lineage before they are presented.",
 	},
 	{
-		name: "Evidence",
-		description: "Validate and record observations, results, and supporting material.",
-	},
-	{
-		name: "Annals",
-		description: "Preserve durable mission history, provenance, and validated outcomes.",
+		name: "Continue",
+		description: "Ask a natural-language follow-up without rebuilding the mission manually.",
 	},
 ];
 
@@ -69,13 +65,13 @@ const collaborators = [
 const statusModel = [
 	{
 		label: "Working today",
-		tone: "amber",
-		items: "Early private multi-node prototype, peer discovery, node communication, and distributed data experiments.",
+		tone: "green",
+		items: "A private integrated alpha has completed a governed analytical mission and follow-up end to end.",
 	},
 	{
 		label: "In active development",
 		tone: "blue",
-		items: "Mission Control foundations, Data Parcels, archive health, and recovery validation.",
+		items: "Golden Mission stability, persistent workspaces, richer analysis, larger workloads, and operational resilience.",
 	},
 	{
 		label: "Research direction",
@@ -86,16 +82,34 @@ const statusModel = [
 
 const systemComponents = [
 	{
-		name: "Mythadis Agent",
-		status: "In active development",
+		name: "Operator",
+		status: "Interpretation layer",
 		tone: "blue",
-		body: "Foundations for a future participation layer for machines and operators performing bounded work. The Agent is not public.",
+		body: "Translates ordinary-language intent into structured mission understanding and analytical strategy. Operator proposes; it is not the durable execution or approval authority.",
 	},
 	{
 		name: "Mission Control",
-		status: "In active development",
+		status: "Authoritative operating layer",
+		tone: "green",
+		body: "Maintains durable mission state, governs human decisions, selects approved capabilities, coordinates evidence and execution, and preserves lineage and decision records.",
+	},
+	{
+		name: "MDAP",
+		status: "Governed evidence layer",
 		tone: "blue",
-		body: "The coordination surface for making distributed work legible: missions, Signals, Relics, Annals, roles, and validation state.",
+		body: "Provides governed data discovery, acquisition, verification, catalogue, and provenance capabilities.",
+	},
+	{
+		name: "Analytics & Execution",
+		status: "Governed capability layer",
+		tone: "blue",
+		body: "Routes approved analytical work to eligible execution engines. Engines are capabilities used by Mythadis, not the product itself.",
+	},
+	{
+		name: "Swarm",
+		status: "Strategic substrate",
+		tone: "amber",
+		body: "Provides a distributed compute, storage, and collective-intelligence option. It is not a mandatory stage of every mission and is not a public production network.",
 	},
 ] as const;
 
@@ -117,14 +131,14 @@ const missionControlTerms = [
 
 <BaseLayout
 	title="Mythadis | Coordinate Intelligence"
-	description="Mythadis exists to coordinate intelligence—not just computation. A proof-first fabric for human and artificial intelligence."
+	description="Mythadis is a governed mission-intelligence platform for human + AI coordination, governed evidence, analytical execution, and verified analysis."
 >
 	<div class="ds-shell">
 		<SiteHeader
 			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Swarm"
-			status="Private R&D"
+			status="Private Integrated Alpha"
 		/>
 
 		<main id="main-content">
@@ -132,10 +146,18 @@ const missionControlTerms = [
 				<div class="home-hero__copy">
 					<SectionLabel>Mission question</SectionLabel>
 					<h1 id="page-title">
-						How do we{" "}<span class="hero-phrase">organize intelligence</span>&mdash;<span class="hero-phrase">human and artificial</span>&mdash;<span class="hero-phrase">so that together</span>{" "}
-						we can{" "}<span class="hero-phrase">solve problems</span>{" "}that <span>neither could solve alone</span>?
+						How do we{" "}<span class="hero-phrase hero-phrase--primary">organize intelligence</span>&mdash;<span class="hero-phrase hero-phrase--selection">human and artificial</span>&mdash;<span class="hero-phrase">so that together</span>{" "}
+						we can{" "}<span class="hero-phrase hero-phrase--primary">solve problems</span>{" "}that <span>neither could solve alone</span>?
 					</h1>
-					<p class="hero-answer">Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
+					<p class="hero-answer">A Coordination Fabric for Collective Intelligence.</p>
+					<div class="hero-product">
+						<h2>From question to verified analysis.</h2>
+						<p>
+							Describe an investigation in ordinary language. Mythadis helps define the mission,
+							governs evidence and approved execution, verifies results with lineage, and keeps
+							the human in authority as follow-up questions continue the work.
+						</p>
+					</div>
 					<div class="hero-actions" aria-label="Primary page actions">
 						<Button href="#problem">Explore the Vision</Button>
 						<Button href="/current-state/" variant="secondary">Current State</Button>
@@ -184,21 +206,20 @@ const missionControlTerms = [
 
 			<section class="swarm-section" id="swarm" aria-labelledby="swarm-title">
 				<div class="section-heading">
-					<SectionLabel>What is Mythadis Swarm?</SectionLabel>
-					<h2 id="swarm-title">An emerging proof-first fabric for coordinated intelligence.</h2>
+					<SectionLabel>What Mythadis Is</SectionLabel>
+					<h2 id="swarm-title">A governed mission-intelligence platform.</h2>
 				</div>
 				<div class="swarm-layout">
 					<div class="swarm-copy">
 						<p class="principle-line">Unity without centralization.</p>
 						<p>
-							Mythadis Swarm is the flagship research platform at the center of Mythadis:
-							a private prototype for coordinating people, machines, models, evidence, and
-							archives around mission-specific work.
+							Mythadis is a working private integrated alpha for coordinating people, models,
+							evidence, approved analytical capabilities, and durable mission decisions.
 						</p>
 						<p>
-							The goal is coordination, not central ownership. Participants should retain
-							local agency while shared work becomes discoverable, bounded, testable, and
-							remembered.
+							The goal is governed coordination, not unrestricted autonomy. Mission Control
+							preserves the human authority boundary while work becomes discoverable, bounded,
+							testable, and remembered.
 						</p>
 					</div>
 					<div class="status-model" aria-label="Mythadis status model">
@@ -214,10 +235,10 @@ const missionControlTerms = [
 
 			<section class="flow-section" aria-labelledby="flow-title">
 				<div class="section-heading">
-					<SectionLabel>How the Swarm Works</SectionLabel>
-					<h2 id="flow-title">A simple path from mission to recorded proof.</h2>
+					<SectionLabel>The Mission Experience</SectionLabel>
+					<h2 id="flow-title">A simple path from intent to continued investigation.</h2>
 				</div>
-				<ol class="flow-list" aria-label="Six-step Mythadis Swarm flow">
+				<ol class="flow-list" aria-label="Five-step Mythadis mission experience">
 					{flowSteps.map((step) => (
 						<li>
 							<span>{step.name}</span>
@@ -230,7 +251,7 @@ const missionControlTerms = [
 			<section class="components-section" aria-labelledby="components-title">
 				<div class="section-heading">
 					<SectionLabel>System components</SectionLabel>
-					<h2 id="components-title">Participation at the edge. Legibility at the center.</h2>
+					<h2 id="components-title">Reasoning, authority, evidence, execution, and distributed capacity.</h2>
 				</div>
 				<div class="components-grid">
 					<div class="component-list">
@@ -260,13 +281,13 @@ const missionControlTerms = [
 			<section class="future-proof-section" aria-labelledby="future-proof-title">
 				<div class="section-heading">
 					<SectionLabel>Proof and future direction</SectionLabel>
-					<h2 id="future-proof-title">Evidence before legend.</h2>
+					<h2 id="future-proof-title">A complete mission now works end to end.</h2>
 				</div>
 				<div class="future-proof-layout">
 					<div class="evidence-lines">
-						<p>Claims require recorded observations, results, and validation material.</p>
-						<p>Dissent and uncertainty should remain visible in the record.</p>
-						<p>Proof discipline decides when a future claim deserves belief.</p>
+						<p>A founder validation began with a plain-language objective, moved through mission interpretation and one approved plan, and selected governed evidence and execution automatically.</p>
+						<p>The mission returned a verified result with lineage, recorded human acceptance, and continued through a natural-language analytical follow-up.</p>
+						<p>The Alpha 2 follow-up was routed automatically through a real Trino backend and returned another verified result. Trino is evidence of orchestration, not Mythadis itself.</p>
 					</div>
 					<div class="mission-card-grid" aria-label="Research direction mission areas">
 						{missionSwarms.map((mission) => (
@@ -294,8 +315,8 @@ const missionControlTerms = [
 							{statusSummary.map((item) => <li>{item}</li>)}
 						</ul>
 						<p>
-							Mythadis Swarm is private R&D with early multi-node prototype evidence. It is
-							not a public production network.
+							Mythadis is a private integrated alpha with an end-to-end demonstrated mission
+							path. It is not production-ready or a public production network.
 						</p>
 						<Button href="/current-state/">View the complete current state</Button>
 					</div>
@@ -326,7 +347,7 @@ const missionControlTerms = [
 							</a>
 							<p>
 								LinkedIn is the current direct conversation path. GitHub remains the public
-								evidence path for technical work while Mythadis is private R&D.
+								evidence path for technical work while Mythadis remains a private integrated alpha.
 							</p>
 						</div>
 					</div>
@@ -383,6 +404,14 @@ const missionControlTerms = [
 		}
 	}
 
+	.hero-phrase--primary {
+		color: var(--ds-primary-hover);
+	}
+
+	.hero-phrase--selection {
+		color: var(--ds-plum-text);
+	}
+
 	.home-hero__visual {
 		width: min(100%, 520px, 50svh);
 		justify-self: end;
@@ -397,6 +426,25 @@ const missionControlTerms = [
 		font-size: clamp(1.16rem, 1.48vw, 1.58rem);
 		font-weight: 700;
 		line-height: 1.15;
+	}
+
+	.hero-product {
+		max-width: 680px;
+		margin-top: 20px;
+		padding-left: 18px;
+		border-left: 1px solid var(--ds-blue);
+	}
+
+	.hero-product h2 {
+		font-size: clamp(1.35rem, 2.1vw, 2rem);
+		line-height: 1.08;
+	}
+
+	.hero-product p {
+		margin: 10px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: 1rem;
+		line-height: 1.62;
 	}
 
 	.hero-actions {
@@ -484,10 +532,11 @@ const missionControlTerms = [
 		min-height: 390px;
 		padding: 22px;
 		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
 		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 28%),
-			radial-gradient(circle at 50% 50%, rgba(66, 217, 255, 0.18), transparent 13rem),
-			rgba(2, 7, 10, 0.46);
+			linear-gradient(135deg, rgba(247, 239, 228, 0.06), transparent 28%),
+			radial-gradient(circle at 50% 50%, rgba(255, 122, 53, 0.18), transparent 13rem),
+			rgba(16, 13, 11, 0.46);
 		overflow: hidden;
 	}
 
@@ -497,7 +546,7 @@ const missionControlTerms = [
 		inset: 50% 10%;
 		height: 1px;
 		content: "";
-		background: linear-gradient(90deg, transparent, rgba(66, 217, 255, 0.48), transparent);
+		background: linear-gradient(90deg, transparent, rgba(255, 122, 53, 0.48), transparent);
 	}
 
 	.fragment-map::after {
@@ -508,7 +557,8 @@ const missionControlTerms = [
 	.fragment-core,
 	.collaborator-list span {
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.74);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(27, 22, 19, 0.74);
 	}
 
 	.fragment-node {
@@ -545,7 +595,7 @@ const missionControlTerms = [
 		font-weight: 700;
 		text-align: center;
 		transform: translate(-50%, -50%);
-		box-shadow: 0 0 36px rgba(246, 197, 107, 0.12);
+		box-shadow: 0 0 36px rgba(240, 183, 95, 0.12);
 	}
 
 	.problem-copy {
@@ -629,6 +679,7 @@ const missionControlTerms = [
 	.component-list article {
 		padding: 22px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
 		background: var(--ds-surface);
 	}
 
@@ -647,6 +698,7 @@ const missionControlTerms = [
 		min-height: 292px;
 		padding: 24px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
 		background: var(--ds-surface);
 		box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
 	}
@@ -665,13 +717,14 @@ const missionControlTerms = [
 	.flow-list {
 		counter-reset: flow-step;
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		gap: 0;
 		padding: 0;
 		margin: 0;
 		list-style: none;
 		border: 1px solid var(--ds-line-strong);
-		background: rgba(2, 7, 10, 0.36);
+		border-radius: var(--ds-radius-md);
+		background: rgba(16, 13, 11, 0.36);
 	}
 
 	.flow-list li {
@@ -767,9 +820,10 @@ const missionControlTerms = [
 		gap: 12px;
 		padding: 22px;
 		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
 		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 30%),
-			rgba(2, 7, 10, 0.48);
+			linear-gradient(135deg, rgba(247, 239, 228, 0.06), transparent 30%),
+			rgba(16, 13, 11, 0.48);
 	}
 
 	.control-panel div {
@@ -778,7 +832,8 @@ const missionControlTerms = [
 		min-height: 142px;
 		padding: 18px;
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.74);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(27, 22, 19, 0.74);
 	}
 
 	.control-panel span {
@@ -808,7 +863,7 @@ const missionControlTerms = [
 		position: absolute;
 		inset: 18px;
 		content: "";
-		border: 1px solid rgba(189, 238, 255, 0.12);
+		border: 1px solid rgba(247, 239, 228, 0.12);
 	}
 
 	.mission-card-grid span {
@@ -816,8 +871,8 @@ const missionControlTerms = [
 		width: 36px;
 		height: 36px;
 		border: 1px solid var(--ds-line-strong);
-		background: linear-gradient(135deg, var(--ds-blue), var(--ds-mint));
-		box-shadow: 0 0 28px rgba(66, 217, 255, 0.28);
+		background: linear-gradient(135deg, var(--ds-blue), var(--ds-plum));
+		box-shadow: 0 0 28px rgba(255, 122, 53, 0.28);
 	}
 
 	.future-proof-section {
@@ -825,8 +880,8 @@ const missionControlTerms = [
 		padding: 76px 0;
 		border-block: 1px solid var(--ds-line-strong);
 		background:
-			linear-gradient(90deg, rgba(66, 217, 255, 0.08), transparent 34%),
-			linear-gradient(180deg, rgba(2, 7, 10, 0.18), rgba(2, 7, 10, 0.58));
+			linear-gradient(90deg, rgba(255, 122, 53, 0.08), transparent 34%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.18), rgba(16, 13, 11, 0.58));
 	}
 
 	.future-proof-layout {
@@ -838,8 +893,8 @@ const missionControlTerms = [
 		padding: 76px 0;
 		border-block: 1px solid var(--ds-line-strong);
 		background:
-			linear-gradient(90deg, rgba(66, 217, 255, 0.08), transparent 34%),
-			linear-gradient(180deg, rgba(2, 7, 10, 0.18), rgba(2, 7, 10, 0.58));
+			linear-gradient(90deg, rgba(255, 122, 53, 0.08), transparent 34%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.18), rgba(16, 13, 11, 0.58));
 	}
 
 	.evidence-section h2 {
@@ -874,7 +929,7 @@ const missionControlTerms = [
 	}
 
 	.future-proof-note p:first-child {
-		color: var(--ds-mint);
+		color: var(--ds-blue);
 		font-family: var(--ds-font-display);
 		font-size: clamp(1.7rem, 3vw, 3rem);
 		font-weight: 700;
@@ -910,8 +965,9 @@ const missionControlTerms = [
 	.state-summary li {
 		padding: 12px 14px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
 		color: var(--ds-ink-soft);
-		background: rgba(10, 22, 28, 0.64);
+		background: rgba(27, 22, 19, 0.64);
 		font-family: var(--ds-font-mono);
 		font-size: 0.68rem;
 		text-transform: uppercase;
@@ -947,7 +1003,8 @@ const missionControlTerms = [
 	.contact-panel {
 		padding: 18px;
 		border: 1px solid var(--ds-line);
-		background: rgba(2, 7, 10, 0.32);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(16, 13, 11, 0.32);
 	}
 
 	.contact-label {

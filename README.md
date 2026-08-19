@@ -2,7 +2,7 @@
 
 Public Astro site and visual foundation work for Mythadis, maintained by Blanzy Labs.
 
-The current production surface is a static holding page for Mythadis Swarm. It states the private research status, preserves the approved Luminous Archive visual direction, and avoids public product-availability claims.
+The production surface is an editorial and evidence-driven public site for the Mythadis private integrated alpha. Its visual system aligns with Mission Control Alpha 2 while avoiding public product-availability claims.
 
 ## Stack
 
@@ -103,16 +103,16 @@ Visual study archive documentation lives in `docs/visual-studies/README.md`.
 - `/` contains the public Mythadis holding page.
 - `/404/` contains the production not-found page.
 - `/visual-studies/` compares the internal visual studies.
-- `/design-system/` shows the approved Luminous Archive design system.
+- `/design-system/` shows the current Mythadis Alpha 2 visual system.
 - `/visual-study-a/` contains The Luminous Archive internal record.
 - `/visual-study-b/` contains The Living Atlas internal record.
 - `/visual-study-c/` contains The Open Signal internal record.
 
 Internal review routes are marked `noindex, nofollow` and are not linked from the public holding page navigation.
 
-## Approved design direction
+## Current design direction
 
-Visual Study A, **The Luminous Archive**, is the selected Mythadis visual direction. Studies B and C remain archived alternatives for historical comparison.
+Mission Control Alpha 2 is the visual reference for the production website. The site uses the same warm palette, serif/sans relationship, surface hierarchy, interaction color, selection color, and verification language in a more spacious editorial composition. The Luminous Archive, Living Atlas, and Open Signal studies remain archived for historical comparison.
 
 Reusable production primitives live in:
 

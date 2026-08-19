@@ -8,9 +8,8 @@ export const linkedInUrl = "https://ie.linkedin.com/in/mrblanzy";
 export const blanzyLabsGitHubUrl = "https://github.com/blanzy-labs";
 
 export const siteNavItems: SiteNavItem[] = [
-	{ label: "Home", href: "/" },
-	{ label: "Platform", href: "/#platform" },
-	{ label: "Missions", href: "/#mission-example" },
+	{ label: "Vision", href: "/#vision" },
+	{ label: "Why Mythadis", href: "/why-mythadis/" },
 	{ label: "Proof", href: "/proof/" },
 	{ label: "Current State", href: "/current-state/" },
 	{ label: "Field Reports", href: "/field-reports/" },

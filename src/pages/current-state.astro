@@ -24,19 +24,19 @@ import {
 
 <BaseLayout
 	title="Current State | Mythadis"
-	description="The canonical public reference for what the integrated Mythadis platform has demonstrated, what is in development, and what remains unproven."
+	description="The canonical public reference for Mythadis as a private integrated alpha: demonstrated verified analysis, active development, and explicit limitations."
 >
 	<div class="ds-shell current-state-page">
 		<SiteHeader
 			items={siteNavItems}
 			brandLabel="Mythadis"
 			brandSubLabel="Platform"
-			status="Private R&D"
+			status="Private Integrated Alpha"
 		/>
 
 		<main id="main-content">
 			<section class="state-hero" aria-labelledby="page-title">
-				<StatusLabel tone="amber">Private R&D</StatusLabel>
+				<StatusLabel tone="amber">Private Integrated Alpha</StatusLabel>
 				<h1 id="page-title">Current State</h1>
 				<p class="hero-statement">
 					Mythadis separates demonstrated capability from active development, research
@@ -44,9 +44,9 @@ import {
 				</p>
 				<p class="hero-line">State what is true now.</p>
 				<p class="hero-intro">
-					Mythadis is a private integrated research platform. The purpose of this page is
-					to provide a clear, current record of what has been demonstrated,
-					what is being built, and what remains unproven.
+					Mythadis is a working private integrated alpha. This page records the complete
+					demonstrated mission path, what is being stabilized and expanded, and what remains
+					unproven before production use.
 				</p>
 				<div class="hero-actions" aria-label="Current State actions">
 					<Button href="/proof/">Review Demonstrated Work</Button>
@@ -71,12 +71,14 @@ import {
 						{statusSummary.map((item) => <li>{item}</li>)}
 					</ul>
 					<p>
-						Mythadis currently operates as a private integrated alpha. Operator, Mission Control,
-						MDAP, and Swarm have completed a bounded end-to-end mission path.
+						Mythadis now operates as a private integrated alpha. Alpha 2 has completed a
+						governed analytical mission from plain-language objective through accepted result
+						and verified follow-up.
 					</p>
 					<p>
-						Physical multi-node execution, placement, and retrieval have been demonstrated under
-						controlled conditions. The platform remains not production-ready.
+						Current work is focused on Golden Mission stability, durable mission resumption,
+						richer analytics, larger workloads, and operational maturity—not broad connector
+						expansion or public participation.
 					</p>
 				</div>
 			</section>
@@ -171,15 +173,16 @@ import {
 
 			<section class="environment-section" aria-labelledby="environment-title">
 				<div>
-					<SectionLabel>Physical validation</SectionLabel>
-					<h2 id="environment-title">Current private trials use identified physical systems.</h2>
+					<SectionLabel>The first swarm</SectionLabel>
+					<h2 id="environment-title">Current private trials use heterogeneous systems.</h2>
 					<p>
-						Accepted validation has used identified Linux and macOS peers with distinct physical
-						hardware and a separate Mission Control identity.
+						Current private trials use a small collection of heterogeneous systems, including
+						Linux and macOS nodes with different processor, memory, storage, and network
+						characteristics.
 					</p>
 					<p>
-						These environments test authenticated work, worker lifecycle, physical shard
-						placement, exact-peer retrieval, recovery, and restart persistence.
+						These environments are used to test discovery, connectivity, stability, data
+						movement, recovery, and increasingly coordinated work.
 					</p>
 				</div>
 				<figure class="environment-diagram" aria-labelledby="environment-diagram-title">
@@ -370,8 +373,9 @@ import {
 	.diagram-grid span {
 		padding: 12px 14px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
 		color: var(--ds-ink-soft);
-		background: rgba(10, 22, 28, 0.64);
+		background: rgba(27, 22, 19, 0.64);
 		font-family: var(--ds-font-mono);
 		font-size: 0.68rem;
 		text-transform: uppercase;
@@ -414,7 +418,8 @@ import {
 	.compact-records article,
 	.research-list article {
 		border: 1px solid var(--ds-line);
-		background: rgba(10, 22, 28, 0.72);
+		border-radius: var(--ds-radius-md);
+		background: rgba(27, 22, 19, 0.72);
 	}
 
 	.capability-grid article {
@@ -511,8 +516,8 @@ import {
 		margin-bottom: 118px;
 		padding: 78px 0;
 		background:
-			linear-gradient(90deg, rgba(246, 197, 107, 0.08), transparent 36%),
-			linear-gradient(180deg, rgba(2, 7, 10, 0.14), rgba(2, 7, 10, 0.52));
+			linear-gradient(90deg, rgba(240, 183, 95, 0.08), transparent 36%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.14), rgba(16, 13, 11, 0.52));
 	}
 
 	.boundary-section h2 {
@@ -555,9 +560,10 @@ import {
 		margin: 0;
 		padding: 22px;
 		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
 		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 30%),
-			rgba(2, 7, 10, 0.48);
+			linear-gradient(135deg, rgba(247, 239, 228, 0.06), transparent 30%),
+			rgba(16, 13, 11, 0.48);
 	}
 
 	.environment-diagram figcaption {
@@ -591,6 +597,8 @@ import {
 		padding: 0;
 		list-style: none;
 		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
+		overflow: hidden;
 	}
 
 	.validation-section li {

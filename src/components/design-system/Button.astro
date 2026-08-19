@@ -25,19 +25,37 @@ const rel = href?.startsWith("http") ? "noreferrer" : undefined;
 		min-height: 46px;
 		padding: 0 18px;
 		border: 1px solid var(--ds-line-strong);
-		font-family: var(--ds-font-display);
+		border-radius: var(--ds-radius-sm);
+		font-family: var(--ds-font-body);
 		font-size: 0.92rem;
 		font-weight: 700;
+		transition:
+			color 140ms ease,
+			background 140ms ease,
+			border-color 140ms ease,
+			box-shadow 140ms ease,
+			transform 140ms ease;
 	}
 
 	.ds-button--primary {
-		color: #021016;
-		background: linear-gradient(135deg, var(--ds-ink) 0%, #9eeeff 54%, var(--ds-mint) 100%);
-		box-shadow: 0 0 30px rgba(66, 217, 255, 0.22);
+		border-color: var(--ds-blue);
+		color: #1a100b;
+		background: var(--ds-blue);
+		box-shadow: 0 12px 28px rgba(255, 122, 53, 0.16);
 	}
 
 	.ds-button--secondary {
 		color: var(--ds-ink);
-		background: rgba(255, 255, 255, 0.04);
+		background: var(--ds-surface);
+	}
+
+	.ds-button--primary:hover {
+		border-color: var(--ds-primary-hover);
+		background: var(--ds-primary-hover);
+	}
+
+	.ds-button--secondary:hover {
+		border-color: var(--ds-plum);
+		background: var(--ds-selection-soft);
 	}
 </style>

@@ -8,257 +8,1246 @@ import StatusLabel from "../components/design-system/StatusLabel.astro";
 import SurfacePanel from "../components/design-system/SurfacePanel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { statusSummary } from "../data/current-state";
-import { blanzyLabsGitHubUrl, linkedInUrl, siteNavItems } from "../data/site";
+import {
+	blanzyLabsGitHubUrl,
+	linkedInUrl,
+	siteNavItems,
+} from "../data/site";
 
-const fragmentationNodes = ["Knowledge", "Institutions", "AI", "People", "Machines", "Evidence"];
+const fragmentationNodes = [
+	"Knowledge",
+	"Institutions",
+	"AI",
+	"People",
+	"Machines",
+	"Evidence",
+];
 
-const platformSystems = [
+const flowSteps = [
 	{
-		name: "Mythadis Operator",
-		label: "Interpretation",
-		body: "A conversation and mission-design layer that translates ordinary-language intent into a structured proposal.",
-		boundary: "Operator proposes. It does not independently approve or execute missions.",
+		name: "Describe",
+		description: "Explain the investigation or outcome in ordinary language.",
+	},
+	{
+		name: "Review",
+		description: "Review one human-readable governed mission plan and approve it.",
+	},
+	{
+		name: "Analyze",
+		description: "Use approved evidence and eligible execution capabilities within mission boundaries.",
+	},
+	{
+		name: "Verify",
+		description: "Check results, evidence, and lineage before they are presented.",
+	},
+	{
+		name: "Continue",
+		description: "Ask a natural-language follow-up without rebuilding the mission manually.",
+	},
+];
+
+const missionSwarms = [
+	"Longevity",
+	"Pollution",
+	"Climate",
+	"Public science",
+	"Knowledge preservation",
+];
+
+const collaborators = [
+	"Engineers",
+	"Researchers",
+	"Institutions",
+	"Advisors",
+	"Early testers",
+];
+
+const statusModel = [
+	{
+		label: "Working today",
+		tone: "green",
+		items: "A private integrated alpha has completed a governed analytical mission and follow-up end to end.",
+	},
+	{
+		label: "In active development",
+		tone: "blue",
+		items: "Golden Mission stability, persistent workspaces, richer analysis, larger workloads, and operational resilience.",
+	},
+	{
+		label: "Research direction",
+		tone: "plum",
+		items: "Public Agent distribution, Mission Swarms, and humanity-scale applications.",
+	},
+] as const;
+
+const systemComponents = [
+	{
+		name: "Operator",
+		status: "Interpretation layer",
+		tone: "blue",
+		body: "Translates ordinary-language intent into structured mission understanding and analytical strategy. Operator proposes; it is not the durable execution or approval authority.",
 	},
 	{
 		name: "Mission Control",
-		label: "Human authority",
-		body: "The primary operating surface for mission definition, governance, workflow, evidence, analysis, and review.",
-		boundary: "Mission Control holds the authoritative mission and approval boundary.",
+		status: "Authoritative operating layer",
+		tone: "green",
+		body: "Maintains durable mission state, governs human decisions, selects approved capabilities, coordinates evidence and execution, and preserves lineage and decision records.",
 	},
 	{
 		name: "MDAP",
-		label: "Verified data",
-		body: "The controlled discovery, acquisition, verification, catalogue, and provenance plane for mission evidence.",
-		boundary: "Approved sources and explicit acquisition replace unrestricted data wandering.",
+		status: "Governed evidence layer",
+		tone: "blue",
+		body: "Provides governed data discovery, acquisition, verification, catalogue, and provenance capabilities.",
 	},
 	{
-		name: "Mythadis Swarm",
-		label: "Distributed substrate",
-		body: "The Fluid Swarm Core coordinates authenticated peers, bounded work, erasure-coded storage, placement, retrieval, and recovery.",
-		boundary: "Swarm is the infrastructure beneath Mythadis, not the whole platform.",
+		name: "Analytics & Execution",
+		status: "Governed capability layer",
+		tone: "blue",
+		body: "Routes approved analytical work to eligible execution engines. Engines are capabilities used by Mythadis, not the product itself.",
 	},
-];
+	{
+		name: "Swarm",
+		status: "Strategic substrate",
+		tone: "amber",
+		body: "Provides a distributed compute, storage, and collective-intelligence option. It is not a mandatory stage of every mission and is not a public production network.",
+	},
+] as const;
 
-const lifecycleSteps = [
-	{ name: "Define", description: "Set the objective, scope, questions, source rules, and evidence requirements." },
-	{ name: "Discover", description: "Find candidate evidence through approved data providers." },
-	{ name: "Review", description: "Assess candidate material before acquisition." },
-	{ name: "Acquire & Verify", description: "Retrieve approved material and validate integrity and provenance." },
-	{ name: "Coordinate", description: "Hand verified evidence to Swarm for placement and bounded work." },
-	{ name: "Prove", description: "Verify physical placement and actual retrievability as separate facts." },
-	{ name: "Analyze", description: "Run analysis against explicitly bounded mission evidence." },
-	{ name: "Review", description: "A human accepts, flags, or rejects the resulting analysis." },
-];
-
-const authorityRules = [
-	"AI can interpret intent and prepare proposals.",
-	"A proposal is not human approval.",
-	"Acquisition and Swarm handoff require controlled transitions.",
-	"Generated analysis is not automatically accepted as truth.",
-	"Evidence and human decisions remain visible in the mission record.",
-];
-
-const missionPath = [
-	"Human describes the investigation",
-	"Operator structures the mission",
-	"Mission Control establishes requirements",
-	"MDAP discovers candidate public datasets",
-	"Human reviews evidence candidates",
-	"MDAP acquires and verifies approved material",
-	"Swarm distributes evidence and bounded work",
-	"Mythadis produces an evidence-grounded analysis",
-	"Human reviews the result",
-];
-
-const researchDirections = ["Public science", "Pollution", "Climate", "Knowledge preservation", "Collective intelligence"];
-
-const collaborators = [
-	{ name: "Research Partners", body: "Meaningful problems, datasets, and research questions." },
-	{ name: "Mission / Design Partners", body: "Real workflows that can pressure-test mission design and governance." },
-	{ name: "Technical Partners", body: "Distributed systems, security, data engineering, AI, scientific computing, and provenance expertise." },
-	{ name: "Infrastructure Partners", body: "Controlled, customer-owned, or sovereign compute and data infrastructure." },
-	{ name: "Strategic / Funding Partners", body: "Long-horizon support for public science, sustainability, sovereign infrastructure, and collective-intelligence research." },
+const missionControlTerms = [
+	{
+		name: "Signals",
+		body: "observations or events relevant to a mission.",
+	},
+	{
+		name: "Relics",
+		body: "durable evidence artifacts or validated outputs.",
+	},
+	{
+		name: "Annals",
+		body: "the persistent record of mission history.",
+	},
 ];
 ---
 
 <BaseLayout
-	title="Mythadis | A Coordination Fabric for Collective Intelligence"
-	description="Mythadis coordinates human intent, AI, verified data, and distributed infrastructure through governed missions and evidence-grounded analysis."
+	title="Mythadis | Coordinate Intelligence"
+	description="Mythadis is a governed mission-intelligence platform for human + AI coordination, governed evidence, analytical execution, and verified analysis."
 >
 	<div class="ds-shell">
-		<SiteHeader items={siteNavItems} brandLabel="Mythadis" brandSubLabel="Platform" status="Private R&D" />
+		<SiteHeader
+			items={siteNavItems}
+			brandLabel="Mythadis"
+			brandSubLabel="Platform"
+			status="Private Integrated Alpha"
+		/>
 
 		<main id="main-content">
 			<section class="home-hero" id="vision" aria-labelledby="page-title">
 				<div class="home-hero__copy">
 					<SectionLabel>Mission question</SectionLabel>
-					<h1 id="page-title">How do we <span>organize intelligence</span>&mdash;human and artificial&mdash;so that together we can <span>solve problems</span> that neither could solve alone?</h1>
-					<p class="hero-answer">Mythadis exists to coordinate intelligence&mdash;not just computation.</p>
-					<p class="hero-position">A Coordination Fabric for Collective Intelligence.</p>
+					<h1 id="page-title">
+						How do we{" "}<span class="hero-phrase hero-phrase--primary">organize intelligence</span>&mdash;<span class="hero-phrase hero-phrase--selection">human and artificial</span>&mdash;<span class="hero-phrase">so that together</span>{" "}
+						we can{" "}<span class="hero-phrase hero-phrase--primary">solve problems</span>{" "}that <span>neither could solve alone</span>?
+					</h1>
+					<p class="hero-answer">A Coordination Fabric for Collective Intelligence.</p>
+					<div class="hero-product">
+						<h2>From question to verified analysis.</h2>
+						<p>
+							Describe an investigation in ordinary language. Mythadis helps define the mission,
+							governs evidence and approved execution, verifies results with lineage, and keeps
+							the human in authority as follow-up questions continue the work.
+						</p>
+					</div>
 					<div class="hero-actions" aria-label="Primary page actions">
-						<Button href="#platform">Explore the Platform</Button>
+						<Button href="#problem">Explore the Vision</Button>
 						<Button href="/current-state/" variant="secondary">Current State</Button>
 						<Button href="#collaborate" variant="secondary">Collaborate</Button>
 					</div>
 				</div>
-				<div class="home-hero__visual"><NetworkMotif /></div>
+				<div class="home-hero__visual">
+					<NetworkMotif />
+				</div>
 			</section>
 
 			<section class="signal-statement" aria-label="Core system statement">
-				<p>Many minds.</p><p>Many machines.</p><p>Many models.</p><p>One proof-first fabric.</p>
+				<p>Many minds.</p>
+				<p>Many machines.</p>
+				<p>Many models.</p>
+				<p>One proof-first fabric.</p>
 			</section>
 
 			<section class="problem-section" id="problem" aria-labelledby="problem-title">
-				<div class="section-heading"><SectionLabel>The problem</SectionLabel><h2 id="problem-title">The intelligence we need is fragmented.</h2></div>
+				<div class="section-heading">
+					<SectionLabel>Humanity's problem</SectionLabel>
+					<h2 id="problem-title">The intelligence we need is fragmented.</h2>
+				</div>
 				<div class="problem-layout">
-					<div class="fragment-map" aria-label="Fragmented intelligence diagram">
-						{fragmentationNodes.map((node, index) => <div class={`fragment-node fragment-node--${index + 1}`}><span>{node}</span></div>)}
-						<div class="fragment-core"><span>Disconnected proof</span></div>
+					<div class="fragment-map" aria-label="Fragmented systems diagram">
+						{fragmentationNodes.map((node, index) => (
+							<div class={`fragment-node fragment-node--${index + 1}`}>
+								<span>{node}</span>
+							</div>
+						))}
+						<div class="fragment-core">
+							<span>Disconnected proof</span>
+						</div>
 					</div>
 					<div class="problem-copy">
-						<p>Powerful systems still work across disconnected boundaries.</p>
-						<p>Knowledge, institutions, people, machines, and models rarely share one governed path from intent to evidence. Mythadis explores how they can coordinate without hiding uncertainty or surrendering human authority.</p>
+						<p>
+							Knowledge, institutions, AI, people, and machines are learning in isolation.
+						</p>
+						<p>
+							Mythadis asks what becomes possible when intelligence can discover, coordinate,
+							verify, and remember together.
+						</p>
 					</div>
 				</div>
 			</section>
 
-			<section class="platform-section" id="platform" aria-labelledby="platform-title">
+			<section class="swarm-section" id="swarm" aria-labelledby="swarm-title">
 				<div class="section-heading">
-					<SectionLabel>What Mythadis is</SectionLabel>
-					<h2 id="platform-title">A governed mission-intelligence platform.</h2>
-					<p>Mythadis coordinates human intent, AI, verified data, and distributed infrastructure around complex problems.</p>
+					<SectionLabel>What Mythadis Is</SectionLabel>
+					<h2 id="swarm-title">A governed mission-intelligence platform.</h2>
 				</div>
-				<div class="architecture" aria-label="Human intent flows through non-authoritative Operator to authoritative Mission Control, which coordinates MDAP and Swarm">
-					<div class="architecture__human"><span>Human intent</span></div>
-					<div class="architecture__arrow" aria-hidden="true">↓</div>
-					<div class="architecture__operator"><strong>Operator</strong><span>conversation + mission design</span><em>non-authoritative</em></div>
-					<div class="architecture__arrow" aria-hidden="true">↓</div>
-					<div class="architecture__control"><strong>Mission Control</strong><span>human authority + mission governance</span></div>
-					<div class="architecture__branches" aria-hidden="true">↙ &nbsp;&nbsp;&nbsp;&nbsp; ↘</div>
-					<div class="architecture__planes"><div><strong>MDAP</strong><span>data + provenance</span></div><div><strong>Swarm</strong><span>compute + storage</span></div></div>
-				</div>
-				<div class="system-grid">
-					{platformSystems.map((system) => <article><StatusLabel tone="blue">{system.label}</StatusLabel><h3>{system.name}</h3><p>{system.body}</p><p class="system-boundary">{system.boundary}</p></article>)}
+				<div class="swarm-layout">
+					<div class="swarm-copy">
+						<p class="principle-line">Unity without centralization.</p>
+						<p>
+							Mythadis is a working private integrated alpha for coordinating people, models,
+							evidence, approved analytical capabilities, and durable mission decisions.
+						</p>
+						<p>
+							The goal is governed coordination, not unrestricted autonomy. Mission Control
+							preserves the human authority boundary while work becomes discoverable, bounded,
+							testable, and remembered.
+						</p>
+					</div>
+					<div class="status-model" aria-label="Mythadis status model">
+						{statusModel.map((item) => (
+							<article>
+								<StatusLabel tone={item.tone}>{item.label}</StatusLabel>
+								<p>{item.items}</p>
+							</article>
+						))}
+					</div>
 				</div>
 			</section>
 
-			<section class="operator-section" aria-labelledby="operator-title">
-				<div><SectionLabel>Mythadis Operator</SectionLabel><h2 id="operator-title">Describe the problem, not the infrastructure.</h2></div>
-				<div class="operator-copy"><p>Operator helps turn an ordinary-language investigation into a bounded design: objective, scope, research questions, source policy, data and quality requirements, validation criteria, assumptions, and constraints.</p><p><strong>Operator proposals remain non-authoritative until reviewed through Mission Control.</strong> It is a mission interpretation and design layer, not a general-purpose chatbot.</p></div>
-			</section>
-
-			<section class="lifecycle-section" aria-labelledby="lifecycle-title">
-				<div class="section-heading"><SectionLabel>From intent to evidence</SectionLabel><h2 id="lifecycle-title">A governed mission lifecycle.</h2></div>
-				<ol class="lifecycle-list" aria-label="Eight-stage Mythadis mission lifecycle">
-					{lifecycleSteps.map((step) => <li><span>{step.name}</span><p>{step.description}</p></li>)}
+			<section class="flow-section" aria-labelledby="flow-title">
+				<div class="section-heading">
+					<SectionLabel>The Mission Experience</SectionLabel>
+					<h2 id="flow-title">A simple path from intent to continued investigation.</h2>
+				</div>
+				<ol class="flow-list" aria-label="Five-step Mythadis mission experience">
+					{flowSteps.map((step) => (
+						<li>
+							<span>{step.name}</span>
+							<p>{step.description}</p>
+						</li>
+					))}
 				</ol>
-				<p class="proof-note"><strong>Successful handoff is not automatically proof of durable storage.</strong> Placement and actual retrievability are verified separately.</p>
 			</section>
 
-			<section class="authority-section" aria-labelledby="authority-title">
-				<SurfacePanel variant="strong"><div class="authority-card"><div><SectionLabel>Authority model</SectionLabel><h2 id="authority-title">Intelligence without surrendering control.</h2><p class="authority-principle">AI proposes. Humans authorize. Mythadis executes within explicit boundaries.</p></div><ul>{authorityRules.map((rule) => <li>{rule}</li>)}</ul></div></SurfacePanel>
+			<section class="components-section" aria-labelledby="components-title">
+				<div class="section-heading">
+					<SectionLabel>System components</SectionLabel>
+					<h2 id="components-title">Reasoning, authority, evidence, execution, and distributed capacity.</h2>
+				</div>
+				<div class="components-grid">
+					<div class="component-list">
+						{systemComponents.map((component) => (
+							<article>
+								<StatusLabel tone={component.tone}>{component.status}</StatusLabel>
+								<h3>{component.name}</h3>
+								<p>{component.body}</p>
+							</article>
+						))}
+					</div>
+					<div class="control-panel" aria-label="Mission Control terminology">
+						<div>
+							<span>Mission</span>
+							<p>a defined problem, scope, and proof objective.</p>
+						</div>
+						{missionControlTerms.map((term) => (
+							<div>
+								<span>{term.name}</span>
+								<p>{term.body}</p>
+							</div>
+						))}
+					</div>
+				</div>
 			</section>
 
-			<section class="mission-section" id="mission-example" aria-labelledby="mission-title">
-				<div class="section-heading"><StatusLabel tone="plum">Illustrative mission</StatusLabel><h2 id="mission-title">Investigate PFAS contamination trends in European groundwater.</h2><p>This scenario explains the architecture. It is not a claim that Mythadis has completed this scientific investigation.</p></div>
-				<ol class="mission-path" aria-label="Illustrative mission path">{missionPath.map((step) => <li><span>{step}</span></li>)}</ol>
+			<section class="future-proof-section" aria-labelledby="future-proof-title">
+				<div class="section-heading">
+					<SectionLabel>Proof and future direction</SectionLabel>
+					<h2 id="future-proof-title">A complete mission now works end to end.</h2>
+				</div>
+				<div class="future-proof-layout">
+					<div class="evidence-lines">
+						<p>A founder validation began with a plain-language objective, moved through mission interpretation and one approved plan, and selected governed evidence and execution automatically.</p>
+						<p>The mission returned a verified result with lineage, recorded human acceptance, and continued through a natural-language analytical follow-up.</p>
+						<p>The Alpha 2 follow-up was routed automatically through a real Trino backend and returned another verified result. Trino is evidence of orchestration, not Mythadis itself.</p>
+					</div>
+					<div class="mission-card-grid" aria-label="Research direction mission areas">
+						{missionSwarms.map((mission) => (
+							<article>
+								<StatusLabel tone="plum">Research direction</StatusLabel>
+								<h3>{mission}</h3>
+							</article>
+						))}
+					</div>
+				</div>
+				<div class="future-proof-note">
+					<p>Vision is not enough.</p>
+					<p>Mission Swarms point toward domains where coordinated intelligence may matter, not demonstrated public outcomes.</p>
+				</div>
 			</section>
 
-			<section class="proof-section" aria-labelledby="proof-title">
-				<div class="section-heading"><SectionLabel>Demonstrated state</SectionLabel><h2 id="proof-title">An integrated path, measured in evidence.</h2></div>
-				<div class="proof-layout"><ul aria-label="Current status">{statusSummary.map((item) => <li>{item}</li>)}</ul><div><p>The current private alpha has demonstrated conversational mission design, human-controlled proposal intake, governed discovery and acquisition, verified Swarm handoff, physical placement and retrieval, mission-grounded analysis, and human result review.</p><p>These are bounded R&D demonstrations, not production guarantees.</p><div class="proof-actions"><Button href="/proof/">Review the Proof</Button><Button href="/current-state/" variant="secondary">Read Current State</Button></div></div></div>
-			</section>
-
-			<section class="research-section" aria-labelledby="research-title">
-				<div class="section-heading"><SectionLabel>Research directions</SectionLabel><h2 id="research-title">Proof-first work toward consequential missions.</h2><p>These domains are directions for investigation and partnership, not claims of completed outcomes.</p></div>
-				<div class="research-grid">{researchDirections.map((direction) => <article><StatusLabel tone="plum">Research direction</StatusLabel><h3>{direction}</h3></article>)}</div>
+			<section class="current-state-section" id="current-state" aria-labelledby="state-title">
+				<div class="section-heading">
+					<SectionLabel>Current State</SectionLabel>
+					<h2 id="state-title">The complete status lives on Current State.</h2>
+				</div>
+				<SurfacePanel variant="warning">
+					<div class="state-summary">
+						<ul aria-label="Homepage current state summary">
+							{statusSummary.map((item) => <li>{item}</li>)}
+						</ul>
+						<p>
+							Mythadis is a private integrated alpha with an end-to-end demonstrated mission
+							path. It is not production-ready or a public production network.
+						</p>
+						<Button href="/current-state/">View the complete current state</Button>
+					</div>
+				</SurfacePanel>
 			</section>
 
 			<section class="collaborate-section" id="collaborate" aria-labelledby="collaborate-title">
-				<SurfacePanel variant="strong"><div class="collaborate-card"><div><SectionLabel>Collaborate</SectionLabel><h2 id="collaborate-title">Bring a mission worth coordinating.</h2><p>Mythadis is looking for serious problems and partners who value explicit boundaries, inspectable evidence, and measurable progress.</p></div><div class="collaborator-list">{collaborators.map((item) => <div><strong>{item.name}</strong><span>{item.body}</span></div>)}</div><div class="contact-panel"><p class="contact-label">Engagement paths</p><a href={linkedInUrl} rel="noreferrer">Start a conversation</a><a href={blanzyLabsGitHubUrl} rel="noreferrer">Explore Blanzy Labs on GitHub</a><p>LinkedIn is the current direct conversation path. GitHub is the public technical-evidence path while Mythadis remains private R&D.</p></div></div></SurfacePanel>
+				<SurfacePanel variant="strong">
+					<div class="collaborate-card">
+						<div>
+							<SectionLabel>Collaborate</SectionLabel>
+							<h2 id="collaborate-title">Help shape the first credible swarm.</h2>
+							<p>
+								Early conversations are most useful with people who can pressure-test the
+								architecture, the proof discipline, and the mission model.
+							</p>
+						</div>
+						<div class="collaborator-list" aria-label="Collaboration audiences">
+							{collaborators.map((collaborator) => <span>{collaborator}</span>)}
+						</div>
+						<div class="contact-panel">
+							<p class="contact-label">Engagement paths</p>
+							<a href={linkedInUrl} rel="noreferrer">
+								Start a conversation
+							</a>
+							<a href={blanzyLabsGitHubUrl} rel="noreferrer">
+								Explore Blanzy Labs on GitHub
+							</a>
+							<p>
+								LinkedIn is the current direct conversation path. GitHub remains the public
+								evidence path for technical work while Mythadis remains a private integrated alpha.
+							</p>
+						</div>
+					</div>
+				</SurfacePanel>
 			</section>
 		</main>
+
 		<SiteFooter />
 	</div>
 </BaseLayout>
 
 <style>
-	h1,h2,h3,p { text-wrap: pretty; }
-	h1,h2,h3 { margin: 0; font-family: var(--ds-font-display); letter-spacing: 0; }
-	.home-hero { display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(24px,3.4vw,48px);align-items:center;min-height:min(720px,calc(100svh - 84px));padding:clamp(16px,2.6svh,30px) 0 clamp(32px,4.4svh,58px); }
-	.home-hero__copy { max-width:800px;position:relative;z-index:1; }
-	.home-hero h1 { max-width:23ch;margin-top:10px;font-size:clamp(2.7rem,3.95vw,3.8rem);line-height:.98;text-wrap:balance; }
-	.home-hero h1 span { color:var(--ds-mint); }
-	.home-hero__visual { width:min(100%,520px,50svh);justify-self:end; }
-	.hero-answer { max-width:620px;margin:clamp(16px,2.3svh,24px) 0 0;color:var(--ds-ink);font-family:var(--ds-font-display);font-size:clamp(1.16rem,1.48vw,1.58rem);font-weight:700;line-height:1.15; }
-	.hero-position { margin:10px 0 0;color:var(--ds-amber);font-family:var(--ds-font-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase; }
-	.hero-actions,.proof-actions { display:flex;flex-wrap:wrap;gap:14px;margin-top:24px; }
-	.signal-statement { display:grid;grid-template-columns:repeat(4,1fr);margin:8px 0 118px;border-block:1px solid var(--ds-line); }
-	.signal-statement p { min-height:148px;margin:0;padding:22px;border-right:1px solid var(--ds-line);color:var(--ds-ink);font-family:var(--ds-font-display);font-size:clamp(1.45rem,2.6vw,2.7rem);font-weight:700;line-height:1; }
-	.signal-statement p:last-child { border-right:0;color:var(--ds-mint); }
-	.problem-section,.platform-section,.operator-section,.lifecycle-section,.authority-section,.mission-section,.proof-section,.research-section,.collaborate-section { padding-bottom:118px; }
-	.section-heading { max-width:940px;margin-bottom:34px; }
-	.section-heading h2,.operator-section h2,.authority-card h2,.collaborate-card h2 { margin-top:8px;font-size:clamp(2.2rem,4.8vw,4.7rem);line-height:.96; }
-	.section-heading>p { max-width:760px;margin:20px 0 0;color:var(--ds-ink-soft);font-size:1.08rem;line-height:1.68; }
-	.problem-layout,.operator-section,.authority-card,.proof-layout,.collaborate-card { display:grid;grid-template-columns:minmax(0,.92fr) minmax(320px,1fr);gap:32px;align-items:start; }
-	.fragment-map { position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;min-height:390px;padding:22px;border:1px solid var(--ds-line-strong);background:radial-gradient(circle at 50% 50%,rgba(66,217,255,.18),transparent 13rem),rgba(2,7,10,.46);overflow:hidden; }
-	.fragment-map::before,.fragment-map::after { position:absolute;inset:50% 10%;height:1px;content:"";background:linear-gradient(90deg,transparent,rgba(66,217,255,.48),transparent); }
-	.fragment-map::after { transform:rotate(90deg); }
-	.fragment-node,.fragment-core { border:1px solid var(--ds-line);background:rgba(10,22,28,.74); }
-	.fragment-node { position:relative;z-index:1;display:grid;align-items:center;min-height:98px;padding:14px;color:var(--ds-ink-soft);font-family:var(--ds-font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em; }
-	.fragment-node--2,.fragment-node--5 { transform:translateY(34px); }
-	.fragment-core { position:absolute;z-index:2;top:50%;left:50%;display:grid;place-items:center;width:min(52%,250px);min-height:86px;padding:16px;color:var(--ds-amber);font-family:var(--ds-font-display);font-weight:700;text-align:center;transform:translate(-50%,-50%); }
-	.problem-copy { display:grid;gap:18px; }
-	.problem-copy p,.operator-copy p,.system-grid p,.authority-card li,.proof-layout p,.collaborate-card p,.contact-panel p { margin:0;color:var(--ds-ink-soft);font-size:1rem;line-height:1.68; }
-	.problem-copy p:first-child { color:var(--ds-ink);font-family:var(--ds-font-display);font-size:clamp(1.55rem,3vw,2.45rem);font-weight:700;line-height:1.08; }
-	.architecture { max-width:760px;margin:0 auto 34px;padding:28px;border:1px solid var(--ds-line-strong);background:rgba(2,7,10,.45);text-align:center; }
-	.architecture__human span,.architecture strong,.architecture em,.architecture__planes span { display:block; }
-	.architecture__human,.architecture__operator,.architecture__control,.architecture__planes>div { padding:15px;border:1px solid var(--ds-line);background:var(--ds-surface); }
-	.architecture__operator em { margin-top:6px;color:var(--ds-amber);font-family:var(--ds-font-mono);font-size:.68rem;font-style:normal;text-transform:uppercase; }
-	.architecture__control { border-color:var(--ds-mint); }
-	.architecture__arrow,.architecture__branches { padding:8px;color:var(--ds-blue); }
-	.architecture__planes { display:grid;grid-template-columns:1fr 1fr;gap:18px; }
-	.architecture span { margin-top:4px;color:var(--ds-ink-soft);font-size:.88rem; }
-	.system-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
-	.system-grid article { min-height:330px;padding:22px;border:1px solid var(--ds-line);background:var(--ds-surface); }
-	.system-grid h3 { margin-top:24px;font-size:clamp(1.4rem,2vw,2rem);line-height:1; }
-	.system-grid p { margin-top:16px; }
-	.system-grid .system-boundary { padding-top:14px;border-top:1px solid var(--ds-line);color:var(--ds-amber);font-size:.88rem; }
-	.operator-copy { display:grid;gap:18px;padding-top:25px; }
-	.operator-copy strong { color:var(--ds-ink); }
-	.lifecycle-list { counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);margin:0;padding:0;list-style:none;border:1px solid var(--ds-line-strong); }
-	.lifecycle-list li { counter-increment:step;min-height:230px;padding:20px;border-right:1px solid var(--ds-line);border-bottom:1px solid var(--ds-line); }
-	.lifecycle-list li:nth-child(4n) { border-right:0; }
-	.lifecycle-list li:nth-child(n+5) { border-bottom:0; }
-	.lifecycle-list li::before { display:block;margin-bottom:44px;color:var(--ds-blue);font-family:var(--ds-font-mono);font-size:.7rem;content:"0" counter(step); }
-	.lifecycle-list span { font-family:var(--ds-font-display);font-size:1.35rem;font-weight:700; }
-	.lifecycle-list p { margin:16px 0 0;color:var(--ds-ink-soft);font-size:.9rem;line-height:1.55; }
-	.proof-note { margin:20px 0 0;padding:20px;border-left:2px solid var(--ds-amber);color:var(--ds-ink-soft);line-height:1.6; }
-	.proof-note strong { color:var(--ds-ink); }
-	.authority-card { padding:30px; }
-	.authority-principle { margin-top:22px!important;color:var(--ds-mint)!important;font-family:var(--ds-font-display);font-size:1.4rem!important;font-weight:700;line-height:1.2!important; }
-	.authority-card ul { display:grid;gap:12px;margin:4px 0 0;padding-left:20px; }
-	.mission-path { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0;padding:0;list-style:none;counter-reset:mission; }
-	.mission-path li { counter-increment:mission;position:relative;min-height:130px;padding:20px;border:1px solid var(--ds-line);background:var(--ds-surface); }
-	.mission-path li::before { display:block;margin-bottom:20px;color:var(--ds-plum);font-family:var(--ds-font-mono);font-size:.7rem;content:"0" counter(mission); }
-	.mission-path li:not(:last-child)::after { position:absolute;right:12px;bottom:10px;color:var(--ds-blue);content:"↓"; }
-	.mission-path span { font-family:var(--ds-font-display);font-weight:700; }
-	.proof-layout ul { display:grid;gap:0;margin:0;padding:0;list-style:none;border:1px solid var(--ds-line-strong); }
-	.proof-layout li { padding:15px;border-bottom:1px solid var(--ds-line);color:var(--ds-amber);font-family:var(--ds-font-mono);font-size:.72rem;letter-spacing:.06em; }
-	.proof-layout li:last-child { border-bottom:0; }
-	.proof-layout>div { display:grid;gap:18px; }
-	.research-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:12px; }
-	.research-grid article { min-height:190px;padding:20px;border:1px solid var(--ds-line);background:var(--ds-surface); }
-	.research-grid h3 { margin-top:30px;font-size:1.35rem;line-height:1.05; }
-	.collaborate-card { padding:30px; }
-	.collaborator-list { display:grid;gap:10px; }
-	.collaborator-list div { display:grid;gap:6px;padding:14px;border:1px solid var(--ds-line);background:rgba(10,22,28,.74); }
-	.collaborator-list strong { font-family:var(--ds-font-display); }
-	.collaborator-list span { color:var(--ds-ink-soft);font-size:.85rem;line-height:1.5; }
-	.contact-panel { display:grid;gap:14px;padding:20px;border:1px solid var(--ds-line); }
-	.contact-panel a { color:var(--ds-mint); }
-	.contact-label { color:var(--ds-amber)!important;font-family:var(--ds-font-mono);font-size:.7rem!important;text-transform:uppercase;letter-spacing:.08em; }
-	@media(max-width:980px){.system-grid{grid-template-columns:repeat(2,1fr)}.research-grid{grid-template-columns:repeat(3,1fr)}.collaborate-card{grid-template-columns:1fr 1fr}.contact-panel{grid-column:1/-1}}
-	@media(max-width:760px){.home-hero,.problem-layout,.operator-section,.authority-card,.proof-layout,.collaborate-card{grid-template-columns:1fr}.home-hero{min-height:auto;padding-top:42px}.home-hero__visual{width:min(82vw,420px);justify-self:center}.signal-statement{grid-template-columns:1fr 1fr;margin-bottom:84px}.signal-statement p{min-height:100px;border-bottom:1px solid var(--ds-line)}.system-grid,.lifecycle-list,.mission-path,.research-grid{grid-template-columns:1fr 1fr}.lifecycle-list li:nth-child(4n){border-right:1px solid var(--ds-line)}.lifecycle-list li:nth-child(2n){border-right:0}.lifecycle-list li:nth-child(n+5){border-bottom:1px solid var(--ds-line)}.lifecycle-list li:nth-child(n+7){border-bottom:0}.problem-section,.platform-section,.operator-section,.lifecycle-section,.authority-section,.mission-section,.proof-section,.research-section,.collaborate-section{padding-bottom:84px}}
-	@media(max-width:480px){.system-grid,.lifecycle-list,.mission-path,.research-grid{grid-template-columns:1fr}.architecture{padding:14px}.architecture__planes{gap:8px}.lifecycle-list li,.lifecycle-list li:nth-child(2n),.lifecycle-list li:nth-child(n+7){border-right:0;border-bottom:1px solid var(--ds-line)}.lifecycle-list li:last-child{border-bottom:0}.signal-statement p{padding:16px;font-size:1.25rem}.fragment-map{padding:12px;gap:7px;min-height:340px}.fragment-node{padding:8px;font-size:.62rem}.home-hero h1{font-size:clamp(2.35rem,11.5vw,3.2rem)}}
+	h1,
+	h2,
+	h3,
+	p {
+		text-wrap: pretty;
+	}
+
+	h1,
+	h2,
+	h3 {
+		margin: 0;
+		font-family: var(--ds-font-display);
+		letter-spacing: 0;
+	}
+
+	.home-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+		gap: clamp(24px, 3.4vw, 48px);
+		align-items: center;
+		min-height: min(720px, calc(100svh - 84px));
+		padding: clamp(16px, 2.6svh, 30px) 0 clamp(32px, 4.4svh, 58px);
+	}
+
+	.home-hero__copy {
+		max-width: 800px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.home-hero h1 {
+		max-width: 22.5ch;
+		margin-top: 10px;
+		font-size: clamp(2.7rem, 3.95vw, 3.8rem);
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	@media (min-width: 681px) {
+		.home-hero h1 .hero-phrase {
+			white-space: nowrap;
+		}
+	}
+
+	.hero-phrase--primary {
+		color: var(--ds-primary-hover);
+	}
+
+	.hero-phrase--selection {
+		color: var(--ds-plum-text);
+	}
+
+	.home-hero__visual {
+		width: min(100%, 520px, 50svh);
+		justify-self: end;
+		align-self: center;
+	}
+
+	.hero-answer {
+		max-width: 620px;
+		margin: clamp(16px, 2.3svh, 24px) 0 0;
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.16rem, 1.48vw, 1.58rem);
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.hero-product {
+		max-width: 680px;
+		margin-top: 20px;
+		padding-left: 18px;
+		border-left: 1px solid var(--ds-blue);
+	}
+
+	.hero-product h2 {
+		font-size: clamp(1.35rem, 2.1vw, 2rem);
+		line-height: 1.08;
+	}
+
+	.hero-product p {
+		margin: 10px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: 1rem;
+		line-height: 1.62;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-top: clamp(18px, 2.6svh, 26px);
+	}
+
+	.signal-statement {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0;
+		margin: 0 0 118px;
+		border-block: 1px solid var(--ds-line);
+	}
+
+	.home-hero + .signal-statement {
+		margin-top: 8px;
+	}
+
+	.signal-statement p {
+		min-height: 148px;
+		margin: 0;
+		padding: 22px;
+		border-right: 1px solid var(--ds-line);
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.45rem, 2.6vw, 2.7rem);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.signal-statement p:last-child {
+		border-right: 0;
+		color: var(--ds-mint);
+	}
+
+	.problem-section,
+	.swarm-section,
+	.flow-section,
+	.components-section,
+	.future-proof-section,
+	.agent-section,
+	.mission-control-section,
+	.mission-swarms-section,
+	.current-state-section,
+	.collaborate-section {
+		padding: 0 0 118px;
+	}
+
+	.section-heading {
+		max-width: 900px;
+		margin-bottom: 30px;
+	}
+
+	.section-heading h2,
+	.components-section h2,
+	.agent-section h2,
+	.control-copy h2,
+	.collaborate-card h2 {
+		font-size: clamp(2.2rem, 4.6vw, 4.55rem);
+		line-height: 0.98;
+	}
+
+	.problem-layout,
+	.swarm-layout,
+	.components-grid,
+	.future-proof-layout,
+	.agent-section,
+	.control-grid,
+	.state-panel,
+	.collaborate-card {
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1fr);
+		gap: 32px;
+		align-items: start;
+	}
+
+	.fragment-map {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		min-height: 390px;
+		padding: 22px;
+		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
+		background:
+			linear-gradient(135deg, rgba(247, 239, 228, 0.06), transparent 28%),
+			radial-gradient(circle at 50% 50%, rgba(255, 122, 53, 0.18), transparent 13rem),
+			rgba(16, 13, 11, 0.46);
+		overflow: hidden;
+	}
+
+	.fragment-map::before,
+	.fragment-map::after {
+		position: absolute;
+		inset: 50% 10%;
+		height: 1px;
+		content: "";
+		background: linear-gradient(90deg, transparent, rgba(255, 122, 53, 0.48), transparent);
+	}
+
+	.fragment-map::after {
+		transform: rotate(90deg);
+	}
+
+	.fragment-node,
+	.fragment-core,
+	.collaborator-list span {
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(27, 22, 19, 0.74);
+	}
+
+	.fragment-node {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		align-items: center;
+		min-height: 98px;
+		padding: 14px;
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-mono);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.fragment-node--2,
+	.fragment-node--5 {
+		transform: translateY(34px);
+	}
+
+	.fragment-core {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		left: 50%;
+		display: grid;
+		place-items: center;
+		width: min(52%, 250px);
+		min-height: 86px;
+		padding: 16px;
+		color: var(--ds-amber);
+		font-family: var(--ds-font-display);
+		font-weight: 700;
+		text-align: center;
+		transform: translate(-50%, -50%);
+		box-shadow: 0 0 36px rgba(240, 183, 95, 0.12);
+	}
+
+	.problem-copy {
+		display: grid;
+		gap: 18px;
+	}
+
+	.problem-copy p,
+	.swarm-copy p,
+	.status-model p,
+	.component-list p,
+	.control-panel p,
+	.future-proof-note p,
+	.state-summary p,
+	.swarm-grid p,
+	.agent-panel p,
+	.control-copy p,
+	.state-copy p,
+	.collaborate-card p,
+	.contact-panel p {
+		margin: 0;
+		color: var(--ds-ink-soft);
+		font-size: 1rem;
+		line-height: 1.68;
+	}
+
+	.problem-copy p:first-child {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.55rem, 3vw, 2.45rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.unity-section {
+		display: grid;
+		align-content: center;
+		min-height: 74svh;
+		padding: 76px 0 132px;
+	}
+
+	.unity-section h2 {
+		max-width: 920px;
+		font-size: clamp(4.4rem, 11vw, 10.8rem);
+		line-height: 0.86;
+	}
+
+	.unity-section p {
+		max-width: 620px;
+		margin: 30px 0 0 auto;
+		color: var(--ds-ink-soft);
+		font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+		line-height: 1.65;
+	}
+
+	.swarm-layout {
+		align-items: stretch;
+	}
+
+	.swarm-copy {
+		display: grid;
+		gap: 18px;
+		align-content: start;
+	}
+
+	.principle-line {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(2rem, 4.5vw, 4.9rem);
+		font-weight: 700;
+		line-height: 0.94;
+	}
+
+	.status-model,
+	.component-list {
+		display: grid;
+		gap: 14px;
+	}
+
+	.status-model article,
+	.component-list article {
+		padding: 22px;
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
+		background: var(--ds-surface);
+	}
+
+	.status-model p {
+		margin-top: 16px;
+	}
+
+	.swarm-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+	}
+
+	.swarm-grid article,
+	.mission-card-grid article {
+		min-height: 292px;
+		padding: 24px;
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
+		background: var(--ds-surface);
+		box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
+	}
+
+	.swarm-grid h3,
+	.mission-card-grid h3 {
+		margin-top: 34px;
+		font-size: clamp(1.45rem, 2.6vw, 2.3rem);
+		line-height: 1.04;
+	}
+
+	.swarm-grid p {
+		margin-top: 16px;
+	}
+
+	.flow-list {
+		counter-reset: flow-step;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 0;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
+		background: rgba(16, 13, 11, 0.36);
+	}
+
+	.flow-list li {
+		counter-increment: flow-step;
+		position: relative;
+		display: grid;
+		align-content: space-between;
+		min-height: 248px;
+		padding: 20px;
+		border-right: 1px solid var(--ds-line);
+	}
+
+	.flow-list li:last-child {
+		border-right: 0;
+	}
+
+	.flow-list li:not(:last-child)::after {
+		position: absolute;
+		top: 50%;
+		right: -9px;
+		z-index: 2;
+		width: 18px;
+		height: 18px;
+		content: "";
+		border-top: 1px solid var(--ds-blue);
+		border-right: 1px solid var(--ds-blue);
+		background: var(--ds-void);
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	.flow-list li::before {
+		color: var(--ds-blue);
+		font-family: var(--ds-font-mono);
+		font-size: 0.7rem;
+		content: "0" counter(flow-step);
+	}
+
+	.flow-list span {
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.12rem, 1.7vw, 1.5rem);
+		font-weight: 700;
+		line-height: 1.05;
+	}
+
+	.flow-list p {
+		margin: 18px 0 0;
+		color: var(--ds-ink-soft);
+		font-size: 0.92rem;
+		line-height: 1.55;
+	}
+
+	.components-grid {
+		grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1fr);
+		align-items: stretch;
+	}
+
+	.component-list h3 {
+		margin-top: 22px;
+		font-size: clamp(1.65rem, 2.8vw, 2.5rem);
+		line-height: 1.02;
+	}
+
+	.component-list p {
+		margin-top: 16px;
+	}
+
+	.agent-panel,
+	.state-panel,
+	.collaborate-card {
+		padding: 28px;
+	}
+
+	.agent-panel p {
+		margin-top: 24px;
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.45rem, 2.8vw, 2.4rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.control-grid {
+		grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1fr);
+		align-items: stretch;
+	}
+
+	.control-copy p {
+		margin-top: 24px;
+	}
+
+	.control-panel {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		padding: 22px;
+		border: 1px solid var(--ds-line-strong);
+		border-radius: var(--ds-radius-md);
+		background:
+			linear-gradient(135deg, rgba(247, 239, 228, 0.06), transparent 30%),
+			rgba(16, 13, 11, 0.48);
+	}
+
+	.control-panel div {
+		display: grid;
+		align-content: start;
+		min-height: 142px;
+		padding: 18px;
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(27, 22, 19, 0.74);
+	}
+
+	.control-panel span {
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.28rem, 2.4vw, 2rem);
+		font-weight: 700;
+	}
+
+	.control-panel p {
+		margin-top: 12px;
+	}
+
+	.mission-card-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 14px;
+	}
+
+	.mission-card-grid article {
+		position: relative;
+		min-height: 192px;
+		overflow: hidden;
+	}
+
+	.mission-card-grid article::before {
+		position: absolute;
+		inset: 18px;
+		content: "";
+		border: 1px solid rgba(247, 239, 228, 0.12);
+	}
+
+	.mission-card-grid span {
+		display: block;
+		width: 36px;
+		height: 36px;
+		border: 1px solid var(--ds-line-strong);
+		background: linear-gradient(135deg, var(--ds-blue), var(--ds-plum));
+		box-shadow: 0 0 28px rgba(255, 122, 53, 0.28);
+	}
+
+	.future-proof-section {
+		margin: 0 0 118px;
+		padding: 76px 0;
+		border-block: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(90deg, rgba(255, 122, 53, 0.08), transparent 34%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.18), rgba(16, 13, 11, 0.58));
+	}
+
+	.future-proof-layout {
+		grid-template-columns: minmax(0, 0.75fr) minmax(320px, 1fr);
+	}
+
+	.evidence-section {
+		margin: 0 0 118px;
+		padding: 76px 0;
+		border-block: 1px solid var(--ds-line-strong);
+		background:
+			linear-gradient(90deg, rgba(255, 122, 53, 0.08), transparent 34%),
+			linear-gradient(180deg, rgba(16, 13, 11, 0.18), rgba(16, 13, 11, 0.58));
+	}
+
+	.evidence-section h2 {
+		max-width: 920px;
+		font-size: clamp(3.6rem, 9vw, 8.4rem);
+		line-height: 0.86;
+	}
+
+	.evidence-lines {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 18px;
+		margin-top: 0;
+	}
+
+	.evidence-lines p {
+		margin: 0;
+		padding-top: 18px;
+		border-top: 1px solid var(--ds-line);
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.35rem, 2.4vw, 2.05rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.future-proof-note {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 18px;
+		margin-top: 36px;
+	}
+
+	.future-proof-note p:first-child {
+		color: var(--ds-blue);
+		font-family: var(--ds-font-display);
+		font-size: clamp(1.7rem, 3vw, 3rem);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.state-panel h3 {
+		margin-top: 24px;
+		font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+		line-height: 1.02;
+	}
+
+	.state-copy {
+		display: grid;
+		gap: 16px;
+	}
+
+	.state-summary {
+		display: grid;
+		gap: 22px;
+		padding: 28px;
+	}
+
+	.state-summary ul {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.state-summary li {
+		padding: 12px 14px;
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
+		color: var(--ds-ink-soft);
+		background: rgba(27, 22, 19, 0.64);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.state-summary :global(.ds-button) {
+		justify-self: start;
+	}
+
+	.collaborate-card {
+		grid-template-columns: minmax(0, 1fr) minmax(240px, 0.55fr) minmax(300px, 0.72fr);
+	}
+
+	.collaborate-card p {
+		margin-top: 18px;
+	}
+
+	.collaborator-list {
+		display: grid;
+		gap: 10px;
+	}
+
+	.collaborator-list span {
+		padding: 12px 14px;
+		color: var(--ds-ink-soft);
+		font-family: var(--ds-font-mono);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.contact-panel {
+		padding: 18px;
+		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
+		background: rgba(16, 13, 11, 0.32);
+	}
+
+	.contact-label {
+		margin: 0 0 12px;
+		color: var(--ds-blue);
+		font-family: var(--ds-font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.contact-panel a {
+		display: flex;
+		margin-bottom: 12px;
+		color: var(--ds-ink);
+		font-family: var(--ds-font-display);
+		font-size: 1.2rem;
+		font-weight: 700;
+		border-bottom: 1px solid var(--ds-blue);
+	}
+
+	.contact-panel p {
+		margin-top: 0;
+	}
+
+	@media (max-width: 1040px) {
+		.home-hero,
+		.problem-layout,
+		.swarm-layout,
+		.components-grid,
+		.future-proof-layout,
+		.agent-section,
+		.control-grid,
+		.state-panel,
+		.collaborate-card {
+			grid-template-columns: 1fr;
+		}
+
+		.home-hero {
+			min-height: auto;
+			gap: 38px;
+			padding-top: 24px;
+		}
+
+		.home-hero__copy {
+			max-width: 820px;
+		}
+
+		.home-hero h1 {
+			max-width: 20ch;
+			font-size: clamp(2.95rem, 7.5vw, 4.75rem);
+		}
+
+		.home-hero__visual {
+			width: min(100%, 520px, 46svh);
+			justify-self: start;
+		}
+
+		.signal-statement,
+		.swarm-grid,
+		.state-summary ul {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.flow-list,
+		.mission-card-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.flow-list li {
+			border-bottom: 1px solid var(--ds-line);
+		}
+
+		.flow-list li:nth-child(3n) {
+			border-right: 0;
+		}
+
+		.flow-list li:not(:last-child)::after {
+			display: none;
+		}
+	}
+
+	@media (min-width: 981px) and (max-width: 1040px) {
+		.home-hero {
+			grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+			gap: 28px;
+			align-items: center;
+			min-height: calc(100svh - 84px);
+			padding-top: 18px;
+			padding-bottom: 34px;
+		}
+
+		.home-hero h1 {
+			max-width: 20.5ch;
+			font-size: clamp(2.7rem, 3.95vw, 4.2rem);
+		}
+
+		.home-hero__visual {
+			width: min(100%, 430px, 48svh);
+			justify-self: end;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.home-hero {
+			gap: 28px;
+			padding-top: 14px;
+			padding-bottom: 48px;
+		}
+
+		.home-hero h1 {
+			max-width: 100%;
+			font-size: clamp(2.05rem, 9.2vw, 3.05rem);
+			line-height: 1.02;
+		}
+
+		.home-hero h1 span {
+			white-space: normal;
+		}
+
+		.home-hero__visual {
+			width: min(100%, 390px, 36svh);
+		}
+
+		.hero-answer {
+			font-size: clamp(1.08rem, 4.7vw, 1.38rem);
+		}
+
+		.hero-actions {
+			flex-direction: column;
+		}
+
+		.hero-actions :global(.ds-button) {
+			width: 100%;
+		}
+
+		.signal-statement,
+		.swarm-grid,
+		.flow-list,
+		.mission-card-grid,
+		.state-summary ul {
+			grid-template-columns: 1fr;
+		}
+
+		.signal-statement {
+			margin-bottom: 76px;
+		}
+
+		.signal-statement p {
+			min-height: 92px;
+			border-right: 0;
+			border-bottom: 1px solid var(--ds-line);
+		}
+
+		.signal-statement p:last-child {
+			border-bottom: 0;
+		}
+
+		.problem-section,
+		.swarm-section,
+		.flow-section,
+		.components-section,
+		.future-proof-section,
+		.agent-section,
+		.mission-control-section,
+		.mission-swarms-section,
+		.current-state-section,
+		.collaborate-section {
+			padding-bottom: 76px;
+		}
+
+		.section-heading h2,
+		.components-section h2,
+		.agent-section h2,
+		.control-copy h2,
+		.collaborate-card h2 {
+			font-size: clamp(2rem, 11vw, 3.4rem);
+		}
+
+		.fragment-map {
+			grid-template-columns: 1fr;
+			min-height: auto;
+		}
+
+		.fragment-node--2,
+		.fragment-node--5 {
+			transform: none;
+		}
+
+		.fragment-core {
+			position: relative;
+			top: auto;
+			left: auto;
+			width: 100%;
+			transform: none;
+		}
+
+		.unity-section {
+			min-height: auto;
+			padding: 22px 0 88px;
+		}
+
+		.unity-section h2,
+		.evidence-section h2 {
+			font-size: clamp(2.45rem, 10.8vw, 3.6rem);
+			overflow-wrap: anywhere;
+		}
+
+		.unity-section p {
+			margin-left: 0;
+		}
+
+		.status-model article,
+		.component-list article,
+		.swarm-grid article,
+		.mission-card-grid article,
+		.flow-list li {
+			min-height: 178px;
+		}
+
+		.flow-list li {
+			border-right: 0;
+		}
+
+		.control-panel {
+			grid-template-columns: 1fr;
+		}
+
+		.evidence-section {
+			margin-bottom: 76px;
+			padding: 56px 0;
+		}
+
+		.future-proof-section {
+			margin-bottom: 76px;
+			padding: 56px 0;
+		}
+
+		.agent-panel,
+		.state-panel,
+		.state-summary,
+		.collaborate-card {
+			padding: 20px;
+		}
+	}
 </style>

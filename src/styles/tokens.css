@@ -1,28 +1,33 @@
 :root {
-	--ds-font-display: "Space Grotesk", "Arial Narrow", system-ui, sans-serif;
+	--ds-font-display: "Iowan Old Style", Baskerville, "Times New Roman", serif;
 	--ds-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 	--ds-font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 
-	--ds-ink: #f4fbff;
-	--ds-ink-soft: #c4d7df;
-	--ds-ink-muted: #8199a4;
-	--ds-void: #02070a;
-	--ds-void-2: #071116;
-	--ds-void-3: #0a161c;
-	--ds-surface: rgba(10, 22, 28, 0.76);
-	--ds-surface-strong: rgba(14, 32, 40, 0.92);
-	--ds-line: rgba(153, 220, 240, 0.18);
-	--ds-line-strong: rgba(189, 238, 255, 0.36);
-	--ds-blue: #42d9ff;
-	--ds-blue-deep: #096d91;
-	--ds-mint: #8cf0cd;
-	--ds-amber: #f6c56b;
-	--ds-plum: #8d7adf;
+	--ds-ink: #f7efe4;
+	--ds-ink-soft: #c4b7a8;
+	--ds-ink-muted: #998b7d;
+	--ds-void: #100d0b;
+	--ds-void-2: #15110f;
+	--ds-void-3: #1b1613;
+	--ds-surface: rgba(27, 22, 19, 0.88);
+	--ds-surface-strong: rgba(42, 33, 29, 0.94);
+	--ds-line: rgba(247, 239, 228, 0.12);
+	--ds-line-strong: rgba(247, 239, 228, 0.24);
+	--ds-blue: #ff7a35;
+	--ds-blue-deep: #b84e1f;
+	--ds-primary-hover: #ff985f;
+	--ds-mint: #6fcca2;
+	--ds-amber: #f0b75f;
+	--ds-plum: #a865b5;
+	--ds-plum-text: #c98bd4;
+	--ds-info: #aaa9df;
+	--ds-error: #ef887b;
+	--ds-selection-soft: rgba(168, 101, 181, 0.16);
 	--ds-shadow: rgba(0, 0, 0, 0.42);
 
 	--ds-radius-none: 0;
-	--ds-radius-sm: 2px;
-	--ds-radius-md: 4px;
+	--ds-radius-sm: 8px;
+	--ds-radius-md: 14px;
 
 	--ds-page-max: 1180px;
 	--ds-space-1: 0.25rem;

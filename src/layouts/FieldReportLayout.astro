@@ -135,7 +135,7 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 
 	.report-number {
 		margin: 34px 0 0;
-		color: var(--ds-mint);
+		color: var(--ds-blue);
 		font-family: var(--ds-font-mono);
 		font-size: 0.82rem;
 		text-transform: uppercase;
@@ -148,7 +148,7 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 		font-family: var(--ds-font-display);
 		font-size: clamp(3.5rem, 9.8vw, 9.8rem);
 		line-height: 0.9;
-		letter-spacing: 0.08em;
+		letter-spacing: -0.015em;
 	}
 
 	.report-summary {
@@ -167,12 +167,14 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 		margin-top: 42px;
 		background: var(--ds-line);
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
+		overflow: hidden;
 	}
 
 	.report-meta span {
 		padding: 14px;
 		color: var(--ds-ink-muted);
-		background: rgba(5, 15, 20, 0.92);
+		background: rgba(21, 17, 15, 0.92);
 		font-family: var(--ds-font-mono);
 		font-size: 0.66rem;
 		line-height: 1.45;
@@ -195,7 +197,7 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 		font-family: var(--ds-font-display);
 		font-size: clamp(2.2rem, 5vw, 5.2rem);
 		line-height: 0.96;
-		letter-spacing: 0.08em;
+		letter-spacing: -0.01em;
 	}
 
 	.context-copy {
@@ -222,7 +224,7 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 		font-family: var(--ds-font-display);
 		font-size: clamp(2rem, 4.2vw, 4.4rem);
 		line-height: 1;
-		letter-spacing: 0.08em;
+		letter-spacing: -0.01em;
 	}
 
 	.report-body :global(h2:first-child) {
@@ -234,7 +236,7 @@ const canonicalUrl = `${productionOrigin}/field-reports/${data.slug}/`;
 	}
 
 	.report-body :global(strong) {
-		color: var(--ds-mint);
+		color: var(--ds-blue);
 	}
 
 	.report-body :global(ul) {

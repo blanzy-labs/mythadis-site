@@ -2,7 +2,7 @@
 
 Public Astro site and visual foundation work for Mythadis, maintained by Blanzy Labs.
 
-The current production surface is the public site for the broader Mythadis platform. It explains Operator, Mission Control, the Mythadis Data Acquisition Plane (MDAP), and Mythadis Swarm while clearly stating that the integrated alpha remains private R&D and is not production-ready.
+The production surface is an editorial and evidence-driven public site for the Mythadis private integrated alpha. Its visual system aligns with Mission Control Alpha 2 while avoiding public product-availability claims.
 
 ## Stack
 
@@ -80,11 +80,11 @@ Do not work directly on the production branch. Keep feature work scoped, preserv
 
 ## Public Platform Site
 
-MWEB-004 established the original public holding page at `/`. MWEB-010 supersedes that positioning with an evidence-backed platform narrative while preserving the approved visual system.
+MWEB-010 expands the original holding page into the public Mythadis platform site. MWEB-011 aligns that narrative with the current private integrated alpha, and MWEB-012 aligns its visual system with Mission Control Alpha 2.
 
-The homepage introduces the platform, its four-system architecture, the governed mission lifecycle, the human authority model, current evidence, and collaboration paths without implying public product availability.
+The site introduces the governed mission lifecycle, explains the current private R&D state, records evidence, and provides a collaboration path without implying public product availability.
 
-Holding page documentation lives in `docs/holding-page.md`.
+The original holding-page documentation remains in `docs/holding-page.md` as a historical record.
 
 ## Visual Studies
 
@@ -100,21 +100,23 @@ Visual study archive documentation lives in `docs/visual-studies/README.md`.
 
 ## Routes
 
-- `/` contains the public Mythadis platform homepage.
-- `/#platform` explains Operator, Mission Control, MDAP, and Swarm.
-- `/#mission-example` walks through a clearly marked illustrative mission.
+- `/` contains the public Mythadis platform overview.
+- `/why-mythadis/` explains the problem and operating doctrine.
+- `/proof/` records demonstrated evidence and current validation.
+- `/current-state/` states current capabilities, boundaries, and next work.
+- `/field-reports/` publishes records from the work.
 - `/404/` contains the production not-found page.
 - `/visual-studies/` compares the internal visual studies.
-- `/design-system/` shows the approved Luminous Archive design system.
+- `/design-system/` shows the current Mythadis Alpha 2 visual system.
 - `/visual-study-a/` contains The Luminous Archive internal record.
 - `/visual-study-b/` contains The Living Atlas internal record.
 - `/visual-study-c/` contains The Open Signal internal record.
 
-Internal review routes are marked `noindex, nofollow` and are not linked from the public holding page navigation.
+Internal review routes are marked `noindex, nofollow` and are not linked from the public site navigation.
 
-## Approved design direction
+## Current design direction
 
-Visual Study A, **The Luminous Archive**, is the selected Mythadis visual direction. Studies B and C remain archived alternatives for historical comparison.
+Mission Control Alpha 2 is the visual reference for the production website. The site uses the same warm palette, serif/sans relationship, surface hierarchy, interaction color, selection color, and verification language in a more spacious editorial composition. The Luminous Archive, Living Atlas, and Open Signal studies remain archived for historical comparison.
 
 Reusable production primitives live in:
 
@@ -153,8 +155,7 @@ The production component foundation is intentionally small:
 
 ## Project Roadmap
 
-- Keep public platform claims reconciled with accepted application-repository evidence.
-- Preserve explicit authority boundaries and production-readiness caveats.
+- Keep public claims aligned with accepted private-alpha evidence and explicit boundaries.
 - Preserve visual studies as historical design records.
 - Extend production pages only through approved feature tickets.
 - Add repository governance files before broad public contribution.
@@ -169,6 +170,6 @@ Do not commit secrets, preview deployment URLs, generated `dist/` output, `.astr
 
 - Design system: `docs/design-system/luminous-archive.md`
 - Visual studies archive: `docs/visual-studies/README.md`
-- Holding page: `docs/holding-page.md`
+- Original holding page: `docs/holding-page.md`
 - Release process: `docs/releases/mweb-005-production-release.md`
 - Repository health: `docs/repository-health-report.md`

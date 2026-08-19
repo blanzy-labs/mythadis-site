@@ -202,7 +202,7 @@ const getReportStateLabel = (status: string) =>
 	h1,
 	h2,
 	h3 {
-		letter-spacing: 0.08em;
+		letter-spacing: -0.01em;
 	}
 
 	.reports-hero {
@@ -231,7 +231,7 @@ const getReportStateLabel = (status: string) =>
 
 	.hero-line {
 		margin-top: 8px;
-		color: var(--ds-mint);
+		color: var(--ds-blue);
 	}
 
 	.hero-intro {
@@ -288,7 +288,9 @@ const getReportStateLabel = (status: string) =>
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		border: 1px solid var(--ds-line);
-		background: rgba(255, 255, 255, 0.018);
+		border-radius: var(--ds-radius-md);
+		overflow: hidden;
+		background: rgba(247, 239, 228, 0.018);
 	}
 
 	.principle-list article {
@@ -308,7 +310,7 @@ const getReportStateLabel = (status: string) =>
 		margin-bottom: 38px;
 		border: 1px solid var(--ds-line-strong);
 		transform: rotate(45deg);
-		box-shadow: 0 0 18px rgba(66, 217, 255, 0.18);
+		box-shadow: 0 0 18px rgba(255, 122, 53, 0.18);
 	}
 
 	.principle-list h3,
@@ -336,9 +338,10 @@ const getReportStateLabel = (status: string) =>
 	.report-previews > article {
 		padding: 28px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
 		background:
-			linear-gradient(145deg, rgba(66, 217, 255, 0.07), transparent 44%),
-			rgba(6, 16, 21, 0.94);
+			linear-gradient(145deg, rgba(255, 122, 53, 0.07), transparent 44%),
+			rgba(21, 17, 15, 0.94);
 	}
 
 	.empty-state {
@@ -347,6 +350,7 @@ const getReportStateLabel = (status: string) =>
 		gap: 22px;
 		padding: 30px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-md);
 		background: var(--ds-surface);
 	}
 
@@ -407,6 +411,7 @@ const getReportStateLabel = (status: string) =>
 		margin-top: 26px;
 		padding: 8px 10px;
 		border: 1px solid var(--ds-line);
+		border-radius: var(--ds-radius-sm);
 		color: var(--ds-amber);
 		font-family: var(--ds-font-mono);
 		font-size: 0.68rem;
@@ -466,7 +471,7 @@ const getReportStateLabel = (status: string) =>
 		padding: 24px;
 		border-right: 1px solid var(--ds-line);
 		border-bottom: 1px solid var(--ds-line);
-		background: rgba(255, 255, 255, 0.018);
+		background: rgba(247, 239, 228, 0.018);
 	}
 
 	.discipline-section,
@@ -491,7 +496,7 @@ const getReportStateLabel = (status: string) =>
 
 	.evidence-line {
 		margin: 28px 0 0;
-		color: var(--ds-mint);
+		color: var(--ds-blue);
 		font-family: var(--ds-font-display);
 		font-size: clamp(1.75rem, 3vw, 3rem);
 		font-weight: 700;

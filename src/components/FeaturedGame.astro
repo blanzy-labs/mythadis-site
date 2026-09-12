@@ -9,7 +9,7 @@ const { game, id = "games" } = Astro.props;
     <div><p class="studio-label">{game.feature?.eyebrow}</p><h2 id="ember-vault-title">{game.title}</h2></div>
     <div class="featured-game__details"><p>{game.description}</p><p class="development-status">{game.status}</p></div>
   </div>
-  {game.keyArt && <Picture src={game.keyArt} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480,768,1200,1536]} sizes="(min-width: 1340px) 1220px, 92vw" quality={85} alt="Three adventurers approach the glowing entrance of Ember Vault, a treasure-filled stronghold built into a cliffside." loading="lazy" decoding="async" />}
+  {game.keyArt && <div class="ember-vault-art"><div class="ember-vault-art__scene"><Picture src={game.keyArt} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480,768,1200,1536]} sizes="(min-width: 1340px) 1220px, 92vw" quality={85} alt="Three adventurers approach the glowing entrance of Ember Vault, a treasure-filled stronghold built into a cliffside." loading="lazy" decoding="async" /></div></div>}
 </section>
 
 <style>
@@ -21,5 +21,71 @@ const { game, id = "games" } = Astro.props;
   .development-status::before { content:""; width:.35rem; height:.35rem; border-radius:50%; background:var(--color-gold); }
   .featured-game :global(picture) { display:block; }
   .featured-game :global(img) { display:block; width:100%; height:auto; }
+  /* Keep the source image sharp. Only decorative perimeter layers are blurred. */
+  .ember-vault-art { position:relative; isolation:isolate; }
+  .ember-vault-art::before {
+    content:"";
+    position:absolute;
+    inset:-3% -1%;
+    z-index:-1;
+    pointer-events:none;
+    background:radial-gradient(ellipse at 58% 52%,rgb(5 5 6 / 44%) 20%,rgb(5 5 6 / 24%) 57%,transparent 74%);
+  }
+  .ember-vault-art__scene {
+    --rim-top:.96;
+    --rim-side:.98;
+    --rim-bottom:1;
+    --art-feather:
+      radial-gradient(ellipse 78% 82% at 62% 46%,#000 40%,rgb(0 0 0 / 96%) 58%,rgb(0 0 0 / 65%) 76%,transparent 100%),
+      linear-gradient(90deg,transparent,#000 18%,#000 92%,transparent),
+      linear-gradient(180deg,transparent,#000 15%,#000 83%,rgb(0 0 0 / 62%) 92%,transparent);
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+  }
+  .ember-vault-art__scene::before, .ember-vault-art__scene::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .ember-vault-art__scene::before {
+    z-index:1;
+    background:
+      radial-gradient(ellipse 24% 38% at 1% 28%,rgb(7 8 9 / 68%),transparent 100%),
+      radial-gradient(ellipse 35% 26% at 19% 100%,rgb(7 8 9 / 72%),transparent 100%),
+      radial-gradient(ellipse 17% 29% at 100% 58%,rgb(7 8 9 / 52%),transparent 100%);
+    filter:blur(12px);
+  }
+  .ember-vault-art__scene::after {
+    z-index:2;
+    background:
+      linear-gradient(180deg,rgb(7 8 9 / var(--rim-top)),transparent 18%,transparent 78%,rgb(7 8 9 / var(--rim-bottom))),
+      linear-gradient(90deg,rgb(7 8 9 / var(--rim-side)),transparent 24%,transparent 90%,rgb(7 8 9 / var(--rim-side)));
+  }
+  /* Unsupported masking retains the visible picture and dark overlay fallback. */
+  @supports (mask-composite:intersect) or (-webkit-mask-composite:source-in) {
+    .ember-vault-art__scene {
+      --rim-top:.42;
+      --rim-side:.58;
+      --rim-bottom:.78;
+      -webkit-mask-image:var(--art-feather);
+      mask-image:var(--art-feather);
+      -webkit-mask-composite:source-in;
+      mask-composite:intersect;
+      -webkit-mask-repeat:no-repeat;
+      mask-repeat:no-repeat;
+    }
+  }
+  @media(max-width:43.75rem) {
+    .ember-vault-art__scene {
+      --art-feather:
+        radial-gradient(ellipse 90% 96% at 60% 46%,#000 53%,rgb(0 0 0 / 92%) 70%,transparent 100%),
+        linear-gradient(90deg,transparent,#000 12%,#000 96%,transparent),
+        linear-gradient(180deg,transparent,#000 12%,#000 87%,rgb(0 0 0 / 72%) 94%,transparent);
+    }
+    .ember-vault-art__scene::before { opacity:.65; filter:blur(6px); }
+    .ember-vault-art__scene::after { opacity:.75; }
+  }
   @media(min-width:64rem) { .featured-game__heading { grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:2.5rem; } .featured-game__details { justify-self:end; } }
 </style>

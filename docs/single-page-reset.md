@@ -20,6 +20,8 @@ The texture is decorative CSS, applied at 32% opacity with a smaller mobile tile
 
 ## Validation and handoff
 
+The subsequent [MYTH-WEB-RESET-002 artwork treatment](ember-vault-atmosphere.md) adds CSS edge feathering and dark perimeter layers around the unchanged Ember Vault image.
+
 Install, type check, and static build are required. Review `/` at 360, 390, 430, 768, 1024, 1440, and 1920px, including menu activation, Escape/focus restoration, section navigation, visible focus, reduced motion, image loading, and horizontal overflow. Check `/review/design-system/` and `/games/ember-vault/` for regressions. The lockup source must remain unchanged from `f0e90a10fd96c2fa9747ba1ca527ca3823e6fb4b`.
 
 Stop for founder review of the single-page site with its new stone surface. Do not begin another slice automatically.

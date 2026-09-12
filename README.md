@@ -4,7 +4,7 @@ The public website for the Mythadis independent game studio.
 
 **MYTHADIS — Games for Worlds Unbound**
 
-`rebuild/game-studio-v1` contains the approved MYTH-WEB-003 header and hero plus the MYTH-WEB-004 Ember Vault feature at `/`, built on the MYTH-WEB-002 gaming design system. The homepage uses temporary CSS atmosphere pending approved artwork. Evaluate the reusable foundation at `/review/design-system/`; it remains an internal, noindex review route.
+`rebuild/game-studio-v1` contains the MYTH-WEB-003R recovered header and world-first hero plus the MYTH-WEB-004 Ember Vault feature at `/`, built on the MYTH-WEB-002 gaming design system. The hero uses an original temporary SVG landscape pending approved artwork and founder/design review. Evaluate the reusable foundation at `/review/design-system/`; it remains an internal, noindex review route.
 
 ## Stack
 
@@ -43,7 +43,8 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 
 - `src/pages/index.astro`: header, hero, featured Ember Vault, and a future catalog insertion point at `/`.
 - `src/components/SiteHeader.astro`: production header and accessible mobile disclosure navigation.
-- `src/components/Hero.astro`: approved hero copy, CSS atmosphere, and optional responsive local artwork.
+- `src/components/Hero.astro`: approved hero copy, layered environment, and optional responsive local artwork.
+- `src/components/HeroWorld.astro`: original temporary fortress landscape, replaced when final artwork is supplied.
 - `src/components/FeaturedGame.astro`: cinematic game feature driven by centralized game data.
 - `src/pages/games/ember-vault.astro`: minimal, noindex game-page placeholder with shared navigation.
 - `src/pages/404.astro`: neutral not-found page.
@@ -59,7 +60,7 @@ Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Dept
 
 ## Design governance
 
-Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-003 applies that foundation to the header and hero. Final artwork and subsequent homepage sections remain deferred. See `AGENTS.md`, [the design-system guide](docs/design-system.md), [the header and hero guide](docs/header-hero.md), and [the featured-game guide](docs/featured-game.md).
+Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-003R restores the fantasy identity of the header and hero. Final artwork and subsequent homepage sections remain deferred. See `AGENTS.md`, [the design-system guide](docs/design-system.md), [the header and hero guide](docs/header-hero.md), and [the featured-game guide](docs/featured-game.md).
 
 ## Legacy archive
 
@@ -73,4 +74,4 @@ Its final production state is preserved at:
 
 Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-After founder/design review of Ember Vault, the next recommended slice is **MYTH-WEB-005 — Realms of Mythadis Multi-Game Catalog**. Do not begin it automatically.
+The next action is **founder/design review of MYTH-WEB-003R**. Do not continue another slice until the recovered first screen is approved.

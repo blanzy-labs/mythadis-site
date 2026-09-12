@@ -39,11 +39,11 @@ Use `.container`, `.container--reading`, `.container--wide`, and `.full-bleed` f
 
 | Component | Main props / behavior |
 | --- | --- |
-| `BrandLockup` | `variant`: default, compact, hero. Always retains the approved name and tagline as text. |
+| `BrandLockup` | `variant`: default, compact, hero, sigil. Always retains the approved name and tagline as text. |
 | `MythadisMark` | `size`: 16, 24, 48. Decorative by default; pass `label` only when the SVG conveys information. |
 | `RuneDivider` | `size`: short, standard, wide. Decorative and hidden from assistive technology. |
 | `SectionHeading` | `eyebrow`, `title`, `description`, `alignment`: start or center; `level`: h1/h2/h3; optional heading `id`. |
-| `ButtonLink` | Required `href`; `variant`: primary, secondary, text; optional `arrow`, `disabled`, and standard anchor attributes. Disabled examples omit href and are not keyboard stops. |
+| `ButtonLink` | Required `href`; `variant`: primary, secondary, text, realm; optional `arrow`, `disabled`, and standard anchor attributes. Disabled examples omit href and are not keyboard stops. |
 | `GameStatus` | Typed status: In Development, Concept, Coming Soon, Released. Plain metadata with a short rule. |
 | `GameCard` | Game title, tagline, description, status, optional artwork, theme and href, featured flag; `variant`: standard/wide/featured; `headingLevel`: h2/h3/h4. |
 | `MythicFrame` | Slot content; `tone`: quiet or raised. Single fine border and restrained corner detail. |
@@ -76,3 +76,7 @@ Implementation validation on 2026-09-12:
 - Visual self-review: mythical and modern; no enterprise or generic gaming-template treatment; restrained ornament, prominent game titles, readable body copy, and distinct featured Ember Vault treatment. Founder/design approval remains the next step.
 
 Stop after this slice is pushed for founder/design review. MYTH-WEB-003 — Production Header and Hero requires a separate instruction.
+
+## MYTH-WEB-003R additions
+
+The production `sigil` lockup and clipped-metal `realm` CTA are additive variants. Both have specimens on the review route, including all five CTA states. Previous variants remain intact. See `header-hero.md` for the recovered composition and final-art replacement contract. Founder/design review of the recovered first screen is required before another slice.

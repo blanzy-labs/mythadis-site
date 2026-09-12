@@ -2,11 +2,11 @@
 import type { HTMLAttributes } from "astro/types";
 interface Props extends Omit<HTMLAttributes<"a">, "href"> {
 	href: string;
-	variant?: "primary" | "secondary" | "text";
+	variant?: "primary" | "secondary" | "text" | "realm";
 	disabled?: boolean;
 	arrow?: boolean;
 }
-const { href, variant = "primary", disabled = false, arrow = variant === "text", class: className, ...attributes } = Astro.props;
+const { href, variant = "primary", disabled = false, arrow = variant === "text" || variant === "realm", class: className, ...attributes } = Astro.props;
 const Tag = disabled ? "span" : "a";
 ---
 
@@ -64,4 +64,16 @@ const Tag = disabled ? "span" : "a";
 	.button-link:not([aria-disabled]):is(:hover, [data-review-state="hover"]) .button-link__arrow { transform: translateX(3px); }
 	.button-link[aria-disabled] { border-color: var(--border-subtle); color: var(--color-mist); background: transparent; cursor: not-allowed; }
 	.button-link--text[aria-disabled] { border-color: transparent; }
+	.button-link--realm { position: relative; isolation: isolate; border: 0; border-radius: 0; min-height: 3.25rem; padding-inline: var(--space-6); background: transparent; letter-spacing: 0.13em; }
+	.button-link--realm::before, .button-link--realm::after { content: ""; position: absolute; z-index: -1; inset: 0; clip-path: polygon(8px 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 0 8px); }
+	.button-link--realm::before { background: linear-gradient(125deg, var(--color-gold), var(--color-bronze) 42%, var(--color-gold) 65%, var(--color-ember)); }
+	.button-link--realm::after { inset: 1px; background: linear-gradient(110deg, rgb(169 134 85 / 12%), transparent 65%), var(--color-void); }
+	.button-link--realm .button-link__arrow { color: var(--color-gold); font-size: 1.125rem; }
+	.button-link--realm:not([aria-disabled]):is(:hover, [data-review-state="hover"]) { background: transparent; }
+	.button-link--realm:not([aria-disabled]):is(:hover, [data-review-state="hover"])::before { background: var(--color-gold); }
+	.button-link--realm:not([aria-disabled]):is(:hover, [data-review-state="hover"])::after { background: linear-gradient(110deg, rgb(169 134 85 / 16%), transparent), var(--color-obsidian); }
+	.button-link--realm:not([aria-disabled]):is(:active, [data-review-state="active"])::after { background: var(--color-stone); }
+	.button-link--realm[aria-disabled]::before { background: var(--border-subtle); }
+	.button-link--realm[aria-disabled]::after { background: var(--color-void); }
+	.button-link--realm[aria-disabled] .button-link__arrow { color: inherit; }
 </style>

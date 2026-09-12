@@ -1,11 +1,13 @@
 ---
+import MythadisMark from "./MythadisMark.astro";
 interface Props {
-	variant?: "default" | "compact" | "hero";
+	variant?: "default" | "compact" | "hero" | "sigil";
 }
 const { variant = "default" } = Astro.props;
 ---
 
 <div class:list={["brand-lockup", `brand-lockup--${variant}`]}>
+	{variant === "sigil" && <span class="brand-lockup__seal" aria-hidden="true"><MythadisMark size={48} /></span>}
 	<p class="brand-lockup__name">MYTHADIS</p>
 	<p class="brand-lockup__tagline">Games for Worlds Unbound</p>
 </div>
@@ -33,4 +35,26 @@ const { variant = "default" } = Astro.props;
 	.brand-lockup--compact { gap: var(--space-2); }
 	.brand-lockup--compact .brand-lockup__name { font-size: 1.375rem; }
 	.brand-lockup--compact .brand-lockup__tagline { letter-spacing: 0; }
+	.brand-lockup--sigil { position: relative; isolation: isolate; gap: var(--space-2); padding-block: var(--space-3); }
+	.brand-lockup--sigil .brand-lockup__name {
+		font-size: clamp(1.85rem, 7.8vw, 2.3rem);
+		letter-spacing: 0.025em;
+		color: var(--color-parchment);
+		background: linear-gradient(180deg, var(--color-parchment) 20%, #bda17a 57%, var(--color-parchment) 76%, var(--color-gold));
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-shadow: 0 2px 20px rgb(0 0 0 / 35%);
+	}
+	.brand-lockup--sigil .brand-lockup__tagline { max-width: 18em; font-size: 0.75rem; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; }
+	.brand-lockup__seal { position: absolute; z-index: -1; display: grid; place-items: center; width: 5.5rem; height: 5.5rem; inset: -0.2rem auto auto 34%; color: var(--color-gold); opacity: 0.5; }
+	.brand-lockup__seal::before, .brand-lockup__seal::after { content: ""; position: absolute; inset: 12%; border: var(--line-thin) solid currentColor; border-radius: 50%; }
+	.brand-lockup__seal::after { inset: 0 49%; border: 0; border-radius: 0; background: currentColor; transform: rotate(25deg); }
+	.brand-lockup__seal :global(svg) { width: 100%; height: 100%; stroke-width: 0.5; }
+	@media (min-width: 64rem) {
+		.brand-lockup--sigil { gap: var(--space-3); }
+		.brand-lockup--sigil .brand-lockup__name { font-size: clamp(3rem, 4.8vw, 5.25rem); }
+		.brand-lockup--sigil .brand-lockup__tagline { max-width: none; font-size: 0.75rem; letter-spacing: 0.18em; text-align: right; }
+		.brand-lockup__seal { width: clamp(7rem, 11vw, 10rem); height: clamp(7rem, 11vw, 10rem); inset: -1rem auto auto 34%; }
+	}
+	@media (forced-colors: active) { .brand-lockup--sigil .brand-lockup__name { background: none; -webkit-text-fill-color: currentColor; } }
 </style>

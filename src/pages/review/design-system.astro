@@ -23,7 +23,7 @@ const palette = [
 	["Ember", "ember"], ["Ember Bright", "ember-bright"], ["Cold Steel", "steel"],
 ];
 const statuses: Status[] = ["In Development", "Concept", "Coming Soon", "Released"];
-const variants = ["primary", "secondary", "text"] as const;
+const variants = ["primary", "secondary", "text", "realm"] as const;
 const states = ["default", "hover", "focus", "active", "disabled"] as const;
 const [emberVault, ...conceptGames] = games;
 ---
@@ -57,6 +57,7 @@ const [emberVault, ...conceptGames] = games;
 					<div class="specimen"><p class="specimen-label">Compact lockup</p><BrandLockup variant="compact" /></div>
 					<div class="specimen"><p class="specimen-label">The mark · 16 / 24 / 48</p><div class="mark-sizes"><MythadisMark size={16} label="Mythadis geometric mark, 16 pixels" /><MythadisMark size={24} label="Mythadis geometric mark, 24 pixels" /><MythadisMark size={48} label="Mythadis geometric mark, 48 pixels" /></div></div>
 				</div>
+				<div class="sigil-review"><p class="specimen-label">Production sigil lockup · MYTH-WEB-003R</p><BrandLockup variant="sigil" /></div>
 			</section>
 
 			<section id="typography" class="review-section" aria-labelledby="typography-title">
@@ -128,6 +129,7 @@ const [emberVault, ...conceptGames] = games;
 </BaseLayout>
 
 <style>
+	.sigil-review { max-width: 34rem; margin-top: var(--space-12); }
 	.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 	.review-topline { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-6); border-bottom: var(--line-thin) solid var(--border-subtle); color: var(--color-mist); font-size: var(--text-small); }
 	.review-topline span { padding-inline: var(--space-2); }

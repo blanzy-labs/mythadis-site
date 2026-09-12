@@ -1,35 +1,53 @@
-# MYTH-WEB-003 — Header and hero
+# MYTH-WEB-003R — Fantasy identity recovery
 
-At completion of MYTH-WEB-003, the homepage contained `SiteHeader`, `Hero`, and minimal future anchors. That slice was a rebuild-branch implementation for visual approval, not a production release. It did not implement a featured game, game grid, studio content, journal, or footer.
+This remediation replaces the original MYTH-WEB-003 gradient-led composition. The header and hero are awaiting founder/design review on `rebuild/game-studio-v1`. The already-committed MYTH-WEB-004 feature, copy, data, and game route are preserved; no catalog or additional homepage section was added.
 
-## Composition
+## Reference and composition
 
-The absolute header uses the existing default brand lockup at 1024px and wider, and its compact variant below that breakpoint. A faint bronze rule separates it from the hero. The hero uses the established editorial type, exact approved copy, one geometric mark, and two actions. Desktop leaves the right side open; mobile stacks the actions and moves atmospheric light beneath the copy. CSS gradients supply charcoal, mist, ember light, and a dark transition into the next marker.
+Both supplied references were inspected. The primary establishes brand prominence, a world-dominant environment, cold stone and mist, restrained bronze, and warm distant light. The secondary establishes the future studio/multiple-world relationship only. Local copies live in `_design-reference/`; the original filenames and README also remain in the user-requested `design-reference/`. Both directories are excluded through `.git/info/exclude`, with no reference imagery shipped or committed.
+
+`BrandLockup` adds a `sigil` variant with a larger real-text wordmark, the existing Mythadis mark, and a restrained bronze seal. The integrated absolute header keeps navigation visually subordinate. Existing lockup variants remain available.
+
+`HeroWorld` is an original, temporary inline SVG composition: layered mountains, distant ruins, a fortress above a deep valley, a broken bridge, fog, warm windows, rocky foreground, and a small traveler. There are no downloaded images, reference crops, filters, animation, canvas, or new dependencies. Its visibly faceted illustration is a staging composition, not approved final game art.
+
+Desktop uses a roughly 94vh environment with text shaded into the left side. The world occupies approximately 60–65% of perceived composition. Mobile gives the environment its own substantial upper area and fades into the copy below. The studio label, seal, and lower waymark provide limited ornament. The exact approved headline, description, brand, tagline, and CTA wording remain HTML text.
+
+The new `ButtonLink` `realm` variant uses a dark surface and thin clipped metallic edge. The outer link is not clipped, preserving its keyboard outline. Other button variants remain unchanged for the committed feature and existing specimens.
 
 ## Navigation
 
-- Games and Enter the Realm lead to `/#games`, the minimal Our Worlds marker.
-- Studio leads to `/#studio`, a minimal Coming soon marker.
-- Journal is visibly marked Coming soon and exposed as an unavailable link without an href or keyboard stop. There is no journal route yet.
-- The hero links to `#games` and `#studio` once each.
+Games and Enter the Realm lead to `/#games`, the committed Ember Vault feature. Studio leads to the existing `/#studio` Coming soon marker. Journal remains an unavailable, visibly labeled link without a keyboard stop. The hero links to `#games` and `#studio`.
 
-The mobile menu is a full-width native `details` disclosure, not a modal. Enter opens it; Tab follows its links and can leave normally. A small isolated script synchronizes `aria-expanded`, closes on Escape with focus restored to the summary, closes after navigation or outside interaction, and resets at the desktop breakpoint. Without JavaScript the native disclosure and links remain usable. Hidden navigation has no keyboard stops. The page also provides a skip link and focusable fragment destinations.
+The mobile menu remains a native `details` disclosure. Its existing isolated script synchronizes `aria-expanded`, closes on Escape with focus restored to the summary, closes after navigation or outside interaction, and resets at the desktop breakpoint. Without JavaScript the disclosure and links remain usable. The page retains its skip link and focusable fragment destinations.
 
-## Future artwork
+## Replacing temporary artwork
 
-`Hero` accepts an optional `artwork` object with local `src`, intrinsic `width` and `height`, optional desktop `position` and `mobilePosition`, and optional `sources`. Each source has `srcset`, `type` (`image/avif`, `image/webp`, or `image/jpeg`), and optional `media` for art direction. Order mobile sources before desktop sources, and preferred formats before fallbacks. A local JPG may be the fallback `src`.
+Pass an `artwork` object to `Hero`; the picture automatically replaces `HeroWorld`. Supply intrinsic dimensions for the final fallback asset, responsive sources, and crop positions. For example, after the approved files exist:
 
-The existing picture structure uses `object-fit: cover`, responsive object positions, eager loading, and high fetch priority. The decorative image has empty alternative text and is hidden from accessibility APIs; all required meaning remains in HTML. No image is currently supplied or requested, and no remote assets or video load. Review contrast and cropping again when approved artwork is integrated.
+```astro
+<Hero artwork={{
+  src: "/brand/hero/mythadis-hero.webp",
+  width: 2400,
+  height: 1600,
+  position: "68% 45%",
+  mobilePosition: "72% 45%",
+  sources: [
+    { srcset: "/brand/hero/mythadis-hero-mobile.avif", type: "image/avif", media: "(max-width: 1023px)" },
+    { srcset: "/brand/hero/mythadis-hero-mobile.webp", type: "image/webp", media: "(max-width: 1023px)" },
+    { srcset: "/brand/hero/mythadis-hero.avif", type: "image/avif" },
+    { srcset: "/brand/hero/mythadis-hero.webp", type: "image/webp" },
+  ],
+}} />
+```
 
-## Validation — 12 September 2026
+Place these under `public/brand/hero/`. The example dimensions must match the supplied image. No absent image is currently requested. The picture uses `object-fit: cover`, separate desktop/mobile object positions, eager loading, high fetch priority, and an empty alt attribute. All decoration is hidden from accessibility APIs. Recheck contrast and crops when final artwork arrives.
 
-- `corepack pnpm install`, `corepack pnpm check`, and `corepack pnpm build` passed; Astro reported zero errors, warnings, or hints. Corepack selects the repository's pinned pnpm where the system launcher fails.
-- Chrome layout checks covered 360, 390, 430, 768, 1024, 1440, and 1920px. No horizontal page overflow or header/content collision; one h1, loaded local fonts, and 48px hero action targets at every width.
-- Desktop and mobile visual review passed. The mobile menu was checked open, with visible keyboard focus, disabled Journal skipped, Escape returning focus, and navigation closing at the focusable Games destination. Expanded and collapsed ARIA states were verified.
-- Reduced-motion emulation showed zero running animations and zero CTA transition duration. The existing motion foundation is unchanged.
-- The design-system route was inspected at mobile and desktop widths. Its components, styles, content, and noindex metadata are unchanged.
-- Homepage title and description retain the approved values. No framework or dependency was added; only mobile navigation requires client JavaScript.
+## Review evidence — 12 September 2026
 
-Review captures live outside source at `../mythadis-review/MYTH-WEB-003/`: `myth-web-003-desktop.png` (1440×1000 CSS viewport) and `myth-web-003-mobile.png` (390×844 CSS viewport). Chrome captured them at 2× pixel density. They are review evidence, not committed assets.
+Responsive checks cover 360, 390, 430, 768, 1024, 1440, and 1920px: no horizontal overflow or brand/navigation collisions, one H1, loaded local fonts, and 52px primary CTA targets. Actual screenshots at 1920×1080, 1440×1000, and 390×844 were reviewed against the primary reference. Captures live outside source in `../mythadis-review/MYTH-WEB-003R/` and are not committed.
 
-The deliberate visual compromise is temporary CSS atmosphere awaiting approved cinematic artwork. Subsequent content and Journal remain pending. The first screen was subsequently approved. MYTH-WEB-004 replaces the Games marker with the real Ember Vault feature; the approved header and hero remain unchanged. See `featured-game.md`.
+The fortress, valley, and traveler communicate fictional adventure without relying on the headline. Brand prominence, world dominance, restrained ornament, and the cold/warm palette recover the intended family. The reference's painterly detail, richer lighting, and material texture remain a known compromise pending approved production artwork.
+
+Keyboard review verified Enter, Tab order with unavailable Journal skipped, Escape returning focus, and navigation closing at the Games destination. Reduced-motion emulation removed CTA transitions; visible focus was reviewed on the new variant. The homepage, review route, and shared game-route header were inspected without browser errors. `corepack pnpm check` passed with zero errors, warnings, or hints; `corepack pnpm build` generated all four routes. Feature sources and the mobile-menu script remain byte-for-byte unchanged.
+
+Stop for founder/design review of the recovered first screen. Do not begin another slice automatically.

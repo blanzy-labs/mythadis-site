@@ -1,175 +1,69 @@
-# Mythadis Site
+# Mythadis
 
-Public Astro site and visual foundation work for Mythadis, maintained by Blanzy Labs.
+The public website for the Mythadis independent game studio.
 
-The production surface is an editorial and evidence-driven public site for the Mythadis private integrated alpha. Its visual system aligns with Mission Control Alpha 2 while avoiding public product-availability claims.
+**MYTHADIS — Games for Worlds Unbound**
+
+`rebuild/game-studio-v1` contains the MYTH-WEB-001 technical baseline: a minimal homepage and centralized game data. Temporary copy and neutral styling prove the new identity; they are not the final visual design.
 
 ## Stack
 
-- Astro
-- TypeScript
-- Static generation
-- pnpm
-- Plain CSS with custom properties
-- Locally bundled font packages
+- Astro and TypeScript with strict checking.
+- pnpm, static generation, and plain Astro components and CSS.
+- Cloudflare Pages-compatible `dist/` output; no server, CMS, or database.
 
-## Local Installation
+## Development
 
-Requirements:
-
-- Node.js `>=22.12.0`
-- pnpm `11.x`
-
-Install dependencies:
+Use Node.js `>=22.12.0` and pnpm `11.12.0`, as pinned in `package.json`.
 
 ```sh
 pnpm install
-```
-
-## Development Commands
-
-```sh
-pnpm dev
-pnpm dev:studies
-pnpm dev:studies:host
+pnpm dev --background
+pnpm exec astro dev status
+pnpm exec astro dev logs
 pnpm check
 pnpm build
 pnpm preview
+pnpm exec astro dev stop
 ```
 
-Per repository workflow, start the Astro dev server in background mode when a persistent local server is needed:
+The development server normally serves `http://localhost:4321`. Start it in background mode (`astro dev --background`). `pnpm preview` serves the generated build for local inspection.
 
-```sh
-astro dev --background
-astro dev status
-astro dev logs
-astro dev stop
-```
+If a system pnpm launcher cannot select the pinned version, use `corepack pnpm` in place of `pnpm`. `pnpm-workspace.yaml` exposes Astro's transitive `cookie` package at the project root because Astro 7's prerender output imports it there; this prevents resolution to an unrelated parent installation.
 
-## Build And Deployment
+## Deployment and production safety
 
-Build command:
+Cloudflare Pages uses the repository root, installs dependencies with pnpm, runs `pnpm build`, and publishes `dist`. Astro uses static generation; no runtime adapter is required. A generated `404.html` provides a not-found page for retired and unknown routes.
 
-```sh
-pnpm build
-```
+Production must remain on `main`, serving the existing production website during the rebuild. Work only on feature/rebuild branches. Pushing `rebuild/game-studio-v1` may create a Cloudflare preview according to the existing project settings; it does not authorize a production release. Do not change Cloudflare settings or merge into `main` without an explicitly approved production-release slice.
 
-Output directory:
+Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `dist/`.
 
-```text
-dist
-```
+## Source structure
 
-The site is intended for Cloudflare Pages as a static Astro build from the repository root. Cloudflare should install with pnpm, run `pnpm build`, and publish `dist`.
+- `src/pages/index.astro`: minimal game-studio homepage at `/`.
+- `src/pages/404.astro`: neutral not-found page.
+- `src/layouts/BaseLayout.astro`: shared HTML document and metadata.
+- `src/styles/global.css`: temporary neutral CSS using system fonts.
+- `src/data/games.ts`: typed game records with slug, title, tagline, description, status, featured flag, and optional artwork.
+- `public/robots.txt`: static crawler instructions.
 
-## GitHub Workflow
+Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Game taglines and descriptions are blank pending approved copy; artwork is optional and omitted. Add reusable components and asset directories only when needed. Individual game pages are deferred.
 
-Development should happen on feature branches, then move through review before production deployment.
+## Design governance
 
-Approved workflow:
+Implement approved specifications from the design architect. Preserve the approved brand name and tagline. Final typography, artwork, color, navigation, and other visual decisions belong to later slices; see `AGENTS.md`.
 
-Founder
-↓
-ChatGPT
-↓
-Codex
-↓
-Cloudflare
+## Legacy archive
 
-Do not work directly on the production branch. Keep feature work scoped, preserve approved branding and copy unless a ticket explicitly changes them, and record release-specific validation in `docs/releases/`.
+The previous Mythadis software/platform website was retired on 2026-09-12.
 
-## Public Platform Site
+Its final production state is preserved at:
 
-MWEB-010 expands the original holding page into the public Mythadis platform site. MWEB-011 aligns that narrative with the current private integrated alpha, and MWEB-012 aligns its visual system with Mission Control Alpha 2.
+- Branch: `archive/mythadis-platform-2026-09-12`
+- Annotated tag: `mythadis-platform-final-2026-09-12`
+- Legacy production commit: `3ae7334b7f958f11f3337606b0559cda79c7e427`
 
-The site introduces the governed mission lifecycle, explains the current private R&D state, records evidence, and provides a collaboration path without implying public product availability.
+Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-The original holding-page documentation remains in `docs/holding-page.md` as a historical record.
-
-## Visual Studies
-
-MWEB-003A builds Visual Study A: **The Luminous Archive**.
-
-MWEB-003B builds Visual Study B: **The Living Atlas**.
-
-MWEB-003C builds Visual Study C: **The Open Signal**.
-
-These are controlled review pages for evaluating typography, color, page background, buttons, labels, header and footer primitives, cards, content surfaces, and overall tone. They are not the final production homepage.
-
-Visual study archive documentation lives in `docs/visual-studies/README.md`.
-
-## Routes
-
-- `/` contains the public Mythadis platform overview.
-- `/why-mythadis/` explains the problem and operating doctrine.
-- `/proof/` records demonstrated evidence and current validation.
-- `/current-state/` states current capabilities, boundaries, and next work.
-- `/field-reports/` publishes records from the work.
-- `/404/` contains the production not-found page.
-- `/visual-studies/` compares the internal visual studies.
-- `/design-system/` shows the current Mythadis Alpha 2 visual system.
-- `/visual-study-a/` contains The Luminous Archive internal record.
-- `/visual-study-b/` contains The Living Atlas internal record.
-- `/visual-study-c/` contains The Open Signal internal record.
-
-Internal review routes are marked `noindex, nofollow` and are not linked from the public site navigation.
-
-## Current design direction
-
-Mission Control Alpha 2 is the visual reference for the production website. The site uses the same warm palette, serif/sans relationship, surface hierarchy, interaction color, selection color, and verification language in a more spacious editorial composition. The Luminous Archive, Living Atlas, and Open Signal studies remain archived for historical comparison.
-
-Reusable production primitives live in:
-
-- `src/components/design-system/`
-- `src/layouts/`
-- `src/styles/`
-
-Additional documentation lives in `docs/design-system/luminous-archive.md`.
-
-## Side-by-side review
-
-Run one local server and open the study routes in separate browser windows or tabs:
-
-```sh
-pnpm dev:studies
-```
-
-Default local review URLs:
-
-- `http://localhost:4321/visual-study-a/`
-- `http://localhost:4321/visual-study-b/`
-- `http://localhost:4321/visual-study-c/`
-- `http://localhost:4321/visual-studies/`
-- `http://localhost:4321/design-system/`
-
-Use `pnpm dev:studies:host` when the studies need to be reachable from another device on the local network.
-
-## Design System
-
-The production component foundation is intentionally small:
-
-- `BaseLayout.astro` owns document metadata, favicon links, canonical URLs, and global CSS.
-- `SiteLayout.astro` composes shared header/footer structure for internal pages.
-- `src/components/design-system/` contains the approved reusable primitives.
-- `src/styles/` contains tokens, typography, backgrounds, motion, and utilities.
-
-## Project Roadmap
-
-- Keep public claims aligned with accepted private-alpha evidence and explicit boundaries.
-- Preserve visual studies as historical design records.
-- Extend production pages only through approved feature tickets.
-- Add repository governance files before broad public contribution.
-
-## Contribution Notes
-
-This repository is not yet configured for broad public contribution. Until contribution templates and governance docs are added, proposed changes should be handled through scoped feature branches and founder review.
-
-Do not commit secrets, preview deployment URLs, generated `dist/` output, `.astro/`, or local environment files.
-
-## Documentation Index
-
-- Design system: `docs/design-system/luminous-archive.md`
-- Visual studies archive: `docs/visual-studies/README.md`
-- Original holding page: `docs/holding-page.md`
-- Release process: `docs/releases/mweb-005-production-release.md`
-- Repository health: `docs/repository-health-report.md`
+Next slice: **MYTH-WEB-002 — Mythadis Gaming Design System**.

@@ -1,6 +1,11 @@
 packages:
   - .
 
+# Astro 7's prerender bundle imports cookie from the project root.
+# Expose its installed version rather than an unrelated parent dependency.
+publicHoistPattern:
+  - cookie
+
 allowBuilds:
   esbuild: true
   sharp: true

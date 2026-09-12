@@ -1,0 +1,202 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BrandLockup from "../../components/BrandLockup.astro";
+import MythadisMark from "../../components/MythadisMark.astro";
+import RuneDivider from "../../components/RuneDivider.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ButtonLink from "../../components/ButtonLink.astro";
+import GameStatus from "../../components/GameStatus.astro";
+import GameCard from "../../components/GameCard.astro";
+import MythicFrame from "../../components/MythicFrame.astro";
+import { games, type GameStatus as Status } from "../../data/games";
+import "../../styles/design-system.css";
+
+const sections = [
+	["brand", "Brand"], ["typography", "Typography"], ["palette", "Palette"],
+	["details", "Details"], ["buttons", "Buttons"], ["status", "Status & surfaces"],
+	["cards", "Game cards"], ["composition", "Composition"],
+];
+const palette = [
+	["Mythadis Void", "void"], ["Obsidian", "obsidian"], ["Stone", "stone"],
+	["Slate", "slate"], ["Mist", "mist"], ["Bone", "bone"],
+	["Parchment", "parchment"], ["Antique Gold", "gold"], ["Old Bronze", "bronze"],
+	["Ember", "ember"], ["Ember Bright", "ember-bright"], ["Cold Steel", "steel"],
+];
+const statuses: Status[] = ["In Development", "Concept", "Coming Soon", "Released"];
+const variants = ["primary", "secondary", "text"] as const;
+const states = ["default", "hover", "focus", "active", "disabled"] as const;
+const [emberVault, ...conceptGames] = games;
+---
+
+<BaseLayout theme="gaming" noindex title="Design system review — MYTHADIS" description="Internal review of the Mythadis gaming typography, palette, components, and composition.">
+	<a class="skip-link" href="#review-content">Skip to design specimens</a>
+	<main id="review-content">
+		<div class="review-topline container container--wide">
+			<p class="eyebrow">MYTH-WEB-002</p>
+			<p>Internal design review <span aria-hidden="true">/</span> 12 September 2026</p>
+		</div>
+
+		<section class="review-intro container" aria-labelledby="review-title">
+			<h1 id="review-title" class="visually-hidden">Mythadis gaming design system</h1>
+			<MythadisMark size={24} />
+			<BrandLockup variant="hero" />
+			<RuneDivider size="short" />
+			<p class="review-intro__statement type-editorial">Ancient worlds.<br /><em>A modern studio.</em></p>
+			<p class="review-intro__note">A foundation for worlds to come. Typography, atmosphere, and considered detail — ready for design review.</p>
+		</section>
+
+		<nav class="review-index container" aria-label="Design review sections">
+			{sections.map(([id, label], index) => <a href={`#${id}`}><span>{String(index + 1).padStart(2, "0")}</span>{label}</a>)}
+		</nav>
+
+		<div class="container">
+			<section id="brand" class="review-section" aria-labelledby="brand-title">
+				<SectionHeading eyebrow="01 / Brand" title="A name, without a crest." id="brand-title" description="Cinzel Decorative carries the identity. The tagline stays quiet, clear, and consistent." />
+				<div class="brand-specimens">
+					<div class="specimen"><p class="specimen-label">Default lockup</p><BrandLockup /></div>
+					<div class="specimen"><p class="specimen-label">Compact lockup</p><BrandLockup variant="compact" /></div>
+					<div class="specimen"><p class="specimen-label">The mark · 16 / 24 / 48</p><div class="mark-sizes"><MythadisMark size={16} label="Mythadis geometric mark, 16 pixels" /><MythadisMark size={24} label="Mythadis geometric mark, 24 pixels" /><MythadisMark size={48} label="Mythadis geometric mark, 48 pixels" /></div></div>
+				</div>
+			</section>
+
+			<section id="typography" class="review-section" aria-labelledby="typography-title">
+				<SectionHeading eyebrow="02 / Typography" title="Myth in the headlines. Clarity everywhere else." id="typography-title" />
+				<div class="type-specimens">
+					<div class="type-specimen"><p class="specimen-label">Display / Cinzel Decorative · 400</p><p class="type-display">MYTHADIS</p></div>
+					<div class="type-specimen"><p class="specimen-label">Hero / Cormorant Garamond · 500</p><p class="type-editorial type-hero">Beyond the edge<br /><em>of the known.</em></p></div>
+					<div class="type-specimen"><p class="specimen-label">Section / Cormorant Garamond · 500</p><SectionHeading eyebrow="Our worlds" title="Every door leads somewhere." level="h3" description="An editorial title paired with a small UI label and readable supporting copy." /></div>
+					<div class="type-specimen"><p class="specimen-label">Game / Cormorant Garamond · 500</p><p class="type-editorial type-game">{emberVault.title}</p></div>
+					<div class="type-specimen type-specimen--body"><p class="specimen-label">Body / Manrope · 400 & 600</p><div><p class="type-large">Mythadis is an independent game studio building strange worlds, dangerous places, and games made to be explored.</p><p>Body copy has room to breathe. Long passages use a restrained reading width, comfortable line spacing, and <strong>clear emphasis</strong>. Fantasy belongs in the display moments; reading should feel effortless.</p><p class="eyebrow type-muted">World 01 / In Development</p></div></div>
+				</div>
+			</section>
+
+			<section id="palette" class="review-section" aria-labelledby="palette-title">
+				<SectionHeading eyebrow="03 / Palette" title="Stone, metal, and a little fire." id="palette-title" description="Charcoal and slate form the ground. Bone and parchment carry the text. Bronze marks the edges; ember draws the eye." />
+				<ul class="palette-grid">
+					{palette.map(([name, token]) => <li><div class="palette-swatch" style={`--swatch: var(--color-${token})`} aria-hidden="true"></div><p>{name}</p><code>--color-{token}</code></li>)}
+				</ul>
+				<p class="review-note">Mist is secondary text on the darkest surfaces. Bronze, ember, and steel are detail colors, not small-text colors. Use bone or parchment for essential copy.</p>
+			</section>
+
+			<section id="details" class="review-section" aria-labelledby="details-title">
+				<SectionHeading eyebrow="04 / Details" title="A trace of the ancient." id="details-title" description="One geometric mark. A thin bronze rule. Ornament earns its place through restraint." />
+				<div class="divider-specimens">
+					<div><p class="specimen-label">Short</p><RuneDivider size="short" /></div>
+					<div><p class="specimen-label">Standard</p><RuneDivider /></div>
+					<div><p class="specimen-label">Wide</p><RuneDivider size="wide" /></div>
+				</div>
+				<div class="centered-heading-specimen"><SectionHeading eyebrow="Centered heading" title="Leave room for the unknown." alignment="center" level="h3" description="A centered alternative for a deliberate pause between worlds." /></div>
+			</section>
+
+			<section id="buttons" class="review-section" aria-labelledby="buttons-title">
+				<SectionHeading eyebrow="05 / Calls to action" title="An invitation to cross the threshold." id="buttons-title" description="Framed, border-driven, and editorial variants. Hover brings a little light; focus remains unmistakable." />
+				<div class="button-specimens">
+					{variants.map((variant) => <div class="button-variant"><h3 class="eyebrow">{variant}</h3><div class="button-state-grid">{states.map((state) => <div class="button-state"><p class="specimen-label">{state}</p><ButtonLink href="#button-target" variant={variant} disabled={state === "disabled"} data-review-state={state} aria-label={`${variant} link, ${state} specimen`}>{variant === "primary" ? "Explore our worlds" : variant === "secondary" ? "Discover Mythadis" : "Enter the vault"}</ButtonLink></div>)}</div></div>)}
+				</div>
+				<p class="review-note" id="button-target" tabindex="-1">Specimen destination. These links stay inside this review. Hover, focus, and active appearances are displayed explicitly above; the links also respond to actual pointer and keyboard input. Disabled examples are non-interactive text.</p>
+			</section>
+
+			<section id="status" class="review-section" aria-labelledby="status-title">
+				<SectionHeading eyebrow="06 / Status & surfaces" title="Information, quietly held." id="status-title" description="Status is a line of metadata. Frames add structure only where a surface needs definition." />
+				<div class="status-specimens">{statuses.map((status) => <GameStatus status={status} />)}</div>
+				<div class="frame-specimens">
+					<MythicFrame><div class="frame-content"><p class="eyebrow">Quiet surface</p><h3 class="type-game">Room for a story.</h3><p>A fine bronze edge and a single corner detail. The content remains the point of attention.</p><RuneDivider size="short" /></div></MythicFrame>
+					<MythicFrame tone="raised"><div class="frame-content"><p class="eyebrow">Raised surface</p><h3 class="type-game">A layer of stone.</h3><p>Used sparingly when an editorial passage needs separation from the surrounding page.</p><ButtonLink href="#button-target" variant="text">View the specimen</ButtonLink></div></MythicFrame>
+				</div>
+				<dl class="system-notes"><div><dt>Reading / standard / wide</dt><dd>48rem / 76rem / 96rem</dd></div><div><dt>Fast / standard / slow / cinematic</dt><dd>150ms / 280ms / 600ms / 1200ms</dd></div><div><dt>Reduced motion</dt><dd>No decorative animation, transitions, image scale, or arrow movement.</dd></div></dl>
+			</section>
+
+			<section id="cards" class="review-section" aria-labelledby="cards-title">
+				<SectionHeading eyebrow="07 / Game cards" title="The world comes first." id="cards-title" description="A cinematic area for artwork, a strong game title, and a quiet status. These neutral surfaces await approved art and world copy." />
+				<div class="card-feature-specimen"><p class="specimen-label">Featured / Ember Vault</p><GameCard {...emberVault} href="#game-card-notes" variant="featured" /></div>
+				<div class="card-grid">{conceptGames.map((game) => <div><p class="specimen-label">Standard / {game.theme}</p><GameCard {...game} href="#game-card-notes" /></div>)}</div>
+				<div class="wide-card-specimen"><p class="specimen-label">Wide / the same game data, an editorial arrangement</p><GameCard {...conceptGames[2]} href="#game-card-notes" variant="wide" /></div>
+				<p id="game-card-notes" class="review-note" tabindex="-1">Card links lead here for review; game pages are not part of this slice. All five records come from the shared game data. Theme hooks are present for future game identity; no final artwork, world copy, or separate game palettes are implied.</p>
+			</section>
+		</div>
+
+		<section id="composition" class="composition full-bleed" aria-labelledby="composition-title">
+			<div class="container container--wide">
+				<div class="composition-caption"><p class="eyebrow">08 / Composition study</p><p>Component arrangement only · not a homepage proposal</p></div>
+				<div class="composition-heading"><BrandLockup variant="compact" /><SectionHeading eyebrow="Our worlds" title="Every door leads somewhere." id="composition-title" /></div>
+				<GameCard {...emberVault} variant="featured" href="#cards" />
+				<div class="composition-worlds">{conceptGames.slice(0, 2).map((game) => <GameCard {...game} href="#cards" />)}</div>
+				<div class="composition-end"><RuneDivider /><p class="type-editorial">More worlds are coming.</p></div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+	.review-topline { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-6); border-bottom: var(--line-thin) solid var(--border-subtle); color: var(--color-mist); font-size: var(--text-small); }
+	.review-topline span { padding-inline: var(--space-2); }
+	.review-intro { display: grid; justify-items: center; gap: var(--space-12); padding-block: clamp(4rem, 9vw, 9rem); text-align: center; color: var(--color-gold); }
+	.review-intro__statement { font-size: clamp(2rem, 3.5vw, 3.5rem); }
+	.review-intro__statement em { color: var(--color-bone); }
+	.review-intro__note { max-width: 34rem; color: var(--color-mist); font-size: var(--text-small); }
+	.review-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-block: var(--line-thin) solid var(--border-subtle); padding-block: var(--space-6); gap: var(--space-2) var(--space-6); }
+	.review-index a { display: flex; align-items: center; gap: var(--space-3); min-height: 2.75rem; padding-block: var(--space-2); font-size: var(--text-small); text-decoration: none; }
+	.review-index span { color: var(--color-gold); font-size: var(--text-small); }
+	.review-index a:hover { color: var(--color-parchment); text-decoration: underline; text-underline-offset: 6px; }
+	.review-section { display: grid; gap: var(--space-12); padding-block: var(--section-space); border-bottom: var(--line-thin) solid var(--border-subtle); }
+	.review-section:last-child { border-bottom: 0; }
+	.specimen-label { color: var(--color-mist); font-size: var(--text-small); }
+	.specimen, .divider-specimens > div { display: grid; align-content: start; gap: var(--space-6); min-width: 0; }
+	.brand-specimens { display: grid; gap: var(--space-12); }
+	.mark-sizes { display: flex; gap: var(--space-8); align-items: center; min-height: 5rem; color: var(--color-gold); }
+	.type-specimens { display: grid; gap: var(--space-12); }
+	.type-specimen { display: grid; gap: var(--space-6); padding-block-end: var(--space-12); border-bottom: var(--line-thin) solid var(--border-subtle); min-width: 0; }
+	.type-specimen:last-child { border: 0; padding: 0; }
+	.type-specimen--body > div { display: grid; gap: var(--space-6); max-width: 42rem; }
+	.palette-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8) var(--space-4); }
+	.palette-grid li { min-width: 0; }
+	.palette-swatch { height: 6rem; margin-bottom: var(--space-4); background: var(--swatch); border: var(--line-thin) solid rgb(238 232 218 / 8%); }
+	.palette-grid p { font-size: var(--text-small); }
+	.palette-grid code { color: var(--color-mist); font: 400 var(--text-small) / 1.5 var(--font-ui); overflow-wrap: anywhere; }
+	.review-note { max-width: var(--content-reading); color: var(--color-mist); font-size: var(--text-small); }
+	.divider-specimens { display: grid; gap: var(--space-12); }
+	.centered-heading-specimen { padding-block: var(--space-12); }
+	.button-specimens { display: grid; gap: var(--space-12); }
+	.button-variant { display: grid; gap: var(--space-6); }
+	.button-state-grid { display: grid; gap: var(--space-8); grid-template-columns: minmax(0, 1fr); }
+	.button-state { min-width: 0; display: grid; align-content: start; justify-items: start; gap: var(--space-3); }
+	.button-state .specimen-label { text-transform: capitalize; }
+	.status-specimens { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-12); }
+	.frame-specimens { display: grid; gap: var(--space-6); }
+	.frame-content { display: grid; justify-items: start; gap: var(--space-6); }
+	.frame-content > .eyebrow { color: var(--color-gold); }
+	.system-notes { margin: 0; display: grid; gap: var(--space-6); font-size: var(--text-small); }
+	.system-notes dt { color: var(--color-mist); }
+	.system-notes dd { margin: var(--space-2) 0 0; }
+	.card-feature-specimen, .wide-card-specimen, .card-grid > div { display: grid; gap: var(--space-4); min-width: 0; }
+	.card-grid { display: grid; gap: var(--space-12) var(--space-8); }
+	.composition { padding-block: var(--section-space); border-top: var(--line-thin) solid var(--border-subtle); background: radial-gradient(ellipse at 80% 20%, rgb(102 119 137 / 7%), transparent 65%), var(--color-void); }
+	.composition-caption { display: flex; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-24); color: var(--color-mist); font-size: var(--text-small); }
+	.composition-heading { display: grid; align-items: end; gap: var(--space-12); margin-bottom: var(--space-12); }
+	.composition-worlds { display: grid; gap: var(--space-12); margin-top: var(--space-12); }
+	.composition-end { display: grid; justify-items: center; gap: var(--space-8); margin-top: var(--space-24); text-align: center; }
+	.composition-end p { font-size: 2rem; }
+	@media (max-width: 39.999rem) {
+		.review-topline, .composition-caption { flex-direction: column; gap: var(--space-2); }
+		.button-state :global(.button-link:not(.button-link--text)) { width: 100%; }
+		.button-state { justify-items: stretch; }
+	}
+	@media (min-width: 40rem) {
+		.review-index { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+		.brand-specimens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.palette-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
+		.button-state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.frame-specimens, .card-grid, .composition-worlds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+	@media (min-width: 64rem) {
+		.brand-specimens { grid-template-columns: 1.3fr 1fr 1fr; gap: var(--space-8); }
+		.type-specimen { grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr); align-items: start; }
+		.type-specimen .type-display { font-size: clamp(3rem, 6vw, 5.5rem); }
+		.palette-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-8) var(--space-4); }
+		.button-state-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.system-notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.composition-heading { grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr); gap: var(--space-24); }
+		.composition-worlds { width: 82%; margin-inline-start: auto; gap: var(--space-12); }
+	}
+</style>

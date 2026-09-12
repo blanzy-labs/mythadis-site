@@ -1,0 +1,61 @@
+---
+import type { Game } from "../data/games";
+import GameStatus from "./GameStatus.astro";
+interface Props extends Omit<Game, "slug"> {
+	href?: string;
+	variant?: "standard" | "wide" | "featured";
+	headingLevel?: "h2" | "h3" | "h4";
+}
+const { title, tagline, description, status, artwork, href, featured = false, theme, variant = featured ? "featured" : "standard", headingLevel: Heading = "h3" } = Astro.props;
+---
+
+<article class:list={["game-card", `game-card--${variant}`]} data-game-theme={theme} data-featured={featured || variant === "featured" ? "true" : undefined}>
+	<div class="game-card__artwork">
+		{artwork ? (
+			<img class="game-card__image" src={artwork.src} alt={artwork.alt} loading="lazy" decoding="async" />
+		) : (
+			<div class="game-card__placeholder" aria-hidden="true"><span>Artwork pending</span></div>
+		)}
+	</div>
+	<div class="game-card__content">
+		<GameStatus status={status} />
+		<Heading class="game-card__title">
+			{href ? <a href={href}>{title}<span class="game-card__arrow" aria-hidden="true">↗</span></a> : title}
+		</Heading>
+		{tagline && <p class="game-card__tagline">{tagline}</p>}
+		{description && <p class="game-card__description">{description}</p>}
+	</div>
+</article>
+
+<style>
+	.game-card { --game-accent: var(--color-gold); min-width: 0; position: relative; isolation: isolate; }
+	.game-card__artwork { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-stone); border: var(--line-thin) solid var(--border-subtle); transition: border-color var(--motion-standard); }
+	.game-card__image, .game-card__placeholder { width: 100%; height: 100%; object-fit: cover; }
+	.game-card__image { transition: transform var(--motion-slow) var(--ease-out); }
+	.game-card__placeholder { background: radial-gradient(ellipse at 65% 30%, rgb(102 119 137 / 18%), transparent 65%), linear-gradient(155deg, var(--color-slate), var(--color-obsidian)); }
+	.game-card__placeholder span { position: absolute; inset: var(--space-6) var(--space-6) auto auto; color: var(--color-mist); font: 400 var(--text-small) / 1.5 var(--font-ui); }
+	.game-card__content { display: grid; gap: var(--space-3); padding-block: var(--space-6); border-bottom: var(--line-thin) solid var(--border-subtle); }
+	.game-card .game-card__title { font-size: var(--text-game); }
+	.game-card__title a { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); text-decoration: none; }
+	.game-card__arrow { flex: none; color: var(--game-accent); font-family: var(--font-ui); font-size: 1.25rem; transition: transform var(--motion-standard); }
+	.game-card__tagline { font-size: var(--text-large); font-family: var(--font-editorial); }
+	.game-card__description { max-width: 38rem; color: var(--color-bone); }
+	.game-card:has(a):is(:hover, :focus-within) .game-card__artwork { border-color: var(--game-accent); }
+	.game-card:has(a):is(:hover, :focus-within) .game-card__image { transform: scale(1.025); }
+	.game-card:has(a):is(:hover, :focus-within) .game-card__arrow { transform: translate(2px, -2px); }
+	.game-card[data-featured="true"] { --game-accent: var(--color-ember-bright); }
+	.game-card--featured { display: grid; align-items: end; min-height: clamp(27rem, 45vw, 38rem); }
+	.game-card--featured .game-card__artwork { position: absolute; inset: 0; z-index: var(--z-base); aspect-ratio: auto; }
+	.game-card--featured .game-card__placeholder { background: radial-gradient(ellipse at 75% 40%, rgb(184 83 50 / 12%), transparent 65%), linear-gradient(135deg, var(--color-stone), var(--color-obsidian)); }
+	.game-card--featured .game-card__artwork::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 10%, rgb(9 11 14 / 92%) 90%); pointer-events: none; }
+	.game-card--featured .game-card__placeholder span { z-index: var(--z-overlay); }
+	.game-card--featured .game-card__content { position: relative; z-index: var(--z-overlay); padding: clamp(1.5rem, 4vw, 4rem); margin-top: var(--space-24); border-bottom: 2px solid var(--color-ember); }
+	.game-card--featured .game-card__title { font-size: clamp(3rem, 6vw, 6rem); }
+	.game-card--featured .game-card__title a { justify-content: flex-start; }
+	.game-card--featured .game-card__arrow { margin-inline-start: var(--space-4); }
+	@media (min-width: 40rem) {
+		.game-card--wide { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-8); align-items: center; }
+		.game-card--wide .game-card__artwork { aspect-ratio: 16 / 10; }
+		.game-card--wide .game-card__content { padding-block: var(--space-8); }
+	}
+</style>

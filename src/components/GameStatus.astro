@@ -1,0 +1,14 @@
+---
+import type { GameStatus as Status } from "../data/games";
+interface Props { status: Status; }
+const { status } = Astro.props;
+---
+
+<span class="game-status" data-status={status}>{status}</span>
+
+<style>
+	.game-status { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--color-bone); font: 400 var(--text-small) / 1.6 var(--font-ui); }
+	.game-status::before { content: ""; width: 1rem; height: var(--line-thin); background: var(--color-bronze); }
+	.game-status[data-status="In Development"]::before { background: var(--color-ember-bright); }
+	.game-status[data-status="Released"]::before { background: var(--color-bone); }
+</style>

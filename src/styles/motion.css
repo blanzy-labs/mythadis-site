@@ -1,0 +1,22 @@
+@media (prefers-reduced-motion: reduce) {
+	.gaming-theme {
+		--motion-fast: 0ms;
+		--motion-standard: 0ms;
+		--motion-slow: 0ms;
+		--motion-cinematic: 0ms;
+	}
+
+	.gaming-theme *,
+	.gaming-theme *::before,
+	.gaming-theme *::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+
+	.gaming-theme .game-card__image,
+	.gaming-theme .button-link__arrow,
+	.gaming-theme .game-card__arrow {
+		transform: none !important;
+	}
+}

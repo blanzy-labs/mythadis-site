@@ -1,0 +1,12 @@
+---
+interface Props { tone?: "quiet" | "raised"; }
+const { tone = "quiet" } = Astro.props;
+---
+
+<div class:list={["mythic-frame", `mythic-frame--${tone}`]}><slot /></div>
+
+<style>
+	.mythic-frame { position: relative; padding: clamp(1.5rem, 4vw, 3rem); border: var(--line-thin) solid var(--border-subtle); background: rgb(16 20 25 / 60%); }
+	.mythic-frame::before { content: ""; position: absolute; top: -1px; left: -1px; width: 1rem; height: 1rem; border-top: var(--line-thin) solid var(--color-gold); border-left: var(--line-thin) solid var(--color-gold); pointer-events: none; }
+	.mythic-frame--raised { background: var(--color-stone); box-shadow: var(--shadow-surface); }
+</style>

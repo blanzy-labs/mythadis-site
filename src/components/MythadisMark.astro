@@ -1,0 +1,28 @@
+---
+interface Props {
+	size?: 16 | 24 | 48;
+	label?: string;
+}
+const { size = 24, label } = Astro.props;
+---
+
+<svg
+	class="mythadis-mark"
+	width={size}
+	height={size}
+	viewBox="0 0 32 32"
+	fill="none"
+	stroke="currentColor"
+	stroke-width="1.5"
+	stroke-linejoin="miter"
+	aria-hidden={label ? undefined : "true"}
+	role={label ? "img" : undefined}
+	aria-label={label}
+	focusable="false"
+>
+	<path d="M16 3 25 16 16 29 7 16Z M16 9v14 M12 16h8" />
+</svg>
+
+<style>
+	.mythadis-mark { display: inline-block; flex: none; vertical-align: middle; }
+</style>

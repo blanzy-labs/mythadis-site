@@ -1,4 +1,5 @@
-export type GameStatus = "In Development" | "Concept";
+export type GameStatus = "In Development" | "Concept" | "Coming Soon" | "Released";
+export type GameTheme = "ember" | "dungeon" | "city" | "depths" | "shattered";
 
 export interface Game {
 	slug: string;
@@ -7,6 +8,7 @@ export interface Game {
 	description: string;
 	status: GameStatus;
 	featured: boolean;
+	theme?: GameTheme;
 	artwork?: {
 		src: string;
 		alt: string;
@@ -18,6 +20,7 @@ export interface Game {
 export const games: readonly Game[] = [
 	{
 		slug: "ember-vault",
+		theme: "ember",
 		title: "Ember Vault",
 		tagline: "",
 		description: "",
@@ -26,6 +29,7 @@ export const games: readonly Game[] = [
 	},
 	{
 		slug: "dungeon-crawl",
+		theme: "dungeon",
 		title: "Dungeon Crawl",
 		tagline: "",
 		description: "",
@@ -34,6 +38,7 @@ export const games: readonly Game[] = [
 	},
 	{
 		slug: "free-city",
+		theme: "city",
 		title: "Free City",
 		tagline: "",
 		description: "",
@@ -42,6 +47,7 @@ export const games: readonly Game[] = [
 	},
 	{
 		slug: "black-depths",
+		theme: "depths",
 		title: "Black Depths",
 		tagline: "",
 		description: "",
@@ -50,6 +56,7 @@ export const games: readonly Game[] = [
 	},
 	{
 		slug: "shattered-hope",
+		theme: "shattered",
 		title: "Shattered Hope",
 		tagline: "",
 		description: "",

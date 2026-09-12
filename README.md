@@ -4,7 +4,7 @@ The public website for the Mythadis independent game studio.
 
 **MYTHADIS — Games for Worlds Unbound**
 
-`rebuild/game-studio-v1` contains the MYTH-WEB-001 technical baseline: a minimal homepage and centralized game data. Temporary copy and neutral styling prove the new identity; they are not the final visual design.
+`rebuild/game-studio-v1` contains the minimal MYTH-WEB-001 homepage and the MYTH-WEB-002 gaming design system. The homepage remains a neutral technical baseline. Evaluate the new visual foundation at `/review/design-system/`; it is an internal, noindex review route, not the production homepage.
 
 ## Stack
 
@@ -44,15 +44,18 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 - `src/pages/index.astro`: minimal game-studio homepage at `/`.
 - `src/pages/404.astro`: neutral not-found page.
 - `src/layouts/BaseLayout.astro`: shared HTML document and metadata.
-- `src/styles/global.css`: temporary neutral CSS using system fonts.
-- `src/data/games.ts`: typed game records with slug, title, tagline, description, status, featured flag, and optional artwork.
+- `src/styles/global.css`: isolated baseline styling.
+- `src/styles/design-system.css`: entry point for gaming tokens, local typography, background, focus, and motion rules.
+- `src/components/`: reusable brand lockup, mark, divider, headings, CTA links, game status/cards, and frames.
+- `src/pages/review/design-system.astro`: internal visual specimens and composition study.
+- `src/data/games.ts`: typed game records with slug, title, tagline, description, status, featured flag, optional artwork, and semantic theme hooks.
 - `public/robots.txt`: static crawler instructions.
 
 Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Game taglines and descriptions are blank pending approved copy; artwork is optional and omitted. Add reusable components and asset directories only when needed. Individual game pages are deferred.
 
 ## Design governance
 
-Implement approved specifications from the design architect. Preserve the approved brand name and tagline. Final typography, artwork, color, navigation, and other visual decisions belong to later slices; see `AGENTS.md`.
+Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. Final artwork, production navigation, and the homepage remain deferred. See `AGENTS.md` and [the design-system guide](docs/design-system.md).
 
 ## Legacy archive
 
@@ -66,4 +69,4 @@ Its final production state is preserved at:
 
 Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-Next slice: **MYTH-WEB-002 — Mythadis Gaming Design System**.
+After founder/design review, the next recommended slice is **MYTH-WEB-003 — Production Header and Hero**. Do not begin it automatically.

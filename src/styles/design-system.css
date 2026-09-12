@@ -1,0 +1,48 @@
+@import "./tokens.css";
+@import "./typography.css";
+@import "./motion.css";
+
+.gaming-theme {
+	color: var(--color-bone);
+	background:
+		radial-gradient(ellipse at 50% 0, rgb(102 119 137 / 10%), transparent 38rem),
+		linear-gradient(90deg, rgb(9 11 14 / 35%), transparent 20%, transparent 80%, rgb(9 11 14 / 35%)),
+		var(--color-obsidian);
+}
+
+.gaming-theme ::selection {
+	color: var(--color-parchment);
+	background: var(--color-bronze);
+}
+
+.gaming-theme a { color: inherit; }
+.gaming-theme strong { font-weight: 600; }
+.gaming-theme img { display: block; max-width: 100%; }
+.gaming-theme [id] { scroll-margin-block-start: var(--space-8); }
+
+.gaming-theme :focus-visible {
+	outline: var(--line-focus) solid var(--color-ember-bright);
+	outline-offset: 5px;
+}
+
+.gaming-theme .container {
+	width: calc(100% - 2 * var(--page-gutter));
+	max-width: var(--content-standard);
+	margin-inline: auto;
+}
+
+.gaming-theme .container--reading { max-width: var(--content-reading); }
+.gaming-theme .container--wide { max-width: var(--content-wide); }
+.gaming-theme .full-bleed { width: 100%; }
+
+.gaming-theme .skip-link {
+	position: fixed;
+	inset: var(--space-4) auto auto var(--space-4);
+	z-index: var(--z-focus);
+	padding: var(--space-3) var(--space-4);
+	background: var(--color-parchment);
+	color: var(--color-void);
+	transform: translateY(-200%);
+}
+
+.gaming-theme .skip-link:focus { transform: translateY(0); }

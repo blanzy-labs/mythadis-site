@@ -4,9 +4,13 @@ import "../styles/global.css";
 interface Props {
 	title?: string;
 	description?: string;
+	theme?: "baseline" | "gaming";
+	noindex?: boolean;
 }
 
 const {
+	theme = "baseline",
+	noindex = false,
 	title = "MYTHADIS — Games for Worlds Unbound",
 	description = "Mythadis is an independent game studio building strange worlds, dangerous places, and games made to be explored.",
 } = Astro.props;
@@ -19,9 +23,10 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<link rel="icon" href="data:," />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class={theme === "gaming" ? "gaming-theme" : "baseline-theme"}>
 		<slot />
 	</body>
 </html>

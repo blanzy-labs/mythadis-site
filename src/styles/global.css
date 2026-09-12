@@ -15,22 +15,22 @@ body {
 	font-size: 1rem;
 }
 
-main {
+.baseline-theme main {
 	max-width: 48rem;
 	margin-inline: auto;
 	padding: 3rem 1.5rem;
 }
 
-header,
-section {
+.baseline-theme header,
+.baseline-theme section {
 	margin-block-end: 2rem;
 }
 
-h1,
-h2 {
+.baseline-theme h1,
+.baseline-theme h2 {
 	line-height: 1.25;
 }
 
-a {
+.baseline-theme a {
 	color: #174ea6;
 }

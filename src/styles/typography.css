@@ -1,0 +1,47 @@
+@import "@fontsource/cinzel-decorative/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-500-italic.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-600.css";
+
+.gaming-theme {
+	font-family: var(--font-ui);
+	font-weight: 400;
+	line-height: 1.75;
+	font-synthesis: none;
+}
+
+.gaming-theme :is(h1, h2, h3, h4, p) {
+	margin: 0;
+}
+
+.gaming-theme :is(h1, h2, h3, h4),
+.gaming-theme .type-editorial {
+	font-family: var(--font-editorial);
+	font-weight: 500;
+	line-height: 1.08;
+	text-wrap: balance;
+	color: var(--color-parchment);
+}
+
+.gaming-theme .type-display {
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: var(--text-display);
+	line-height: 1.18;
+}
+
+.gaming-theme .type-hero { font-size: var(--text-hero); }
+.gaming-theme .type-section { font-size: var(--text-section); }
+.gaming-theme .type-game { font-size: var(--text-game); }
+.gaming-theme .type-large { font-size: var(--text-large); }
+.gaming-theme .type-muted { color: var(--color-mist); }
+
+.gaming-theme .eyebrow {
+	font-family: var(--font-ui);
+	font-size: var(--text-small);
+	font-weight: 600;
+	line-height: 1.6;
+	letter-spacing: var(--tracking-label);
+	text-transform: uppercase;
+}

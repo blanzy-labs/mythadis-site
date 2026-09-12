@@ -1,0 +1,67 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends Omit<HTMLAttributes<"a">, "href"> {
+	href: string;
+	variant?: "primary" | "secondary" | "text";
+	disabled?: boolean;
+	arrow?: boolean;
+}
+const { href, variant = "primary", disabled = false, arrow = variant === "text", class: className, ...attributes } = Astro.props;
+const Tag = disabled ? "span" : "a";
+---
+
+<Tag
+	{...attributes}
+	href={disabled ? undefined : href}
+	role={disabled ? "link" : undefined}
+	class:list={["button-link", `button-link--${variant}`, className]}
+	aria-disabled={disabled ? "true" : undefined}
+>
+	<span><slot /></span>
+	{arrow && <span class="button-link__arrow" aria-hidden="true">→</span>}
+</Tag>
+
+<style>
+	.button-link {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		gap: var(--space-4);
+		min-height: 3rem;
+		max-width: 100%;
+		padding: var(--space-3) var(--space-6);
+		border: var(--line-thin) solid var(--color-ember);
+		border-radius: var(--radius-small);
+		background: linear-gradient(125deg, rgb(184 83 50 / 12%), transparent), var(--color-obsidian);
+		color: var(--color-parchment);
+		font-family: var(--font-ui);
+		font-size: var(--text-small);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		line-height: 1.5;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: border-color var(--motion-fast), background-color var(--motion-standard);
+	}
+	.button-link:not([aria-disabled]):is(:hover, [data-review-state="hover"]) {
+		border-color: var(--color-ember-bright);
+		background-color: var(--color-stone);
+	}
+	.button-link:not([aria-disabled]):is(:active, [data-review-state="active"]) {
+		background: var(--color-slate);
+		border-color: var(--color-parchment);
+	}
+	.button-link:is(:focus-visible, [data-review-state="focus"]) {
+		outline: var(--line-focus) solid var(--color-ember-bright);
+		outline-offset: 5px;
+	}
+	.button-link--secondary { border-color: var(--color-bronze); background: transparent; }
+	.button-link--secondary:not([aria-disabled]):is(:hover, [data-review-state="hover"]) { border-color: var(--color-gold); }
+	.button-link--text { padding-inline: 0; border-color: transparent; border-radius: 0; background: transparent; justify-content: flex-start; }
+	.button-link--text:not([aria-disabled]):is(:hover, [data-review-state="hover"]) { border-color: transparent; background: transparent; color: var(--color-ember-bright); }
+	.button-link__arrow { flex: none; transition: transform var(--motion-standard) var(--ease-out); }
+	.button-link:not([aria-disabled]):is(:hover, [data-review-state="hover"]) .button-link__arrow { transform: translateX(3px); }
+	.button-link[aria-disabled] { border-color: var(--border-subtle); color: var(--color-mist); background: transparent; cursor: not-allowed; }
+	.button-link--text[aria-disabled] { border-color: transparent; }
+</style>

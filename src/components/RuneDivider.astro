@@ -1,0 +1,17 @@
+---
+import MythadisMark from "./MythadisMark.astro";
+interface Props { size?: "short" | "standard" | "wide"; }
+const { size = "standard" } = Astro.props;
+---
+
+<div class:list={["rune-divider", `rune-divider--${size}`]} aria-hidden="true">
+	<span></span><MythadisMark size={16} /><span></span>
+</div>
+
+<style>
+	.rune-divider { display: flex; align-items: center; gap: var(--space-4); width: min(100%, 28rem); color: var(--color-gold); opacity: 0.7; }
+	.rune-divider span { height: var(--line-thin); flex: 1; background: linear-gradient(90deg, transparent, var(--color-bronze)); }
+	.rune-divider span:last-child { transform: rotate(180deg); }
+	.rune-divider--short { width: min(100%, 10rem); gap: var(--space-3); }
+	.rune-divider--wide { width: 100%; }
+</style>

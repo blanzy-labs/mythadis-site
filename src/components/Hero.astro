@@ -1,24 +1,15 @@
 <section class="studio-hero container" aria-labelledby="hero-title">
   <p class="studio-label">Independent Game Studio</p>
   <h1 id="hero-title">Strange Worlds.<br /><em>Bolder Games.</em></h1>
-  <div class="studio-hero__lower">
-    <p class="studio-hero__description">Mythadis is an independent game studio building dark worlds, dangerous places, and games made to be explored.</p>
-    <div class="studio-hero__actions">
-      <a class="studio-action" href="#games">Explore Ember Vault <span aria-hidden="true">↘</span></a>
-      <a class="studio-text-link" href="#about">About Mythadis <span aria-hidden="true">↗</span></a>
-    </div>
-  </div>
+  <p class="studio-hero__description">Mythadis is an independent game studio building dark worlds, dangerous places, and games made to be explored.</p>
 </section>
 
 <style>
   .studio-hero { padding-block:clamp(3rem,7vw,7rem) clamp(4rem,7vw,7rem); }
   .studio-hero h1 { margin-block:1.5rem 2.5rem; font-size:clamp(3.5rem,8.5vw,8.5rem); line-height:.96; letter-spacing:-.025em; }
   .studio-hero h1 em { font-weight:500; color:var(--color-bone); }
-  .studio-hero__lower { display:grid; gap:2rem; }
   .studio-hero__description { max-width:33rem; font-size:1rem; }
-  .studio-hero__actions { display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:center; }
   @media(min-width:64rem) {
-    .studio-hero__lower { grid-template-columns:1fr auto; align-items:end; gap:4rem; }
     .studio-hero__description { font-size:1.0625rem; }
   }
 </style>

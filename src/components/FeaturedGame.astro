@@ -1,106 +1,25 @@
 ---
+import { Picture } from "astro:assets";
 import type { Game } from "../data/games";
-import ButtonLink from "./ButtonLink.astro";
-import GameStatus from "./GameStatus.astro";
-
 interface Props { game: Game; id?: string; }
 const { game, id = "games" } = Astro.props;
-const { artwork } = game;
-const headingId = `${game.slug}-title`;
-const artworkPosition = artwork ? `--art-position: ${artwork.objectPosition ?? "60% 50%"}; --art-mobile-position: ${artwork.mobileObjectPosition ?? "60% 50%"};` : undefined;
 ---
-
-<section class="featured-game" id={id} tabindex="-1" aria-labelledby={headingId} data-game-theme={game.theme}>
-	<div class="featured-game__layout container container--wide">
-		<div class="featured-game__intro">
-			{game.feature && <p class="eyebrow">{game.feature.eyebrow}</p>}
-			<h2 id={headingId}>{game.title}</h2>
-			<p class="featured-game__tagline">{game.tagline}</p>
-		</div>
-		<div class="featured-game__artwork" style={artworkPosition} data-artwork={artwork ? "supplied" : "placeholder"}>
-			{artwork ? <picture>
-				{artwork.sources?.map(({ srcset, type, media }) => <source srcset={srcset} type={type} media={media} />)}
-				<img src={artwork.src} alt={artwork.alt} width={artwork.width} height={artwork.height} loading="lazy" decoding="async" />
-			</picture> : <div class="featured-game__vault" aria-hidden="true"><span></span></div>}
-		</div>
-		<div class="featured-game__details">
-			<p class="featured-game__description">{game.description}</p>
-			<GameStatus status={game.status} />
-			{game.feature && <ButtonLink href={`/games/${game.slug}/`}>{game.feature.ctaLabel}</ButtonLink>}
-		</div>
-	</div>
+<section class="featured-game container" id={id} tabindex="-1" aria-labelledby="ember-vault-title">
+  <div class="featured-game__heading">
+    <div><p class="studio-label">{game.feature?.eyebrow}</p><h2 id="ember-vault-title">{game.title}</h2></div>
+    <div class="featured-game__details"><p>{game.description}</p><p class="development-status">{game.status}</p></div>
+  </div>
+  {game.keyArt && <Picture src={game.keyArt} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480,768,1200,1536]} sizes="(min-width: 1340px) 1220px, 92vw" quality={85} alt="Three adventurers approach the glowing entrance of Ember Vault, a treasure-filled stronghold built into a cliffside." loading="lazy" decoding="async" />}
 </section>
 
 <style>
-	.featured-game {
-		--feature-accent: var(--color-gold);
-		position: relative;
-		isolation: isolate;
-		background: var(--color-void);
-	}
-	.featured-game[data-game-theme="ember"] { --feature-accent: var(--color-ember-bright); }
-	.featured-game::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		background: radial-gradient(ellipse at 80% 55%, rgb(184 83 50 / 7%), transparent 65%), linear-gradient(180deg, var(--color-void), transparent 35%, var(--color-void));
-	}
-	.featured-game__layout {
-		position: relative;
-		display: grid;
-		gap: var(--space-8);
-		padding-block: var(--space-12) var(--space-16);
-		border-top: var(--line-thin) solid var(--border-subtle);
-	}
-	.featured-game__intro, .featured-game__details { position: relative; z-index: var(--z-overlay); min-width: 0; }
-	.featured-game__intro { display: grid; gap: var(--space-4); }
-	.featured-game .eyebrow { color: var(--color-gold); }
-	.featured-game .eyebrow::before { content: ""; display: inline-block; width: var(--space-8); height: var(--line-thin); margin-right: var(--space-3); vertical-align: middle; background: var(--feature-accent); }
-	.featured-game h2 { font-size: clamp(3.25rem, 6.5vw, 6.5rem); line-height: 0.98; text-transform: uppercase; }
-	.featured-game__tagline { max-width: 22ch; font-family: var(--font-editorial); font-size: clamp(1.75rem, 2.5vw, 2.5rem); line-height: 1.15; color: var(--color-parchment); }
-	.featured-game__details { display: grid; gap: var(--space-6); justify-items: start; align-content: start; }
-	.featured-game__description { max-width: 32rem; }
-	.featured-game__details :global(.button-link) { width: 100%; margin-top: var(--space-2); }
-	.featured-game__artwork { position: relative; min-width: 0; aspect-ratio: 16 / 11; }
-	.featured-game__artwork picture { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
-	.featured-game__artwork img { width: 100%; height: 100%; object-fit: cover; object-position: var(--art-mobile-position, 60% 50%); }
-	.featured-game__artwork::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, var(--color-void), transparent 24%, transparent 82%, var(--color-void)), linear-gradient(90deg, var(--color-void), transparent 12%, transparent 92%, var(--color-void)); }
-	/* Abstract architectural layers, deliberately not a gameplay illustration. */
-	.featured-game__vault {
-		position: absolute;
-		inset: 0;
-		overflow: hidden;
-		background: radial-gradient(ellipse at 62% 82%, rgb(184 83 50 / 24%), transparent 48%), linear-gradient(110deg, var(--color-void), var(--color-stone) 55%, var(--color-obsidian));
-	}
-	.featured-game__vault::before {
-		content: "";
-		position: absolute;
-		inset: 8% 14% -12% 27%;
-		border: clamp(1rem, 3vw, 3rem) solid rgb(37 44 51 / 65%);
-		border-bottom: 0;
-		background: linear-gradient(100deg, #0a0c0e, #161718);
-		box-shadow: -1.5rem 0 0 rgb(9 11 14 / 45%), 1px 0 0 rgb(169 134 85 / 18%), inset 1px 0 0 rgb(169 134 85 / 18%);
-	}
-	.featured-game__vault::after {
-		content: "";
-		position: absolute;
-		inset: 30% 27% -8% 43%;
-		border: 1rem solid rgb(37 38 38 / 60%);
-		border-bottom: 0;
-		background: linear-gradient(90deg, var(--color-void) 80%, rgb(184 83 50 / 38%));
-		box-shadow: 1px 0 0 rgb(211 107 66 / 22%), 1rem 0 3rem rgb(184 83 50 / 7%);
-	}
-	.featured-game__vault span { position: absolute; z-index: var(--z-overlay); inset: 62% -10% -12%; background: radial-gradient(ellipse at 62% 45%, rgb(184 83 50 / 17%), transparent 45%), linear-gradient(0deg, var(--color-void), transparent); filter: blur(16px); }
-	@media (min-width: 40rem) {
-		.featured-game__details :global(.button-link) { width: auto; }
-		.featured-game__artwork { aspect-ratio: 2 / 1; }
-	}
-	@media (min-width: 64rem) {
-		.featured-game__layout { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; column-gap: var(--space-8); row-gap: var(--space-8); min-height: 44rem; padding-block: var(--space-24); }
-		.featured-game__intro { grid-area: 1 / 1; align-content: start; gap: var(--space-6); }
-		.featured-game__details { grid-area: 2 / 1; padding-right: var(--space-8); }
-		.featured-game__artwork { grid-area: 1 / 2 / 3 / 3; align-self: stretch; aspect-ratio: auto; margin-block: calc(-1 * var(--space-8)); }
-		.featured-game__artwork img { object-position: var(--art-position, 60% 50%); }
-	}
+  .featured-game { padding-block:3rem 0; border-top:1px solid var(--border-subtle); }
+  .featured-game__heading { display:grid; gap:1.5rem; margin-bottom:2rem; }
+  .featured-game h2 { margin-top:.75rem; font-size:clamp(3.25rem,6.2vw,6rem); line-height:1; }
+  .featured-game__details { max-width:30rem; display:grid; align-content:end; gap:1rem; }
+  .development-status { display:flex; gap:.65rem; align-items:center; color:var(--color-parchment); font-size:.8125rem; }
+  .development-status::before { content:""; width:.35rem; height:.35rem; border-radius:50%; background:var(--color-gold); }
+  .featured-game :global(picture) { display:block; }
+  .featured-game :global(img) { display:block; width:100%; height:auto; }
+  @media(min-width:64rem) { .featured-game__heading { grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:2.5rem; } .featured-game__details { justify-self:end; } }
 </style>

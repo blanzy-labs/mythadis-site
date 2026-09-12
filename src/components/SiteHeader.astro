@@ -1,47 +1,27 @@
 ---
 import BrandLockup from "./BrandLockup.astro";
-import ButtonLink from "./ButtonLink.astro";
-
 const navigation = [
-	{ label: "Games", href: "/#games" },
-	{ label: "Studio", href: "/#studio" },
-	{ label: "Journal", href: undefined },
+  { label: "Home", href: "/#home" },
+  { label: "Games", href: "/#games" },
+  { label: "About", href: "/#about" },
 ];
 ---
-
 <header class="site-header">
-	<div class="site-header__inner container container--wide">
-		<a class="site-header__brand" href="/" aria-label="MYTHADIS — Games for Worlds Unbound, home">
-			<BrandLockup variant="sigil" />
-		</a>
-
-		<nav class="desktop-navigation" aria-label="Main navigation">
-			<ul>
-				{navigation.map(({ label, href }) => (
-					<li>{href ? <a class="navigation-link" href={href}>{label}</a> : <span class="navigation-unavailable" role="link" aria-disabled="true">{label}<span class="navigation-note">Coming soon</span></span>}</li>
-				))}
-			</ul>
-			<ButtonLink href="/#games" variant="realm">Enter the Realm</ButtonLink>
-		</nav>
-
-		<details class="mobile-navigation" data-mobile-navigation>
-			<summary aria-controls="mobile-navigation-panel">
-				<span class="menu-label-closed">Menu</span>
-				<span class="menu-label-open">Close</span>
-				<svg class="menu-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path class="menu-icon__top" d="M3 6h14" /><path class="menu-icon__bottom" d="M3 14h14" /></svg>
-			</summary>
-			<div class="mobile-navigation__panel" id="mobile-navigation-panel">
-				<nav class="container" aria-label="Mobile navigation">
-					<ul>
-						{navigation.map(({ label, href }) => (
-							<li>{href ? <a class="navigation-link" href={href}>{label}</a> : <span class="navigation-unavailable" role="link" aria-disabled="true">{label}<span class="navigation-note">Coming soon</span></span>}</li>
-						))}
-					</ul>
-					<ButtonLink href="/#games" variant="realm">Enter the Realm</ButtonLink>
-				</nav>
-			</div>
-		</details>
-	</div>
+  <div class="site-header__inner container">
+    <a class="site-header__brand" href="/#home" aria-label="MYTHADIS — Games for Worlds Unbound, home"><BrandLockup variant="sigil" /></a>
+    <nav class="desktop-navigation" aria-label="Main navigation">
+      <ul>{navigation.map(({label,href}) => <li><a class="navigation-link" href={href}>{label}</a></li>)}</ul>
+    </nav>
+    <details class="mobile-navigation" data-mobile-navigation>
+      <summary aria-controls="mobile-navigation-panel">
+        <span class="menu-label-closed">Menu</span><span class="menu-label-open">Close</span>
+        <svg class="menu-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path class="menu-icon__top" d="M3 6h14"/><path class="menu-icon__bottom" d="M3 14h14"/></svg>
+      </summary>
+      <nav class="mobile-navigation__panel" id="mobile-navigation-panel" aria-label="Mobile navigation">
+        <ul>{navigation.map(({label,href}) => <li><a class="navigation-link" href={href}>{label}<span aria-hidden="true">↗</span></a></li>)}</ul>
+      </nav>
+    </details>
+  </div>
 </header>
 
 <script>
@@ -80,87 +60,25 @@ const navigation = [
 </script>
 
 <style>
-	.site-header {
-		position: absolute;
-		inset: 0 0 auto;
-		z-index: var(--z-focus);
-		background: linear-gradient(180deg, rgb(9 11 14 / 88%), rgb(9 11 14 / 36%) 75%, transparent);
-	}
-	.site-header__inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-4);
-		padding-block: var(--space-3) var(--space-6);
-	}
-	.site-header__brand { flex-shrink: 0; max-width: calc(100% - 6rem); text-decoration: none; }
-	.desktop-navigation { display: none; }
-	ul { list-style: none; padding: 0; margin: 0; }
-	.navigation-link, .navigation-unavailable {
-		font-family: var(--font-ui);
-		font-size: var(--text-small);
-		line-height: 1.5;
-		text-shadow: 0 1px 12px var(--color-void);
-	}
-	.navigation-link {
-		display: inline-flex;
-		align-items: center;
-		min-height: 3rem;
-		text-decoration: none;
-		text-underline-offset: 0.5em;
-	}
-	.navigation-link:hover { color: var(--color-parchment); text-decoration: underline; text-decoration-color: var(--color-gold); }
-	.navigation-unavailable { display: grid; gap: var(--space-1); color: var(--color-mist); }
-	.navigation-note { font-size: var(--text-small); color: var(--color-mist); }
-	.mobile-navigation summary {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		gap: var(--space-3);
-		min-height: 3rem;
-		cursor: pointer;
-		list-style: none;
-		font: 600 var(--text-small) / 1.5 var(--font-ui);
-		color: var(--color-parchment);
-	}
-	.mobile-navigation summary::-webkit-details-marker { display: none; }
-	.menu-label-open { display: none; }
-	.mobile-navigation[open] .menu-label-open { display: inline; }
-	.mobile-navigation[open] .menu-label-closed { display: none; }
-	.menu-icon { flex: none; }
-	.mobile-navigation[open] .menu-icon__top { transform: translateY(4px) rotate(45deg); transform-origin: 10px 6px; }
-	.mobile-navigation[open] .menu-icon__bottom { transform: translateY(-4px) rotate(-45deg); transform-origin: 10px 14px; }
-	.mobile-navigation__panel {
-		position: absolute;
-		inset: 100% 0 auto;
-		max-height: calc(100dvh - 7rem);
-		overflow-y: auto;
-		padding-block: var(--space-4) var(--space-8);
-		border-bottom: var(--line-thin) solid var(--color-bronze);
-		background: var(--color-obsidian);
-		box-shadow: var(--shadow-surface);
-	}
-	.mobile-navigation__panel ul { margin-bottom: var(--space-8); }
-	.mobile-navigation__panel li { border-bottom: var(--line-thin) solid var(--border-subtle); }
-	.mobile-navigation__panel .navigation-link,
-	.mobile-navigation__panel .navigation-unavailable {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--space-4);
-		width: 100%;
-		padding-block: var(--space-6);
-		font-size: var(--text-large);
-	}
-	.mobile-navigation__panel :global(.button-link) { width: 100%; }
-	@media (min-width: 64rem) {
-		.site-header__inner { align-items: flex-start; padding-block: var(--space-6); }
-		.mobile-navigation { display: none; }
-		.desktop-navigation, .desktop-navigation ul { display: flex; align-items: center; }
-		.desktop-navigation { gap: clamp(var(--space-6), 3vw, var(--space-12)); padding-top: var(--space-4); }
-		.desktop-navigation ul { gap: var(--space-6); }
-		.navigation-link { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; }
-		.navigation-unavailable { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
-		.navigation-note { font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
-	}
+  .site-header { position: relative; z-index: var(--z-focus); }
+  .site-header__inner { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; padding-block:1.5rem; }
+  .site-header__brand { text-decoration:none; flex-shrink:0; max-width:calc(100% - 6rem); }
+  .desktop-navigation { display:none; }
+  ul { list-style:none; margin:0; padding:0; }
+  .navigation-link { display:flex; align-items:center; min-height:3rem; text-decoration:none; font-size:.875rem; color:var(--color-bone); text-underline-offset:.5em; }
+  .navigation-link:hover { color:var(--color-parchment); text-decoration:underline; }
+  .mobile-navigation summary { display:flex; align-items:center; gap:.75rem; min-height:3rem; cursor:pointer; list-style:none; font-size:.875rem; }
+  .mobile-navigation summary::-webkit-details-marker { display:none; }
+  .menu-label-open { display:none; }
+  .mobile-navigation[open] .menu-label-open { display:inline; }
+  .mobile-navigation[open] .menu-label-closed { display:none; }
+  .mobile-navigation[open] .menu-icon__top { transform:translateY(4px) rotate(45deg); transform-origin:10px 6px; }
+  .mobile-navigation[open] .menu-icon__bottom { transform:translateY(-4px) rotate(-45deg); transform-origin:10px 14px; }
+  .mobile-navigation__panel { position:absolute; inset:100% 0 auto; padding:1rem var(--page-gutter) 2rem; background:var(--color-obsidian); border-bottom:1px solid var(--border-subtle); }
+  .mobile-navigation__panel a { justify-content:space-between; padding-block:1rem; border-top:1px solid var(--border-subtle); font-size:1.125rem; }
+  @media(min-width:64rem) {
+    .site-header__inner { padding-block:2rem; }
+    .desktop-navigation, .desktop-navigation ul { display:flex; gap:3rem; }
+    .mobile-navigation { display:none; }
+  }
 </style>

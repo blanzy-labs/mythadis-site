@@ -1,0 +1,31 @@
+/* MYTH-WEB-RESET-001: neutral worn surfaces; the original logo keeps its metals. */
+.gaming-theme.studio-theme {
+  --color-void:#0b0b0c;
+  --color-obsidian:#121213;
+  --color-stone:#202021;
+  --color-slate:#2a2a2b;
+  --color-bone:#c9c5bb;
+  --color-parchment:#ede9df;
+  --color-mist:#a09c94;
+  --border-subtle:rgb(201 197 187 / 18%);
+  position:relative;
+  isolation:isolate;
+  background:radial-gradient(ellipse at 80% 10%,rgb(115 98 82 / 12%),transparent 34%),radial-gradient(ellipse at 4% 55%,rgb(77 55 48 / 9%),transparent 35%),linear-gradient(125deg,#1a1919,#0e0e0f 45%,#151414);
+}
+.studio-theme::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  opacity:.09;
+  background:url('/brand/textures/studio-grain.svg') repeat;
+}
+.studio-theme .container { max-width:76.25rem; }
+.studio-theme :focus-visible { outline-color:var(--color-parchment); }
+.studio-label { font:600 .6875rem/1.6 var(--font-ui); letter-spacing:.18em; text-transform:uppercase; color:var(--color-mist); }
+.studio-action { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-height:3.25rem; padding:.875rem 1.25rem; border:1px solid rgb(201 197 187 / 48%); font:600 .8125rem/1.5 var(--font-ui); text-decoration:none; background:rgb(237 233 223 / 3%); transition:background-color var(--motion-fast),border-color var(--motion-fast); }
+.studio-action:hover { background:rgb(237 233 223 / 9%); border-color:var(--color-parchment); }
+.studio-action span { font-size:1.25rem; font-weight:400; }
+.studio-text-link { display:inline-flex; align-items:center; gap:1.25rem; min-height:3rem; font-size:.8125rem; text-decoration:none; text-underline-offset:.4em; }
+.studio-text-link:hover { text-decoration:underline; }

@@ -1,3 +1,5 @@
+> Historical slice: superseded by MYTH-WEB-RESET-001. See [the current single-page reset guide](single-page-reset.md).
+
 # MYTH-WEB-003R — Fantasy identity recovery
 
 This remediation replaces the original MYTH-WEB-003 gradient-led composition. The header and hero are awaiting founder/design review on `rebuild/game-studio-v1`. The already-committed MYTH-WEB-004 feature, copy, data, and game route are preserved; no catalog or additional homepage section was added.

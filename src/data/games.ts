@@ -1,3 +1,6 @@
+import type { ImageMetadata } from "astro";
+import emberVaultArt from "../assets/games/ember-vault.png";
+
 export type GameStatus = "In Development" | "Concept" | "Coming Soon" | "Released";
 export type GameTheme = "ember" | "dungeon" | "city" | "depths" | "shattered";
 
@@ -24,21 +27,23 @@ export interface Game {
 	featured: boolean;
 	theme?: GameTheme;
 	artwork?: GameArtwork;
+	keyArt?: ImageMetadata;
 	feature?: { eyebrow: string; ctaLabel: string; };
 }
 
-// Ember Vault copy is approved for MYTH-WEB-004; artwork remains pending.
+// Founder-supplied key art and copy for MYTH-WEB-RESET-001.
 // The four Concept entries are editable design/test titles.
 export const games: readonly Game[] = [
 	{
 		slug: "ember-vault",
 		theme: "ember",
 		title: "Ember Vault",
-		tagline: "Some doors were sealed for a reason.",
-		description: "Descend into a forgotten stronghold where ancient halls, buried threats, and shifting paths stand between you and whatever still waits below.",
+		tagline: "",
+		description: "An ancient vault waits beyond the falls — full of danger, secrets, and the promise of treasure.",
 		status: "In Development",
 		featured: true,
-		feature: { eyebrow: "First Realm", ctaLabel: "Enter Ember Vault" },
+		feature: { eyebrow: "Featured Game", ctaLabel: "Enter Ember Vault" },
+		keyArt: emberVaultArt,
 	},
 	{
 		slug: "dungeon-crawl",

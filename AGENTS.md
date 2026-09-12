@@ -1,6 +1,6 @@
 # Mythadis game-studio website
 
-Mythadis is an independent game studio. The approved identity is **MYTHADIS / Games for Worlds Unbound**. MYTH-WEB-003R recovers the fantasy identity of the homepage header and hero; its temporary SVG world awaits founder/design review. MYTH-WEB-004 adds the Ember Vault feature and a minimal noindex game route; artwork remains temporary CSS atmosphere. MYTH-WEB-002 supplies the gaming design foundation at `/review/design-system/`; final artwork and subsequent sections arrive in later slices.
+Mythadis is an independent game studio. Preserve **MYTHADIS / Games for Worlds Unbound** and the existing lockup. MYTH-WEB-RESET-001 supersedes the earlier homepage concepts with a single-page dark studio site: Home, Games/Ember Vault, About, and footer. The supplied Ember Vault art must remain intact. The reset awaits founder review; missing texture references are documented in `docs/single-page-reset.md`.
 
 ## Operating model
 
@@ -27,9 +27,9 @@ Cloudflare
 
 Preserve Astro, TypeScript, pnpm, static generation, and Cloudflare Pages-compatible `dist` output. Prefer plain Astro components and CSS. Do not introduce frontend frameworks, Tailwind, a CMS, a database, or server-side application without explicit authorization.
 
-Reuse the MYTH-WEB-002 components and tokens documented in `docs/design-system.md`. Header, hero, and temporary navigation behavior are documented in `docs/header-hero.md`. Keep the design-review route `noindex, nofollow` and out of public navigation. The featured-game implementation is documented in `docs/featured-game.md`. Do not begin another slice until the MYTH-WEB-003R first screen has received founder/design approval.
+Use `docs/single-page-reset.md` for the current homepage. Preserve useful infrastructure and primitives documented in `docs/design-system.md`; earlier hero/feature guides are historical. Keep the design-review route `noindex, nofollow` and out of public navigation. Do not begin another slice automatically after MYTH-WEB-RESET-001.
 
-Keep game metadata centralized in `src/data/games.ts`; Concept entries are editable design/test titles. Artwork is optional until approved assets arrive.
+Keep game metadata centralized in `src/data/games.ts`; Concept entries are editable design/test titles. Ember Vault has founder-supplied key art; artwork for Concept entries remains optional.
 
 When starting the dev server, use background mode:
 

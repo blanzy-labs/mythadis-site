@@ -1,3 +1,5 @@
+> Historical slice: superseded by MYTH-WEB-RESET-001. See [the current single-page reset guide](single-page-reset.md).
+
 # MYTH-WEB-004 — Ember Vault feature
 
 The homepage now contains the approved header and hero, `FeaturedGame` for Ember Vault, and a minimal More Worlds insertion marker. `#games` targets the feature itself; `#studio` remains a Coming soon marker. No catalog, studio, journal, or footer is implemented.

@@ -3,27 +3,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import Hero from "../components/Hero.astro";
 import FeaturedGame from "../components/FeaturedGame.astro";
+import BrandLockup from "../components/BrandLockup.astro";
 import { games } from "../data/games";
 import "../styles/design-system.css";
+import "../styles/studio.css";
 const featuredGame = games.find((game) => game.featured);
 ---
-
-<BaseLayout theme="gaming" title="Mythadis — Games for Worlds Unbound">
-	<a class="skip-link" href="#main-content">Skip to main content</a>
-	<SiteHeader />
-	<main id="main-content" tabindex="-1">
-		<Hero />
-		{featuredGame && <FeaturedGame game={featuredGame} />}
-		<!-- Stable handoff anchors only. Their full sections belong to later slices. -->
-		<div class="next-section-marker container container--wide">
-			<p class="eyebrow">More Worlds</p>
-			<div id="studio" tabindex="-1"><p>Studio <span>Coming soon</span></p></div>
-		</div>
-	</main>
+<BaseLayout theme="gaming" bodyClass="studio-theme" title="Mythadis — Games for Worlds Unbound" description="Mythadis is an independent game studio building dark worlds, dangerous places, and games made to be explored.">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="home" tabindex="-1"><SiteHeader /></div>
+  <main id="main-content" tabindex="-1">
+    <Hero />
+    {featuredGame && <FeaturedGame game={featuredGame} />}
+    <div class="more-worlds container"><p class="studio-label">More Worlds Coming</p><p>Our story begins with Ember Vault.</p></div>
+    <section id="about" class="studio-about container" aria-labelledby="about-title" tabindex="-1">
+      <p class="studio-label">About Mythadis</p>
+      <div><h2 id="about-title">Built for worlds<br />worth exploring.</h2><p>Mythadis is an independent game studio focused on atmospheric worlds, memorable places, and adventures that invite players to go deeper.</p></div>
+    </section>
+  </main>
+  <footer class="studio-footer container">
+    <BrandLockup variant="compact" />
+    <div><nav aria-label="Footer navigation"><a href="#home">Home</a><a href="#games">Games</a><a href="#about">About</a></nav><p>© {new Date().getUTCFullYear()} Mythadis</p></div>
+  </footer>
 </BaseLayout>
-
 <style>
-	.next-section-marker { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-6); padding-block: var(--space-8) var(--space-12); border-top: var(--line-thin) solid var(--border-subtle); }
-	.next-section-marker p { display: flex; flex-wrap: wrap; gap: var(--space-3); font-size: var(--text-small); }
-	.next-section-marker span { color: var(--color-mist); }
+  .more-worlds { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.75rem 2rem; padding-block:1.5rem; border-bottom:1px solid var(--border-subtle); }
+  .more-worlds > p:last-child { color:var(--color-mist); font-size:.8125rem; }
+  .studio-about { display:grid; gap:2rem; padding-block:clamp(4rem,9vw,8rem); }
+  .studio-about h2 { font-size:clamp(2.75rem,5vw,5rem); margin-bottom:2rem; }
+  .studio-about div > p { max-width:35rem; }
+  .studio-footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:end; gap:2rem; padding-block:2.5rem; border-top:1px solid var(--border-subtle); }
+  .studio-footer nav { display:flex; gap:2rem; }
+  .studio-footer a { display:inline-flex; align-items:center; min-height:2.75rem; text-decoration:none; font-size:.8125rem; }
+  .studio-footer a:hover { text-decoration:underline; text-underline-offset:.4em; }
+  .studio-footer div > p { font-size:.75rem; color:var(--color-mist); margin-top:.5rem; }
+  @media(min-width:64rem) { .studio-about { grid-template-columns:1fr 2fr; gap:4rem; } .studio-about > .studio-label { padding-top:.75rem; } .studio-footer div > p { text-align:right; } }
 </style>

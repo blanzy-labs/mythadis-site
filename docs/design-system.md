@@ -1,3 +1,5 @@
+> The specimen route preserves the earlier reusable foundation. The current public direction is [MYTH-WEB-RESET-001](single-page-reset.md); its homepage does not use the ornate realm CTA or catalog cards.
+
 # Mythadis gaming design system
 
 MYTH-WEB-002 establishes the reusable foundation on `/review/design-system/`. The route is an internal, non-production specimen page with `noindex, nofollow`; it is not linked from `/`. The homepage remains the MYTH-WEB-001 baseline. A noindex directive is not access control.

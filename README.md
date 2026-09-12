@@ -4,7 +4,7 @@ The public website for the Mythadis independent game studio.
 
 **MYTHADIS — Games for Worlds Unbound**
 
-`rebuild/game-studio-v1` contains the MYTH-WEB-003R recovered header and world-first hero plus the MYTH-WEB-004 Ember Vault feature at `/`, built on the MYTH-WEB-002 gaming design system. The hero uses an original temporary SVG landscape pending approved artwork and founder/design review. Evaluate the reusable foundation at `/review/design-system/`; it remains an internal, noindex review route.
+`rebuild/game-studio-v1` contains the MYTH-WEB-RESET-001 single-page studio site: preserved Mythadis logo, charcoal texture, typographic hero, supplied Ember Vault key art, About, and footer. The primary navigation stays on `/`. The reset awaits founder review; comparison with two unavailable texture references is pending. `/review/design-system/` remains an internal, noindex specimen route.
 
 ## Stack
 
@@ -41,11 +41,12 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 
 ## Source structure
 
-- `src/pages/index.astro`: header, hero, featured Ember Vault, and a future catalog insertion point at `/`.
+- `src/pages/index.astro`: single-page header, hero, Ember Vault, About, and footer at `/`.
 - `src/components/SiteHeader.astro`: production header and accessible mobile disclosure navigation.
-- `src/components/Hero.astro`: approved hero copy, layered environment, and optional responsive local artwork.
-- `src/components/HeroWorld.astro`: original temporary fortress landscape, replaced when final artwork is supplied.
-- `src/components/FeaturedGame.astro`: cinematic game feature driven by centralized game data.
+- `src/components/Hero.astro`: reset hero copy and same-page actions.
+- `src/components/FeaturedGame.astro`: full-composition key-art feature driven by centralized game data.
+- `src/assets/games/ember-vault.png`: unmodified founder-supplied artwork, optimized by Astro at build time.
+- `src/styles/studio.css`: reset-specific surfaces, texture, and actions.
 - `src/pages/games/ember-vault.astro`: minimal, noindex game-page placeholder with shared navigation.
 - `src/pages/404.astro`: neutral not-found page.
 - `src/layouts/BaseLayout.astro`: shared HTML document and metadata.
@@ -56,11 +57,11 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 - `src/data/games.ts`: typed game records with slug, title, tagline, description, status, featured flag, optional artwork, and semantic theme hooks.
 - `public/robots.txt`: static crawler instructions.
 
-Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Ember Vault uses the approved MYTH-WEB-004 tagline and description; Concept copy remains blank. Artwork is optional and omitted. The Ember Vault route is a minimal `noindex, follow` placeholder; final game pages remain deferred.
+Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Ember Vault uses the reset description and supplied key art; Concept copy and artwork remain blank. The Ember Vault route is a minimal `noindex, follow` placeholder; final game pages remain deferred.
 
 ## Design governance
 
-Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-003R restores the fantasy identity of the header and hero. Final artwork and subsequent homepage sections remain deferred. See `AGENTS.md`, [the design-system guide](docs/design-system.md), [the header and hero guide](docs/header-hero.md), and [the featured-game guide](docs/featured-game.md).
+Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-RESET-001 supersedes the earlier homepage concepts and supplies the complete single-page structure. See [the current reset guide](docs/single-page-reset.md), `AGENTS.md`, [the design-system guide](docs/design-system.md), [the header and hero guide](docs/header-hero.md), and [the featured-game guide](docs/featured-game.md).
 
 ## Legacy archive
 
@@ -74,4 +75,4 @@ Its final production state is preserved at:
 
 Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-The next action is **founder/design review of MYTH-WEB-003R**. Do not continue another slice until the recovered first screen is approved.
+The next action is **founder review of MYTH-WEB-RESET-001**, including the pending texture-reference comparison. Do not continue another slice automatically.

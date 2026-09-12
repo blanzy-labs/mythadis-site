@@ -4,7 +4,7 @@ The public website for the Mythadis independent game studio.
 
 **MYTHADIS — Games for Worlds Unbound**
 
-`rebuild/game-studio-v1` contains the MYTH-WEB-003 header and hero at `/`, built on the MYTH-WEB-002 gaming design system. The homepage uses temporary CSS atmosphere pending approved artwork. Evaluate the reusable foundation at `/review/design-system/`; it remains an internal, noindex review route.
+`rebuild/game-studio-v1` contains the approved MYTH-WEB-003 header and hero plus the MYTH-WEB-004 Ember Vault feature at `/`, built on the MYTH-WEB-002 gaming design system. The homepage uses temporary CSS atmosphere pending approved artwork. Evaluate the reusable foundation at `/review/design-system/`; it remains an internal, noindex review route.
 
 ## Stack
 
@@ -41,9 +41,11 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 
 ## Source structure
 
-- `src/pages/index.astro`: header, hero, and minimal future-section anchors at `/`.
+- `src/pages/index.astro`: header, hero, featured Ember Vault, and a future catalog insertion point at `/`.
 - `src/components/SiteHeader.astro`: production header and accessible mobile disclosure navigation.
 - `src/components/Hero.astro`: approved hero copy, CSS atmosphere, and optional responsive local artwork.
+- `src/components/FeaturedGame.astro`: cinematic game feature driven by centralized game data.
+- `src/pages/games/ember-vault.astro`: minimal, noindex game-page placeholder with shared navigation.
 - `src/pages/404.astro`: neutral not-found page.
 - `src/layouts/BaseLayout.astro`: shared HTML document and metadata.
 - `src/styles/global.css`: isolated baseline styling.
@@ -53,11 +55,11 @@ Do not commit secrets, local environment files, `node_modules/`, `.astro/`, or `
 - `src/data/games.ts`: typed game records with slug, title, tagline, description, status, featured flag, optional artwork, and semantic theme hooks.
 - `public/robots.txt`: static crawler instructions.
 
-Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Game taglines and descriptions are blank pending approved copy; artwork is optional and omitted. Add reusable components and asset directories only when needed. Individual game pages are deferred.
+Ember Vault is featured and In Development. Dungeon Crawl, Free City, Black Depths, and Shattered Hope are editable Concept/design-test titles. Ember Vault uses the approved MYTH-WEB-004 tagline and description; Concept copy remains blank. Artwork is optional and omitted. The Ember Vault route is a minimal `noindex, follow` placeholder; final game pages remain deferred.
 
 ## Design governance
 
-Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-003 applies that foundation to the header and hero. Final artwork and subsequent homepage sections remain deferred. See `AGENTS.md`, [the design-system guide](docs/design-system.md), and [the header and hero guide](docs/header-hero.md).
+Implement approved specifications from the design architect. Preserve the approved brand name and tagline. MYTH-WEB-002 implements Cinzel Decorative, Cormorant Garamond, and Manrope with the specified dark stone, bronze, and ember palette. MYTH-WEB-003 applies that foundation to the header and hero. Final artwork and subsequent homepage sections remain deferred. See `AGENTS.md`, [the design-system guide](docs/design-system.md), [the header and hero guide](docs/header-hero.md), and [the featured-game guide](docs/featured-game.md).
 
 ## Legacy archive
 
@@ -71,4 +73,4 @@ Its final production state is preserved at:
 
 Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-After founder/design approval of the first screen, the next recommended slice is **MYTH-WEB-004 — Ember Vault Featured Game Section**. Do not begin it automatically.
+After founder/design review of Ember Vault, the next recommended slice is **MYTH-WEB-005 — Realms of Mythadis Multi-Game Catalog**. Do not begin it automatically.

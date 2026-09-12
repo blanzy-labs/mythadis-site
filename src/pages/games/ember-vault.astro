@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import GameStatus from "../../components/GameStatus.astro";
+import { games } from "../../data/games";
+import "../../styles/design-system.css";
+const game = games.find((game) => game.slug === "ember-vault")!;
+---
+
+<BaseLayout theme="gaming" title={`${game.title} — Mythadis`} description={`${game.title} is an upcoming game from Mythadis.`} noindex nofollow={false}>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+	<SiteHeader />
+	<main id="main-content" tabindex="-1" class="game-placeholder container container--wide">
+		<h1>{game.title}</h1>
+		<GameStatus status={game.status} />
+		<p>A full game page is coming.</p>
+	</main>
+</BaseLayout>
+
+<style>
+	.game-placeholder { display: grid; align-content: center; justify-items: start; gap: var(--space-6); min-height: 100svh; padding-block: calc(var(--space-32) + var(--space-16)) var(--space-24); }
+	.game-placeholder h1 { font-size: var(--text-hero); text-transform: uppercase; }
+</style>

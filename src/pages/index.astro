@@ -2,7 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import Hero from "../components/Hero.astro";
+import FeaturedGame from "../components/FeaturedGame.astro";
+import { games } from "../data/games";
 import "../styles/design-system.css";
+const featuredGame = games.find((game) => game.featured);
 ---
 
 <BaseLayout theme="gaming" title="Mythadis — Games for Worlds Unbound">
@@ -10,9 +13,10 @@ import "../styles/design-system.css";
 	<SiteHeader />
 	<main id="main-content" tabindex="-1">
 		<Hero />
+		{featuredGame && <FeaturedGame game={featuredGame} />}
 		<!-- Stable handoff anchors only. Their full sections belong to later slices. -->
 		<div class="next-section-marker container container--wide">
-			<div id="games" tabindex="-1"><h2>Our Worlds</h2></div>
+			<p class="eyebrow">More Worlds</p>
 			<div id="studio" tabindex="-1"><p>Studio <span>Coming soon</span></p></div>
 		</div>
 	</main>
@@ -20,7 +24,6 @@ import "../styles/design-system.css";
 
 <style>
 	.next-section-marker { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-6); padding-block: var(--space-8) var(--space-12); border-top: var(--line-thin) solid var(--border-subtle); }
-	.next-section-marker h2 { font-size: 2rem; }
 	.next-section-marker p { display: flex; flex-wrap: wrap; gap: var(--space-3); font-size: var(--text-small); }
 	.next-section-marker span { color: var(--color-mist); }
 </style>

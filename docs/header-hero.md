@@ -1,6 +1,6 @@
 # MYTH-WEB-003 — Header and hero
 
-The homepage now contains `SiteHeader`, `Hero`, and minimal future anchors. This is a rebuild-branch implementation for visual approval, not a production release. No featured game, game grid, studio content, journal, or footer is implemented.
+At completion of MYTH-WEB-003, the homepage contained `SiteHeader`, `Hero`, and minimal future anchors. That slice was a rebuild-branch implementation for visual approval, not a production release. It did not implement a featured game, game grid, studio content, journal, or footer.
 
 ## Composition
 
@@ -32,4 +32,4 @@ The existing picture structure uses `object-fit: cover`, responsive object posit
 
 Review captures live outside source at `../mythadis-review/MYTH-WEB-003/`: `myth-web-003-desktop.png` (1440×1000 CSS viewport) and `myth-web-003-mobile.png` (390×844 CSS viewport). Chrome captured them at 2× pixel density. They are review evidence, not committed assets.
 
-The deliberate visual compromise is temporary CSS atmosphere awaiting approved cinematic artwork. Subsequent content and Journal remain pending. Stop here for founder/design approval before MYTH-WEB-004.
+The deliberate visual compromise is temporary CSS atmosphere awaiting approved cinematic artwork. Subsequent content and Journal remain pending. The first screen was subsequently approved. MYTH-WEB-004 replaces the Games marker with the real Ember Vault feature; the approved header and hero remain unchanged. See `featured-game.md`.

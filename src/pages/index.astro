@@ -1,26 +1,26 @@
 ---
-import { games } from "../data/games";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const firstRealm = games.find((game) => game.featured);
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import "../styles/design-system.css";
 ---
 
-<BaseLayout>
-	<main>
-		<header>
-			<h1>MYTHADIS</h1>
-			<p>Games for Worlds Unbound</p>
-		</header>
-		<section aria-labelledby="introduction">
-			<h2 id="introduction">A new world is taking shape.</h2>
-			<p>Mythadis is an independent game studio building strange worlds, dangerous places, and games made to be explored.</p>
-		</section>
-		{firstRealm && (
-			<section aria-labelledby="first-realm">
-				<h2 id="first-realm">Our first realm:</h2>
-				<p>{firstRealm.title}</p>
-			</section>
-		)}
-		<p>More worlds are coming.</p>
+<BaseLayout theme="gaming" title="Mythadis — Games for Worlds Unbound">
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+	<SiteHeader />
+	<main id="main-content" tabindex="-1">
+		<Hero />
+		<!-- Stable handoff anchors only. Their full sections belong to later slices. -->
+		<div class="next-section-marker container container--wide">
+			<div id="games" tabindex="-1"><h2>Our Worlds</h2></div>
+			<div id="studio" tabindex="-1"><p>Studio <span>Coming soon</span></p></div>
+		</div>
 	</main>
 </BaseLayout>
+
+<style>
+	.next-section-marker { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-6); padding-block: var(--space-8) var(--space-12); border-top: var(--line-thin) solid var(--border-subtle); }
+	.next-section-marker h2 { font-size: 2rem; }
+	.next-section-marker p { display: flex; flex-wrap: wrap; gap: var(--space-3); font-size: var(--text-small); }
+	.next-section-marker span { color: var(--color-mist); }
+</style>

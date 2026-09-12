@@ -1,0 +1,164 @@
+---
+import BrandLockup from "./BrandLockup.astro";
+import ButtonLink from "./ButtonLink.astro";
+
+const navigation = [
+	{ label: "Games", href: "/#games" },
+	{ label: "Studio", href: "/#studio" },
+	{ label: "Journal", href: undefined },
+];
+---
+
+<header class="site-header">
+	<div class="site-header__inner container container--wide">
+		<a class="site-header__brand" href="/" aria-label="MYTHADIS — Games for Worlds Unbound, home">
+			<div class="site-header__brand-desktop"><BrandLockup /></div>
+			<div class="site-header__brand-mobile"><BrandLockup variant="compact" /></div>
+		</a>
+
+		<nav class="desktop-navigation" aria-label="Main navigation">
+			<ul>
+				{navigation.map(({ label, href }) => (
+					<li>{href ? <a class="navigation-link" href={href}>{label}</a> : <span class="navigation-unavailable" role="link" aria-disabled="true">{label}<span class="navigation-note">Coming soon</span></span>}</li>
+				))}
+			</ul>
+			<ButtonLink href="/#games" variant="secondary">Enter the Realm</ButtonLink>
+		</nav>
+
+		<details class="mobile-navigation" data-mobile-navigation>
+			<summary aria-controls="mobile-navigation-panel">
+				<span class="menu-label-closed">Menu</span>
+				<span class="menu-label-open">Close</span>
+				<svg class="menu-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path class="menu-icon__top" d="M3 6h14" /><path class="menu-icon__bottom" d="M3 14h14" /></svg>
+			</summary>
+			<div class="mobile-navigation__panel" id="mobile-navigation-panel">
+				<nav class="container" aria-label="Mobile navigation">
+					<ul>
+						{navigation.map(({ label, href }) => (
+							<li>{href ? <a class="navigation-link" href={href}>{label}</a> : <span class="navigation-unavailable" role="link" aria-disabled="true">{label}<span class="navigation-note">Coming soon</span></span>}</li>
+						))}
+					</ul>
+					<ButtonLink href="/#games" variant="secondary">Enter the Realm</ButtonLink>
+				</nav>
+			</div>
+		</details>
+	</div>
+</header>
+
+<script>
+	// A native disclosure works without JavaScript. These additions keep its
+	// explicit ARIA state in sync and close it after navigation or Escape.
+	document.querySelectorAll<HTMLDetailsElement>("[data-mobile-navigation]").forEach((menu) => {
+		const toggle = menu.querySelector<HTMLElement>("summary")!;
+		const sync = () => toggle.setAttribute("aria-expanded", String(menu.open));
+		const close = () => { menu.open = false; sync(); };
+		sync();
+		menu.addEventListener("toggle", sync);
+		menu.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && menu.open) {
+				event.preventDefault();
+				close();
+				toggle.focus();
+			}
+		});
+		menu.addEventListener("click", (event) => {
+			if ((event.target as Element).closest("a[href]")) close();
+		});
+		menu.addEventListener("focusout", (event) => {
+			if (event.relatedTarget instanceof Node && !menu.contains(event.relatedTarget)) close();
+		});
+		document.addEventListener("click", (event) => {
+			if (event.target instanceof Node && !menu.contains(event.target)) close();
+		});
+		matchMedia("(min-width: 64rem)").addEventListener("change", (event) => {
+			if (event.matches && menu.open) {
+				const restoreFocus = menu.contains(document.activeElement);
+				close();
+				if (restoreFocus) menu.closest("header")?.querySelector<HTMLAnchorElement>(".site-header__brand")?.focus();
+			}
+		});
+	});
+</script>
+
+<style>
+	.site-header {
+		position: absolute;
+		inset: 0 0 auto;
+		z-index: var(--z-focus);
+		background: linear-gradient(180deg, rgb(9 11 14 / 86%), rgb(9 11 14 / 28%));
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-6);
+		padding-block: clamp(var(--space-6), 2vw, var(--space-8));
+		border-bottom: var(--line-thin) solid var(--border-subtle);
+	}
+	.site-header__brand { flex-shrink: 0; text-decoration: none; }
+	.site-header__brand-desktop, .desktop-navigation { display: none; }
+	ul { list-style: none; padding: 0; margin: 0; }
+	.navigation-link, .navigation-unavailable {
+		font-family: var(--font-ui);
+		font-size: var(--text-small);
+		line-height: 1.5;
+	}
+	.navigation-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 3rem;
+		text-decoration: none;
+		text-underline-offset: 0.5em;
+	}
+	.navigation-link:hover { color: var(--color-parchment); text-decoration: underline; text-decoration-color: var(--color-gold); }
+	.navigation-unavailable { display: grid; gap: var(--space-1); color: var(--color-mist); }
+	.navigation-note { font-size: var(--text-small); color: var(--color-mist); }
+	.mobile-navigation summary {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--space-3);
+		min-height: 3rem;
+		cursor: pointer;
+		list-style: none;
+		font: 600 var(--text-small) / 1.5 var(--font-ui);
+		color: var(--color-parchment);
+	}
+	.mobile-navigation summary::-webkit-details-marker { display: none; }
+	.menu-label-open { display: none; }
+	.mobile-navigation[open] .menu-label-open { display: inline; }
+	.mobile-navigation[open] .menu-label-closed { display: none; }
+	.menu-icon { flex: none; }
+	.mobile-navigation[open] .menu-icon__top { transform: translateY(4px) rotate(45deg); transform-origin: 10px 6px; }
+	.mobile-navigation[open] .menu-icon__bottom { transform: translateY(-4px) rotate(-45deg); transform-origin: 10px 14px; }
+	.mobile-navigation__panel {
+		position: absolute;
+		inset: 100% 0 auto;
+		max-height: calc(100dvh - 7rem);
+		overflow-y: auto;
+		padding-block: var(--space-4) var(--space-8);
+		border-bottom: var(--line-thin) solid var(--color-bronze);
+		background: var(--color-obsidian);
+		box-shadow: var(--shadow-surface);
+	}
+	.mobile-navigation__panel ul { margin-bottom: var(--space-8); }
+	.mobile-navigation__panel li { border-bottom: var(--line-thin) solid var(--border-subtle); }
+	.mobile-navigation__panel .navigation-link,
+	.mobile-navigation__panel .navigation-unavailable {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--space-4);
+		width: 100%;
+		padding-block: var(--space-6);
+		font-size: var(--text-large);
+	}
+	.mobile-navigation__panel :global(.button-link) { width: 100%; }
+	@media (min-width: 64rem) {
+		.site-header__brand-desktop { display: block; }
+		.site-header__brand-mobile, .mobile-navigation { display: none; }
+		.desktop-navigation, .desktop-navigation ul { display: flex; align-items: center; }
+		.desktop-navigation { gap: clamp(var(--space-8), 4vw, var(--space-16)); }
+		.desktop-navigation ul { gap: var(--space-8); }
+	}
+</style>

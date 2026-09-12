@@ -1,6 +1,6 @@
 # Mythadis game-studio website
 
-Mythadis is an independent game studio. The approved identity is **MYTHADIS / Games for Worlds Unbound**. The homepage remains deliberately minimal. MYTH-WEB-002 adds the gaming design foundation at `/review/design-system/`; production composition and artwork arrive in later slices.
+Mythadis is an independent game studio. The approved identity is **MYTHADIS / Games for Worlds Unbound**. MYTH-WEB-003 implements the homepage header and hero with temporary CSS atmosphere. MYTH-WEB-002 supplies the gaming design foundation at `/review/design-system/`; final artwork and subsequent sections arrive in later slices.
 
 ## Operating model
 
@@ -27,7 +27,7 @@ Cloudflare
 
 Preserve Astro, TypeScript, pnpm, static generation, and Cloudflare Pages-compatible `dist` output. Prefer plain Astro components and CSS. Do not introduce frontend frameworks, Tailwind, a CMS, a database, or server-side application without explicit authorization.
 
-Reuse the MYTH-WEB-002 components and tokens documented in `docs/design-system.md`. Keep the design-review route `noindex, nofollow` and out of public navigation. Do not start MYTH-WEB-003 without a separate instruction.
+Reuse the MYTH-WEB-002 components and tokens documented in `docs/design-system.md`. Header, hero, and temporary navigation behavior are documented in `docs/header-hero.md`. Keep the design-review route `noindex, nofollow` and out of public navigation. Do not start MYTH-WEB-004 without a separate instruction following founder/design approval of the first screen.
 
 Keep game metadata centralized in `src/data/games.ts`; Concept entries are editable design/test titles. Artwork is optional until approved assets arrive.
 

@@ -1,0 +1,108 @@
+---
+import ButtonLink from "./ButtonLink.astro";
+import MythadisMark from "./MythadisMark.astro";
+
+interface HeroArtwork {
+	// Put mobile sources before desktop sources; all paths must be local.
+	sources?: Array<{
+		srcset: string;
+		type: "image/avif" | "image/webp" | "image/jpeg";
+		media?: string;
+	}>;
+	src: string;
+	width: number;
+	height: number;
+	position?: string;
+	mobilePosition?: string;
+}
+interface Props { artwork?: HeroArtwork; }
+const { artwork } = Astro.props;
+const artworkPosition = artwork ? `--hero-position: ${artwork.position ?? "70% 45%"}; --hero-mobile-position: ${artwork.mobilePosition ?? "65% 65%"};` : undefined;
+---
+
+<section class="hero" aria-labelledby="hero-title" style={artworkPosition} data-artwork={artwork ? "supplied" : "placeholder"}>
+	<div class="hero__artwork" aria-hidden="true">
+		{artwork && <picture>
+			{artwork.sources?.map(({ srcset, type, media }) => <source srcset={srcset} type={type} media={media} />)}
+			<img src={artwork.src} width={artwork.width} height={artwork.height} alt="" loading="eager" fetchpriority="high" decoding="async" />
+		</picture>}
+	</div>
+	<div class="hero__shade" aria-hidden="true"></div>
+	<div class="hero__layout container container--wide">
+		<div class="hero__content">
+			<p class="hero__label eyebrow"><MythadisMark size={16} /><span>Independent Game Studio</span></p>
+			<h1 id="hero-title"><span>Strange Worlds.</span><span><em>Bolder Games.</em></span></h1>
+			<p class="hero__description">Mythadis is an independent game studio building dangerous places, memorable worlds, and games made to be explored.</p>
+			<div class="hero__actions">
+				<ButtonLink href="#games">Explore Our Worlds</ButtonLink>
+				<ButtonLink href="#studio" variant="text">Meet Mythadis</ButtonLink>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		isolation: isolate;
+		background: var(--color-void);
+	}
+	.hero__artwork, .hero__shade { position: absolute; inset: 0; pointer-events: none; }
+	.hero__artwork {
+		overflow: hidden;
+		background:
+			radial-gradient(ellipse at 76% 68%, rgb(137 147 157 / 18%), transparent 46%),
+			radial-gradient(ellipse at 87% 83%, rgb(184 83 50 / 13%), transparent 36%),
+			linear-gradient(145deg, transparent 42%, rgb(102 119 137 / 12%) 68%, transparent 88%),
+			linear-gradient(110deg, var(--color-void) 12%, var(--color-stone) 72%, var(--color-obsidian));
+	}
+	.hero__artwork picture { display: block; width: 100%; height: 100%; }
+	.hero__artwork img { width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-mobile-position, 65% 65%); }
+	.hero__shade {
+		background:
+			linear-gradient(180deg, rgb(9 11 14 / 38%), rgb(9 11 14 / 78%) 18%, rgb(9 11 14 / 80%) 58%, transparent 82%, var(--color-void)),
+			linear-gradient(90deg, rgb(9 11 14 / 30%), transparent 75%, rgb(9 11 14 / 20%));
+	}
+	.hero__layout {
+		position: relative;
+		z-index: var(--z-overlay);
+		display: flex;
+		align-items: flex-start;
+		min-height: max(100svh, 52rem);
+		padding-top: calc(var(--space-32) + var(--space-8));
+		padding-bottom: var(--space-32);
+	}
+	.hero__content { display: grid; gap: var(--space-6); width: min(100%, 46rem); }
+	.hero__label { display: flex; align-items: center; gap: var(--space-3); color: var(--color-gold); }
+	.hero h1 { font-size: var(--text-hero); line-height: 1.03; }
+	.hero h1 span { display: block; }
+	.hero h1 em { font-weight: 500; }
+	.hero__description { max-width: 33rem; font-size: clamp(var(--text-body), 1.4vw, var(--text-large)); color: var(--color-bone); }
+	.hero__actions { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); margin-top: var(--space-2); }
+	.hero__actions :global(.button-link--text) { align-self: flex-start; }
+	@media (min-width: 40rem) {
+		.hero__actions { flex-direction: row; align-items: center; gap: var(--space-8); }
+	}
+	@media (min-width: 64rem) {
+		.hero__layout {
+			align-items: center;
+			min-height: max(92svh, 46rem);
+			padding-top: calc(var(--space-32) + var(--space-8));
+			padding-bottom: var(--space-24);
+		}
+		.hero__artwork {
+			background:
+				radial-gradient(ellipse at 74% 40%, rgb(137 147 157 / 21%), transparent 43%),
+				radial-gradient(ellipse at 88% 66%, rgb(184 83 50 / 13%), transparent 30%),
+				linear-gradient(125deg, transparent 38%, rgb(102 119 137 / 12%) 62%, transparent 86%),
+				linear-gradient(105deg, var(--color-void) 12%, var(--color-stone) 70%, var(--color-obsidian));
+		}
+		.hero__artwork img { object-position: var(--hero-position, 70% 45%); }
+		.hero__shade {
+			background:
+				linear-gradient(0deg, var(--color-void), transparent 26%, transparent 80%, rgb(9 11 14 / 35%)),
+				linear-gradient(90deg, rgb(9 11 14 / 94%), rgb(9 11 14 / 86%) 38%, rgb(9 11 14 / 20%) 74%, rgb(9 11 14 / 30%));
+		}
+		.hero__content { gap: var(--space-8); }
+	}
+</style>

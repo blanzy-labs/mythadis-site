@@ -35,3 +35,5 @@ Stop for founder review of the single-page site with its new stone surface. Do n
 ## Stone-reference follow-up
 
 The actual desktop and mobile renders were reviewed for texture scale, joints, readability, and preserved Ember Vault composition. The existing image and brand are unchanged. Type checking and the production build are rerun for this asset/CSS change; the earlier navigation and layout validation remains applicable.
+
+Small secondary text is brightened to `#b0aaa1`. A conservative upper background bound of `#3d3d3d` (maximum decoded stone value 110, 32% opacity, and the gradient upper bound) gives 4.71:1 contrast. Normal body and heading text have higher contrast.

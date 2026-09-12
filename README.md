@@ -4,7 +4,7 @@ The public website for the Mythadis independent game studio.
 
 **MYTHADIS — Games for Worlds Unbound**
 
-`rebuild/game-studio-v1` contains the MYTH-WEB-RESET-001 single-page studio site: preserved Mythadis logo, charcoal texture, typographic hero, supplied Ember Vault key art, About, and footer. The primary navigation stays on `/`. The reset awaits founder review; comparison with two unavailable texture references is pending. `/review/design-system/` remains an internal, noindex specimen route.
+`rebuild/game-studio-v1` contains the MYTH-WEB-RESET-001 single-page studio site: preserved Mythadis logo, charcoal texture, typographic hero, supplied Ember Vault key art, About, and footer. The primary navigation stays on `/`. The reset awaits founder review; the latest supplied charcoal-stone reference now guides the background. `/review/design-system/` remains an internal, noindex specimen route.
 
 ## Stack
 
@@ -75,4 +75,4 @@ Its final production state is preserved at:
 
 Both archive refs were verified remotely before cleanup. Treat the archive branch and tag as permanent, immutable references: never move, rewrite, or delete them. Git is the archive; do not duplicate the legacy implementation into this branch. Retirement is the development direction; production remains unchanged until a future approved release.
 
-The next action is **founder review of MYTH-WEB-RESET-001**, including the pending texture-reference comparison. Do not continue another slice automatically.
+The next action is **founder review of MYTH-WEB-RESET-001**, including the updated charcoal-stone surface. Do not continue another slice automatically.

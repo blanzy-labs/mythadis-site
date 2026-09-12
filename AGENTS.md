@@ -1,6 +1,6 @@
 # Mythadis game-studio website
 
-Mythadis is an independent game studio. Preserve **MYTHADIS / Games for Worlds Unbound** and the existing lockup. MYTH-WEB-RESET-001 supersedes the earlier homepage concepts with a single-page dark studio site: Home, Games/Ember Vault, About, and footer. The supplied Ember Vault art must remain intact. The reset awaits founder review; missing texture references are documented in `docs/single-page-reset.md`.
+Mythadis is an independent game studio. Preserve **MYTHADIS / Games for Worlds Unbound** and the existing lockup. MYTH-WEB-RESET-001 supersedes the earlier homepage concepts with a single-page dark studio site: Home, Games/Ember Vault, About, and footer. The supplied Ember Vault art must remain intact. The reset awaits founder review; the latest supplied charcoal-stone reference and original background asset are documented in `docs/single-page-reset.md`.
 
 ## Operating model
 

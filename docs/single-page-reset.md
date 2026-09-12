@@ -6,7 +6,7 @@ The reset supersedes the homepage concepts in MYTH-WEB-003, MYTH-WEB-004, and MY
 
 The public experience lives at `/`: header, typographic hero, Ember Vault, a quiet More Worlds Coming strip, About Mythadis, and footer. Header and footer navigation target `/#home`, `/#games`, and `/#about`. The hero actions also remain on the page. Ember Vault displays its In Development status rather than sending visitors to an unfinished game page. The existing noindex game placeholder and internal design-system review remain available but are not primary destinations.
 
-`src/styles/studio.css` scopes neutral charcoal/obsidian surfaces to `studio-theme`. A small repeat-safe SVG grain and broad low-contrast gradients add restrained texture. The original lockup is unchanged; the new homepage removes unrelated sigils, waymarks, clipped metal buttons, and landscape ornament. Serif headings and sans-serif reading text use the existing local fonts.
+`src/styles/studio.css` scopes neutral charcoal/obsidian surfaces to `studio-theme`. An optimized charcoal-stone texture and broad low-contrast gradients add restrained texture. The AVIF is approximately 66 KB, with an approximately 82 KB WebP fallback; the former SVG grain has been removed. The original lockup is unchanged; the new homepage removes unrelated sigils, waymarks, clipped metal buttons, and landscape ornament. Serif headings and sans-serif reading text use the existing local fonts.
 
 ## Artwork and provenance
 
@@ -14,13 +14,15 @@ The founder's `/Users/robmythadis.com/Downloads/EmberVault.png` matches the spec
 
 The image is lazy loaded, has explicit dimensions and descriptive alternative text, and displays at its original 3:2 ratio. No crop, redraw, recoloring, text extraction, or image-generated replacement is used. The parchment area and all three travelers are deliberately retained. The full-width desktop art is the page's main visual moment.
 
-Texture reference A (`2844b269-0185-58cc-a16a-8008bbc49d45.png`) and B (`2df477cb-b1a5-59e8-848f-90b1c988cb13.png`) point to `/mnt/data/ghostwriter_images/context/`, which is unavailable in this Mac workspace. Matching files were not found in Downloads, attached files, or the repository's local reference folders. Their local paths have been requested. Until supplied, the background implements the written charcoal/grunge direction; visual comparison with those two references remains outstanding. Do not claim those images were reviewed.
+The founder subsequently supplied a charcoal masonry image directly in the conversation. That image has been visually reviewed and serves as the updated material reference for this follow-up. Its worn stone, irregular joints, subdued cracks, and near-black palette inform an original generated background; the supplied reference itself is not shipped. The built-in image-generation tool produced the texture, and Sharp resized/encoded the final 960×960 AVIF and WebP assets. See [the exact generation prompt and asset details](stone-texture-prompt.md). The originally named A/B files remain unavailable and are not represented as having been reviewed.
+
+The texture is decorative CSS, applied at 32% opacity with a smaller mobile tile. The supplied image resolves the missing visual guidance for the current background. Logo, Ember Vault art, page copy, navigation, and section layout remain unchanged.
 
 ## Validation and handoff
 
 Install, type check, and static build are required. Review `/` at 360, 390, 430, 768, 1024, 1440, and 1920px, including menu activation, Escape/focus restoration, section navigation, visible focus, reduced motion, image loading, and horizontal overflow. Check `/review/design-system/` and `/games/ember-vault/` for regressions. The lockup source must remain unchanged from `f0e90a10fd96c2fa9747ba1ca527ca3823e6fb4b`.
 
-Stop for founder review. The missing texture references are a handoff limitation, not permission to invent new art or reinstate the rejected fortress composition. Do not begin another slice automatically.
+Stop for founder review of the single-page site with its new stone surface. Do not begin another slice automatically.
 
 ## Recorded checks — 12 September 2026
 
@@ -29,3 +31,7 @@ Stop for founder review. The missing texture references are a handoff limitation
 - The menu opens with Enter; Tab shows a visible outline; Escape closes and restores summary focus. Selecting Games closes the menu and focuses the same-page section. Reduced-motion emulation reports zero CTA transition duration.
 - Review and game-placeholder routes retain their noindex metadata; browser error/warning logs are empty. All homepage anchors target existing sections.
 - The lockup source and supplied PNG were verified byte-for-byte against their originals.
+
+## Stone-reference follow-up
+
+The actual desktop and mobile renders were reviewed for texture scale, joints, readability, and preserved Ember Vault composition. The existing image and brand are unchanged. Type checking and the production build are rerun for this asset/CSS change; the earlier navigation and layout validation remains applicable.

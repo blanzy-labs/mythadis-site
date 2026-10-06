@@ -53,7 +53,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
           {siteKey ? <>
             <div class="cf-turnstile" data-sitekey={siteKey} data-action="submit_claim" data-size="compact" data-theme="light" data-callback="claimVerified" data-expired-callback="claimVerificationExpired" data-error-callback="claimVerificationError"></div>
             <p id="verification-help" role="status" aria-live="polite">Complete the verification before sending your claim.</p>
-          </> : <p class="configuration-note">The lab is not accepting submissions in this preview: verification has not been configured. You can review the form below.</p>}
+          </> : <p class="configuration-note">CLAIM INTAKE OPENS WITH THE FULL LAUNCH.</p>}
           <noscript><p>Verification requires JavaScript. Enable it and reload this page to send a claim. No submission has been sent.</p></noscript>
         </div>
         <p class="claim-disclosure">By submitting, you confirm that the information is provided for Mythadis to review as a possible investigation. Do not submit private credentials, confidential records, or material you do not have permission to share.</p>

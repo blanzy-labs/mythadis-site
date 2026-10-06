@@ -4,7 +4,7 @@ Final Frontier uses `docs/reference/analog-future-v2-3.html` as the approved vis
 Preserve its typography, palette, asymmetry, CSS television, BS Meter and poster
 composition. See `docs/ff-007-review.md` for current scope and validation.
 
-Work on `feature/ff-007-series-identity-case-001`; production remains on `main`.
+Work on `feature/ff-008-soft-production-launch`; production remains on `main`.
 Preserve Astro, TypeScript, pnpm, static `dist` output and Cloudflare configuration.
 Do not add frameworks, media APIs or a publishing system. FF-005 authorizes only
 one Pages Function at /api/claims, Turnstile verification and CLAIM_SUBMISSIONS KV
@@ -19,8 +19,9 @@ Legacy source remains archived in Git; public legacy paths now use public/_redir
 Keep legacy links out of Final Frontier navigation.
 Keep preview/fixture pages non-indexable. src/config/launch.ts stays launchReady=false
 until the gates in docs/final-frontier/launch-checklist.md pass and the founder
-explicitly approves cutover. Do not deploy production or begin another slice
-automatically. See docs/final-frontier/rollback.md for rollback.
+explicitly approves official launch. FF-008 authorizes the soft production release
+through the existing GitHub → Cloudflare flow after validation, with indexing
+disabled and fixture warnings intact. Do not begin another slice automatically. See docs/final-frontier/rollback.md for rollback.
 
 Preserve `archive/pre-final-frontier` and `pre-final-frontier-2026-10-06` at
 `3ae7334b7f958f11f3337606b0559cda79c7e427`. Also preserve the existing

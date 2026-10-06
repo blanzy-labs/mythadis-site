@@ -26,16 +26,17 @@ do not infer it merely from a branch name.
 Known archived production SHA:
 `3ae7334b7f958f11f3337606b0559cda79c7e427`.
 
-- `archive/pre-final-frontier` (local preserved branch).
-- `pre-final-frontier-2026-10-06` (local annotated tag).
+- `archive/pre-final-frontier` (verified remote branch).
+- `pre-final-frontier-2026-10-06` (verified remote annotated tag).
 - `archive/mythadis-platform-2026-09-12` (existing branch, also present remotely).
 - `mythadis-platform-final-2026-09-12` (existing annotated tag).
 
-All resolve to that SHA and must never be moved, rewritten or deleted. The new
-pre-Final-Frontier refs have not been pushed in these slices; confirm accessible
-backup refs before release through the approved workflow. Do not rely on a local
-checkout being the only recovery copy. The remote historical archive branch
-and unchanged origin/main currently retain the known SHA.
+All resolve to that SHA and must never be moved, rewritten or deleted. FF-008 verified both new remote refs on 2026-10-06, including the annotated
+tag's peeled commit. Before cutover, GitHub's successful Cloudflare Pages check
+identified production deployment `9785ffdc-9e18-41be-bade-7b5d5e3774da` for
+the archived SHA; its `https://9785ffdc.mythadis-site.pages.dev/` URL returned 200.
+Use that deployment as the pre-cutover rollback target in the existing
+`mythadis-site` Pages project. See `soft-launch-review.md` for release results.
 
 If the recorded deployment is no longer available, create a recovery branch
 from the archived SHA, validate it, and restore the prior source through a normal

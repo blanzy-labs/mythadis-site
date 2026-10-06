@@ -1,4 +1,6 @@
 ---
+import SocialLinks from "../components/final-frontier/SocialLinks.astro";
+import { launchReady } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 import BSMeter from "../components/final-frontier/BSMeter.astro";
 import CaseVideo from "../components/final-frontier/CaseVideo.astro";
@@ -52,7 +54,7 @@ const latest = await getLatestCases(4);
       </div>
       <div class="follow">
         <b>FOLLOW MYTHADIS</b>
-        <div class="follow-icons" aria-label="Social platforms — links coming soon"><span aria-label="YouTube">▶</span><span aria-label="Rumble">R</span><span aria-label="X">𝕏</span><span aria-label="Threads">◉</span><span aria-label="LinkedIn">in</span></div>
+        <SocialLinks variant="follow" />
       </div>
       <div class="manifesto">INTERNET<br>CLAIMS.<br>ACTUAL<br>EXPERIMENTS.</div>
     </section>
@@ -68,14 +70,14 @@ const latest = await getLatestCases(4);
           <h3><a href={caseHref(featured) + "#the-receipts"}>{featured.data.title}</a></h3>
           <p>{featured.data.summary}</p>
           <div class="stamp-row">
-            <span class="stamp">EXAMPLE CLAIM</span>
-            <span class="stamp">MOCK CASE</span>
+            <span class="stamp">{launchReady ? "THE CLAIM" : "EXAMPLE CLAIM"}</span>
+            <span class="stamp">{launchReady ? "CASE FILE" : "MOCK CASE"}</span>
           </div>
         </article>
         <article class="receipt">
           <small>FINAL DISPOSITION</small>
           <h3>{featured.data.verdict ?? "Final verdict pending"}</h3>
-          <p>{featured.data.final_bs !== undefined ? `Final BS: ${featured.data.final_bs}/10. ` : ""}Example investigation: read the mock notes and receipts on the case page.</p>
+          <p>{featured.data.final_bs !== undefined ? `Final BS: ${featured.data.final_bs}/10. ` : ""}{launchReady ? "Read the investigation notes and receipts on the case page." : "Example investigation: read the mock notes and receipts on the case page."}</p>
           <div class="stamp-row">
             <span class="stamp"><a href={caseHref(featured) + "#the-receipts"}>OPEN EVIDENCE FILE →</a></span>
           </div>

@@ -1,4 +1,5 @@
 ---
+import { launchReady } from "../../config/launch";
 import { caseNumber, caseDate, type CaseEntry } from "../../lib/cases";
 interface Props { entry: CaseEntry; }
 const { data } = Astro.props.entry;
@@ -11,7 +12,7 @@ const { data } = Astro.props.entry;
   <div class="investigation-ident">
     <div class="investigation-number"><span>CASE</span><b>{caseNumber(data.case)}</b></div>
     <div class="investigation-deck">
-      <span class="hero-kicker">EXAMPLE INVESTIGATION / MOCK CONTENT</span>
+      <span class="hero-kicker">{launchReady ? "MYTHADIS / INVESTIGATION" : "EXAMPLE INVESTIGATION / MOCK CONTENT"}</span>
       {data.category && <p>{data.category}</p>}
       <p class="investigation-status">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</p>
     </div>
@@ -20,8 +21,8 @@ const { data } = Astro.props.entry;
   <p class="investigation-summary">{data.summary}</p>
   <div class="investigation-meta">
     <div class="investigation-dates">
-      <span>Example publication <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>
-      {data.updated && <span>Example update <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}
+      <span>{launchReady ? "Published" : "Example publication"} <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>
+      {data.updated && <span>{launchReady ? "Updated" : "Example update"} <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}
     </div>
     {data.tags && data.tags.length > 0 && <ul class="case-tags" aria-label="Case tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
   </div>

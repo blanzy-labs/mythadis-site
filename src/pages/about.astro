@@ -1,4 +1,5 @@
 ---
+import { launchReady } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 ---
 <FinalFrontierLayout title="About Mythadis">
@@ -13,7 +14,7 @@ import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
       <p>An investigation starts with a specific claim. We ask whether it can be reproduced, describe how it was tested, and publish the observations and limitations alongside the verdict.</p>
       <h2>THE BS METER</h2>
       <p>The BS Meter is part of our editorial language. It makes our level of skepticism visible; it is not a probability or a substitute for evidence. Exceptional claims can push it past 10.</p>
-      <p>This is working copy. The case files and scores in this preview are fictional examples.</p>
+      {!launchReady && <p>This is working copy. The case files and scores in this preview are fictional examples.</p>}
     </div>
     <aside class="broadcast-panel">
       <h2>WATCH THERE.<br />FIND THE RECEIPTS HERE.</h2>

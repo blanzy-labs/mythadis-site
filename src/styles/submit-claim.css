@@ -23,7 +23,7 @@
 .claim-honeypot{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .claim-verification{border-top:3px solid var(--ink);margin-top:30px;padding-top:12px;min-width:0}
 .claim-verification p{font-size:14px;line-height:1.6}
-.cf-turnstile{min-width:0;width:100%}
+.cf-turnstile{min-width:0;width:100%;min-height:140px}
 .configuration-note{border:2px solid var(--ink);background:var(--mustard);padding:12px}
 .claim-disclosure{font-size:14px;line-height:1.65;margin:26px 0 18px}
 .claim-send{display:block;white-space:normal;min-height:56px;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}

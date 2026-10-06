@@ -2,9 +2,9 @@
 
 Final Frontier uses `docs/reference/analog-future-v2-3.html` as the approved visual source.
 Preserve its typography, palette, asymmetry, CSS television, BS Meter and poster
-composition. See `docs/ff-005-review.md` for current scope and validation.
+composition. See `docs/ff-006-review.md` for current scope and validation.
 
-Work on `feature/ff-005-submit-claim-workflow`; production remains on `main`.
+Work on `feature/ff-006-production-readiness`; production remains on `main`.
 Preserve Astro, TypeScript, pnpm, static `dist` output and Cloudflare configuration.
 Do not add frameworks, media APIs or a publishing system. FF-005 authorizes only
 one Pages Function at /api/claims, Turnstile verification and CLAIM_SUBMISSIONS KV
@@ -12,9 +12,12 @@ for claim intake; see docs/final-frontier/submit-claim-cloudflare.md.
 Use CaseVideo for click-to-load YouTube and outbound Rumble; keep fixture media empty. Use the repository-backed `cases`
 collection for investigations; retain the legacy field-report collection. Follow
 `docs/final-frontier/case-authoring.md`; do not invent findings or evidence.
-Keep legacy routes/components intact and out of the new homepage navigation.
-Keep design-review routes `noindex, nofollow`. Do not deploy production or start
-FF-006 before founder review and a separately authorized slice.
+Legacy source remains archived in Git; public legacy paths now use public/_redirects.
+Keep legacy links out of Final Frontier navigation.
+Keep preview/fixture pages non-indexable. src/config/launch.ts stays launchReady=false
+until the gates in docs/final-frontier/launch-checklist.md pass and the founder
+explicitly approves cutover. Do not deploy production or begin another slice
+automatically. See docs/final-frontier/rollback.md for rollback.
 
 Preserve `archive/pre-final-frontier` and `pre-final-frontier-2026-10-06` at
 `3ae7334b7f958f11f3337606b0559cda79c7e427`. Also preserve the existing

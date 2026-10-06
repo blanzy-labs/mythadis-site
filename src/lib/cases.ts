@@ -1,5 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
+import { launchReady, assertLaunchContent } from "../config/launch";
+
 export type CaseEntry = CollectionEntry<"cases">;
 export const caseNumber = (number: number) => String(number).padStart(3, "0");
 export const caseHref = (entry: CaseEntry) => `/cases/${entry.id}/`;
@@ -9,6 +11,7 @@ export const caseDate = (date: Date) => new Intl.DateTimeFormat("en-IE", {
 
 export async function getPublishedCases(): Promise<CaseEntry[]> {
   const entries = await getCollection("cases");
+  if (launchReady) assertLaunchContent(entries);
   const numbers = new Map<number, string>();
   for (const entry of entries) {
     const previous = numbers.get(entry.data.case);

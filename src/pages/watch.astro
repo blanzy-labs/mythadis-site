@@ -1,4 +1,5 @@
 ---
+import { launchReady } from "../config/launch";
 import "../styles/case-video.css";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 import { getCaseMedia } from "../lib/media";
@@ -11,7 +12,7 @@ const hasMedia = programmes.some(({ media }) => media.youtubeId || media.rumbleU
   <section class="route-heading watch-heading">
     <span class="hero-kicker">{hasMedia ? "MYTHADIS / THE BROADCASTS" : "MYTHADIS / ON AIR SOON"}</span>
     <h1>WATCH THE<br /><em>INVESTIGATIONS.</em></h1>
-    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : "Example episodes from the lab. Videos are coming later; open a case for the mock investigation notes."}</p>
+    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : (launchReady ? "Videos will appear as episodes are released. Open a case for the investigation notes." : "Example episodes from the lab. Videos are coming later; open a case for the mock investigation notes.")}</p>
   </section>
   <section class="watch-programmes" aria-label="Investigation episodes">
     {programmes.map(({ entry, media }) => (

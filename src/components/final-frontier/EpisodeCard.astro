@@ -1,0 +1,12 @@
+---
+import { caseHref, caseNumber, type CaseEntry } from "../../lib/cases";
+interface Props { entry: CaseEntry; index: number; }
+const { entry, index } = Astro.props;
+const treatment = ["ai", "game", "stock", "crypto"][index % 4];
+---
+<article class:list={["episode-card", treatment]}>
+  {entry.data.thumbnail && <img class="episode-thumbnail" src={entry.data.thumbnail} alt="" loading="lazy" />}
+  <span class="ep">{caseNumber(entry.data.case)}</span>
+  <h3><a href={caseHref(entry)}>{entry.data.title}</a></h3>
+  <div class="score">BS {entry.data.preliminary_bs}</div>
+</article>

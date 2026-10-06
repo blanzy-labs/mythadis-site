@@ -1,0 +1,16 @@
+---
+import FinalFrontierLayout from "../../layouts/FinalFrontierLayout.astro";
+import CaseCard from "../../components/final-frontier/CaseCard.astro";
+import { getPublishedCases } from "../../lib/cases";
+const cases = await getPublishedCases();
+---
+<FinalFrontierLayout title="Case Files — Mythadis">
+  <section class="route-heading">
+    <span class="hero-kicker">THE INVESTIGATION ARCHIVE</span>
+    <h1>INTERNET CLAIMS.<br /><em>CASE FILES.</em></h1>
+    <p>Example investigations, ordered by case number. The claim, the test and the verdict — all in one file.</p>
+  </section>
+  <section class="case-archive" aria-label="Published case files">
+    {cases.map((entry) => <CaseCard entry={entry} />)}
+  </section>
+</FinalFrontierLayout>

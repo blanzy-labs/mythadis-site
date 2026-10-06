@@ -1,0 +1,29 @@
+---
+import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
+import { getPublishedCases, caseNumber, caseHref } from "../lib/cases";
+const cases = await getPublishedCases();
+---
+<FinalFrontierLayout title="Watch the Investigations — Mythadis">
+  <section class="route-heading watch-heading">
+    <span class="hero-kicker">MYTHADIS / ON AIR SOON</span>
+    <h1>WATCH THE<br /><em>INVESTIGATIONS.</em></h1>
+    <p>Example episodes from the lab. Videos are coming later; open a case for the mock investigation notes.</p>
+  </section>
+  <section class="watch-programmes" aria-label="Investigation episodes">
+    {cases.map((entry) => (
+      <article class="watch-programme">
+        <div class="programme-screen" role="img" aria-label={`Video placeholder for case ${caseNumber(entry.data.case)}; no video available`}>
+          {entry.data.thumbnail && <img src={entry.data.thumbnail} alt="" loading="lazy" />}
+          <span class="programme-number">{caseNumber(entry.data.case)}</span>
+          <span class="programme-placeholder">VIDEO COMING SOON</span>
+        </div>
+        <div class="programme-copy">
+          <small>CASE {caseNumber(entry.data.case)} {entry.data.category && ` / ${entry.data.category}`}</small>
+          <h2><a href={caseHref(entry)}>{entry.data.title}</a></h2>
+          <p>{entry.data.summary}</p>
+          <div class="programme-bottom"><b>BS {entry.data.preliminary_bs}/10</b><a href={caseHref(entry)}>OPEN INVESTIGATION →</a></div>
+        </div>
+      </article>
+    ))}
+  </section>
+</FinalFrontierLayout>

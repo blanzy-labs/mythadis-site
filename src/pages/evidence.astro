@@ -1,0 +1,16 @@
+---
+import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
+import CaseCard from "../components/final-frontier/CaseCard.astro";
+import { getPublishedCases } from "../lib/cases";
+const cases = await getPublishedCases();
+---
+<FinalFrontierLayout title="Show the Receipts — Mythadis">
+  <section class="route-heading evidence-heading">
+    <span class="hero-kicker">THE EVIDENCE ROOM</span>
+    <h1>SHOW THE<br /><em>RECEIPTS.</em></h1>
+    <p>A verdict needs a trail: the original claim, the procedure, the results and the sources. Each investigation keeps its receipts in its case file. These example files contain mock notes, not real evidence.</p>
+  </section>
+  <section class="case-archive evidence-archive" aria-label="Evidence files">
+    {cases.map((entry) => <CaseCard entry={entry} evidence />)}
+  </section>
+</FinalFrontierLayout>

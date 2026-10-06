@@ -1,0 +1,37 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import FinalFrontierLayout from "../../layouts/FinalFrontierLayout.astro";
+import BSMeter from "../../components/final-frontier/BSMeter.astro";
+import { getPublishedCases, caseNumber, caseDate } from "../../lib/cases";
+export async function getStaticPaths() {
+  return (await getPublishedCases()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+interface Props { entry: CollectionEntry<"cases">; }
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+<FinalFrontierLayout title={`Case ${caseNumber(data.case)} — ${data.title} | Mythadis`} description={data.summary}>
+  <article>
+    <header class="case-heading">
+      <a class="file-link" href="/cases/">← ALL CASE FILES</a>
+      <div class="case-heading-label"><span class="hero-kicker">CASE {caseNumber(data.case)} / EXAMPLE INVESTIGATION</span>{data.category && <span>{data.category}</span>}</div>
+      <h1>{data.title}</h1>
+      <p class="case-summary">{data.summary}</p>
+      <div class="case-dates"><span>Published <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>{data.updated && <span>Updated <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}</div>
+      {data.tags && data.tags.length > 0 && <ul class="case-tags" aria-label="Tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
+    </header>
+    <div class="case-room">
+      <div class="case-body"><Content /></div>
+      <aside class="case-sidebar" aria-label="Case scores and media">
+        <BSMeter score={data.preliminary_bs} label="PRELIMINARY BS" verdict={data.verdict} />
+        {data.final_bs !== undefined && <BSMeter score={data.final_bs} label="FINAL BS" verdict={data.verdict} />}
+        <section class="platform-area" aria-label="Investigation media">
+          <h2>THE BROADCAST</h2>
+          <p>Video links and playback are coming later. This example has no playable investigation.</p>
+          <span class="stamp">MEDIA PLACEHOLDER</span>
+        </section>
+      </aside>
+    </div>
+  </article>
+</FinalFrontierLayout>

@@ -1,0 +1,25 @@
+---
+import Header from "../components/final-frontier/Header.astro";
+import Footer from "../components/final-frontier/Footer.astro";
+import "../styles/analog-future.css";
+interface Props { title: string; description?: string; }
+const { title, description = "Mythadis investigates internet claims through actual experiments and publishes the receipts. FF-002 mock preview." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="shell">
+      <Header />
+      <main id="main"><slot /></main>
+      <Footer />
+    </div>
+  </body>
+</html>

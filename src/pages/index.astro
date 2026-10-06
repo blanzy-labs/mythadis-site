@@ -1,41 +1,20 @@
 ---
-import "../styles/analog-future.css";
+import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
+import BSMeter from "../components/final-frontier/BSMeter.astro";
+import EpisodeCard from "../components/final-frontier/EpisodeCard.astro";
+import { getFeaturedCase, getLatestCases, caseHref, caseNumber } from "../lib/cases";
+const featured = await getFeaturedCase();
+const latest = await getLatestCases(4);
 ---
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mythadis — Internet Claims. Actual Experiments.</title>
-<meta name="description" content="Project Final Frontier — Analog Future V2 prototype for Mythadis.">
+<FinalFrontierLayout title="Mythadis — Internet Claims. Actual Experiments.">
 
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="shell">
-  <header class="site-header">
-    <div class="brand-wrap">
-      <div class="brand">MYTHADIS</div>
-      <div class="tagline">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</div>
-    </div>
-    <nav class="top-nav" aria-label="Primary">
-      <a href="#watch">WATCH</a>
-      <a href="#cases">CLAIMS</a>
-      <a href="#evidence">EVIDENCE</a>
-      <a href="#about">ABOUT</a>
-      <a href="#submit">SUBMIT</a>
-      <span class="socials" aria-label="Social platforms — links coming soon"><span aria-label="YouTube">▶</span><span aria-label="Rumble">R</span><span aria-label="X">𝕏</span><span aria-label="Threads">◉</span><span aria-label="LinkedIn">in</span></span>
-    </nav>
-  </header>
-
-  <main id="main">
     <section class="hero" id="watch">
       <div class="hero-copy">
-        <div class="hero-kicker">EPISODE 017</div>
+        <div class="hero-kicker">EPISODE {caseNumber(featured.data.case)}</div>
         <h1>THE<br><span class="internet-word">INTERNET</span><br>SAID <em>WHAT?</em></h1>
-        <div class="episode-no">CASE 017</div>
-        <div class="episode-title">Can $68 Really Become $6,732 Overnight Using AI?</div>
-        <button class="primary-cta" type="button" disabled aria-label="Watch the investigation — mock episode, video coming soon"><span aria-hidden="true">▶</span> WATCH THE INVESTIGATION →</button>
+        <div class="episode-no">CASE {caseNumber(featured.data.case)}</div>
+        <div class="episode-title">{featured.data.title}</div>
+        <a class="primary-cta" href={caseHref(featured)}><span aria-hidden="true">▶</span> WATCH THE INVESTIGATION →</a>
       </div>
 
       <div class="media-stage">
@@ -56,11 +35,7 @@ import "../styles/analog-future.css";
           </div>
         </div>
 
-        <div class="bs-card">
-          <small>BS METER</small>
-          <div class="bs-score">9.4<span>/10</span></div>
-          <div class="bs-verdict">ABSOLUTE NONSENSE</div>
-        </div>
+        <BSMeter score={featured.data.preliminary_bs} verdict={featured.data.verdict} />
 
         <div class="badge"><span>MYTHADIS</span></div>
         <div class="small-slogan">A MORE<br>SKEPTICAL<br>TOMORROW.</div>
@@ -70,29 +45,10 @@ import "../styles/analog-future.css";
     <section class="latest" id="cases">
       <div class="latest-title">
         <h2>Latest Episodes</h2>
-        <a href="#cases">VIEW ALL →</a>
+        <a href="/watch/">VIEW ALL →</a>
       </div>
       <div class="episode-strip">
-        <article class="episode-card ai">
-          <span class="ep">016</span>
-          <h3>AI Writes Legal Contracts?</h3>
-          <div class="score">BS 8.7</div>
-        </article>
-        <article class="episode-card game">
-          <span class="ep">015</span>
-          <h3>Make a Full Game in 5 Minutes?</h3>
-          <div class="score">BS 9.1</div>
-        </article>
-        <article class="episode-card stock">
-          <span class="ep">014</span>
-          <h3>Predict Next Week's Stock Prices?</h3>
-          <div class="score">BS 7.8</div>
-        </article>
-        <article class="episode-card crypto">
-          <span class="ep">013</span>
-          <h3>Crypto Bot Prints Money?</h3>
-          <div class="score">BS 10.2</div>
-        </article>
+        {latest.map((entry, index) => <EpisodeCard entry={entry} index={index} />)}
       </div>
     </section>
 
@@ -103,7 +59,7 @@ import "../styles/analog-future.css";
           <b>SEEN A SUSPICIOUS CLAIM?</b>
           <span>SEND IT TO THE LAB.</span>
         </div>
-        <button class="submit-btn" type="button" disabled aria-label="Submit a claim — submissions coming soon">SUBMIT A CLAIM →</button>
+        <a class="submit-btn" href="/submit/">SUBMIT A CLAIM →</a>
       </div>
       <div class="follow">
         <b>FOLLOW MYTHADIS</b>
@@ -119,30 +75,22 @@ import "../styles/analog-future.css";
       </div>
       <div class="evidence-right">
         <article class="receipt">
-          <small>CASE 017 / EVIDENCE FILE</small>
-          <h3>The claim promised a 9,800% return overnight.</h3>
-          <p>We reproduced the sales funnel, traced the steps, recorded the outputs and documented every point where the story stopped matching reality.</p>
+          <small>CASE {caseNumber(featured.data.case)} / EVIDENCE FILE</small>
+          <h3><a href={caseHref(featured) + "#the-receipts"}>{featured.data.title}</a></h3>
+          <p>{featured.data.summary}</p>
           <div class="stamp-row">
-            <span class="stamp">CLAIM CAPTURED</span>
-            <span class="stamp">TEST COMPLETE</span>
+            <span class="stamp">EXAMPLE CLAIM</span>
+            <span class="stamp">MOCK CASE</span>
           </div>
         </article>
         <article class="receipt">
           <small>FINAL DISPOSITION</small>
-          <h3>Result: the mechanism did not survive contact with reality.</h3>
-          <p>Full evidence, notes and source material would live here on the production investigation page.</p>
+          <h3>{featured.data.verdict ?? "Final verdict pending"}</h3>
+          <p>{featured.data.final_bs !== undefined ? `Final BS: ${featured.data.final_bs}/10. ` : ""}Example investigation: read the mock notes and receipts on the case page.</p>
           <div class="stamp-row">
-            <span class="stamp">RECEIPTS INCLUDED</span>
+            <span class="stamp"><a href={caseHref(featured) + "#the-receipts"}>OPEN EVIDENCE FILE →</a></span>
           </div>
         </article>
       </div>
     </section>
-  </main>
-
-  <footer class="site-footer" id="about">
-    <span>PROJECT FINAL FRONTIER / ANALOG FUTURE V2.3</span>
-    <span>MYTHADIS // A MORE SKEPTICAL TOMORROW</span>
-  </footer>
-</div>
-</body>
-</html>
+</FinalFrontierLayout>

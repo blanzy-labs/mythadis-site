@@ -1,0 +1,120 @@
+/* FF-003: canonical case furniture only; the approved homepage/archive CSS stays intact. */
+.investigation{background:var(--paper)}
+.investigation-hero{position:relative;padding:0 42px 30px;overflow:hidden;border-bottom:5px solid var(--ink);background:linear-gradient(110deg,#ffffff25,transparent 45%),var(--paper)}
+.investigation-file-bar{margin:0 -42px 28px;padding:14px 30px;display:flex;justify-content:space-between;gap:16px;background:var(--ink);color:var(--cream);font:900 10px/1.5 monospace;border-bottom:4px solid var(--orange)}
+.investigation-file-bar a:focus-visible{outline-color:var(--mustard)}
+.investigation-ident{display:flex;gap:30px;align-items:center}
+.investigation-number{background:var(--mustard);padding:12px 20px 8px;border:4px solid var(--ink);box-shadow:5px 5px 0 var(--red);transform:rotate(-2deg);flex-shrink:0}
+.investigation-number span{display:block;font:900 12px/1 monospace}
+.investigation-number b{font:82px/.95 Impact,"Arial Black",Arial,sans-serif;letter-spacing:-.04em}
+.investigation-deck{padding-top:6px;min-width:0}
+.investigation-deck .hero-kicker{font-size:10px;line-height:1.3}
+.investigation-deck p{font:900 13px/1.4 monospace;text-transform:uppercase;margin:14px 0 0}
+.investigation-deck .investigation-status{color:var(--red);font:900 italic 11px/1.4 Arial;letter-spacing:.08em}
+.investigation-hero h1{font:italic clamp(42px,5.3vw,76px)/.96 Impact,"Arial Black",Arial,sans-serif;letter-spacing:-.025em;margin:30px 0 18px 12px;max-width:990px;overflow-wrap:anywhere}
+.investigation-summary{font-size:20px;font-weight:700;line-height:1.5;max-width:760px;margin:0 0 26px 16px}
+.investigation-meta{display:flex;flex-wrap:wrap;align-items:flex-start;gap:18px 34px;border-top:3px solid var(--ink);padding:18px 0}
+.investigation-dates{display:flex;flex-wrap:wrap;gap:14px 28px;font:700 12px/1.5 monospace}
+.investigation-dates span{display:flex;flex-direction:column}
+.investigation-dates time{font-weight:900}
+.investigation .case-tags{margin:0}
+.investigation-score-line{display:flex;flex-wrap:wrap;gap:12px 24px;padding:12px 16px;background:var(--ink);color:var(--cream);border-left:8px solid var(--orange);font:900 11px/1.4 monospace}
+.investigation-score-line b{color:var(--mustard);font-size:16px;margin-left:6px}
+.investigation-hero-verdict{text-transform:uppercase;align-self:center}
+.investigation-assessment{display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:center;gap:32px;padding:30px 42px;border-bottom:5px solid var(--ink)}
+.assessment-preliminary{background:var(--teal);color:var(--paper)}
+.assessment-file{font:900 10px/1.5 monospace;text-transform:uppercase}
+.assessment-context h2{font:36px/.98 Impact,"Arial Black",Arial,sans-serif;margin:12px 0}
+.assessment-stage{font:900 11px/1.6 monospace;margin:16px 0 0;letter-spacing:.025em}
+.assessment-note{font-size:14px;line-height:1.5;max-width:500px;margin:10px 0 0}
+.investigation-assessment .bs-card{position:relative;left:auto;bottom:auto;width:100%;padding:14px 18px;transform:rotate(-1deg);color:var(--ink);justify-self:end}
+.investigation-assessment .bs-score{font-size:86px;line-height:1;margin:8px 0;white-space:normal;overflow-wrap:anywhere}
+.investigation-assessment .bs-score span{font-size:32px;white-space:nowrap}
+.investigation-assessment .bs-verdict{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.assessment-final{background:var(--ink);color:var(--cream);border-top:5px solid var(--ink);border-left:14px solid var(--orange)}
+.assessment-final .bs-card{background:var(--paper);box-shadow:5px 5px 0 var(--orange);transform:rotate(1deg)}
+.assessment-final .bs-card small{background:var(--red);color:var(--paper)}
+.assessment-final .assessment-stage{color:var(--mustard)}
+.investigation-document{display:grid;grid-template-columns:220px minmax(0,1fr)}
+.investigation-index{padding:32px 24px;background:var(--cream2);border-right:4px solid var(--ink)}
+.document-file{display:block;font:900 12px/1.5 monospace;padding-bottom:20px;border-bottom:3px solid var(--ink)}
+.investigation-index h2{font:24px/1 Impact,"Arial Black",Arial,sans-serif;margin:24px 0 16px}
+.investigation-index ol{padding-left:20px;margin:0}
+.investigation-index li{padding:0 0 12px 3px;font-size:14px;font-weight:700;line-height:1.4}
+.investigation-index a{text-underline-offset:4px}
+.investigation-index>p{font-size:13px;line-height:1.6;border-top:2px solid var(--ink);padding-top:18px;margin-top:16px}
+.investigation-body{max-width:78ch;padding:28px 42px 42px;min-width:0;font-size:18px;line-height:1.7;overflow-wrap:anywhere}
+.investigation-body>p{margin:1.2em 0 1.5em}
+.investigation-body h2{font:36px/1.1 Impact,"Arial Black",Arial,sans-serif;margin:38px 0 18px;border-top:3px solid var(--ink);padding-top:20px;scroll-margin-top:20px}
+.investigation-body h2:is(#the-claim,#why-we-were-suspicious,#the-test,#what-happened,#the-verdict){border-top:0;border-left:8px solid var(--orange);padding:12px 16px;background:var(--cream2);text-transform:uppercase;box-shadow:3px 3px 0 var(--ink)}
+.investigation-body h2:is(#the-test,#what-happened){border-left-color:var(--teal)}
+.investigation-body h2#the-verdict{border-left-color:var(--red)}
+.investigation-body h2#the-receipts{padding:18px;background:var(--teal);color:var(--paper);border:3px solid var(--ink);text-transform:uppercase;box-shadow:4px 4px 0 var(--orange)}
+/* Style the first receipts block without moving/splitting Markdown or assuming subsequent headings. */
+.investigation-body h2#the-receipts + :not(h2){padding:20px;border:3px solid var(--ink);border-left:8px solid var(--teal);background:var(--cream);box-shadow:4px 4px 0 var(--ink)}
+.investigation-body h3{font-size:24px;line-height:1.3;margin:30px 0 14px}
+.investigation-body h4{font-size:20px;line-height:1.4}
+.investigation-body li{margin-bottom:10px;padding-left:3px}
+.investigation-body a{font-weight:700;text-underline-offset:4px;text-decoration-thickness:2px}
+.investigation-body blockquote{margin:24px 0;padding:2px 20px;border-left:6px solid var(--teal);background:var(--cream2)}
+.investigation-body :not(pre)>code{font-size:.9em;background:var(--cream2);border:1px solid #b49b6c;padding:2px 5px;box-decoration-break:clone}
+.investigation-body pre{max-width:100%;padding:20px;border:3px solid var(--ink);font-size:14px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.investigation-body pre code{white-space:inherit}
+.investigation-body img{max-width:100%;height:auto}
+.investigation-body table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;font-size:16px}
+.investigation-body th,.investigation-body td{border:2px solid var(--ink);padding:10px 14px}
+.investigation-body hr{border:0;border-top:3px solid var(--ink);margin:30px 0}
+.investigation-verdict{background:var(--ink);color:var(--cream);padding:28px 42px;border-left:14px solid var(--orange)}
+.investigation-verdict h2{font:36px/1 Impact,"Arial Black",Arial,sans-serif}
+.investigation-verdict p{font-size:22px;font-weight:900}
+.investigation-verdict small{font-size:13px}
+.investigation-broadcast{display:grid;grid-template-columns:1.15fr .85fr;background:var(--cream);border-bottom:5px solid var(--ink)}
+.broadcast-screen{margin:30px 30px 34px;min-height:260px;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;background:radial-gradient(ellipse at 55% 45%,#356f72,#142024 80%);color:var(--paper);border:9px solid #282018;outline:3px solid var(--ink);box-shadow:7px 7px 0 #744827;transform:rotate(-1deg);border-radius:20px;position:relative;overflow:hidden}
+.broadcast-screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff08 0 1px,transparent 1px 4px)}
+.broadcast-signal{font:900 11px/1.5 monospace}
+.broadcast-screen b{font:36px/.98 Impact,"Arial Black",Arial,sans-serif;max-width:330px;color:var(--mustard)}
+.broadcast-tuning{font:24px/1 monospace;letter-spacing:.3em}
+.broadcast-copy{padding:34px 32px;border-left:4px solid var(--ink);min-width:0}
+.broadcast-copy .stamp{display:inline-block;background:var(--ink)}
+.broadcast-copy h2{font:34px/1 Impact,"Arial Black",Arial,sans-serif;margin:24px 0 18px}
+.broadcast-copy p{font-size:15px;line-height:1.6}
+.broadcast-metadata{font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.broadcast-metadata dt{font-weight:900}.broadcast-metadata dd{margin:6px 0 16px}
+.investigation-related{padding-top:10px}
+.investigation-related .episode-strip{grid-template-columns:1.08fr 1fr .9fr}
+.investigation-related .episode-card{min-height:160px}
+.investigation-related .episode-card h3{font-size:18px}
+.investigation-navigation{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:24px 34px;background:var(--paper)}
+.investigation-navigation a{padding:18px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--teal);text-decoration:none;display:block}
+.investigation-navigation .case-next{grid-column:2;background:var(--cream2)}
+.investigation-navigation span{font:900 11px/1.5 monospace}
+.investigation-navigation b{display:block;font-size:16px;line-height:1.3;margin-top:10px}
+@media(max-width:980px){
+  .investigation-hero{padding-left:28px;padding-right:28px}.investigation-file-bar{margin-left:-28px;margin-right:-28px}
+  .investigation-hero h1{font-size:60px;margin-left:0}.investigation-summary{margin-left:0}
+  .investigation-document{grid-template-columns:190px minmax(0,1fr)}.investigation-index{padding:28px 18px}.investigation-body{padding:24px 28px 36px;font-size:17px}
+  .investigation-body h2{font-size:32px}.investigation-assessment{grid-template-columns:minmax(0,1fr) 260px;gap:24px;padding:28px}
+  .assessment-context h2{font-size:32px}.assessment-stage{font-size:10px}
+  .broadcast-screen{margin:28px 24px;min-height:270px}.broadcast-copy{padding:28px 24px}.broadcast-copy h2{font-size:30px}
+}
+@media(max-width:650px){
+  .investigation-hero{padding:0 20px 24px}.investigation-file-bar{margin:0 -20px 24px;padding:12px 20px;flex-wrap:wrap;font-size:9px;gap:8px}
+  .investigation-ident{gap:18px;align-items:flex-start}.investigation-number{padding:10px 12px}.investigation-number b{font-size:60px}
+  .investigation-deck .hero-kicker{font-size:9px;padding:5px 6px}.investigation-deck p{font-size:11px;margin-top:10px}.investigation-deck .investigation-status{font-size:9px;letter-spacing:.02em}
+  .investigation-hero h1{font-size:44px;line-height:1;margin-top:28px}.investigation-summary{font-size:18px}
+  .investigation-score-line{gap:10px 16px;padding:12px;font-size:10px}
+  .investigation-assessment{grid-template-columns:1fr;padding:26px 24px;gap:20px}.assessment-context h2{font-size:30px}.assessment-note{font-size:14px}
+  .investigation-assessment .bs-card{width:min(300px,100%);justify-self:start}.investigation-assessment .bs-score{font-size:80px}
+  .assessment-final{border-left-width:8px}
+  .investigation-document{grid-template-columns:1fr}.investigation-index{padding:24px 20px;border-right:0;border-bottom:4px solid var(--ink)}
+  .document-file{font-size:10px;padding-bottom:12px}
+  .investigation-index h2{margin:16px 0 14px}.investigation-index ol{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.investigation-index li{font-size:13px}
+  .investigation-index>p{margin:6px 0 0;padding-top:12px}
+  .investigation-body{font-size:17px;padding:12px 20px 32px;line-height:1.7}.investigation-body h2{font-size:30px}.investigation-body h3{font-size:23px}
+  .investigation-body h2#the-receipts + :not(h2){padding:16px}
+  .investigation-broadcast{grid-template-columns:1fr}.broadcast-screen{margin:26px 24px 32px;min-height:250px}.broadcast-copy{border-left:0;border-top:4px solid var(--ink);padding:28px 20px}
+  .investigation-related .episode-strip{grid-template-columns:1fr;padding:0 20px}.investigation-related .episode-card:nth-child(2){margin-left:6px}.investigation-related .episode-card:nth-child(3){margin-right:6px}
+  .investigation-navigation{grid-template-columns:1fr;padding:24px 20px}.investigation-navigation .case-next{grid-column:1}
+  .investigation-verdict{padding:26px 20px;border-left-width:8px}
+}
+@media(max-width:360px){.investigation-hero h1{font-size:40px}.investigation-number b{font-size:52px}.investigation-ident{gap:14px}.investigation-assessment .bs-score{font-size:74px}.investigation-index ol{grid-template-columns:1fr}.broadcast-screen b{font-size:32px}}

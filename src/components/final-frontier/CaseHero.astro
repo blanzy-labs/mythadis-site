@@ -1,0 +1,33 @@
+---
+import { caseNumber, caseDate, type CaseEntry } from "../../lib/cases";
+interface Props { entry: CaseEntry; }
+const { data } = Astro.props.entry;
+---
+<header class="investigation-hero">
+  <div class="investigation-file-bar">
+    <a href="/cases/" class="file-link">← ALL CASE FILES</a>
+    <span>MYTHADIS / INVESTIGATION FILE</span>
+  </div>
+  <div class="investigation-ident">
+    <div class="investigation-number"><span>CASE</span><b>{caseNumber(data.case)}</b></div>
+    <div class="investigation-deck">
+      <span class="hero-kicker">EXAMPLE INVESTIGATION / MOCK CONTENT</span>
+      {data.category && <p>{data.category}</p>}
+      <p class="investigation-status">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</p>
+    </div>
+  </div>
+  <h1>{data.title}</h1>
+  <p class="investigation-summary">{data.summary}</p>
+  <div class="investigation-meta">
+    <div class="investigation-dates">
+      <span>Example publication <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>
+      {data.updated && <span>Example update <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}
+    </div>
+    {data.tags && data.tags.length > 0 && <ul class="case-tags" aria-label="Case tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
+  </div>
+  <div class="investigation-score-line">
+    <span>INITIAL READ <b>{data.preliminary_bs}/10</b></span>
+    {data.final_bs !== undefined && <span>FINAL BS <b>{data.final_bs}/10</b></span>}
+    {data.verdict && <span class="investigation-hero-verdict">{data.verdict}</span>}
+  </div>
+</header>

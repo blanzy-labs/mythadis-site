@@ -31,3 +31,25 @@ export async function getFeaturedCase(): Promise<CaseEntry> {
 export async function getLatestCases(limit = 4): Promise<CaseEntry[]> {
   return (await getPublishedCases()).filter((entry) => !entry.data.featured).slice(0, limit);
 }
+
+// The input is the validated, published-only list from getPublishedCases().
+export function getRelatedCases(current: CaseEntry, published: CaseEntry[], limit = 3): CaseEntry[] {
+  const tags = new Set(current.data.tags ?? []);
+  const tier = (entry: CaseEntry) => {
+    if (current.data.category && entry.data.category === current.data.category) return 0;
+    if (entry.data.tags?.some((tag) => tags.has(tag))) return 1;
+    return 2;
+  };
+  return published.filter((entry) => entry.id !== current.id && entry.data.visibility === "published")
+    .sort((a, b) => tier(a) - tier(b) || b.data.case - a.data.case).slice(0, limit);
+}
+
+export function getAdjacentCases(current: CaseEntry, published: CaseEntry[]) {
+  const ordered = published.filter((entry) => entry.data.visibility === "published")
+    .sort((a, b) => a.data.case - b.data.case);
+  const index = ordered.findIndex((entry) => entry.id === current.id);
+  return {
+    previous: index > 0 ? ordered[index - 1] : undefined,
+    next: index >= 0 ? ordered[index + 1] : undefined,
+  };
+}

@@ -2,8 +2,9 @@
 import Header from "../components/final-frontier/Header.astro";
 import Footer from "../components/final-frontier/Footer.astro";
 import "../styles/analog-future.css";
-interface Props { title: string; description?: string; }
-const { title, description = "Mythadis investigates internet claims through actual experiments and publishes the receipts. FF-002 mock preview." } = Astro.props;
+interface Props { title: string; description?: string; canonicalPath?: string; }
+const { title, canonicalPath, description = "Mythadis investigates internet claims through actual experiments and publishes the receipts. FF-002 mock preview." } = Astro.props;
+const canonical = canonicalPath ? new URL(canonicalPath, Astro.site ?? Astro.url.origin) : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -12,6 +13,13 @@ const { title, description = "Mythadis investigates internet claims through actu
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonical && <>
+      <link rel="canonical" href={canonical.href} />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical.href} />
+    </>}
     <meta name="robots" content="noindex, nofollow" />
   </head>
   <body>

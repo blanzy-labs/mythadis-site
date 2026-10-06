@@ -1,0 +1,22 @@
+---
+import { caseNumber, type CaseEntry } from "../../lib/cases";
+interface Props { entry: CaseEntry; }
+const { data } = Astro.props.entry;
+---
+<section class="investigation-broadcast" aria-labelledby="broadcast-heading">
+  <div class="broadcast-screen" role="img" aria-label={`Broadcast placeholder for case ${caseNumber(data.case)}; playback is not available`}>
+    <span class="broadcast-signal">MYTHADIS / CASE {caseNumber(data.case)}</span>
+    <b>{data.youtube_id ? "PLAYBACK NOT YET ENABLED" : "VIDEO NOT YET ATTACHED"}</b>
+    <span class="broadcast-tuning" aria-hidden="true">+ + +</span>
+  </div>
+  <div class="broadcast-copy">
+    <span class="stamp">BROADCAST PLACEHOLDER</span>
+    <h2 id="broadcast-heading">THE INVESTIGATION.<br />ON SCREEN.</h2>
+    <p>External video platforms will carry the broadcast. This case file keeps the investigation and its receipts together.</p>
+    <p>Playback is unavailable in this preview.</p>
+    {(data.youtube_id || data.rumble_url) && <dl class="broadcast-metadata">
+      {data.youtube_id && <><dt>YouTube ID (metadata only)</dt><dd>{data.youtube_id}</dd></>}
+      {data.rumble_url && <><dt>Rumble URL (metadata only)</dt><dd>{data.rumble_url}</dd></>}
+    </dl>}
+  </div>
+</section>

@@ -1,9 +1,9 @@
 ---
-import { launchReady } from "../../config/launch";
+
 import BSMeter from "./BSMeter.astro";
 import { caseNumber } from "../../lib/cases";
-interface Props { phase: "preliminary" | "final"; score: number; caseId: number; category?: string; verdict?: string; }
-const { phase, score, caseId, category, verdict } = Astro.props;
+interface Props { fixture?: boolean; phase: "preliminary" | "final"; score: number; caseId: number; category?: string; verdict?: string; }
+const { fixture = false, phase, score, caseId, category, verdict } = Astro.props;
 const isFinal = phase === "final";
 ---
 <section class:list={["investigation-assessment", `assessment-${phase}`]} aria-labelledby={`${phase}-assessment-heading`}>
@@ -11,7 +11,7 @@ const isFinal = phase === "final";
     <span class="assessment-file">CASE {caseNumber(caseId)}{category && ` / ${category}`}</span>
     <h2 id={`${phase}-assessment-heading`}>{isFinal ? "FINAL ASSESSMENT" : "PRELIMINARY ASSESSMENT"}</h2>
     <p class="assessment-stage">{isFinal ? "AFTER TESTING / WHAT SURVIVED THE TEST" : "INITIAL READ / BEFORE TESTING"}</p>
-    <p class="assessment-note">{isFinal ? `${launchReady ? "Final score." : "Example final score."} Read the investigation and its limitations alongside the verdict.` : `${launchReady ? "Preliminary score." : "Example preliminary score."} An initial reading of the claim, before the test.`}</p>
+    <p class="assessment-note">{isFinal ? `${fixture ? "Example final score." : "Final score."} Read the investigation and its limitations alongside the verdict.` : `${fixture ? "Example preliminary score." : "Preliminary score."} An initial reading of the claim, before the test.`}</p>
   </div>
   <BSMeter score={score} label={isFinal ? "FINAL BS METER" : "PRELIMINARY BS METER"} verdict={isFinal ? verdict : undefined} />
 </section>

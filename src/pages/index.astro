@@ -1,7 +1,7 @@
 ---
 import { brand, firstCase } from "../config/brand";
 import SocialLinks from "../components/final-frontier/SocialLinks.astro";
-import { launchReady } from "../config/launch";
+import { launchReady, isFixtureCase } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 import BSMeter from "../components/final-frontier/BSMeter.astro";
 import CaseVideo from "../components/final-frontier/CaseVideo.astro";
@@ -36,7 +36,7 @@ const latest = await getLatestCases(4);
 
     <section class="latest" id="cases">
       <div class="latest-title">
-        <h2>{launchReady ? "Latest Cases" : "DEV FIXTURES"}</h2>
+        <h2>{latest.every(isFixtureCase) ? "DEV FIXTURES" : "Latest Cases"}</h2>
         <a href="/watch/">VIEW ALL →</a>
       </div>
       <div class="episode-strip">

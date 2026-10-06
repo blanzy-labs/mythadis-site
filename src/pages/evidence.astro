@@ -10,7 +10,7 @@ const cases = (await getPublishedCases()).sort((a, b) => Number(b.data.featured)
   <section class="route-heading evidence-heading">
     <span class="hero-kicker">{brand.series} / EVIDENCE FILES</span>
     <h1>SHOW THE<br /><em>RECEIPTS.</em></h1>
-    <p>A verdict needs a trail: the original claim, the procedure, the results and the sources. Each numbered case in {brand.seriesProse} keeps its receipts in its case file. {!launchReady && "These example files contain mock notes, not real evidence."}</p>
+    <p>A verdict needs a trail: the original claim, the procedure, the results and the sources. Each numbered case in {brand.seriesProse} keeps its receipts in its case file. {!launchReady && "Files labeled DEV FIXTURE or PREVIEW contain mock notes. Investigations in progress may include sources and test plans before results are available."}</p>
   </section>
   <section class="case-archive evidence-archive" aria-label="Evidence files">
     {cases.map((entry) => <CaseCard entry={entry} evidence />)}

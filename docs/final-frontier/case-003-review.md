@@ -27,3 +27,26 @@ pending results, source-independent fixture labeling, homepage discovery,
 canonical/noindex and sitemap. Global launchReady=false and fixtures are retained.
 Production publication uses a normal GitHub PR merge followed by the existing
 Cloudflare Pages build; actual-domain checks follow successful deployment.
+
+## Production verification
+
+Published 2026-10-06 (Europe/Dublin) via PR #17:
+https://github.com/blanzy-labs/mythadis-site/pull/17.
+Implementation: `c60c34d0c620c8da51cabc3075f80c39897342ba`.
+Production merge: `73322506283f018cd9230ab2a111590c0c266d14`.
+Cloudflare preview and production builds succeeded. Production deployment:
+`f097c1c7-fef6-4aad-bf18-5aafa9c3580c`.
+Live URL: https://mythadis.com/cases/003-app-in-minutes/.
+
+After propagation, all 28 actual-domain case/feed/fixture combinations passed
+at the four review widths, with correct labels/anchors, no overflow or console
+errors, production canonical and noindex/nofollow. All 19 legacy redirects
+returned 301 to expected 200 destinations; missing URL 404 and Function GET 405
+passed. Initial case request briefly returned 404 during propagation; repeat
+checks passed. Source content otherwise unchanged, tests/verdict pending.
+
+Rollback target: previous successful Pages deployment
+`eb6aeb43-6eec-482e-9664-06ebdf9810e5`, SHA
+`a1966cecf2533530e70df322d65f8c29be32833a`, through existing Pages rollback.
+Post-deployment evidence is saved on the feature branch without another
+production release.

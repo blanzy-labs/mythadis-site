@@ -11,8 +11,8 @@ one Pages Function at /api/claims, Turnstile verification and CLAIM_SUBMISSIONS 
 for claim intake; see docs/final-frontier/submit-claim-cloudflare.md.
 Use src/config/brand.ts for MYTHADIS / THE INTERNET SAID WHAT? identity.
 CASE 001 / THE $68 MIRACLE is preview-only, preliminary 9.4, no final score/verdict.
-CASE 002 (preliminary 3.2) and CASE 003 (preliminary 4.4) are supplied experiment
-plans with testing/final verdict pending.
+CASE 002 (preliminary 3.2), CASE 003 (preliminary 4.4) and CASE 004
+(preliminary 9.6) are supplied experiment plans with testing/final verdict pending.
 Registered fixture entries remain development examples, not committed future cases.
 Use CaseVideo for click-to-load YouTube and outbound Rumble; keep fixture media empty. Use the repository-backed `cases`
 collection for investigations; retain the legacy field-report collection. Follow

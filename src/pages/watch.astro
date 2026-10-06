@@ -13,7 +13,7 @@ const hasMedia = programmes.some(({ media }) => media.youtubeId || media.rumbleU
   <section class="route-heading watch-heading">
     <span class="hero-kicker">{brand.series}</span>
     <h1>WATCH THE<br /><em>INVESTIGATIONS.</em></h1>
-    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : (launchReady ? "Videos will appear as episodes are released. Open a case for the investigation notes." : "CASE 001 is a preview slot. Other entries are development fixtures, not reserved future investigations. Videos will follow supported releases.")}</p>
+    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : (launchReady ? "Videos will appear as episodes are released. Open a case for the investigation notes." : "CASE 001 remains a preview slot. Supplied investigations and labeled development fixtures appear below. Videos will follow supported releases.")}</p>
   </section>
   <section class="watch-programmes" aria-label="Series investigations and development fixtures">
     {programmes.map(({ entry, media }) => (

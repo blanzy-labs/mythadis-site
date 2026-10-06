@@ -117,8 +117,8 @@ CASE 001 / THE $68 MIRACLE is a preview scaffold at
 `src/content/cases/001-ai-investment-6732.md`, not a completed investigation.
 The preliminary score is 9.4; final score/verdict are absent and undetermined.
 The publication/update dates remain explicitly example metadata. Video fields
-are empty. Other numbered entries are development fixtures, not promised future
-cases. Do not renumber them into a fake CASE 002–005 sequence.
+are empty. Registered fixture entries remain development examples, not promised future
+cases. Supplied CASE 002 is a published experiment plan, not a mock or completed test. Do not renumber them into a fake CASE 002–005 sequence.
 
 The old CASE 017 file/preview URL has been replaced, with no redirect added for
 that unlaunched fixture. It remains in Git history. Both old and new identities
@@ -127,3 +127,18 @@ When supported CASE 001 content is supplied and founder-reviewed, explicitly
 remove its fixture marker and active identity from the fixture registry as part
 of the reviewed content/release change. Do not merely flip launchReady. All
 FF-006 live acceptance, production binding and founder cutover gates still apply.
+
+## Supplied CASE 002
+
+`002-the-99-percent-detector.md` is the founder-supplied GPTZero experiment plan,
+published 2026-10-06, preliminary BS 3.2. No final score/verdict or media fields
+are populated. The test has not been run. The body heading is H2 so the shared
+page title remains the sole H1. Source URLs and benchmark figures were checked
+against the linked primary sources before publication; published results cited
+there are third-party context, not Mythadis findings. The 200-document plan and
+interpretation bands are editorial plans, not completed validation.
+
+Supplied nonfixture cases appear ahead of numbered development fixtures in feeds;
+CASE 001 remains featured. Mock/date/score/video labels use the fixture registry
+independently of the global indexing gate. All pages stay noindex while
+launchReady=false. Sitemap can include supplied cases but excludes fixtures.

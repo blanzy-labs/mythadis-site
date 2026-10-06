@@ -4,14 +4,15 @@ Final Frontier uses `docs/reference/analog-future-v2-3.html` as the approved vis
 Preserve its typography, palette, asymmetry, CSS television, BS Meter and poster
 composition. See `docs/ff-007-review.md` for current scope and validation.
 
-Work on `feature/ff-008-soft-production-launch`; production remains on `main`.
+Work on feature branches from current `main`; production remains on `main`.
 Preserve Astro, TypeScript, pnpm, static `dist` output and Cloudflare configuration.
 Do not add frameworks, media APIs or a publishing system. FF-005 authorizes only
 one Pages Function at /api/claims, Turnstile verification and CLAIM_SUBMISSIONS KV
 for claim intake; see docs/final-frontier/submit-claim-cloudflare.md.
 Use src/config/brand.ts for MYTHADIS / THE INTERNET SAID WHAT? identity.
 CASE 001 / THE $68 MIRACLE is preview-only, preliminary 9.4, no final score/verdict.
-Other numbered entries are development fixtures, not committed future cases.
+CASE 002 is a supplied experiment plan, preliminary 3.2, with testing/final verdict pending.
+Registered fixture entries remain development examples, not committed future cases.
 Use CaseVideo for click-to-load YouTube and outbound Rumble; keep fixture media empty. Use the repository-backed `cases`
 collection for investigations; retain the legacy field-report collection. Follow
 `docs/final-frontier/case-authoring.md`; do not invent findings or evidence.

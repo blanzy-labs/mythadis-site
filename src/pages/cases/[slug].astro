@@ -1,5 +1,5 @@
 ---
-import { launchReady } from "../../config/launch";
+import { isFixtureCase } from "../../config/launch";
 import { render, type CollectionEntry } from "astro:content";
 import FinalFrontierLayout from "../../layouts/FinalFrontierLayout.astro";
 import CaseHero from "../../components/final-frontier/CaseHero.astro";
@@ -22,23 +22,24 @@ interface Props {
 }
 const { entry, related, adjacent } = Astro.props;
 const { data } = entry;
+const fixture = isFixtureCase(entry);
 const { Content, headings } = await render(entry);
 const sections = headings.filter((heading) => heading.depth === 2);
 ---
 <FinalFrontierLayout title={`Case ${caseNumber(data.case)} — ${data.title} | Mythadis`} description={data.summary} canonicalPath={caseHref(entry)} ogType="article" socialImage={data.thumbnail}>
   <article class="investigation">
     <CaseHero entry={entry} />
-    <CaseAssessment phase="preliminary" score={data.preliminary_bs} caseId={data.case} category={data.category} />
+    <CaseAssessment phase="preliminary" score={data.preliminary_bs} caseId={data.case} category={data.category} fixture={fixture} />
     <div class="investigation-document">
       <aside class="investigation-index">
         <span class="document-file">CASE {caseNumber(data.case)}<br />EDITORIAL FILE</span>
         {sections.length > 0 && <nav aria-label="In this investigation"><h2>IN THIS FILE</h2><ol>{sections.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}
-        {!launchReady && <p>Mock investigation.<br />No real findings or evidence are asserted.</p>}
+        {fixture ? <p>Mock investigation.<br />No real findings or evidence are asserted.</p> : data.final_bs === undefined && <p>Investigation in progress.<br />Final assessment pending.</p>}
       </aside>
       <div class="investigation-body"><Content /></div>
     </div>
-    {data.final_bs !== undefined && <CaseAssessment phase="final" score={data.final_bs} caseId={data.case} category={data.category} verdict={data.verdict} />}
-    {data.final_bs === undefined && data.verdict && <section class="investigation-verdict" aria-labelledby="recorded-verdict-heading"><span class="stamp">CASE {caseNumber(data.case)}</span><h2 id="recorded-verdict-heading">RECORDED VERDICT</h2><p>{data.verdict}</p><small>{launchReady ? "No final score supplied." : "Example metadata; no final score supplied."}</small></section>}
+    {data.final_bs !== undefined && <CaseAssessment phase="final" score={data.final_bs} caseId={data.case} category={data.category} fixture={fixture} verdict={data.verdict} />}
+    {data.final_bs === undefined && data.verdict && <section class="investigation-verdict" aria-labelledby="recorded-verdict-heading"><span class="stamp">CASE {caseNumber(data.case)}</span><h2 id="recorded-verdict-heading">RECORDED VERDICT</h2><p>{data.verdict}</p><small>{fixture ? "Example metadata; no final score supplied." : "No final score supplied."}</small></section>}
     <PlatformPlaceholder entry={entry} />
     <RelatedCases cases={related} />
     <CaseNavigation previous={adjacent.previous} next={adjacent.next} />

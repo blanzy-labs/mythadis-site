@@ -21,7 +21,7 @@ export async function getPublishedCases(): Promise<CaseEntry[]> {
     numbers.set(entry.data.case, entry.id);
   }
   const published = entries.filter((entry) => entry.data.visibility === "published")
-    .sort((a, b) => b.data.case - a.data.case);
+    .sort((a, b) => Number(isFixtureCase(a)) - Number(isFixtureCase(b)) || b.data.case - a.data.case);
   const featured = published.filter((entry) => entry.data.featured);
   if (featured.length !== 1) {
     throw new Error(`Expected exactly one featured published case; found ${featured.length}: ${featured.map((entry) => entry.id).join(", ") || "none"}`);

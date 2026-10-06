@@ -1,10 +1,11 @@
 ---
 import { brand, firstCase } from "../../config/brand";
-import { launchReady } from "../../config/launch";
+import { isFixtureCase } from "../../config/launch";
 import { caseNumber, caseDate, caseIdentity, type CaseEntry } from "../../lib/cases";
 interface Props { entry: CaseEntry; }
 const { entry } = Astro.props;
 const { data } = entry;
+const fixture = isFixtureCase(entry);
 ---
 <header class="investigation-hero">
   <div class="investigation-file-bar">
@@ -24,8 +25,8 @@ const { data } = entry;
   <p class="investigation-summary">{data.summary}</p>
   <div class="investigation-meta">
     <div class="investigation-dates">
-      <span>{launchReady ? "Published" : "Example publication"} <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>
-      {data.updated && <span>{launchReady ? "Updated" : "Example update"} <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}
+      <span>{fixture ? "Example publication" : "Published"} <time datetime={data.published.toISOString().slice(0, 10)}>{caseDate(data.published)}</time></span>
+      {data.updated && <span>{fixture ? "Example update" : "Updated"} <time datetime={data.updated.toISOString().slice(0, 10)}>{caseDate(data.updated)}</time></span>}
     </div>
     {data.tags && data.tags.length > 0 && <ul class="case-tags" aria-label="Case tags">{data.tags.map((tag) => <li>{tag}</li>)}</ul>}
   </div>

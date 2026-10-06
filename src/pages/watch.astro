@@ -1,21 +1,25 @@
 ---
+import "../styles/case-video.css";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
+import { getCaseMedia } from "../lib/media";
 import { getPublishedCases, caseNumber, caseHref } from "../lib/cases";
 const cases = await getPublishedCases();
+const programmes = cases.map((entry) => ({ entry, media: getCaseMedia(entry.data.youtube_id, entry.data.rumble_url) }));
+const hasMedia = programmes.some(({ media }) => media.youtubeId || media.rumbleUrl);
 ---
 <FinalFrontierLayout title="Watch the Investigations — Mythadis">
   <section class="route-heading watch-heading">
-    <span class="hero-kicker">MYTHADIS / ON AIR SOON</span>
+    <span class="hero-kicker">{hasMedia ? "MYTHADIS / THE BROADCASTS" : "MYTHADIS / ON AIR SOON"}</span>
     <h1>WATCH THE<br /><em>INVESTIGATIONS.</em></h1>
-    <p>Example episodes from the lab. Videos are coming later; open a case for the mock investigation notes.</p>
+    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : "Example episodes from the lab. Videos are coming later; open a case for the mock investigation notes."}</p>
   </section>
   <section class="watch-programmes" aria-label="Investigation episodes">
-    {cases.map((entry) => (
+    {programmes.map(({ entry, media }) => (
       <article class="watch-programme">
-        <div class="programme-screen" role="img" aria-label={`Video placeholder for case ${caseNumber(entry.data.case)}; no video available`}>
+        <div class="programme-screen" role="img" aria-label={`Case ${caseNumber(entry.data.case)} — ${entry.data.title}: ${media.youtubeId ? "YouTube video available on the case page" : media.rumbleUrl ? "video available on Rumble" : "no video attached"}`}>
           {entry.data.thumbnail && <img src={entry.data.thumbnail} alt="" loading="lazy" />}
           <span class="programme-number">{caseNumber(entry.data.case)}</span>
-          <span class="programme-placeholder">VIDEO COMING SOON</span>
+          <span class="programme-placeholder">{media.youtubeId ? "YOUTUBE VIDEO AVAILABLE" : media.rumbleUrl ? "RUMBLE VIDEO AVAILABLE" : "VIDEO COMING SOON"}{media.youtubeId && media.rumbleUrl && <span class="programme-mirror"> / RUMBLE MIRROR</span>}</span>
         </div>
         <div class="programme-copy">
           <small>CASE {caseNumber(entry.data.case)} {entry.data.category && ` / ${entry.data.category}`}</small>

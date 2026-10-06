@@ -1,0 +1,55 @@
+/* FF-004: the stored platform fields enhance the existing Retro TV shell. */
+.case-video{display:block}
+.video-home{display:contents}
+.video-viewport{isolation:isolate}
+.video-poster{position:absolute;inset:0;overflow:hidden}
+.video-thumbnail{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video-signal{position:absolute;top:18px;left:18px;right:18px;color:var(--paper);font:900 10px/1.4 monospace;letter-spacing:.04em;text-shadow:0 1px 3px var(--ink)}
+.case-video .screen:before{display:none}
+.video-state{position:absolute;left:16px;right:16px;top:50%;transform:translateY(-50%);margin:0;font:24px/1 Impact,"Arial Black",Arial,sans-serif;text-align:center;color:var(--mustard);text-shadow:0 2px 3px var(--ink)}
+.video-state[hidden]{display:none}
+.video-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-height:56px;max-width:calc(100% - 24px);padding:12px 16px;background:var(--ink);color:var(--paper);border:3px solid var(--paper);font:900 12px/1.4 Arial;cursor:pointer;display:flex;align-items:center;gap:10px;box-shadow:3px 3px 0 var(--orange)}
+.video-load>span:first-child{font-size:20px}
+.video-load[hidden]{display:none}
+.video-load:focus-visible{outline:3px solid var(--mustard);outline-offset:5px}
+.case-video.has-youtube .screen{aspect-ratio:16/9;min-height:200px;height:auto;border-radius:4px}
+.case-video .screen[data-loaded]::after{display:none}
+.video-viewport iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:var(--ink)}
+.video-viewport iframe:focus-visible{outline:3px solid var(--mustard);outline-offset:-3px}
+.video-actions{display:flex;flex-wrap:wrap;gap:12px 18px;font:900 11px/1.5 Arial}
+.video-actions a{text-underline-offset:4px;display:inline-block;padding:8px 0;min-height:32px}
+.video-home .video-actions{position:absolute;z-index:7;left:42px;top:16px;max-width:calc(100% - 170px);color:var(--paper)}
+.video-home .video-actions a:focus-visible{outline-color:var(--mustard)}
+.video-home.has-youtube .screen-bezel{border-radius:18px;display:flex;align-items:center}
+.video-home.has-youtube .screen{width:100%}
+.video-home .video-noscript{position:absolute;left:42px;top:465px;font-size:11px;max-width:220px;color:var(--paper)}
+.video-case{margin:30px 28px 34px;min-width:0}
+.video-case .tv-wrap{position:relative;top:auto;left:auto;width:100%;aspect-ratio:auto;grid-template-columns:minmax(0,1fr) 64px;padding:16px 12px 16px 16px;border-radius:26px 22px 24px 26px}
+.video-case .screen-bezel{border-radius:18px;padding:10px;min-width:0}
+.video-case:not(.has-youtube) .screen{min-height:230px;height:100%}
+.video-case .video-actions{margin-top:24px;color:var(--ink)}
+.video-case .video-noscript{font-size:13px;line-height:1.5;margin-top:16px}
+.investigation-broadcast.broadcast-playable{grid-template-columns:1fr}
+.broadcast-playable .video-case{width:calc(100% - 64px);max-width:900px;justify-self:center}
+.broadcast-playable .broadcast-copy{border-left:0;border-top:4px solid var(--ink)}
+.broadcast-playable .video-case .tv-wrap{grid-template-columns:minmax(0,1fr) 72px}
+.programme-placeholder{max-width:calc(100% - 48px);line-height:1.4}
+.programme-mirror{display:block}
+@media(max-width:980px){.video-case{margin:28px 24px}.video-home .video-actions{max-width:calc(100% - 165px)}}
+@media(max-width:650px){
+  .video-home .video-actions{left:20px;top:12px;max-width:calc(100% - 40px);gap:8px 14px;font-size:10px}
+  .video-home.has-youtube .tv-wrap{left:3%;width:94%;grid-template-columns:minmax(0,1fr);padding:10px;aspect-ratio:auto}
+  .video-home.has-youtube .controls{display:none}.video-home.has-youtube .screen-bezel{padding:10px}
+  .media-stage:has(.video-home.has-youtube) .side-slogan{display:none}
+  .video-home .video-signal{font-size:9px;top:12px;left:12px}
+  .video-home .video-state{font-size:20px}
+  .video-home .video-noscript{left:20px;top:360px;max-width:270px}
+  .video-case{margin:28px 20px 32px}
+  .video-case .tv-wrap{grid-template-columns:minmax(0,1fr) 42px;padding:10px;border-radius:22px}
+  .video-case .controls{padding-left:6px}.video-case .dial{width:30px;height:30px}.video-case .speaker{width:26px}
+  .video-case:not(.has-youtube) .screen{min-height:230px}
+  .broadcast-playable .video-case{width:calc(100% - 32px);margin:26px 16px 32px}
+  .broadcast-playable .video-case .tv-wrap{grid-template-columns:minmax(0,1fr)}
+  .broadcast-playable .controls{display:none}.video-actions{gap:8px 14px}
+  .video-load{padding:10px 12px;gap:8px}
+}

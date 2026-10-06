@@ -1,0 +1,65 @@
+---
+import { getCaseMedia } from "../../lib/media";
+import { caseNumber } from "../../lib/cases";
+import "../../styles/case-video.css";
+interface Props {
+  youtubeId?: string;
+  rumbleUrl?: string;
+  title: string;
+  caseId: number;
+  thumbnail?: string;
+  variant?: "home" | "case";
+}
+const { youtubeId, rumbleUrl, title, caseId, thumbnail, variant = "case" } = Astro.props;
+const media = getCaseMedia(youtubeId, rumbleUrl);
+const label = `Case ${caseNumber(caseId)} — ${title}`;
+---
+<mythadis-video class:list={["case-video", `video-${variant}`, { "has-youtube": !!media.youtubeId }]} data-youtube-id={media.youtubeId} data-video-title={label}>
+  <div class="tv-wrap">
+    <div class="screen-bezel">
+      <div class="screen video-viewport" role={media.youtubeId ? undefined : "img"} aria-label={media.youtubeId ? undefined : `${label}: ${media.rumbleUrl ? "video available on Rumble" : "video not yet attached"}`}>
+        <div class="video-poster">
+          {thumbnail ? <img class="video-thumbnail" src={thumbnail} alt="" loading="lazy" /> : <div class="host-silhouette" aria-hidden="true"></div>}
+          <span class="video-signal">CASE {caseNumber(caseId)} / MYTHADIS</span>
+          <p class="video-state">{media.youtubeId ? "VIDEO ON YOUTUBE" : media.rumbleUrl ? "VIDEO ON RUMBLE" : "VIDEO NOT YET ATTACHED"}</p>
+          {media.youtubeId && <button class="video-load" type="button" hidden aria-label={`Load YouTube video player for ${label}`}><span aria-hidden="true">▶</span><span>LOAD VIDEO</span></button>}
+        </div>
+      </div>
+    </div>
+    <div class="controls" aria-hidden="true"><div class="dial"></div><div class="dial"></div><div class="speaker"></div></div>
+  </div>
+  {(media.youtubeUrl || media.rumbleUrl) && <nav class="video-actions" aria-label={`External video platforms for ${label}`}>
+    {media.youtubeUrl && <a href={media.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch on YouTube: ${label} (opens in a new tab)`}>WATCH ON YOUTUBE ↗</a>}
+    {media.rumbleUrl && <a href={media.rumbleUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch on Rumble: ${label} (opens in a new tab)`}>WATCH ON RUMBLE ↗</a>}
+  </nav>}
+  {media.youtubeId && <noscript><p class="video-noscript">Use WATCH ON YOUTUBE to view this investigation without JavaScript.</p></noscript>}
+</mythadis-video>
+
+<script>
+  class MythadisVideo extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>(".video-load");
+      const viewport = this.querySelector<HTMLElement>(".video-viewport");
+      const id = this.dataset.youtubeId;
+      if (!button || !viewport || !id || !/^[A-Za-z0-9_-]{11}$/.test(id) || button.dataset.ready) return;
+      button.dataset.ready = "true";
+      button.hidden = false;
+      const state = this.querySelector<HTMLElement>(".video-state");
+      if (state) state.hidden = true;
+      button.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        // Construct from the validated ID only; never use a stored arbitrary iframe URL.
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=0&playsinline=1&rel=0`;
+        iframe.title = `YouTube video player: ${this.dataset.videoTitle ?? "Mythadis investigation"}`;
+        iframe.loading = "lazy";
+        iframe.allow = "encrypted-media; picture-in-picture; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        viewport.replaceChildren(iframe);
+        viewport.dataset.loaded = "true";
+        iframe.focus();
+      }, { once: true });
+    }
+  }
+  if (!customElements.get("mythadis-video")) customElements.define("mythadis-video", MythadisVideo);
+</script>

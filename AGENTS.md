@@ -2,16 +2,17 @@
 
 Final Frontier uses `docs/reference/analog-future-v2-3.html` as the approved visual source.
 Preserve its typography, palette, asymmetry, CSS television, BS Meter and poster
-composition. See `docs/ff-003-review.md` for current scope and validation.
+composition. See `docs/ff-004-review.md` for current scope and validation.
 
-Work on `feature/ff-003-canonical-case-experience`; production remains on `main`.
+Work on `feature/ff-004-video-platform-integration`; production remains on `main`.
 Preserve Astro, TypeScript, pnpm, static `dist` output and Cloudflare configuration.
-Do not add frameworks, a backend, real media integrations or a publishing system. Use the repository-backed `cases`
+Do not add frameworks, a backend, media APIs or a publishing system.
+Use CaseVideo for click-to-load YouTube and outbound Rumble; keep fixture media empty. Use the repository-backed `cases`
 collection for investigations; retain the legacy field-report collection. Follow
 `docs/final-frontier/case-authoring.md`; do not invent findings or evidence.
 Keep legacy routes/components intact and out of the new homepage navigation.
 Keep design-review routes `noindex, nofollow`. Do not deploy production or start
-FF-004 before founder review and a separately authorized slice.
+FF-005 before founder review and a separately authorized slice.
 
 Preserve `archive/pre-final-frontier` and `pre-final-frontier-2026-10-06` at
 `3ae7334b7f958f11f3337606b0559cda79c7e427`. Also preserve the existing

@@ -1,6 +1,7 @@
 ---
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 import BSMeter from "../components/final-frontier/BSMeter.astro";
+import CaseVideo from "../components/final-frontier/CaseVideo.astro";
 import EpisodeCard from "../components/final-frontier/EpisodeCard.astro";
 import { getFeaturedCase, getLatestCases, caseHref, caseNumber } from "../lib/cases";
 const featured = await getFeaturedCase();
@@ -21,19 +22,7 @@ const latest = await getLatestCases(4);
 
         <aside class="side-slogan">SAME<br>CLAIMS.<br>REAL<br>TESTS.<br>DIFFERENT<br>RESULTS.</aside>
 
-        <div class="tv-wrap" role="img" aria-label="Retro television showing a mock featured episode; video coming soon">
-          <div class="screen-bezel">
-            <div class="screen">
-              <div class="host-silhouette" aria-hidden="true"></div>
-              <div class="play" aria-hidden="true">▶</div>
-            </div>
-          </div>
-          <div class="controls" aria-hidden="true">
-            <div class="dial"></div>
-            <div class="dial"></div>
-            <div class="speaker"></div>
-          </div>
-        </div>
+        <CaseVideo youtubeId={featured.data.youtube_id} rumbleUrl={featured.data.rumble_url} title={featured.data.title} caseId={featured.data.case} thumbnail={featured.data.thumbnail} variant="home" />
 
         <BSMeter score={featured.data.preliminary_bs} verdict={featured.data.verdict} />
 

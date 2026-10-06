@@ -50,10 +50,26 @@ updated: 2026-10-12
   recorded verdict metadata, without inventing a score.
 - Optional category/tags help select related cases; tags have no archive routes.
 - `youtube_id` stores an 11-character video ID, not a URL. `rumble_url` is an HTTPS
-  URL. Both may be empty; they are metadata only until a separately authorized
-  FF-004 integration. Do not add embeds to the Markdown.
+  URL. Either may be empty or omitted. YouTube enables an inline click-to-load player;
+  Rumble enables an outbound mirror link. Do not add iframe/embed HTML to the
+  Markdown or store video files in the repository.
 - `thumbnail`, when provided, is a root-relative local public image path such as
   `/images/cases/example.webp`, not a remote URL. Empty values use CSS placeholders.
+
+## Video fields
+
+```yaml
+youtube_id: "XXXXXXXXXXX" # Replace with the approved 11-character video ID.
+rumble_url: "https://..." # Replace with the approved full HTTPS mirror URL.
+```
+
+These are syntax illustrations, not playable fixture media. Do not paste a full
+YouTube URL into `youtube_id`. YouTube loads only after the viewer selects LOAD
+VIDEO, with autoplay disabled; the viewer then presses play in YouTube's controls.
+Rumble opens the stored URL in a new tab. Either field may be omitted independently.
+Leave fixture media empty until an approved Mythadis video exists. A local
+thumbnail supplies the poster; otherwise the CSS television is used. No remote
+thumbnails are fetched. Keep embed HTML and video files out of case Markdown/Git.
 
 ## Editorial body
 

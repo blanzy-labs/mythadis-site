@@ -1,0 +1,10 @@
+---
+import EpisodeCard from "./EpisodeCard.astro";
+import type { CaseEntry } from "../../lib/cases";
+interface Props { cases: CaseEntry[]; }
+const { cases } = Astro.props;
+---
+{cases.length > 0 && <section class="latest investigation-related" aria-labelledby="related-heading">
+  <div class="latest-title"><h2 id="related-heading">MORE FROM THE CASE FILES</h2><a href="/cases/">ALL CASES →</a></div>
+  <div class="episode-strip">{cases.map((entry, index) => <EpisodeCard entry={entry} index={index} />)}</div>
+</section>}

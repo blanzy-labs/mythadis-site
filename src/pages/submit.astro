@@ -1,0 +1,76 @@
+---
+import { brand } from "../config/brand";
+import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
+import "../styles/submit-claim.css";
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
+---
+<FinalFrontierLayout title="Submit a Claim — Mythadis">
+  <section class="route-heading claim-heading">
+    <span class="hero-kicker">MYTHADIS / CLAIM INTAKE</span>
+    <h1>SEND IT<br /><em>TO THE LAB.</em></h1>
+    <p>Found something that belongs on {brand.seriesProse}? Send a specific internet claim we can put to the test.</p>
+  </section>
+  <section class="claim-intake" aria-label="Claim submission">
+    <aside class="claim-guidance">
+      <span class="intake-stamp">SOURCE / CLAIM / CONTEXT</span>
+      <h2>GIVE US<br />SOMETHING<br />TO TEST.</h2>
+      <p>A specific promise, an identifiable source, and a result we can attempt to reproduce.</p>
+      <p>Start with the original link. Tell us what is promised, and what makes you question it.</p>
+      <div class="claim-privacy"><h3>FOR THE EVIDENCE PILE</h3><p>Submission details are stored for Mythadis investigation triage. Optional contact information is used only if we need to follow up about the claim. It is not published or used for marketing.</p></div>
+    </aside>
+    <div class="claim-file">
+      <div id="claim-feedback" class="claim-feedback" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      <form id="claim-form" action="/api/claims" method="post" enctype="application/x-www-form-urlencoded" data-configured={siteKey ? "true" : "false"}>
+        <h2 class="file-tab">SUBMISSION FILE</h2>
+        <p class="required-note">Fields marked “required” are needed. Everything else is optional.</p>
+        <div class="claim-field">
+          <label for="claim-url">Original claim URL <small>required</small></label>
+          <p id="claim-url-help">Link to the original claim, ad, post, article, video or page where possible. Include http:// or https://.</p>
+          <input id="claim-url" name="claim_url" type="url" required maxlength="2048" pattern="https?://.+" aria-describedby="claim-url-help claim_url-error" autocomplete="url" />
+          <p id="claim_url-error" class="field-error" hidden></p>
+        </div>
+        <div class="claim-field">
+          <label for="claim-summary">What is the claim? <small>required</small></label>
+          <p id="claim-summary-help">Describe the promise in plain language. 10–1,200 characters.</p>
+          <textarea id="claim-summary" name="claim_summary" required minlength="10" maxlength="1200" rows="4" aria-describedby="claim-summary-help claim_summary-error"></textarea>
+          <p id="claim_summary-error" class="field-error" hidden></p>
+        </div>
+        <div class="claim-field">
+          <label for="why-interesting">Why does it look suspicious or interesting? <small>required</small></label>
+          <p id="why-interesting-help">What would you want tested, or what seems missing? 10–1,600 characters.</p>
+          <textarea id="why-interesting" name="why_interesting" required minlength="10" maxlength="1600" rows="4" aria-describedby="why-interesting-help why_interesting-error"></textarea>
+          <p id="why_interesting-error" class="field-error" hidden></p>
+        </div>
+        <div class="contact-fields">
+          <div class="claim-field"><label for="claim-name">Name <small>optional</small></label><input id="claim-name" name="name" maxlength="100" autocomplete="name" aria-describedby="name-error" /><p id="name-error" class="field-error" hidden></p></div>
+          <div class="claim-field"><label for="claim-email">Email <small>optional</small></label><input id="claim-email" name="email" type="email" maxlength="254" autocomplete="email" aria-describedby="claim-email-help email-error" /><p id="email-error" class="field-error" hidden></p></div>
+        </div>
+        <p id="claim-email-help" class="contact-help">Leave an email only if you're willing to be contacted about the submission.</p>
+        <div class="claim-field"><label for="claim-notes">Notes <small>optional</small></label><p id="claim-notes-help">Other useful context. Up to 2,000 characters.</p><textarea id="claim-notes" name="notes" maxlength="2000" rows="3" aria-describedby="claim-notes-help notes-error"></textarea><p id="notes-error" class="field-error" hidden></p></div>
+        <div class="claim-honeypot" aria-hidden="true"><label for="claim-company">Company — leave empty</label><input id="claim-company" name="company" tabindex="-1" autocomplete="off" /></div>
+        <div class="claim-verification">
+          <h3>CHECK BEFORE SENDING</h3>
+          {siteKey ? <>
+            <div class="cf-turnstile" data-sitekey={siteKey} data-action="submit_claim" data-size="compact" data-theme="light" data-callback="claimVerified" data-expired-callback="claimVerificationExpired" data-error-callback="claimVerificationError"></div>
+            <p id="verification-help" role="status" aria-live="polite">Complete the verification before sending your claim.</p>
+          </> : <p class="configuration-note">CLAIM INTAKE OPENS WITH THE FULL LAUNCH.</p>}
+          <noscript><p>Verification requires JavaScript. Enable it and reload this page to send a claim. No submission has been sent.</p></noscript>
+        </div>
+        <p class="claim-disclosure">By submitting, you confirm that the information is provided for Mythadis to review as a possible investigation. Do not submit private credentials, confidential records, or material you do not have permission to share.</p>
+        <button class="submit-btn claim-send" type="submit" disabled={!siteKey}>SEND THE CLAIM →</button>
+        <p class="claim-expectation">Submission does not guarantee a response, investigation or publication.</p>
+      </form>
+    </div>
+  </section>
+  {siteKey && <>
+    <script is:inline>
+      window.claimVerified = function () { document.dispatchEvent(new CustomEvent("claim-verification", { detail: "verified" })); };
+      window.claimVerificationExpired = function () { document.dispatchEvent(new CustomEvent("claim-verification", { detail: "expired" })); };
+      window.claimVerificationError = function () { document.dispatchEvent(new CustomEvent("claim-verification", { detail: "error" })); };
+    </script>
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  </>}
+</FinalFrontierLayout>
+<script>
+  import "../scripts/submit-claim";
+</script>

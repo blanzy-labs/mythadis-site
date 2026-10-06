@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mythadis — Analog Future V2.3</title>
+<meta name="description" content="Project Final Frontier — Analog Future V2 prototype for Mythadis.">
+<style>
+:root{
+  --cream:#f0d9a4;
+  --cream2:#ead09a;
+  --paper:#f6e8bd;
+  --ink:#17140f;
+  --ink2:#282018;
+  --orange:#e95b24;
+  --orange2:#f1792f;
+  --red:#b93d2b;
+  --mustard:#e8b446;
+  --teal:#356f72;
+  --cyan:#6da0a3;
+  --line:#3a2b20;
+  --acid:#efe05b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#171613;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.16) 0 1px,transparent 1px),
+    radial-gradient(circle at 70% 60%,rgba(0,0,0,.15) 0 1px,transparent 1px);
+  background-size:7px 7px,9px 9px;
+  mix-blend-mode:overlay;
+}
+a{color:inherit}
+.shell{
+  width:min(1180px,calc(100% - 40px));
+  margin:20px auto 50px;
+  background:var(--cream);
+  border:2px solid #b49b6c;
+  box-shadow:0 18px 80px #0009;
+  position:relative;
+  overflow:hidden;
+}
+.shell:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:inset 0 0 55px rgba(71,45,17,.12);
+}
+.site-header{
+  min-height:92px;
+  background:var(--ink);
+  color:var(--cream);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  padding:0 30px 0 42px;
+  position:relative;
+  border-bottom:3px solid var(--cream);
+  z-index:8;
+}
+.site-header:before{
+  content:"";
+  position:absolute;
+  left:48%;
+  top:0;
+  bottom:0;
+  width:260px;
+  transform:skewX(-28deg);
+  transform-origin:top;
+  background:
+    linear-gradient(90deg,
+      transparent 0 8%,
+      var(--mustard) 8% 23%,
+      var(--orange2) 23% 39%,
+      var(--orange) 39% 58%,
+      transparent 58% 100%);
+  opacity:.98;
+}
+.brand-wrap{position:relative;z-index:2}
+.brand{
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-style:italic;
+  font-size:clamp(42px,5vw,68px);
+  line-height:.84;
+  letter-spacing:-.055em;
+  transform:skewX(-6deg);
+  display:inline-block;
+}
+.tagline{
+  margin-top:7px;
+  color:var(--orange2);
+  font-weight:900;
+  font-style:italic;
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.top-nav{
+  position:relative;
+  z-index:3;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+.top-nav a{text-decoration:none}
+.socials{display:flex;gap:9px;font-size:12px;align-items:center}
+.hero{
+  min-height:590px;
+  display:grid;
+  grid-template-columns:43% 57%;
+  position:relative;
+  border-bottom:5px solid var(--ink);
+  background:
+    linear-gradient(110deg,rgba(255,255,255,.22),transparent 34%),
+    var(--paper);
+}
+.hero-copy{
+  padding:36px 24px 28px 48px;
+  position:relative;
+  z-index:3;
+}
+.hero-kicker{
+  display:inline-block;
+  font:900 12px/1 Arial;
+  letter-spacing:.03em;
+  border:2px solid var(--ink);
+  padding:6px 9px;
+  background:#f8ebc4;
+  transform:rotate(-1deg);
+}
+.hero h1{
+  margin:16px 0 20px;
+  max-width:430px;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-style:italic;
+  font-size:clamp(64px,7.7vw,112px);
+  line-height:.76;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+  transform:skewX(-4deg);
+}
+.hero h1 em{
+  color:var(--red);
+  font-style:inherit;
+  white-space:nowrap;
+}
+.internet-word{
+  color:#e3b347;
+  display:inline-block;
+}
+.episode-no{
+  font-weight:900;
+  font-size:16px;
+  margin-bottom:7px;
+}
+.episode-title{
+  max-width:390px;
+  font-size:27px;
+  line-height:.95;
+  font-weight:900;
+  letter-spacing:-.03em;
+}
+.primary-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+  background:var(--ink);
+  color:var(--cream);
+  text-decoration:none;
+  padding:13px 16px;
+  font-size:11px;
+  font-weight:900;
+  box-shadow:4px 4px 0 var(--red);
+}
+.media-stage{
+  position:relative;
+  overflow:hidden;
+  min-height:590px;
+  background:var(--teal);
+}
+.side-slogan{
+  position:absolute;
+  z-index:5;
+  top:45px;
+  right:20px;
+  width:105px;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-size:22px;
+  line-height:.9;
+  text-transform:uppercase;
+  color:#13110e;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  padding:10px 8px;
+  transform:rotate(1deg);
+}
+.tv-wrap{
+  position:absolute;
+  z-index:4;
+  top:74px;
+  left:42px;
+  width:min(480px,73%);
+  aspect-ratio:1.23/1;
+  background:#744827;
+  border:5px solid #201711;
+  border-radius:34px 25px 28px 34px;
+  box-shadow:
+    10px 15px 0 #231912,
+    inset 0 0 0 5px #bd6a37,
+    inset 0 0 0 8px #4a2a18;
+  display:grid;
+  grid-template-columns:1fr 78px;
+  padding:18px 16px 16px 18px;
+  transform:rotate(-1.5deg);
+}
+.screen-bezel{
+  background:#1e1b18;
+  border-radius:24px 18px 20px 24px;
+  padding:12px;
+  box-shadow:inset 0 0 0 3px #4b392a;
+}
+.screen{
+  width:100%;
+  height:100%;
+  border-radius:48% 43% 44% 47% / 18% 18% 18% 18%;
+  background:
+    radial-gradient(circle at 58% 36%,rgba(232,105,45,.5),transparent 22%),
+    radial-gradient(circle at 37% 55%,rgba(71,139,151,.65),transparent 37%),
+    linear-gradient(140deg,#142024,#090a0a 65%);
+  position:relative;
+  overflow:hidden;
+  box-shadow:inset 0 0 35px #000;
+}
+.screen:before{
+  content:"FEATURED EPISODE";
+  position:absolute;
+  top:18px;
+  left:20px;
+  color:#d7cdb8;
+  font:900 10px/1 monospace;
+  letter-spacing:.12em;
+  opacity:.72;
+}
+.screen:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);
+  pointer-events:none;
+}
+.host-silhouette{
+  position:absolute;
+  left:50%;
+  bottom:-4px;
+  width:58%;
+  height:82%;
+  transform:translateX(-50%);
+  border-radius:46% 46% 15% 15%;
+  background:
+    radial-gradient(circle at 50% 23%,#856751 0 12%,#5e4637 12% 20%,transparent 20%),
+    linear-gradient(100deg,transparent 0 25%,#17191a 26% 74%,transparent 75%);
+  opacity:.9;
+}
+.play{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:3px solid #eee4ca;
+  color:#eee4ca;
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  z-index:4;
+  background:#1118;
+}
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  padding-left:12px;
+  align-items:center;
+}
+.dial{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle,#4d2a17 0 25%,#c77a3f 27% 33%,#25170f 35% 100%);
+  border:3px solid #20140d;
+}
+.speaker{
+  margin-top:auto;
+  width:44px;height:86px;
+  background:repeating-linear-gradient(0deg,#1b120c 0 3px,#5c3b24 3px 6px);
+  border:2px solid #24170e;
+}
+.bs-card{
+  position:absolute;
+  z-index:6;
+  left:72px;
+  bottom:20px;
+  width:220px;
+  background:var(--mustard);
+  border:4px solid var(--ink);
+  padding:10px 12px 9px;
+  transform:rotate(-1deg);
+  box-shadow:5px 5px 0 #1c1710;
+}
+.bs-card small{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--cream);
+  padding:4px 6px;
+  font-weight:900;
+  font-size:10px;
+}
+.bs-score{
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  color:var(--red);
+  font-size:78px;
+  line-height:.82;
+  letter-spacing:-.05em;
+}
+.bs-score span{font-size:28px;color:var(--ink)}
+.bs-verdict{
+  font-size:12px;
+  font-weight:900;
+  border-top:2px solid var(--ink);
+  padding-top:5px;
+}
+.badge{
+  position:absolute;
+  z-index:6;
+  right:15px;
+  bottom:65px;
+  width:128px;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,var(--cream) 0 40%,var(--ink) 41% 47%,var(--orange) 48% 100%);
+  border:4px solid var(--ink);
+  transform:rotate(-9deg);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-style:italic;
+  font-size:24px;
+  color:var(--ink);
+}
+.badge span{background:var(--cream);padding:2px 5px;transform:rotate(-3deg)}
+.small-slogan{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:125px;
+  font:900 12px/1 Arial;
+  text-transform:uppercase;
+  text-align:center;
+}
+.latest{
+  background:var(--orange);
+  border-bottom:5px solid var(--ink);
+  padding:0 0 18px;
+  position:relative;
+}
+.latest-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 38px 5px;
+  color:var(--ink);
+}
+.latest-title h2{
+  margin:0;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-style:italic;
+  font-size:25px;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+}
+.latest-title a{
+  font-size:11px;
+  font-weight:900;
+  text-decoration:none;
+}
+.episode-strip{
+  display:grid;
+  grid-template-columns:1.08fr 1fr 1.08fr .85fr;
+  gap:8px;
+  padding:0 34px;
+}
+.episode-card{
+  min-height:144px;
+  border:4px solid var(--ink);
+  background:#162222;
+  color:var(--cream);
+  padding:12px;
+  position:relative;
+  overflow:hidden;
+  transform-origin:center;
+}
+.episode-card:nth-child(2){transform:translateY(4px)}
+.episode-card:nth-child(3){transform:translateY(-2px)}
+.episode-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.5;
+}
+.episode-card.ai:before{background:linear-gradient(115deg,#114e55,#212c2c 58%,transparent 58%)}
+.episode-card.game:before{background:radial-gradient(circle at 72% 55%,#d7cec0 0 18%,transparent 19%),linear-gradient(130deg,#1c1f1f,#604b37)}
+.episode-card.stock:before{background:linear-gradient(150deg,#112529,#17201d),linear-gradient(30deg,transparent 48%,#d85c2c 49% 51%,transparent 52%)}
+.episode-card.crypto:before{background:radial-gradient(circle at 73% 62%,#b88736 0 20%,transparent 21%),linear-gradient(140deg,#142223,#231713)}
+.episode-card h3{
+  position:relative;
+  z-index:2;
+  margin:0;
+  width:70%;
+  font-size:16px;
+  line-height:1;
+}
+.episode-card .score{
+  position:absolute;
+  z-index:2;
+  left:10px;
+  bottom:9px;
+  color:#f0b53f;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-size:22px;
+}
+.episode-card .ep{
+  position:absolute;
+  right:9px;
+  top:8px;
+  z-index:2;
+  font:900 9px monospace;
+  color:#c8bc9e;
+}
+.bottom-grid{
+  display:grid;
+  grid-template-columns:1.08fr .88fr .54fr;
+  min-height:150px;
+  background:var(--cream);
+}
+.bottom-grid>div{
+  padding:24px 24px 20px;
+  border-right:3px solid var(--ink);
+}
+.bottom-grid>div:last-child{border-right:0}
+.submit-block{
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  align-items:center;
+  gap:14px;
+}
+.globe{
+  width:62px;height:62px;border:4px solid var(--ink);border-radius:50%;position:relative;
+}
+.globe:before,.globe:after{content:"";position:absolute;inset:8px;border:2px solid var(--ink);border-radius:50%}
+.globe:after{inset:0 26px;border-width:0 2px;border-radius:0}
+.submit-copy b,.follow b{
+  display:block;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-size:19px;
+  line-height:.95;
+  text-transform:uppercase;
+}
+.submit-copy span{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  font-weight:900;
+}
+.submit-btn{
+  white-space:nowrap;
+  background:var(--ink);
+  color:var(--cream);
+  text-decoration:none;
+  padding:13px 16px;
+  font-weight:900;
+  font-size:11px;
+  box-shadow:4px 4px 0 var(--teal);
+}
+.follow{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.follow-icons{
+  margin-top:12px;
+  display:flex;
+  gap:13px;
+  font-size:20px;
+  font-weight:900;
+}
+.manifesto{
+  display:flex;
+  align-items:center;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-size:24px;
+  line-height:.9;
+  text-transform:uppercase;
+}
+.evidence-band{
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  min-height:260px;
+  border-top:5px solid var(--ink);
+  background:#dcb676;
+}
+.evidence-left{
+  padding:28px 36px;
+  position:relative;
+  overflow:hidden;
+}
+.evidence-left:before{
+  content:"";
+  position:absolute;
+  width:420px;height:34px;background:var(--red);
+  right:-110px;top:80px;transform:rotate(-18deg);
+  box-shadow:0 46px 0 var(--orange),0 92px 0 var(--teal);
+  opacity:.85;
+}
+.evidence-left h2{
+  position:relative;
+  z-index:2;
+  margin:0;
+  font-family:Impact,"Arial Black",Arial,sans-serif;
+  font-style:italic;
+  font-size:54px;
+  line-height:.82;
+  text-transform:uppercase;
+}
+.evidence-left p{
+  position:relative;
+  z-index:2;
+  max-width:360px;
+  font-weight:700;
+  line-height:1.35;
+}
+.evidence-right{
+  background:var(--ink);
+  color:var(--cream);
+  padding:24px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:14px;
+}
+.receipt{
+  border:2px solid #6f624e;
+  padding:16px;
+  background:#231f19;
+  min-height:180px;
+}
+.receipt small{font:900 10px monospace;color:#9d9077}
+.receipt h3{
+  margin:10px 0 12px;
+  font-size:21px;
+  line-height:1;
+}
+.receipt p{
+  color:#c4b89f;
+  font-size:13px;
+  line-height:1.45;
+}
+.stamp-row{display:flex;gap:8px;flex-wrap:wrap}
+.stamp{
+  border:2px solid var(--orange2);
+  color:var(--orange2);
+  padding:5px 7px;
+  font:900 10px monospace;
+  transform:rotate(-2deg);
+}
+.stamp:nth-child(2){transform:rotate(2deg);border-color:var(--acid);color:var(--acid)}
+.site-footer{
+  background:#10100e;
+  color:#bcb097;
+  padding:18px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font:900 10px monospace;
+}
+@media (max-width:980px){
+  .shell{width:100%;margin:0;border-left:0;border-right:0}
+  .site-header{grid-template-columns:1fr;padding:18px 22px}
+  .site-header:before{left:auto;right:-80px;width:220px}
+  .top-nav{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:32px 28px 28px}
+  .hero h1{max-width:650px;font-size:clamp(70px,15vw,120px)}
+  .media-stage{min-height:620px}
+  .episode-strip{grid-template-columns:repeat(2,1fr)}
+  .bottom-grid{grid-template-columns:1fr}
+  .bottom-grid>div{border-right:0;border-bottom:3px solid var(--ink)}
+  .bottom-grid>div:last-child{border-bottom:0}
+  .evidence-band{grid-template-columns:1fr}
+}
+@media (max-width:650px){
+  .brand{font-size:50px}
+  .hero-copy{padding-left:20px;padding-right:20px}
+  .hero h1{font-size:64px}
+  .episode-title{font-size:22px}
+  .media-stage{min-height:520px}
+  .tv-wrap{left:6%;top:80px;width:76%;grid-template-columns:1fr 58px;padding:13px}
+  .controls{padding-left:7px}.dial{width:33px;height:33px}.speaker{width:34px}
+  .side-slogan{right:8px;width:82px;font-size:17px}
+  .bs-card{left:7%;bottom:16px;width:185px}
+  .bs-score{font-size:62px}
+  .badge{width:92px;right:8px;bottom:74px;font-size:18px}
+  .small-slogan{width:90px;font-size:10px;right:8px}
+  .episode-strip{grid-template-columns:1fr;padding:0 14px}
+  .latest-title{padding-left:18px;padding-right:18px}
+  .submit-block{grid-template-columns:56px 1fr}
+  .submit-btn{grid-column:1 / -1;text-align:center}
+  .globe{width:52px;height:52px}
+  .evidence-right{grid-template-columns:1fr}
+  .site-footer{gap:16px;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="site-header">
+    <div class="brand-wrap">
+      <div class="brand">MYTHADIS</div>
+      <div class="tagline">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</div>
+    </div>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#watch">WATCH</a>
+      <a href="#cases">CLAIMS</a>
+      <a href="#evidence">EVIDENCE</a>
+      <a href="#about">ABOUT</a>
+      <a href="#submit">SUBMIT</a>
+      <span class="socials" aria-label="Social links"><span>▶</span><span>𝕏</span><span>◉</span><span>in</span></span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="watch">
+      <div class="hero-copy">
+        <div class="hero-kicker">EPISODE 017</div>
+        <h1>THE<br><span class="internet-word">INTERNET</span><br>SAID <em>WHAT?</em></h1>
+        <div class="episode-no">CASE 017</div>
+        <div class="episode-title">Can $68 Really Become $6,732 Overnight Using AI?</div>
+        <a class="primary-cta" href="#"><span>▶</span> WATCH THE INVESTIGATION →</a>
+      </div>
+
+      <div class="media-stage">
+
+        <aside class="side-slogan">SAME<br>CLAIMS.<br>REAL<br>TESTS.<br>DIFFERENT<br>RESULTS.</aside>
+
+        <div class="tv-wrap" aria-label="Featured episode video placeholder">
+          <div class="screen-bezel">
+            <div class="screen">
+              <div class="host-silhouette"></div>
+              <div class="play">▶</div>
+            </div>
+          </div>
+          <div class="controls" aria-hidden="true">
+            <div class="dial"></div>
+            <div class="dial"></div>
+            <div class="speaker"></div>
+          </div>
+        </div>
+
+        <div class="bs-card">
+          <small>BS METER</small>
+          <div class="bs-score">9.4<span>/10</span></div>
+          <div class="bs-verdict">ABSOLUTE NONSENSE</div>
+        </div>
+
+        <div class="badge"><span>MYTHADIS</span></div>
+        <div class="small-slogan">A MORE<br>SKEPTICAL<br>TOMORROW.</div>
+      </div>
+    </section>
+
+    <section class="latest" id="cases">
+      <div class="latest-title">
+        <h2>Latest Episodes</h2>
+        <a href="#">VIEW ALL →</a>
+      </div>
+      <div class="episode-strip">
+        <article class="episode-card ai">
+          <span class="ep">016</span>
+          <h3>AI Writes Legal Contracts?</h3>
+          <div class="score">BS 8.7</div>
+        </article>
+        <article class="episode-card game">
+          <span class="ep">015</span>
+          <h3>Make a Full Game in 5 Minutes?</h3>
+          <div class="score">BS 9.1</div>
+        </article>
+        <article class="episode-card stock">
+          <span class="ep">014</span>
+          <h3>Predict Next Week's Stock Prices?</h3>
+          <div class="score">BS 7.8</div>
+        </article>
+        <article class="episode-card crypto">
+          <span class="ep">013</span>
+          <h3>Crypto Bot Prints Money?</h3>
+          <div class="score">BS 10.2</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="bottom-grid" id="submit">
+      <div class="submit-block">
+        <div class="globe" aria-hidden="true"></div>
+        <div class="submit-copy">
+          <b>SEEN A SUSPICIOUS CLAIM?</b>
+          <span>SEND IT TO THE LAB.</span>
+        </div>
+        <a class="submit-btn" href="#">SUBMIT A CLAIM →</a>
+      </div>
+      <div class="follow">
+        <b>FOLLOW MYTHADIS</b>
+        <div class="follow-icons"><span>▶</span><span>𝕏</span><span>◉</span><span>in</span></div>
+      </div>
+      <div class="manifesto">INTERNET<br>CLAIMS.<br>ACTUAL<br>EXPERIMENTS.</div>
+    </section>
+
+    <section class="evidence-band" id="evidence">
+      <div class="evidence-left">
+        <h2>SHOW<br>THE<br>RECEIPTS.</h2>
+        <p>Every investigation publishes the claim, the test, what happened, and the evidence behind the verdict.</p>
+      </div>
+      <div class="evidence-right">
+        <article class="receipt">
+          <small>CASE 017 / EVIDENCE FILE</small>
+          <h3>The claim promised a 9,800% return overnight.</h3>
+          <p>We reproduced the sales funnel, traced the steps, recorded the outputs and documented every point where the story stopped matching reality.</p>
+          <div class="stamp-row">
+            <span class="stamp">CLAIM CAPTURED</span>
+            <span class="stamp">TEST COMPLETE</span>
+          </div>
+        </article>
+        <article class="receipt">
+          <small>FINAL DISPOSITION</small>
+          <h3>Result: the mechanism did not survive contact with reality.</h3>
+          <p>Full evidence, notes and source material would live here on the production investigation page.</p>
+          <div class="stamp-row">
+            <span class="stamp">RECEIPTS INCLUDED</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="about">
+    <span>PROJECT FINAL FRONTIER / ANALOG FUTURE V2.3</span>
+    <span>MYTHADIS // A MORE SKEPTICAL TOMORROW</span>
+  </footer>
+</div>
+</body>
+</html>

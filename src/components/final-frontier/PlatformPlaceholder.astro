@@ -1,0 +1,18 @@
+---
+import { launchReady } from "../../config/launch";
+import CaseVideo from "./CaseVideo.astro";
+import { getCaseMedia } from "../../lib/media";
+import type { CaseEntry } from "../../lib/cases";
+interface Props { entry: CaseEntry; }
+const { data } = Astro.props.entry;
+const media = getCaseMedia(data.youtube_id, data.rumble_url);
+---
+<section class:list={["investigation-broadcast", { "broadcast-playable": !!media.youtubeId }]} aria-labelledby="broadcast-heading">
+  <CaseVideo youtubeId={data.youtube_id} rumbleUrl={data.rumble_url} title={data.title} caseId={data.case} thumbnail={data.thumbnail} />
+  <div class="broadcast-copy">
+    <span class="stamp">{media.youtubeId || media.rumbleUrl ? "CASE VIDEO" : "BROADCAST PLACEHOLDER"}</span>
+    <h2 id="broadcast-heading">THE INVESTIGATION.<br />ON SCREEN.</h2>
+    <p>External video platforms carry the broadcast. This case file keeps the investigation and its receipts together.</p>
+    {media.youtubeId ? <p>Load the video when you’re ready, then press play. YouTube connects only after you load the player.</p> : media.rumbleUrl ? <p>This investigation is available on Rumble. Use the platform link to watch.</p> : <p>{launchReady ? "No video is attached to this investigation." : "No video is attached to this example investigation."}</p>}
+  </div>
+</section>

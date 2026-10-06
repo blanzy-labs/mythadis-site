@@ -1,0 +1,7 @@
+---
+import { getSocialLinks } from "../../config/social";
+interface Props { variant?: "header" | "follow" }
+const { variant = "header" } = Astro.props;
+const links = getSocialLinks();
+---
+{links.length > 0 && <span class={variant === "header" ? "socials" : "follow-icons"}>{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`Mythadis on ${link.label} (opens in a new tab)`}><span aria-hidden="true">{link.icon}</span></a>)}</span>}

@@ -1,0 +1,19 @@
+---
+import { caseHref, caseNumber, caseIdentity, type CaseEntry } from "../../lib/cases";
+interface Props { entry: CaseEntry; evidence?: boolean; }
+const { entry, evidence = false } = Astro.props;
+---
+<article class="case-file">
+  <div class="file-number"><span>{evidence ? "EVIDENCE FILE" : "CASE FILE"}</span><b>{caseNumber(entry.data.case)}</b></div>
+  <div class="file-copy">
+    <small class="file-category">{caseIdentity(entry)}{entry.data.category && ` / ${entry.data.category}`}</small>
+    <h2><a href={caseHref(entry)}>{entry.data.title}</a></h2>
+    <p>{entry.data.summary}</p>
+    <a class="file-link" href={caseHref(entry) + (evidence ? "#the-receipts" : "")}>{evidence ? "OPEN THE RECEIPTS" : "OPEN INVESTIGATION"} →</a>
+  </div>
+  <div class="file-verdict">
+    <span>PRELIMINARY BS</span><strong>{entry.data.preliminary_bs}<small>/10</small></strong>
+    {entry.data.final_bs !== undefined && <p>FINAL BS <b>{entry.data.final_bs}/10</b></p>}
+    {entry.data.verdict && <b class="verdict-label">{entry.data.verdict}</b>}
+  </div>
+</article>

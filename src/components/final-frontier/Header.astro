@@ -1,0 +1,18 @@
+---
+import { brand } from "../../config/brand";
+import SocialLinks from "./SocialLinks.astro";
+---
+  <header class="site-header">
+    <div class="brand-wrap">
+      <a class="brand" href="/" aria-label="Mythadis home">{brand.name}</a>
+      <div class="tagline">{brand.tagline}</div>
+    </div>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="/watch/">WATCH</a>
+      <a href="/cases/">CLAIMS</a>
+      <a href="/evidence/">EVIDENCE</a>
+      <a href="/about/">ABOUT</a>
+      <a href="/submit/">SUBMIT</a>
+      <SocialLinks />
+    </nav>
+  </header>

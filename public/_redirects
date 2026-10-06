@@ -1,0 +1,20 @@
+# FF-006: permanent legacy migration; exact paths before wildcard fallback.
+/why-mythadis /about/ 301
+/why-mythadis/ /about/ 301
+/proof /evidence/ 301
+/proof/ /evidence/ 301
+/current-state / 301
+/current-state/ / 301
+/field-reports /cases/ 301
+/field-reports/ /cases/ 301
+/visual-studies / 301
+/visual-studies/ / 301
+/visual-study-a / 301
+/visual-study-a/ / 301
+/visual-study-b / 301
+/visual-study-b/ / 301
+/visual-study-c / 301
+/visual-study-c/ / 301
+/design-system / 301
+/design-system/ / 301
+/field-reports/* /cases/ 301

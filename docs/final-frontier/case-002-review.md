@@ -30,5 +30,25 @@ Validation: frozen install, Astro check (zero errors/warnings/hints), static bui
 42 claim/launch tests, responsive CASE 002/feed/fixture checks and existing FF-007
 identity regressions. Responsive review covers 1440, 820, 390 and 320 pixels;
 checks pending results, single H1, section anchors, canonical/noindex, discovery,
-fixture labels, sitemap and console/overflow behavior. Publish via normal PR
-merge after Cloudflare preview succeeds; verify actual-domain case and feeds.
+fixture labels, sitemap and console/overflow behavior. Published via normal PR merge after local validation. No Cloudflare preview
+check was reported for this branch; production Cloudflare build passed.
+
+## Production verification
+
+Published 2026-10-06 (Europe/Dublin) through PR #16:
+https://github.com/blanzy-labs/mythadis-site/pull/16.
+Implementation: `f7d04087dfde17b0a36d1c5bd73310a08969556d`.
+Production merge: `a1966cecf2533530e70df322d65f8c29be32833a`.
+Cloudflare deployment: `eb6aeb43-6eec-482e-9664-06ebdf9810e5`, successful.
+Live URL: https://mythadis.com/cases/002-the-99-percent-detector/.
+
+Actual-domain checks passed all 28 case/feed/fixture combinations at four widths,
+with no overflow or console errors, correct labels, pending final results,
+production canonical and noindex/nofollow. All 19 legacy redirects returned 301
+to expected 200 destinations; missing URL 404 and Function GET 405 passed.
+CASE 001 remains featured. No changes to official-launch readiness or intake.
+Rollback if needed: prior successful soft-launch deployment
+`bd47b261-5a69-4f24-b15b-965f148cf763`, SHA
+`18f60bcb8516c5a0f1881f7ba09d4363b1c40772`, using existing Pages rollback.
+This post-deployment record is saved on the feature branch and does not trigger
+another production release.

@@ -2,6 +2,8 @@
 import { isFixtureCase } from "../../config/launch";
 import { render, type CollectionEntry } from "astro:content";
 import FinalFrontierLayout from "../../layouts/FinalFrontierLayout.astro";
+import CaseEditorialNote from "../../components/final-frontier/CaseEditorialNote.astro";
+import { hasPerformedExperiment } from "../../config/editorial";
 import CaseHero from "../../components/final-frontier/CaseHero.astro";
 import CaseAssessment from "../../components/final-frontier/CaseAssessment.astro";
 import PlatformPlaceholder from "../../components/final-frontier/PlatformPlaceholder.astro";
@@ -36,10 +38,11 @@ const sections = headings.filter((heading) => heading.depth === 2);
         {sections.length > 0 && <nav aria-label="In this investigation"><h2>IN THIS FILE</h2><ol>{sections.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}
         {fixture ? <p>Mock investigation.<br />No real findings or evidence are asserted.</p> : data.final_bs === undefined && <p>Investigation in progress.<br />Final assessment pending.</p>}
       </aside>
-      <div class="investigation-body"><Content /></div>
+      <div class="investigation-body"><Content />{hasPerformedExperiment(entry) && <CaseEditorialNote kind="experiment" />}</div>
     </div>
     {data.final_bs !== undefined && <CaseAssessment phase="final" score={data.final_bs} caseId={data.case} category={data.category} fixture={fixture} verdict={data.verdict} />}
     {data.final_bs === undefined && data.verdict && <section class="investigation-verdict" aria-labelledby="recorded-verdict-heading"><span class="stamp">CASE {caseNumber(data.case)}</span><h2 id="recorded-verdict-heading">RECORDED VERDICT</h2><p>{data.verdict}</p><small>{fixture ? "Example metadata; no final score supplied." : "No final score supplied."}</small></section>}
+    <CaseEditorialNote kind="bs-meter" />
     <PlatformPlaceholder entry={entry} />
     <RelatedCases cases={related} />
     <CaseNavigation previous={adjacent.previous} next={adjacent.next} />

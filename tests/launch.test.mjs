@@ -4,7 +4,7 @@ import { assertLaunchContent, isFixtureCase, launchReady, publicRoutes } from '.
 import { getSocialLinks } from '../src/config/social.ts';
 const real = { id: 'real-case', body: 'Supported editorial content', data: { visibility: 'published', featured: true } };
 test('explicit launch flag and intended static route list', () => {
- assert.equal(typeof launchReady, 'boolean');assert.deepEqual(publicRoutes, ['/', '/watch/', '/cases/', '/evidence/', '/submit/', '/about/']);
+ assert.equal(typeof launchReady, 'boolean');assert.deepEqual(publicRoutes, ['/', '/watch/', '/cases/', '/evidence/', '/submit/', '/about/', '/editorial-standards/']);
 });
 test('launch refuses zero cases and published fixture identities or markers', () => {
  assert.throws(()=>assertLaunchContent([]));

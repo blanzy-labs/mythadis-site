@@ -2,7 +2,7 @@
 
 Final Frontier uses `docs/reference/analog-future-v2-3.html` as the approved visual source.
 Preserve its typography, palette, asymmetry, CSS television, BS Meter and poster
-composition. See `docs/ff-007-review.md` for current scope and validation.
+composition. See `docs/ff-010-review.md` for editorial guardrails and validation.
 
 Work on feature branches from current `main`; production remains on `main`.
 Preserve Astro, TypeScript, pnpm, static `dist` output and Cloudflare configuration.
@@ -63,3 +63,7 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+Editorial standards live at /editorial-standards/. Preserve supplied disclaimer copy.
+Use experiment_performed only for documented performed Mythadis testing, not plans
+or mocks. Internal response documents in docs/editorial are not public routes.

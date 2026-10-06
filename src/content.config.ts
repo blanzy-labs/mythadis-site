@@ -31,6 +31,7 @@ const cases = defineCollection({
     visibility: z.enum(["draft", "published"]),
     preliminary_bs: score,
     featured: z.boolean(),
+    experiment_performed: z.boolean().default(false),
     final_bs: score.optional(),
     verdict: z.string().trim().min(1).optional(),
     category: z.string().trim().min(1).optional(),

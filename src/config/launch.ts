@@ -1,7 +1,7 @@
 import { brand, firstCase } from "./brand.ts";
 // Change only in a founder-approved release after every launch-checklist gate passes.
 export const launchReady = false;
-export const publicRoutes = ["/", "/watch/", "/cases/", "/evidence/", "/submit/", "/about/"];
+export const publicRoutes = ["/", "/watch/", "/cases/", "/evidence/", "/submit/", "/about/", "/editorial-standards/"];
 export const siteMetadata = {
   title: `${brand.seriesProse} | Mythadis`,
   description: `Mythadis presents ${brand.seriesProse}, where internet claims meet real tests, evidence and the BS Meter.`,

@@ -142,3 +142,11 @@ Supplied nonfixture cases appear ahead of numbered development fixtures in feeds
 CASE 001 remains featured. Mock/date/score/video labels use the fixture registry
 independently of the global indexing gate. All pages stay noindex while
 launchReady=false. Sitemap can include supplied cases but excludes fixtures.
+
+## FF-010 experiment notes
+
+Set `experiment_performed: true` only when the file actually documents performed
+Mythadis experimental testing, not a planned methodology or mock example. The
+shared template adds the experiment disclaimer below the document. Omitted/false
+means no experiment note. All public cases receive the BS Meter opinion note
+after the final assessment/verdict (or the pending document) without body edits.

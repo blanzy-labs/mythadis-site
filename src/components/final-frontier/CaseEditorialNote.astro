@@ -1,0 +1,13 @@
+---
+import { bsMeterDisclaimer, experimentDisclaimer, editorialStandardsHref } from "../../config/editorial";
+interface Props { kind: "bs-meter" | "experiment"; }
+const { kind } = Astro.props;
+---
+<p class:list={["case-editorial-note", `editorial-note-${kind}`]}>
+  {kind === "bs-meter" ? <><strong>About the BS Meter:</strong> {bsMeterDisclaimer} <a href={editorialStandardsHref}>Editorial Standards</a></> : experimentDisclaimer}
+</p>
+<style>
+.case-editorial-note{font-size:14px;line-height:1.6;color:var(--ink);margin:0;padding:22px 42px;max-width:90ch}
+.editorial-note-experiment{padding:16px 0;margin-top:24px;border-top:1px solid var(--ink)}
+@media(max-width:600px){.editorial-note-bs-meter{padding:20px}}
+</style>

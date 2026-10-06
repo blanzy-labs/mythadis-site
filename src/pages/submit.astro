@@ -1,4 +1,5 @@
 ---
+import { brand } from "../config/brand";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 import "../styles/submit-claim.css";
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
@@ -7,7 +8,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
   <section class="route-heading claim-heading">
     <span class="hero-kicker">MYTHADIS / CLAIM INTAKE</span>
     <h1>SEND IT<br /><em>TO THE LAB.</em></h1>
-    <p>Big promises. Convenient demonstrations. Results that sound too good to be true. Send a specific internet claim we can put to the test.</p>
+    <p>Found something that belongs on {brand.seriesProse}? Send a specific internet claim we can put to the test.</p>
   </section>
   <section class="claim-intake" aria-label="Claim submission">
     <aside class="claim-guidance">

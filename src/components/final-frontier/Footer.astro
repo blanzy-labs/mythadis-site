@@ -1,8 +1,9 @@
 ---
+import { brand } from "../../config/brand";
 import { launchReady } from "../../config/launch";
 ---
 {!launchReady && <aside class="fixture-notice" aria-label="Preview content">FF-002 PREVIEW / MOCK INVESTIGATIONS — EXAMPLE SCORES, NO REAL FINDINGS.</aside>}
   <footer class="site-footer" id="about">
-    <span>PROJECT FINAL FRONTIER / ANALOG FUTURE V2.3</span>
+    <span>{brand.name} / {brand.series}</span>
     <span>MYTHADIS // A MORE SKEPTICAL TOMORROW</span>
   </footer>

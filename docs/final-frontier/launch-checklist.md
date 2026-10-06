@@ -12,7 +12,7 @@ remaining gate before requesting final founder approval.
   publication date, body, supported preliminary score and any final score/verdict.
 - [ ] Review real YouTube/Rumble fields where episodes are available; test playback
   and outbound links on the canonical case, preserving click-to-load privacy.
-- [ ] Draft/remove every FF-002 fixture (013–018). None may generate a public case
+- [ ] Draft/remove every development fixture (CASE 001 scaffold plus 013–016 and draft 018). None may generate a public case
   route or appear in homepage, Watch, Cases, Evidence or sitemap after launch.
 - [ ] Exactly one real published case is featured. Do not fabricate content to
   unblock this check. `getPublishedCases()` retains the one-featured invariant.

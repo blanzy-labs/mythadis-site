@@ -1,13 +1,14 @@
+import { brand, firstCase } from "./brand.ts";
 // Change only in a founder-approved release after every launch-checklist gate passes.
 export const launchReady = false;
 export const publicRoutes = ["/", "/watch/", "/cases/", "/evidence/", "/submit/", "/about/"];
 export const siteMetadata = {
-  title: "Mythadis — Internet Claims. Actual Experiments.",
-  description: "Mythadis investigates internet claims with real tests, evidence and a public BS Meter.",
+  title: `${brand.seriesProse} | Mythadis`,
+  description: `Mythadis presents ${brand.seriesProse}, where internet claims meet real tests, evidence and the BS Meter.`,
 };
 // Existing QA identities, kept outside the approved case schema.
 export const fixtureCaseIds = new Set([
-  "017-ai-investment-6732", "016-ai-legal-contracts", "015-five-minute-game",
+  firstCase.id, "017-ai-investment-6732", "016-ai-legal-contracts", "015-five-minute-game",
   "014-ai-stock-predictions", "013-crypto-bot", "018-unpublished-test",
 ]);
 interface LaunchCase { id: string; body?: string; data: { visibility: string; featured: boolean } }

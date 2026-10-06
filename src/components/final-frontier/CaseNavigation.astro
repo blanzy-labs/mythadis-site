@@ -1,9 +1,9 @@
 ---
-import { caseNumber, caseHref, type CaseEntry } from "../../lib/cases";
+import { caseIdentity, caseHref, type CaseEntry } from "../../lib/cases";
 interface Props { previous?: CaseEntry; next?: CaseEntry; }
 const { previous, next } = Astro.props;
 ---
 {(previous || next) && <nav class="investigation-navigation" aria-label="Adjacent published cases">
-  {previous && <a class="case-previous" href={caseHref(previous)}><span>← PREVIOUS / CASE {caseNumber(previous.data.case)}</span><b>{previous.data.title}</b></a>}
-  {next && <a class="case-next" href={caseHref(next)}><span>NEXT / CASE {caseNumber(next.data.case)} →</span><b>{next.data.title}</b></a>}
+  {previous && <a class="case-previous" href={caseHref(previous)}><span>← PREVIOUS / {caseIdentity(previous)}</span><b>{previous.data.title}</b></a>}
+  {next && <a class="case-next" href={caseHref(next)}><span>NEXT / {caseIdentity(next)} →</span><b>{next.data.title}</b></a>}
 </nav>}

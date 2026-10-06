@@ -1,20 +1,23 @@
 ---
+import { brand, firstCase } from "../../config/brand";
 import { launchReady } from "../../config/launch";
-import { caseNumber, caseDate, type CaseEntry } from "../../lib/cases";
+import { caseNumber, caseDate, caseIdentity, type CaseEntry } from "../../lib/cases";
 interface Props { entry: CaseEntry; }
-const { data } = Astro.props.entry;
+const { entry } = Astro.props;
+const { data } = entry;
 ---
 <header class="investigation-hero">
   <div class="investigation-file-bar">
     <a href="/cases/" class="file-link">← ALL CASE FILES</a>
-    <span>MYTHADIS / INVESTIGATION FILE</span>
+    <span>{brand.series}</span>
   </div>
   <div class="investigation-ident">
-    <div class="investigation-number"><span>CASE</span><b>{caseNumber(data.case)}</b></div>
+    <div class="investigation-number"><span>{brand.caseLabel}</span><b>{caseNumber(data.case)}</b></div>
     <div class="investigation-deck">
-      <span class="hero-kicker">{launchReady ? "MYTHADIS / INVESTIGATION" : "EXAMPLE INVESTIGATION / MOCK CONTENT"}</span>
+      <span class="hero-kicker">{caseIdentity(entry)}</span>
+      {entry.id === firstCase.id && <p>{firstCase.shortTitle}</p>}
       {data.category && <p>{data.category}</p>}
-      <p class="investigation-status">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</p>
+      <p class="investigation-status">{brand.tagline}</p>
     </div>
   </div>
   <h1>{data.title}</h1>

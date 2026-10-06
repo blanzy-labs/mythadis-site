@@ -1,4 +1,5 @@
 ---
+import { brand, firstCase } from "../config/brand";
 import SocialLinks from "../components/final-frontier/SocialLinks.astro";
 import { launchReady } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
@@ -9,14 +10,14 @@ import { getFeaturedCase, getLatestCases, caseHref, caseNumber } from "../lib/ca
 const featured = await getFeaturedCase();
 const latest = await getLatestCases(4);
 ---
-<FinalFrontierLayout title="Mythadis — Internet Claims. Actual Experiments.">
+<FinalFrontierLayout title={`${brand.seriesProse} | Mythadis`}>
 
     <section class="hero" id="watch">
       <div class="hero-copy">
-        <div class="hero-kicker">EPISODE {caseNumber(featured.data.case)}</div>
-        <h1>THE<br><span class="internet-word">INTERNET</span><br>SAID <em>WHAT?</em></h1>
+        <div class="hero-kicker">{brand.name} PRESENTS</div>
+        <h1 aria-label={brand.series}>THE<br><span class="internet-word">INTERNET</span><br>SAID <em>WHAT?</em></h1>
         <div class="episode-no">CASE {caseNumber(featured.data.case)}</div>
-        <div class="episode-title">{featured.data.title}</div>
+        <div class="episode-title">{featured.id === firstCase.id ? firstCase.shortTitle : featured.data.title}</div>
         <a class="primary-cta" href={caseHref(featured)}><span aria-hidden="true">▶</span> WATCH THE INVESTIGATION →</a>
       </div>
 
@@ -35,7 +36,7 @@ const latest = await getLatestCases(4);
 
     <section class="latest" id="cases">
       <div class="latest-title">
-        <h2>Latest Episodes</h2>
+        <h2>{launchReady ? "Latest Cases" : "DEV FIXTURES"}</h2>
         <a href="/watch/">VIEW ALL →</a>
       </div>
       <div class="episode-strip">
@@ -56,7 +57,7 @@ const latest = await getLatestCases(4);
         <b>FOLLOW MYTHADIS</b>
         <SocialLinks variant="follow" />
       </div>
-      <div class="manifesto">INTERNET<br>CLAIMS.<br>ACTUAL<br>EXPERIMENTS.</div>
+      <div class="manifesto" aria-label={brand.tagline}>INTERNET<br>CLAIMS.<br>ACTUAL<br>EXPERIMENTS.</div>
     </section>
 
     <section class="evidence-band" id="evidence">

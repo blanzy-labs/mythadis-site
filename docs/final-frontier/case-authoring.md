@@ -104,3 +104,26 @@ scientific probability.
 The current fixture files are fictional examples. Keep their mock labels and
 `noindex, nofollow` safeguards until real-content/release work explicitly removes
 them. Run `pnpm check` and `pnpm build`, then review the generated case page.
+
+## Public series terminology — FF-007
+
+MYTHADIS is the parent media brand. THE INTERNET SAID WHAT? is the flagship
+series. CASE ### is the canonical investigation identifier, and BS METER is the
+recurring score. Use CASE 001 in public labels, not EPISODE 001. A released video
+may still be called an episode in prose; its case number remains canonical.
+Identity strings live in `src/config/brand.ts`.
+
+CASE 001 / THE $68 MIRACLE is a preview scaffold at
+`src/content/cases/001-ai-investment-6732.md`, not a completed investigation.
+The preliminary score is 9.4; final score/verdict are absent and undetermined.
+The publication/update dates remain explicitly example metadata. Video fields
+are empty. Other numbered entries are development fixtures, not promised future
+cases. Do not renumber them into a fake CASE 002–005 sequence.
+
+The old CASE 017 file/preview URL has been replaced, with no redirect added for
+that unlaunched fixture. It remains in Git history. Both old and new identities
+remain in the fixture guard; the new scaffold also retains its mock-body marker.
+When supported CASE 001 content is supplied and founder-reviewed, explicitly
+remove its fixture marker and active identity from the fixture registry as part
+of the reviewed content/release change. Do not merely flip launchReady. All
+FF-006 live acceptance, production binding and founder cutover gates still apply.

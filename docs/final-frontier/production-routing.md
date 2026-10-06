@@ -37,12 +37,12 @@ paths. Unknown URLs are not broadly redirected, preserving meaningful 404s.
 
 ## Indexing and content gate
 
-`src/config/launch.ts` remains `launchReady = false`. Five published fictional
-cases still generate clearly labelled **preview** files for ongoing design review;
+`src/config/launch.ts` remains `launchReady = false`. The CASE 001 scaffold and four published development fixtures still generate clearly labelled **preview** files for ongoing design review;
 draft 018 has no route. No real published case has been supplied. Changing them
 all to draft now would violate the required featured-case invariant and break
-the approved preview. Draft/remove them together with the first real featured
-case in the eventual approved release.
+the approved preview. Replace the CASE 001 scaffold with supported, reviewed content and draft/remove
+the other fixtures in the eventual approved release. See the authoring guide for
+explicit fixture-registry removal after real content approval.
 
 The sitemap now includes the six core static routes and only published cases
 that are not known fixture identities or marked FF-002 fixtures. It never lists

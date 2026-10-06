@@ -1,6 +1,7 @@
 ---
+import { brand } from "../../config/brand";
 interface Props { score: number; verdict?: string; label?: string; }
-const { score, verdict, label = "BS METER" } = Astro.props;
+const { score, verdict, label = brand.bsMeterLabel } = Astro.props;
 ---
 <div class="bs-card" aria-label={`${label}: ${score} out of 10${verdict ? ` — ${verdict}` : ""}`}>
   <small>{label}</small>

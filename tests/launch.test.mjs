@@ -9,6 +9,7 @@ test('explicit launch flag and intended static route list', () => {
 test('launch refuses zero cases and published fixture identities or markers', () => {
  assert.throws(()=>assertLaunchContent([]));
  assert.throws(()=>assertLaunchContent([{...real,id:'017-ai-investment-6732'}]));
+ assert.throws(()=>assertLaunchContent([{...real,id:'001-ai-investment-6732'}]));
  assert.throws(()=>assertLaunchContent([{...real,body:'<!-- FF-002 mock fixture -->'}]));
 });
 test('real published featured case plus draft fixture satisfies content shape only', () => {

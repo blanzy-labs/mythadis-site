@@ -1,6 +1,8 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-import { launchReady, assertLaunchContent } from "../config/launch";
+import { launchReady, assertLaunchContent, isFixtureCase } from "../config/launch";
+
+import { brand, firstCase } from "../config/brand";
 
 export type CaseEntry = CollectionEntry<"cases">;
 export const caseNumber = (number: number) => String(number).padStart(3, "0");
@@ -55,4 +57,10 @@ export function getAdjacentCases(current: CaseEntry, published: CaseEntry[]) {
     previous: index > 0 ? ordered[index - 1] : undefined,
     next: index >= 0 ? ordered[index + 1] : undefined,
   };
+}
+
+export function caseIdentity(entry: CaseEntry): string {
+  if (entry.id === firstCase.id) return `${brand.caseLabel} ${caseNumber(entry.data.case)}${launchReady ? "" : " / PREVIEW SLOT"}`;
+  if (isFixtureCase(entry)) return `DEV FIXTURE ${caseNumber(entry.data.case)} / NOT RESERVED`;
+  return `${brand.caseLabel} ${caseNumber(entry.data.case)}`;
 }

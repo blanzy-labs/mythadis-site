@@ -1,10 +1,11 @@
 ---
+import { brand } from "../../config/brand";
 import SocialLinks from "./SocialLinks.astro";
 ---
   <header class="site-header">
     <div class="brand-wrap">
-      <a class="brand" href="/" aria-label="Mythadis home">MYTHADIS</a>
-      <div class="tagline">INTERNET CLAIMS. ACTUAL EXPERIMENTS.</div>
+      <a class="brand" href="/" aria-label="Mythadis home">{brand.name}</a>
+      <div class="tagline">{brand.tagline}</div>
     </div>
     <nav class="top-nav" aria-label="Primary">
       <a href="/watch/">WATCH</a>

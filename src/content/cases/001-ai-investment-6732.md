@@ -1,13 +1,11 @@
 ---
-case: 17
+case: 1
 title: "Can $68 Really Become $6,732 Overnight Using AI?"
 summary: "A viral claim says an AI investment system can turn a tiny deposit into thousands overnight."
 published: "2026-10-12"
 visibility: "published"
 preliminary_bs: 9.4
 featured: true
-final_bs: 10.2
-verdict: "Absolute nonsense"
 category: "AI Scams"
 tags: ["ai", "investing", "scams"]
 updated: "2026-10-12"
@@ -18,7 +16,7 @@ thumbnail: ""
 
 <!-- FF-002 mock fixture: no real investigation or finding is asserted. -->
 
-**Example investigation.** This is fictional fixture content for reviewing the site, not a published Mythadis finding.
+**CASE 001 preview scaffold — THE $68 MIRACLE.** This is fictional fixture content for reviewing the site, not a published Mythadis finding.
 
 ## The Claim
 
@@ -34,11 +32,11 @@ This mock outline calls for a repeatable procedure, recorded inputs and outputs,
 
 ## What Happened
 
-There are no real observations here. The scores and verdict are demonstration values used to exercise the presentation.
+There are no real observations here. The preliminary BS Meter is 9.4. Final results have not been determined.
 
 ## The Verdict
 
-The illustrative verdict is “Absolute nonsense”. The BS Meter is an editorial signal, not a scientific probability.
+Final BS Meter and verdict are not yet determined. They must be supported by the completed test. The BS Meter is an editorial signal, not a scientific probability.
 
 ## The Receipts
 

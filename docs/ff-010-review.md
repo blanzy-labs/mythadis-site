@@ -40,4 +40,30 @@ experiment rendered its note while omitted metadata did not. Git diff verified
 all case content unchanged; whitespace check passes. There is no separate lint
 script; Astro check is the repository's configured static validation.
 
-Production deployment and live smoke results are recorded after publication.
+## Production verification
+
+Published 2026-10-07 (Europe/Dublin) through PR #20:
+https://github.com/blanzy-labs/mythadis-site/pull/20.
+Implementation commit: `6d2304b` (preserved in merged PR).
+Production merge: `4a1a957b33c374607632566acf9f7fd9bb158901`.
+Cloudflare preview and production builds passed. Production deployment:
+`63312829-5bee-480e-bbb0-a24cc647c8f6`.
+Live URL: https://mythadis.com/editorial-standards/.
+
+Actual-domain tests passed 28 responsive standards/home/CASE 001–005 combinations,
+including correct metadata/noindex, footer links, notes after case content,
+conditional absence on planned tests, section anchors/keyboard focus, no overflow
+or console errors. Placeholder contact/intake status is explicit. Internal doc
+URLs return genuine 404; all 19 legacy rules return 301 to expected 200 targets,
+missing URL 404 and Function GET 405 passed. Initial route 404 during propagation
+resolved before successful final checks. Case files remain unchanged.
+
+Corrections intake remains a placeholder, as founder authorized. It is not an
+operational contact channel; a later contact/infrastructure change is needed.
+Experiment notes await actual performed tests and explicit metadata. These are
+intentional current limits, not fabricated completed functionality.
+Rollback target: prior successful Pages deployment
+`b8fb9bf0-9ca5-4bfe-a043-0170fd582cfd`, SHA
+`bfb9a198d0ec3756016b2872131bb65215654688`, through existing Pages rollback.
+Post-deployment evidence is saved on the feature branch without another
+production release.

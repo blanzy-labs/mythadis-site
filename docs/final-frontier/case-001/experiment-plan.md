@@ -84,8 +84,8 @@ For equal fully reinvested net returns per round, `ending = 68 × (1 + r_net)^n`
 | Net completed rounds (illustrative, not source-derived) | $6,732 ending balance (99×) | $6,732 profit / $6,800 balance (100×) |
 | --- | ---: | ---: |
 | 1 | 9,800% | 9,900% |
-| 10 | 58.332% each | 58.489% each |
-| 100 | 4.703% each | 4.713% each |
+| 10 | 58.330% each | 58.489% each |
+| 100 | 4.702% each | 4.713% each |
 
 These are required equal net gains, not predicted trades or evidence of impossibility. Assumptions: all capital reused, no losses, deposits or withdrawals, perfect compounding, no capital locked across concurrent trades. Monitoring 50 markets does not multiply available capital by 50. Without a defined overnight interval, do not infer a trades-per-hour rate.
 

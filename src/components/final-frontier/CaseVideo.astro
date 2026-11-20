@@ -10,7 +10,7 @@ interface Props {
   thumbnail?: string;
   variant?: "home" | "case";
 }
-const { youtubeId, rumbleUrl, title, caseId, thumbnail, variant = "case" } = Astro.props;
+const { youtubeId, rumbleUrl, title, caseId, thumbnail = Astro.props.caseId === undefined ? "/images/films/off-air.svg" : undefined, variant = "case" } = Astro.props;
 const media = getCaseMedia(youtubeId, rumbleUrl);
 const label = caseId === undefined ? title : `Case ${caseNumber(caseId)} — ${title}`;
 ---

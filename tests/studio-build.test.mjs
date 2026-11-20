@@ -16,6 +16,8 @@ test('single film record drives pages, catalogue, homepage and release SEO', asy
  try {
   await cp(root,temp,{recursive:true,filter: source => !['.git','node_modules','dist','.astro'].includes(basename(source))});
   await symlink(join(root,'node_modules'),join(temp,'node_modules'),'dir');
+  const launch=join(temp,'src/config/launch.ts');
+  await writeFile(launch,(await readFile(launch,'utf8')).replace('studioLaunchReady = true','studioLaunchReady = false'));
   await save([film]);
   build();
   await assert.rejects(access(join(temp,'dist/films/test-only/index.html')));
@@ -26,7 +28,6 @@ test('single film record drives pages, catalogue, homepage and release SEO', asy
    assert.match(html,/noindex, nofollow/);
   }
   // No investigation fixture gate is toggled by the independent studio approval.
-  const launch=join(temp,'src/config/launch.ts');
   await writeFile(launch,(await readFile(launch,'utf8')).replace('studioLaunchReady = false','studioLaunchReady = true'));
   await save([{...film,status:'published',youtubeId:'abcdefghijk',date:'2026-11-20'}]);
   build();

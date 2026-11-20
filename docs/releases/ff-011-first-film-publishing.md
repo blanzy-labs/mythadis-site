@@ -44,7 +44,7 @@ once published, keep it unchanged to preserve shared links.
 - Optional thumbnail: put the approved image in `public/images/films/` (create the
   directory if needed); use `/images/films/filename.webp` in the record. JPEG,
   PNG and WebP are supported. A 16:9 image, e.g. 1280×720, suits the TV player.
-  If omitted, the existing CSS TV artwork is used; no third-party image is fetched.
+  If omitted, the generic local off-air colour bars are used; no third-party image is fetched.
 - Enter the approved title and synopsis. Add `date` only when the actual release
   date is known, using `YYYY-MM-DD`; otherwise omit it.
 - The default visible credit is **Created by Mythadis TY Creative Producer**,
@@ -87,9 +87,8 @@ merge or deploy until that approval. No upload UI, CMS or extra service is neede
 
 `src/config/launch.ts` has separate gates:
 
-- `studioLaunchReady = false` until founder approval of the studio’s public release.
-  In that approved release PR, change **only this flag** to `true` if indexing is
-  approved. It is a one-time release setting, not a per-film editing requirement.
+- `studioLaunchReady = true` following founder launch approval on 20 November 2026.
+  This is a one-time release setting, not a per-film editing requirement.
 - Leave the legacy `launchReady = false`. It controls investigation readiness and
   fixture assertions; it is unrelated to publishing films.
 
@@ -125,6 +124,17 @@ Automated tests cover empty/draft states, validation failures, the default credi
 single-record publication across all three surfaces, real generated canonical URLs,
 internal links, archive noindex, and production/preview sitemap behavior. Synthetic
 film data exists only in isolated temporary test builds; it is never site content.
-Browser screenshots and visual mobile verification could not be completed in the
-implementation sandbox because Chrome aborted on launch. Founder review must
-include the visual/playback checks above before release.
+Browser verification was completed after the sandbox restriction was removed: all
+seven studio/archive routes fit 1440, 820, 390 and 320px viewports without horizontal
+page overflow. Desktop/mobile homepage screenshots were inspected. Actual film
+playback must still be verified when the approved YouTube film is supplied.
+
+## Approved studio launch — 20 November 2026
+
+The founder requested launch and approved a generic old-school off-air thumbnail.
+The local SVG colour bars are used whenever a studio film has no supplied thumbnail.
+No film is marked published. Only studio indexing is enabled.
+
+Pre-release recovery point: main `7e64919286cbb69ad7c7a4da071961a5cb9e95c1`,
+Cloudflare successful production deployment `0f2ba5a7-ad6a-41a1-8ea8-c48471e568a0`
+(`https://0f2ba5a7.mythadis-site.pages.dev`). Preserve it for rollback.

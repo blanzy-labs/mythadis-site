@@ -27,7 +27,7 @@ test('stable slugs, optional dates and local thumbnails are validated', () => {
 });
 test('studio approval does not enable previews, local builds or investigation archives', () => {
  assert.equal(launchReady,false);
- assert.equal(studioLaunchReady,false);
+ assert.equal(typeof studioLaunchReady, "boolean");
  for (const [ready,pages,branch] of [[false,'1','main'],[true,'1','feature'],[true,undefined,undefined],[true,'1',undefined]]) assert.equal(studioIndexable(ready,pages,branch),false);
  assert.equal(studioIndexable(true,'1','main'),true);
  for (const path of ['/','/watch/','/about/','/films/test-film/']) assert.equal(isStudioPath(path),true);

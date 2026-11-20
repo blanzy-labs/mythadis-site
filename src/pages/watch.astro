@@ -15,7 +15,7 @@ const productions = publishedFilms(films);
   <section class="watch-programmes" aria-label="Original productions">
     {productions.map(film => <article class="watch-programme">
       <div class="programme-screen" aria-hidden="true">
-        {film.thumbnail && <img src={film.thumbnail} alt="" loading="lazy" />}
+        {<img src={film.thumbnail ?? "/images/films/off-air.svg"} alt="" loading="lazy" />}
         <span class="programme-placeholder">NOW SHOWING</span>
       </div>
       <div class="programme-copy">

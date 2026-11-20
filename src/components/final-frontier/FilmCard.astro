@@ -4,7 +4,7 @@ interface Props { film: Film; }
 const { film } = Astro.props;
 ---
 <article class="episode-card ai">
-  {film.thumbnail && <img class="episode-thumbnail" src={film.thumbnail} alt="" loading="lazy" />}
+  {<img class="episode-thumbnail" src={film.thumbnail ?? "/images/films/off-air.svg"} alt="" loading="lazy" />}
   <small>ORIGINAL FILM</small>
   <h3><a href={filmHref(film)}>{film.title}</a></h3>
   <div class="score">NOW SHOWING</div>

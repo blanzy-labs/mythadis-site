@@ -1,88 +1,94 @@
 ---
-import { brand, firstCase } from "../config/brand";
+import { brand } from "../config/brand";
 import SocialLinks from "../components/final-frontier/SocialLinks.astro";
-import { launchReady, isFixtureCase } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
-import BSMeter from "../components/final-frontier/BSMeter.astro";
 import CaseVideo from "../components/final-frontier/CaseVideo.astro";
-import EpisodeCard from "../components/final-frontier/EpisodeCard.astro";
-import { getFeaturedCase, getLatestCases, caseHref, caseNumber } from "../lib/cases";
-const featured = await getFeaturedCase();
-const latest = await getLatestCases(4);
+import FilmCard from "../components/final-frontier/FilmCard.astro";
+import { films } from "../data/films";
+import { publishedFilms, filmHref } from "../lib/films";
+const productions = publishedFilms(films);
+const featured = productions[0];
 ---
-<FinalFrontierLayout title={`${brand.seriesProse} | Mythadis`}>
+<FinalFrontierLayout>
 
     <section class="hero" id="watch">
       <div class="hero-copy">
-        <div class="hero-kicker">{brand.name} PRESENTS</div>
-        <h1 aria-label={brand.series}>THE<br><span class="internet-word">INTERNET</span><br>SAID <em>WHAT?</em></h1>
-        <div class="episode-no">CASE {caseNumber(featured.data.case)}</div>
-        <div class="episode-title">{featured.id === firstCase.id ? firstCase.shortTitle : featured.data.title}</div>
-        <a class="primary-cta" href={caseHref(featured)}><span aria-hidden="true">▶</span> WATCH THE INVESTIGATION →</a>
+        <div class="hero-kicker">{brand.descriptor}</div>
+        <h1 aria-label="AI video. Human imagination.">AI <span class="internet-word">VIDEO.</span><br>HUMAN<br><em>IMAGINATION.</em></h1>
+        <div class="episode-no">{featured ? "NOW SHOWING" : "FIRST PRODUCTION IN PROGRESS"}</div>
+        <div class="episode-title">{featured?.title ?? brand.tagline}</div>
+        <p>Original short films, unusual worlds and animated stories created through AI tools and human imagination.</p>
+        <a class="primary-cta" href={featured ? filmHref(featured) : "/watch/"}>{featured ? "WATCH OUR FILMS" : "EXPLORE PRODUCTIONS"} →</a>
       </div>
 
       <div class="media-stage">
 
-        <aside class="side-slogan">SAME<br>CLAIMS.<br>REAL<br>TESTS.<br>DIFFERENT<br>RESULTS.</aside>
+        <aside class="side-slogan">FROM<br>STORY-<br>BOARD<br>TO<br>SCREEN.</aside>
 
-        <CaseVideo youtubeId={featured.data.youtube_id} rumbleUrl={featured.data.rumble_url} title={featured.data.title} caseId={featured.data.case} thumbnail={featured.data.thumbnail} variant="home" />
+        <CaseVideo youtubeId={featured?.youtubeId} title={featured?.title ?? "First production in progress"} thumbnail={featured?.thumbnail} variant="home" />
 
-        <BSMeter score={featured.data.preliminary_bs} verdict={featured.data.verdict} />
+        <div class="bs-card" aria-label={featured ? "Now showing" : "In production"}>
+          <small>MYTHADIS STUDIO</small>
+          <div class="bs-score studio-status">{featured ? "ON AIR" : "IN PRODUCTION"}</div>
+          <div class="bs-verdict">FROM STORYBOARD TO SCREEN</div>
+        </div>
 
         <div class="badge"><span>MYTHADIS</span></div>
-        <div class="small-slogan">A MORE<br>SKEPTICAL<br>TOMORROW.</div>
+        <div class="small-slogan">IMAGINATION<br>WITHOUT<br>LIMITS.</div>
       </div>
     </section>
 
-    <section class="latest" id="cases">
+    <section class="latest" id="productions">
       <div class="latest-title">
-        <h2>{latest.every(isFixtureCase) ? "DEV FIXTURES" : "Latest Cases"}</h2>
+        <h2>Productions</h2>
         <a href="/watch/">VIEW ALL →</a>
       </div>
       <div class="episode-strip">
-        {latest.map((entry, index) => <EpisodeCard entry={entry} index={index} />)}
+        {productions.length ? productions.slice(0, 4).map(film => <FilmCard film={film} />) : <article class="episode-card ai empty-production"><small>IN PRODUCTION</small><h3>Our first original short film is in progress.</h3><p>Watch here when it is ready.</p></article>}
       </div>
     </section>
 
-    <section class="bottom-grid" id="submit" aria-label="Submit, follow and manifesto">
+    <section class="bottom-grid" aria-label="Original filmmaking, follow and studio">
       <div class="submit-block">
         <div class="globe" aria-hidden="true"></div>
         <div class="submit-copy">
-          <b>SEEN A SUSPICIOUS CLAIM?</b>
-          <span>SEND IT TO THE LAB.</span>
+          <b>ORIGINAL AI FILMMAKING.</b>
+          <span>HUMAN IDEAS. NEW WORLDS.</span>
         </div>
-        <a class="submit-btn" href="/submit/">SUBMIT A CLAIM →</a>
+        <a class="submit-btn" href="/about/">ABOUT THE STUDIO →</a>
       </div>
       <div class="follow">
         <b>FOLLOW MYTHADIS</b>
         <SocialLinks variant="follow" />
       </div>
-      <div class="manifesto" aria-label={brand.tagline}>INTERNET<br>CLAIMS.<br>ACTUAL<br>EXPERIMENTS.</div>
+      <div class="manifesto" aria-label={brand.tagline}>IMAGINATION<br>WITHOUT<br>LIMITS.</div>
     </section>
 
-    <section class="evidence-band" id="evidence">
+    <section class="evidence-band" id="filmmaking">
       <div class="evidence-left">
-        <h2>SHOW<br>THE<br>RECEIPTS.</h2>
-        <p>Every investigation publishes the claim, the test, what happened, and the evidence behind the verdict.</p>
+        <h2>FROM IDEA<br>TO<br>SCREEN.</h2>
+        <p>Original stories shaped by human ideas, artwork and creative direction, brought to the screen with emerging AI tools.</p>
       </div>
       <div class="evidence-right">
         <article class="receipt">
-          <small>CASE {caseNumber(featured.data.case)} / EVIDENCE FILE</small>
-          <h3><a href={caseHref(featured) + "#the-receipts"}>{featured.data.title}</a></h3>
-          <p>{featured.data.summary}</p>
-          <div class="stamp-row">
-            <span class="stamp">{launchReady ? "THE CLAIM" : "EXAMPLE CLAIM"}</span>
-            <span class="stamp">{launchReady ? "CASE FILE" : "MOCK CASE"}</span>
-          </div>
+          <small>ORIGINAL PRODUCTIONS</small>
+          <h3>{featured?.title ?? "First production in progress"}</h3>
+          <p>{featured?.synopsis ?? "Our first original short film will appear here once it is finished and approved for release."}</p>
+          <div class="stamp-row"><span class="stamp"><a href={featured ? filmHref(featured) : "/watch/"}>{featured ? "WATCH THE FILM" : "EXPLORE PRODUCTIONS"} →</a></span></div>
         </article>
         <article class="receipt">
-          <small>FINAL DISPOSITION</small>
-          <h3>{featured.data.verdict ?? "Final verdict pending"}</h3>
-          <p>{featured.data.final_bs !== undefined ? `Final BS: ${featured.data.final_bs}/10. ` : ""}{launchReady ? "Read the investigation notes and receipts on the case page." : "Example investigation: read the mock notes and receipts on the case page."}</p>
-          <div class="stamp-row">
-            <span class="stamp"><a href={caseHref(featured) + "#the-receipts"}>OPEN EVIDENCE FILE →</a></span>
-          </div>
+          <small>HUMAN-DIRECTED AI</small>
+          <h3>Unusual worlds. Original stories.</h3>
+          <p>Mythadis Limited explores original storytelling through AI-assisted filmmaking.</p>
+          <div class="stamp-row"><span class="stamp"><a href="/about/">ABOUT MYTHADIS →</a></span></div>
         </article>
       </div>
     </section>
 </FinalFrontierLayout>
+
+<style>
+.hero h1 em{font-size:.55em}
+.studio-status{font-size:38px;line-height:1;overflow-wrap:anywhere}
+.episode-card p{position:relative}
+.empty-production{grid-column:1/-1}
+</style>

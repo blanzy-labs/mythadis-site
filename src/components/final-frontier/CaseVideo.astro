@@ -6,13 +6,13 @@ interface Props {
   youtubeId?: string;
   rumbleUrl?: string;
   title: string;
-  caseId: number;
+  caseId?: number;
   thumbnail?: string;
   variant?: "home" | "case";
 }
 const { youtubeId, rumbleUrl, title, caseId, thumbnail, variant = "case" } = Astro.props;
 const media = getCaseMedia(youtubeId, rumbleUrl);
-const label = `Case ${caseNumber(caseId)} — ${title}`;
+const label = caseId === undefined ? title : `Case ${caseNumber(caseId)} — ${title}`;
 ---
 <mythadis-video class:list={["case-video", `video-${variant}`, { "has-youtube": !!media.youtubeId }]} data-youtube-id={media.youtubeId} data-video-title={label}>
   <div class="tv-wrap">
@@ -20,8 +20,8 @@ const label = `Case ${caseNumber(caseId)} — ${title}`;
       <div class="screen video-viewport" role={media.youtubeId ? undefined : "img"} aria-label={media.youtubeId ? undefined : `${label}: ${media.rumbleUrl ? "video available on Rumble" : "video not yet attached"}`}>
         <div class="video-poster">
           {thumbnail ? <img class="video-thumbnail" src={thumbnail} alt="" loading="lazy" /> : <div class="host-silhouette" aria-hidden="true"></div>}
-          <span class="video-signal">CASE {caseNumber(caseId)} / MYTHADIS</span>
-          <p class="video-state">{media.youtubeId ? "VIDEO ON YOUTUBE" : media.rumbleUrl ? "VIDEO ON RUMBLE" : "VIDEO NOT YET ATTACHED"}</p>
+          <span class="video-signal">{caseId === undefined ? "MYTHADIS / ORIGINAL FILM" : `CASE ${caseNumber(caseId)} / MYTHADIS`}</span>
+          <p class="video-state">{media.youtubeId ? "VIDEO ON YOUTUBE" : media.rumbleUrl ? "VIDEO ON RUMBLE" : caseId === undefined ? "FIRST PRODUCTION IN PROGRESS" : "VIDEO NOT YET ATTACHED"}</p>
           {media.youtubeId && <button class="video-load" type="button" hidden aria-label={`Load YouTube video player for ${label}`}><span aria-hidden="true">▶</span><span>LOAD VIDEO</span></button>}
         </div>
       </div>
@@ -32,7 +32,7 @@ const label = `Case ${caseNumber(caseId)} — ${title}`;
     {media.youtubeUrl && <a href={media.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch on YouTube: ${label} (opens in a new tab)`}>WATCH ON YOUTUBE ↗</a>}
     {media.rumbleUrl && <a href={media.rumbleUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch on Rumble: ${label} (opens in a new tab)`}>WATCH ON RUMBLE ↗</a>}
   </nav>}
-  {media.youtubeId && <noscript><p class="video-noscript">Use WATCH ON YOUTUBE to view this investigation without JavaScript.</p></noscript>}
+  {media.youtubeId && <noscript><p class="video-noscript">Use WATCH ON YOUTUBE to view this video without JavaScript.</p></noscript>}
 </mythadis-video>
 
 <script>
@@ -50,7 +50,7 @@ const label = `Case ${caseNumber(caseId)} — ${title}`;
         const iframe = document.createElement("iframe");
         // Construct from the validated ID only; never use a stored arbitrary iframe URL.
         iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=0&playsinline=1&rel=0`;
-        iframe.title = `YouTube video player: ${this.dataset.videoTitle ?? "Mythadis investigation"}`;
+        iframe.title = `YouTube video player: ${this.dataset.videoTitle ?? "Mythadis video"}`;
         iframe.loading = "lazy";
         iframe.allow = "encrypted-media; picture-in-picture; fullscreen";
         iframe.allowFullscreen = true;

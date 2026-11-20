@@ -3,7 +3,7 @@ export interface SiteNavItem {
 	href: string;
 }
 
-export const productionOrigin = "https://mythadis.com";
+export const productionOrigin = "https://www.mythadis.com";
 export const linkedInUrl = "https://ie.linkedin.com/in/mrblanzy";
 export const blanzyLabsGitHubUrl = "https://github.com/blanzy-labs";
 

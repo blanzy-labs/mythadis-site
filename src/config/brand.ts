@@ -2,7 +2,8 @@ export const brand = {
   name: "MYTHADIS",
   series: "THE INTERNET SAID WHAT?",
   seriesProse: "The Internet Said What?",
-  tagline: "INTERNET CLAIMS. ACTUAL EXPERIMENTS.",
+  descriptor: "AI VIDEO PRODUCTION STUDIO",
+  tagline: "IMAGINATION WITHOUT LIMITS.",
   caseLabel: "CASE",
   bsMeterLabel: "BS METER",
 };

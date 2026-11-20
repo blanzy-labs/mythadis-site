@@ -1,35 +1,29 @@
 ---
 import { brand } from "../config/brand";
-import { launchReady } from "../config/launch";
 import "../styles/case-video.css";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
-import { getCaseMedia } from "../lib/media";
-import { getPublishedCases, caseNumber, caseHref, caseIdentity } from "../lib/cases";
-const cases = (await getPublishedCases()).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
-const programmes = cases.map((entry) => ({ entry, media: getCaseMedia(entry.data.youtube_id, entry.data.rumble_url) }));
-const hasMedia = programmes.some(({ media }) => media.youtubeId || media.rumbleUrl);
+import { films } from "../data/films";
+import { publishedFilms, filmHref } from "../lib/films";
+const productions = publishedFilms(films);
 ---
-<FinalFrontierLayout title="Watch the Investigations — Mythadis">
+<FinalFrontierLayout title="Watch Original Films — Mythadis">
   <section class="route-heading watch-heading">
-    <span class="hero-kicker">{brand.series}</span>
-    <h1>WATCH THE<br /><em>INVESTIGATIONS.</em></h1>
-    <p>{hasMedia ? "Open an investigation to watch available video alongside the notes, evidence and verdict." : (launchReady ? "Videos will appear as episodes are released. Open a case for the investigation notes." : "CASE 001 remains a preview slot. Supplied investigations and labeled development fixtures appear below. Videos will follow supported releases.")}</p>
+    <span class="hero-kicker">{brand.descriptor}</span>
+    <h1>ORIGINAL<br /><em>FILMS.</em></h1>
+    <p>{productions.length ? "Original short films, unusual worlds and animated stories created through AI tools and human imagination." : "FIRST PRODUCTION IN PROGRESS. Our first original short film will be available here once it is finished and approved for release."}</p>
   </section>
-  <section class="watch-programmes" aria-label="Series investigations and development fixtures">
-    {programmes.map(({ entry, media }) => (
-      <article class="watch-programme">
-        <div class="programme-screen" role="img" aria-label={`Case ${caseNumber(entry.data.case)} — ${entry.data.title}: ${media.youtubeId ? "YouTube video available on the case page" : media.rumbleUrl ? "video available on Rumble" : "no video attached"}`}>
-          {entry.data.thumbnail && <img src={entry.data.thumbnail} alt="" loading="lazy" />}
-          <span class="programme-number">{caseNumber(entry.data.case)}</span>
-          <span class="programme-placeholder">{media.youtubeId ? "YOUTUBE VIDEO AVAILABLE" : media.rumbleUrl ? "RUMBLE VIDEO AVAILABLE" : "VIDEO COMING SOON"}{media.youtubeId && media.rumbleUrl && <span class="programme-mirror"> / RUMBLE MIRROR</span>}</span>
-        </div>
-        <div class="programme-copy">
-          <small>{caseIdentity(entry)} {entry.data.category && ` / ${entry.data.category}`}</small>
-          <h2><a href={caseHref(entry)}>{entry.data.title}</a></h2>
-          <p>{entry.data.summary}</p>
-          <div class="programme-bottom"><b>BS {entry.data.preliminary_bs}/10</b><a href={caseHref(entry)}>OPEN INVESTIGATION →</a></div>
-        </div>
-      </article>
-    ))}
+  <section class="watch-programmes" aria-label="Original productions">
+    {productions.map(film => <article class="watch-programme">
+      <div class="programme-screen" aria-hidden="true">
+        {film.thumbnail && <img src={film.thumbnail} alt="" loading="lazy" />}
+        <span class="programme-placeholder">NOW SHOWING</span>
+      </div>
+      <div class="programme-copy">
+        <small>MYTHADIS ORIGINAL FILM</small>
+        <h2><a href={filmHref(film)}>{film.title}</a></h2>
+        <p>{film.synopsis}</p>
+        <div class="programme-bottom"><a href={filmHref(film)}>WATCH THE FILM →</a></div>
+      </div>
+    </article>)}
   </section>
 </FinalFrontierLayout>

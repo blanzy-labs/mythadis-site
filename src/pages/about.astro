@@ -1,26 +1,24 @@
 ---
 import { brand } from "../config/brand";
-import { launchReady } from "../config/launch";
 import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
 ---
-<FinalFrontierLayout title="About Mythadis">
+<FinalFrontierLayout title="About Mythadis — AI Video Production Studio">
   <section class="route-heading">
-    <span class="hero-kicker">A MORE SKEPTICAL TOMORROW</span>
-    <h1>INTERNET CLAIMS.<br /><em>ACTUAL EXPERIMENTS.</em></h1>
-    <p>Mythadis is the parent media brand. {brand.seriesProse} is its flagship series, where internet claims are pulled out of the feed, tested against reality, and scored on the BS Meter.</p>
+    <span class="hero-kicker">{brand.descriptor}</span>
+    <h1>IMAGINATION<br /><em>WITHOUT LIMITS.</em></h1>
+    <p>Mythadis Limited is an Irish AI technology and creative production company exploring original storytelling through AI-assisted filmmaking. Our projects combine human ideas, artwork and creative direction with emerging video-generation tools.</p>
   </section>
   <section class="editorial-band">
     <div class="editorial-copy">
-      <h2>THE CLAIM. THE TEST. THE RECEIPTS.</h2>
-      <p>Investigations use numbered CASE files, with CASE 001 reserved for the first release. A case starts with a specific claim. We ask whether it can be reproduced, describe how it was tested, and publish the observations and limitations alongside the verdict.</p>
-      <h2>THE BS METER</h2>
-      <p>The BS Meter is part of our editorial language. It makes our level of skepticism visible; it is not a probability or a substitute for evidence. Exceptional claims can push it past 10.</p>
-      {!launchReady && <p>This is working copy. The case files and scores in this preview are fictional examples.</p>}
+      <h2>AI VIDEO. HUMAN IMAGINATION.</h2>
+      <p>We explore original short films, unusual worlds and animated stories. Human ideas and creative direction guide the work, from the first storyboard to the finished screen.</p>
+      <h2>ORIGINAL WORK</h2>
+      <p>Our focus is our own films and stories. The Internet Said What? is a possible future series, not the studio’s umbrella identity.</p>
     </div>
     <aside class="broadcast-panel">
-      <h2>WATCH THERE.<br />FIND THE RECEIPTS HERE.</h2>
-      <p>Long-form investigations will primarily appear on YouTube, with Rumble as a secondary destination. Mythadis.com is the canonical home for the investigation, its context and its evidence.</p>
-      <a class="primary-cta" href="/evidence/">SHOW THE RECEIPTS →</a>
+      <h2>FROM STORYBOARD<br />TO SCREEN.</h2>
+      <p>Finished films will be shared on YouTube, with their own permanent home on Mythadis.com for the story and creator credit.</p>
+      <a class="primary-cta" href="/watch/">EXPLORE PRODUCTIONS →</a>
     </aside>
   </section>
 </FinalFrontierLayout>

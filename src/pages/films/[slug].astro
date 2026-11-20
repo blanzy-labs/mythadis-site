@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from "astro";
+import FinalFrontierLayout from "../../layouts/FinalFrontierLayout.astro";
+import CaseVideo from "../../components/final-frontier/CaseVideo.astro";
+import { films } from "../../data/films";
+import { publishedFilms, filmHref, defaultFilmCredit, type Film } from "../../lib/films";
+export const getStaticPaths = (() => publishedFilms(films).map(film => ({ params: { slug: film.slug }, props: { film } }))) satisfies GetStaticPaths;
+interface Props { film: Film; }
+const { film } = Astro.props;
+---
+<FinalFrontierLayout title={`${film.title} — Mythadis`} description={film.synopsis} canonicalPath={filmHref(film)} socialImage={film.thumbnail} ogType="article">
+  <section class="route-heading">
+    <span class="hero-kicker">MYTHADIS ORIGINAL FILM</span>
+    <h1>{film.title}</h1>
+    <p>{film.synopsis}</p>
+    <p>{film.credit ?? defaultFilmCredit}</p>
+    {film.date && <p>Published <time datetime={film.date}>{new Date(film.date).toLocaleDateString("en-IE", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</time></p>}
+  </section>
+  <section class="editorial-band film-player" aria-label="Watch film">
+    <CaseVideo title={film.title} youtubeId={film.youtubeId} thumbnail={film.thumbnail} />
+  </section>
+  <section class="route-heading"><a href="/watch/">ALL PRODUCTIONS →</a></section>
+</FinalFrontierLayout>
+
+<style>
+.film-player{grid-template-columns:1fr}
+</style>

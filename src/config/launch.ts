@@ -1,10 +1,14 @@
 import { brand, firstCase } from "./brand.ts";
 // Change only in a founder-approved release after every launch-checklist gate passes.
 export const launchReady = false;
-export const publicRoutes = ["/", "/watch/", "/cases/", "/evidence/", "/submit/", "/about/", "/editorial-standards/"];
+// Independent of the legacy investigation gate. Enable only with founder release approval.
+export const studioLaunchReady = true;
+export const publicRoutes = ["/", "/watch/", "/about/"];
+export const isStudioPath = (path: string) => publicRoutes.includes(path) || /^\/films\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(path);
+export const studioIndexable = (ready: boolean, pages: string | undefined, branch: string | undefined) => ready && pages === "1" && branch === "main";
 export const siteMetadata = {
-  title: `${brand.seriesProse} | Mythadis`,
-  description: `Mythadis presents ${brand.seriesProse}, where internet claims meet real tests, evidence and the BS Meter.`,
+  title: `${brand.name} | AI Video Production Studio`,
+  description: "Original short films, unusual worlds and animated stories created through AI tools and human imagination.",
 };
 // Existing QA identities, kept outside the approved case schema.
 export const fixtureCaseIds = new Set([

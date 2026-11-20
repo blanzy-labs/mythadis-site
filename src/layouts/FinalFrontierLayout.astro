@@ -2,14 +2,15 @@
 import Header from "../components/final-frontier/Header.astro";
 import Footer from "../components/final-frontier/Footer.astro";
 import { productionOrigin } from "../data/site";
-import { launchReady, siteMetadata } from "../config/launch";
+import { studioLaunchReady, studioIndexable, isStudioPath, siteMetadata } from "../config/launch";
 import "../styles/analog-future.css";
 interface Props { title?: string; description?: string; canonicalPath?: string | null; socialImage?: string; ogType?: "website" | "article"; noindex?: boolean; }
 const { title = siteMetadata.title, description = siteMetadata.description, canonicalPath = Astro.url.pathname, socialImage, ogType = "website", noindex = false } = Astro.props;
 const canonical = canonicalPath ? new URL(canonicalPath, productionOrigin) : undefined;
 const image = socialImage?.startsWith("/") && !socialImage.startsWith("//") ? new URL(socialImage, productionOrigin) : undefined;
-const previewBuild = import.meta.env.CF_PAGES === "1" && import.meta.env.CF_PAGES_BRANCH !== "main";
-const preventIndexing = noindex || !launchReady || previewBuild;
+const studio = isStudioPath(Astro.url.pathname);
+const archive = /^\/(cases|evidence|submit|editorial-standards)(\/|$)/.test(Astro.url.pathname);
+const preventIndexing = noindex || !studio || !studioIndexable(studioLaunchReady, import.meta.env.CF_PAGES, import.meta.env.CF_PAGES_BRANCH);
 ---
 <!doctype html>
 <html lang="en">
@@ -31,8 +32,11 @@ const preventIndexing = noindex || !launchReady || previewBuild;
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="shell">
       <Header />
-      <main id="main"><slot /></main>
-      <Footer />
+      <main id="main">
+        {archive && <aside class="fixture-notice" aria-label="Investigation archive">INVESTIGATION ARCHIVE — NOT STUDIO PRODUCTIONS. LABELED FIXTURES ARE MOCK INVESTIGATIONS; IN-PROGRESS CASES HAVE NO FINAL FINDINGS.</aside>}
+        <slot />
+      </main>
+      <Footer archive={archive} />
     </div>
   </body>
 </html>

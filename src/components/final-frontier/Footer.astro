@@ -1,13 +1,14 @@
 ---
 import { brand } from "../../config/brand";
 import { editorialStandardsHref } from "../../config/editorial";
-import { launchReady } from "../../config/launch";
+interface Props { archive?: boolean; }
+const { archive = false } = Astro.props;
 ---
-{!launchReady && <aside class="fixture-notice" aria-label="Preview content">SOFT-LAUNCH PREVIEW — LABELED FIXTURES ARE MOCK INVESTIGATIONS. IN-PROGRESS CASES HAVE NO FINAL FINDINGS.</aside>}
+
   <footer class="site-footer" id="about">
-    <span>{brand.name} / {brand.series}</span>
-    <span>MYTHADIS // A MORE SKEPTICAL TOMORROW</span>
-    <p class="footer-editorial">BS Meter ratings are Mythadis editorial opinions based on the evidence available at publication. <a href={editorialStandardsHref}>Editorial Standards</a></p>
+    <span>{brand.name} / {brand.descriptor}</span>
+    <span>{brand.tagline}</span>
+    {archive && <p class="footer-editorial">BS Meter ratings are Mythadis editorial opinions based on the evidence available at publication. <a href={editorialStandardsHref}>Editorial Standards</a></p>}
   </footer>
 
 <style>

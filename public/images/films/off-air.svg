@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788">
+<title>Off-air television test pattern</title>
+<path fill="#eeeeee" d="M0 0h200v590h-200z"/>
+<path fill="#eeee00" d="M200 0h200v590h-200z"/>
+<path fill="#00dddd" d="M400 0h200v590h-200z"/>
+<path fill="#00dd00" d="M600 0h200v590h-200z"/>
+<path fill="#dd00dd" d="M800 0h200v590h-200z"/>
+<path fill="#dd0000" d="M1000 0h200v590h-200z"/>
+<path fill="#0000dd" d="M1200 0h200v590h-200z"/>
+<path fill="#0000dd" d="M0 590h200v65h-200z"/>
+<path fill="#111111" d="M200 590h200v65h-200z"/>
+<path fill="#dd00dd" d="M400 590h200v65h-200z"/>
+<path fill="#111111" d="M600 590h200v65h-200z"/>
+<path fill="#00dddd" d="M800 590h200v65h-200z"/>
+<path fill="#111111" d="M1000 590h200v65h-200z"/>
+<path fill="#eeeeee" d="M1200 590h200v65h-200z"/>
+<path fill="#08086c" d="M0 655h250v133h-250z"/>
+<path fill="#eeeeee" d="M250 655h250v133h-250z"/>
+<path fill="#111155" d="M500 655h200v133h-200z"/>
+<path fill="#080808" d="M700 655h700v133h-700z"/>
+</svg>

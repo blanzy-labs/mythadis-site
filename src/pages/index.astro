@@ -1,96 +1,36 @@
----
-import { brand } from "../config/brand";
-import SocialLinks from "../components/final-frontier/SocialLinks.astro";
-import FinalFrontierLayout from "../layouts/FinalFrontierLayout.astro";
-import CaseVideo from "../components/final-frontier/CaseVideo.astro";
-import FilmCard from "../components/final-frontier/FilmCard.astro";
-import { films } from "../data/films";
-import { publishedFilms, filmHref } from "../lib/films";
-const productions = publishedFilms(films);
-const featured = productions[0];
----
-<FinalFrontierLayout>
-
-    <section class="hero" id="watch">
-      <div class="hero-copy">
-        <div class="hero-kicker">{brand.descriptor}</div>
-        <h1 aria-label="AI video. Human imagination.">AI <span class="internet-word">VIDEO.</span><br>HUMAN<br><em>IMAGINATION.</em></h1>
-        <div class="episode-no">{featured ? "NOW SHOWING" : "FIRST PRODUCTION IN PROGRESS"}</div>
-        <div class="episode-title">{featured?.title ?? brand.tagline}</div>
-        <p>Original short films, unusual worlds and animated stories created through AI tools and human imagination.</p>
-        <a class="primary-cta" href={featured ? filmHref(featured) : "/watch/"}>{featured ? "WATCH OUR FILMS" : "EXPLORE PRODUCTIONS"} →</a>
-      </div>
-
-      <div class="media-stage">
-
-        <aside class="side-slogan">FROM<br>STORY-<br>BOARD<br>TO<br>SCREEN.</aside>
-
-        <CaseVideo youtubeId={featured?.youtubeId} title={featured?.title ?? "First production in progress"} thumbnail={featured?.thumbnail} variant="home" />
-
-        <div class="bs-card" aria-label={featured ? "Now showing" : "In production"}>
-          <small>MYTHADIS STUDIO</small>
-          <div class="bs-score studio-status">{featured ? "ON AIR" : "IN PRODUCTION"}</div>
-          <div class="bs-verdict">FROM STORYBOARD TO SCREEN</div>
-        </div>
-
-        <div class="badge"><span>MYTHADIS</span></div>
-        <div class="small-slogan">IMAGINATION<br>WITHOUT<br>LIMITS.</div>
-      </div>
-    </section>
-
-    <section class="latest" id="productions">
-      <div class="latest-title">
-        <h2>Productions</h2>
-        <a href="/watch/">VIEW ALL →</a>
-      </div>
-      <div class="episode-strip">
-        {productions.length ? productions.slice(0, 4).map(film => <FilmCard film={film} />) : <article class="episode-card ai empty-production"><small>IN PRODUCTION</small><h3>Our first original short film is in progress.</h3><p>Watch here when it is ready.</p></article>}
-      </div>
-    </section>
-
-    <section class="bottom-grid" aria-label="Original filmmaking, follow and studio">
-      <div class="submit-block">
-        <div class="globe" aria-hidden="true"></div>
-        <div class="submit-copy">
-          <b>ORIGINAL AI FILMMAKING.</b>
-          <span>HUMAN IDEAS. NEW WORLDS.</span>
-        </div>
-        <a class="submit-btn" href="/about/">ABOUT THE STUDIO →</a>
-      </div>
-      <div class="follow">
-        <b>FOLLOW MYTHADIS</b>
-        <SocialLinks variant="follow" />
-      </div>
-      <div class="manifesto" aria-label={brand.tagline}>IMAGINATION<br>WITHOUT<br>LIMITS.</div>
-    </section>
-
-    <section class="evidence-band" id="filmmaking">
-      <div class="evidence-left">
-        <h2>FROM IDEA<br>TO<br>SCREEN.</h2>
-        <p>Original stories shaped by human ideas, artwork and creative direction, brought to the screen with emerging AI tools.</p>
-      </div>
-      <div class="evidence-right">
-        <article class="receipt">
-          <small>ORIGINAL PRODUCTIONS</small>
-          <h3>{featured?.title ?? "First production in progress"}</h3>
-          <p>{featured?.synopsis ?? "Our first original short film will appear here once it is finished and approved for release."}</p>
-          <div class="stamp-row"><span class="stamp"><a href={featured ? filmHref(featured) : "/watch/"}>{featured ? "WATCH THE FILM" : "EXPLORE PRODUCTIONS"} →</a></span></div>
-        </article>
-        <article class="receipt">
-          <small>HUMAN-DIRECTED AI</small>
-          <h3>Unusual worlds. Original stories.</h3>
-          <p>Mythadis Limited explores original storytelling through AI-assisted filmmaking.</p>
-          <div class="stamp-row"><span class="stamp"><a href="/about/">ABOUT MYTHADIS →</a></span></div>
-        </article>
-      </div>
-    </section>
-</FinalFrontierLayout>
-
-<style>
-/* Keep the original bold headline, with readable separation between its lines and letters. */
-.hero h1{line-height:.89}
-.hero h1 em{font-size:.55em;letter-spacing:.018em}
-.studio-status{font-size:30px;line-height:1}
-.episode-card p{position:relative}
-.empty-production{grid-column:1/-1}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security 1st Coding | MYTHADIS LABS</title>
+  <meta name="description" content="Explore Mythadis Labs, HDF Home Defense Force and Ground Control. Both cybersecurity systems are in development.">
+  <link rel="canonical" href="https://www.mythadis.com/">
+  <link rel="stylesheet" href="/labs/labs.css">
+</head>
+<body>
+  <div class="site">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="masthead"><a class="wordmark" href="/" aria-label="Mythadis Labs home">MYTHADIS LABS</a><div class="stripes" aria-hidden="true"><span></span><span></span></div><nav class="nav" aria-label="Main navigation"><a href="/" aria-current="page">HOME</a><span class="sep" aria-hidden="true">/</span><a href="/labs/hdf/">HDF</a><span class="sep" aria-hidden="true">/</span><a href="/labs/ground-control/">GROUND CONTROL</a><span class="sep" aria-hidden="true">/</span><a href="/#about">ABOUT</a></nav></header>
+    <main id="main"><section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <h1 class="hero-title poster-heading" id="hero-title"><span>SECURITY <span class="first inline">1st</span></span><span class="red">CODING</span></h1>
+    <p class="hero-sub">Human-directed AI building calmer security software.</p>
+    <span class="sticker">IN DEVELOPMENT</span>
+    <a class="cta" href="#systems"><span>EXPLORE THE SYSTEM</span><span class="arrow" aria-hidden="true">▶</span></a>
+  </div><div class="console-stage"><div class="mission-console mission-console--labs" role="img" aria-label="Illustrated vintage mission control console showing MYTHADIS LABS, HDF, and GROUND CONTROL with a test pattern. This is a concept display."><div class="console-shell"><div class="console-screenbank"><div class="console-screenrow top-row"><div class="crt "><div class="crt-glass"><strong class="crt-title">MYTHADIS<br>LABS</strong></div></div><div class="crt "><div class="crt-glass"><div class="colorbars" aria-label="Colour test pattern and PLEASE STAND BY"><i></i><i></i><i></i><i></i><i></i><strong>PLEASE STAND BY</strong></div></div></div></div><div class="console-screenrow bottom-row"><div class="crt "><div class="crt-glass"><strong class="crt-title">HDF</strong></div></div><div class="crt "><div class="crt-glass"><strong class="crt-title">GROUND<br>CONTROL</strong></div></div></div></div><div class="controls" aria-label="Decorative analog controls"><div class="lamp-cluster" aria-hidden="true"><i class="amber-lamp"></i><i class="amber-lamp"></i><i class="amber-lamp"></i></div><div class="knob-cluster" aria-hidden="true"><i class="knob"></i><i class="knob"></i><i class="knob"></i></div><div class="switch-cluster" aria-hidden="true"><i class="toggle"></i><i class="toggle"></i><i class="toggle"></i></div><div class="lamp-cluster" aria-hidden="true"><i class="amber-lamp"></i><i class="amber-lamp"></i><i class="amber-lamp"></i></div></div></div><div class="console-foot" aria-hidden="true"></div></div></div></section>
+<div class="promise-band"><div class="round-badge">MISSION</div><p>Mythadis Labs is building two connected systems: HDF and Ground Control.</p></div><div class="divider-stripes" aria-hidden="true"><span></span><span></span></div>
+<section class="system-section" id="systems">
+  <p class="section-label">TWO SYSTEMS · ONE MISSION</p>
+  <div class="system-grid"><article class="system-card"><div class="mini-screen" aria-hidden="true"><div class="mini-glass"><span class="green-lamp" aria-hidden="true"></span></div></div><div><h2><span class="slash">/</span>HDF</h2><p>Home Defense Force is designed to discover, learn and defend your network with minimal noise.</p><a class="card-cta" href="/labs/hdf/">OPEN HDF ▶</a></div></article><article class="system-card"><div class="mini-screen" aria-hidden="true"><div class="mini-glass"><span class="dial-face" aria-hidden="true"></span></div></div><div><h2><span class="slash">/</span>GROUND CONTROL</h2><p>The behind-the-scenes system for testing, signing and delivering updates. No remote commands to devices.</p><a class="card-cta" href="/labs/ground-control/">OPEN GROUND CONTROL ▶</a></div></article></div>
+</section>
+<div class="divider-stripes" aria-hidden="true"><span></span><span></span></div>
+<section class="principles" aria-label="Our principles"><article class="principle"><div class="mini-screen" aria-hidden="true"><div class="mini-glass"><span class="green-lamp" aria-hidden="true"></span></div></div><div><h2>QUIET</h2><p>Most days, you won't hear from us. That's the point.</p></div></article><article class="principle"><div class="mini-screen" aria-hidden="true"><div class="mini-glass"><span class="dial-face" aria-hidden="true"></span></div></div><div><h2>HONEST</h2><p>We'll tell you what we can see, and what we can't.</p></div></article><article class="principle"><div class="mini-screen" aria-hidden="true"><div class="mini-glass"><span class="door-face" aria-hidden="true"></span></div></div><div><h2>PRIVATE</h2><p>Device behaviour, never browsing history.</p></div></article></section>
+<section class="secondary-band" id="about" aria-labelledby="about-title">
+  <article><small>OUR COMPANY</small><h2 id="about-title">MYTHADIS LABS</h2><p>Mythadis Labs is an AI and security-software initiative within Mythadis Limited, an Irish technology company. Both products are currently in development.</p></article>
+  <article><small>OUR APPROACH</small><h2>SECURITY 1st CODING</h2><p>Build deliberately. Test against real threats. Prefer quiet prevention, clear limits and privacy over alerts for the sake of alerts.</p></article>
+</section></main>
+    <footer class="site-footer"><span>© MYTHADIS LABS · IN DEVELOPMENT · SECURITY 1st CODING</span><div class="stripes" aria-hidden="true"><span></span><span></span></div></footer>
+  </div>
+</body>
+</html>
